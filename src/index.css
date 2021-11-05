@@ -1,0 +1,77 @@
+@import "~antd/dist/antd.css";
+@font-face {
+  font-family: "Lato";
+  src: url("./styles/fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+  font-family: "LatoThin";
+  src: url("./styles/fonts/Lato-Thin.ttf");
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+div {
+  display: block;
+}
+a {
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+}
+
+h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  line-height: 44px;
+  font-family: Lato, sans-serif;
+  color: #313131;
+  font-size: 38px;
+}
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  border: 0;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-family: Lato, sans-serif;
+  color: #757575;
+  font-weight: 300;
+}
+h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Lato, sans-serif;
+  color: #525252;
+  font-size: 21px;
+  line-height: 23px;
+  font-weight: 300;
+  text-align: center;
+}
