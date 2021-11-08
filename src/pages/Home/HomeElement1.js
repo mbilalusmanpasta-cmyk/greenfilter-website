@@ -142,7 +142,17 @@ const HomeElement1 = () => {
                     src={brand.imgSrc}
                     alt="brand"
                     sizes="(max-width: 479px) 86vw, (max-width: 767px) 87vw, 13vw"
-                    className={brands.indexOf(brand) === 3 ? "image-3" : null}
+                    // className={brands.indexOf(brand) === 3 ? "image-3" : null}
+                    className={() => {
+                      if (brands.indexOf(brand) === 3) {
+                        return "image-3";
+                      }
+                      if (brands.indexOf(brand) === 5) {
+                        return "image-4";
+                      } else {
+                        return null;
+                      }
+                    }}
                   />
                 </div>
               </div>
@@ -378,5 +388,28 @@ const HomeElement1Wrapper = styled.div`
   }
   .image-3 {
     width: 75px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .w-col-2 {
+      width: 100% !important;
+      left: auto;
+      right: auto;
+      margin-bottom: 20px;
+    }
+    .w-col {
+      float: none;
+    }
+    .titles-div {
+      width: 90%;
+    }
+    .column-div._0 {
+      height: auto;
+    }
+  }
+  @media (max-width: 1300px) {
+    .titles-div {
+      margin-top: 50px;
+    }
   }
 `;

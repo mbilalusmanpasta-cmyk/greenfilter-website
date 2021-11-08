@@ -137,8 +137,7 @@ const HeroWrapper = styled.div`
     text-align: center;
     letter-spacing: 0.75px;
   }
-  img {
-  }
+
   .filter._600 {
     left: -5%;
     right: auto;
@@ -158,5 +157,18 @@ const HeroWrapper = styled.div`
     right: 0%;
     bottom: -3%;
     width: 500px;
+  }
+  @media screen and (max-width: 767px) {
+    .img-container {
+      height: 100vh;
+    }
+    .filter {
+      display: none !important;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    .container-3 {
+      max-width: 728px;
+    }
   }
 `;
