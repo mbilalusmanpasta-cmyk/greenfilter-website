@@ -16,7 +16,9 @@ import brand3 from "../../assets/trust/brand3.png";
 import brand4 from "../../assets/trust/brand4.png";
 import brand5 from "../../assets/trust/brand5.jpg";
 import Button1 from "../../components/Button1";
-const HomeElement1 = () => {
+import { useHistory } from "react-router-dom";
+const HomeElement1 = (props) => {
+  const history = useHistory();
   const cars = [
     {
       id: 0,
@@ -99,7 +101,13 @@ const HomeElement1 = () => {
               </div>
             ))}
             <div className="div-block-5">
-              <Button1 text="See All Brands" />
+              <Button1
+                text="See All Brands"
+                handleClick={() => {
+                  props.handleClickIndex(0);
+                  history.push("/shop-by-vehicle");
+                }}
+              />
             </div>
           </div>
         </div>

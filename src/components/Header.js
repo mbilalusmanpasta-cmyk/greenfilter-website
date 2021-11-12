@@ -6,11 +6,17 @@ import { Menu, Dropdown, Button } from "antd";
 import "../styles/Header.css";
 import flag from "../assets/USA-Flag.jpg";
 import { FaBars } from "react-icons/fa";
-const Header = () => {
+const Header = (props) => {
   const menu0 = (
     <Menu>
       <Menu.Item>
-        <Link>By Vehicle</Link>
+        <Link
+          to="/shop-by-vehicle"
+          onClick={() => props.handleClickIndex(0)}
+          style={{ color: props.clickedIndex === 0 ? "#0082f3" : null }}
+        >
+          By Vehicle
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link>How To Measure A Filter</Link>

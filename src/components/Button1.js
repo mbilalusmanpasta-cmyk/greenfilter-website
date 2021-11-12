@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-const Button1 = ({ text }) => {
+const Button1 = ({ text, handleClick }) => {
   return (
     <>
-      <Button1Wrapper>{text}</Button1Wrapper>
+      <Button1Wrapper onClick={handleClick}>{text}</Button1Wrapper>
     </>
   );
 };
