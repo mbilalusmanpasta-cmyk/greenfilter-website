@@ -6,6 +6,7 @@ import { Menu, Dropdown, Button } from "antd";
 import "../styles/Header.css";
 import flag from "../assets/USA-Flag.jpg";
 import { FaBars } from "react-icons/fa";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 const Header = (props) => {
   const menu0 = (
     <Menu>
@@ -63,6 +64,15 @@ const Header = (props) => {
       </Menu.Item>
     </Menu>
   );
+  const menu2 = (
+    <Menu style={{ background: "#ddd", position: "static", borderRadius: 5 }}>
+      {props.vehicle?.modelType?.map((type) => (
+        <Menu.Item className="vehicle-dropdown-menu-item" key={type.id}>
+          <Link>{type.modelTypeName}</Link>
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
   return (
     <>
       <HeaderWrapper>
@@ -78,6 +88,7 @@ const Header = (props) => {
               <Dropdown
                 overlay={menu0}
                 placement="bottomCenter"
+                overlayStyle={{ zIndex: 100000 }}
                 // trigger={["click"]}
               >
                 <Button>Shop</Button>
@@ -85,6 +96,7 @@ const Header = (props) => {
               <Dropdown
                 overlay={menu1}
                 placement="bottomCenter"
+                overlayStyle={{ zIndex: 100000 }}
                 // trigger={["click"]}
               >
                 <Button>Why Green Filter?</Button>
@@ -98,6 +110,31 @@ const Header = (props) => {
               <img className="icon flag" src={flag} alt="flag" />
             </div>
           </div>
+          {props.isVehicle && (
+            <div className="hero-header">
+              <div className="row-3 w-row">
+                <div className="column-3 _0 w-col w-col-9">
+                  <h1 className="hero-heading-1 left smaller">
+                    {props.vehicle.modelName} Performance Air Filters
+                  </h1>
+                </div>
+                <div className="column-2 w-col w-col-3">
+                  <div className="w-form">
+                    <Dropdown
+                      overlay={menu2}
+                      trigger={["click"]}
+                      overlayStyle={{ zIndex: 100000 }}
+                    >
+                      <div className="vehicle-dropdown-btn">
+                        Select a {props.vehicle.modelName} Model
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
+                    </Dropdown>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </HeaderWrapper>
     </>
@@ -194,6 +231,90 @@ const HeaderWrapper = styled.div`
     left: 0;
     color: #fff;
     padding: 18px;
+  }
+
+  .hero-header {
+    position: relative;
+    z-index: 800;
+    height: 100px;
+    padding-top: 0px;
+    background-color: black;
+  }
+
+  .row-3 {
+    position: static;
+    width: 100%;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: transparent;
+  }
+
+  .w-row:before,
+  .w-row:after {
+    content: " ";
+    display: table;
+  }
+  .column-3._0 {
+    margin-top: 0px;
+    padding-left: 0px;
+  }
+  .w-col-9 {
+    width: 75%;
+  }
+  .w-col-3 {
+    width: 25%;
+  }
+  .w-col {
+    position: relative;
+    float: left;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .hero-heading-1.left.smaller {
+    margin-top: 5px;
+    font-size: 24px;
+    text-transform: capitalize;
+  }
+  .hero-heading-1.left {
+    margin-bottom: 15px;
+    text-align: left;
+    text-shadow: 1px 1px 6px rgb(0 0 0 / 24%);
+  }
+  .hero-heading-1 {
+    font-family: Lato, sans-serif;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 0.75px;
+  }
+  .column-2 {
+    height: 100px;
+    text-align: right;
+  }
+  .w-form {
+    margin: 0 0 15px;
+    position: absolute;
+    right: 0;
+    bottom: 15px;
+  }
+  .vehicle-dropdown-btn {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    padding: 15px 40px;
+    border-radius: 5px;
+    background-color: #00ad23;
+    font-family: Lato, sans-serif;
+    color: #fff;
+    user-select: none;
+    display: inline-block;
+    cursor: pointer;
+    display: flex;
+  }
+  .vehicle-dropdown-btn svg {
+    font-size: 22px;
+    color: #fff;
+    margin-left: 10px;
   }
 
   @media screen and (max-width: 767px) {

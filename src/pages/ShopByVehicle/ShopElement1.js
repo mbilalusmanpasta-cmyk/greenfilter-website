@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { brandDetails } from "../../data/cars";
-const ShopElement1 = () => {
+const ShopElement1 = (props) => {
   return (
     <>
       <ShopElement1Wrapper>
@@ -15,7 +15,13 @@ const ShopElement1 = () => {
                   className="shop-vehicle-make w-col w-col-2"
                   key={car.carId}
                 >
-                  <Link className="link-block">
+                  <Link
+                    className="link-block"
+                    to="/vehicles"
+                    onClick={() => {
+                      props.handleVehicleRoute(car);
+                    }}
+                  >
                     <div className="column-div">
                       <div className="make-image">
                         <img

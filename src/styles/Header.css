@@ -19,3 +19,14 @@
 a {
   transition: none !important;
 }
+
+.vehicle-dropdown-menu-item {
+  color: #999 !important;
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
+}
+
+.vehicle-dropdown-menu-item:hover {
+  background-color: #ddd;
+  color: #003ead !important;
+}
