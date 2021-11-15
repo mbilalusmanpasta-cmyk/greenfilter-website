@@ -34,6 +34,7 @@ const ShopElement1 = () => {
             </div>
           </div>
         ))}
+        <div></div>
       </ShopElement1Wrapper>
     </>
   );
