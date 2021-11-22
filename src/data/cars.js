@@ -48,6 +48,8 @@ import img43 from "../assets/cars/InsaneSupercars/img3.jpg";
 
 import bg0 from "../assets/backgrounds/bmw-m-series.jpg";
 
+import qbg0 from "../assets/backgrounds/bmw-banner.jpg";
+
 import gimg0 from "../assets/gallery/ShopByVehicle/Bmw-m-series/img0.jpg";
 import gimg1 from "../assets/gallery/ShopByVehicle/Bmw-m-series/img1.jpg";
 import gimg2 from "../assets/gallery/ShopByVehicle/Bmw-m-series/img2.jpg";
@@ -62,6 +64,15 @@ import gimg10 from "../assets/gallery/ShopByVehicle/Bmw-m-series/img10.jpg";
 import gimg11 from "../assets/gallery/ShopByVehicle/Bmw-m-series/img11.jpg";
 import gimg12 from "../assets/gallery/ShopByVehicle/Bmw-m-series/img12.jpg";
 import gimg13 from "../assets/gallery/ShopByVehicle/Bmw-m-series/img13.jpg";
+
+import timg0 from "../assets/products/bmw-m/7157_v1_500.jpg";
+import timg1 from "../assets/products/bmw-m/7193_v1_500.jpg";
+
+import tcar0 from "../assets/products/bmw-m/bmw-m3.jpg";
+import tcar1 from "../assets/products/bmw-m/bmw-m5.jpg";
+
+import pimg0 from "../assets/products/bmw-m/2405_v1_500.jpg";
+import pimg1 from "../assets/products/bmw-m/2038_v1_500.jpg";
 
 export const brandDetails = [
   {
@@ -85,6 +96,7 @@ export const brandDetails = [
         ],
         img: img0,
         bgImg: bg0,
+        quoteBgImg: qbg0,
         gallery: [
           gimg0,
           gimg1,
@@ -100,6 +112,72 @@ export const brandDetails = [
           gimg11,
           gimg12,
           gimg13,
+        ],
+        quoteText: null,
+        quoteSource: null,
+        tables: [
+          {
+            id: 0,
+            name: "BMW M3",
+            partNo: "#7157",
+            tableCar: tcar0,
+            tableImg: timg0,
+            columnData: [
+              {
+                id: 0,
+                year: "2008-2012",
+                partNo: "#7157",
+                disp: "4.0L",
+                engineSize: "V8",
+                intake: "F/I",
+                discPrice: "88.11",
+                actPrice: "134.27",
+                prodImg: timg0,
+              },
+              {
+                id: 1,
+                year: "1996-2007",
+                partNo: "#2405",
+                disp: "3.2L",
+                engineSize: "L6",
+                intake: "F/I",
+                discPrice: "52.50",
+                actPrice: "80.00",
+                prodImg: pimg0,
+              },
+              {
+                id: 2,
+                year: "1995",
+                partNo: "#2038",
+                disp: "3.0L",
+                engineSize: "L6",
+                intake: "F/I",
+                discPrice: "45.23",
+                actPrice: "68.91",
+                prodImg: pimg1,
+              },
+            ],
+          },
+          {
+            id: 1,
+            name: "BMW M5",
+            partNo: "#7193",
+            tableCar: tcar1,
+            tableImg: timg1,
+            columnData: [
+              {
+                id: 0,
+                year: "1998-2004",
+                partNo: "#7193",
+                disp: "5.0L",
+                engineSize: "V8",
+                intake: "F/I",
+                discPrice: "54.74",
+                actPrice: "77.04",
+                prodImg: timg1,
+              },
+            ],
+          },
         ],
       },
       {

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import bgImg from "../../assets/example.jpg";
 import Button1 from "../../components/Button1";
 const Hero = (props) => {
   return (

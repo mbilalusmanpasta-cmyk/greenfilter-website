@@ -8,7 +8,7 @@ const VehicleElement2 = ({ vehicle }) => {
     <>
       <VehicleElement2Wrapper>
         <div className="sub-text">
-          Precisely engineered for BMW M Series performance
+          Precisely engineered for {vehicle.modelName} performance
           <br />
           <span className="bold">
             It’s a breakthrough in air filter technology.

@@ -40,7 +40,13 @@ const Routes = () => {
         <Route
           exact
           path="/vehicles"
-          component={() => <Vehicles vehicle={vehicle} />}
+          component={() => (
+            <Vehicles
+              vehicle={vehicle}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
         />
       </Switch>
     </>
