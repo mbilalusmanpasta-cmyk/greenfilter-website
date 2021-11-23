@@ -27,20 +27,20 @@ import img13 from "../../assets/gallery/img13.jpg";
 
 const Home = (props) => {
   const gallery = [
-    img0,
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
-    img9,
-    img10,
-    img11,
-    img12,
-    img13,
+    { id: 0, image: img0 },
+    { id: 1, image: img1 },
+    { id: 2, image: img2 },
+    { id: 3, image: img3 },
+    { id: 4, image: img4 },
+    { id: 5, image: img5 },
+    { id: 6, image: img6 },
+    { id: 7, image: img7 },
+    { id: 8, image: img8 },
+    { id: 9, image: img9 },
+    { id: 10, image: img10 },
+    { id: 11, image: img11 },
+    { id: 12, image: img12 },
+    { id: 13, image: img13 },
   ];
   useEffect(() => {
     props.handleClickIndex(-1);
@@ -59,7 +59,7 @@ const Home = (props) => {
       <HomeElement5 />
       <HomeElement6 />
       <HomeElement7 />
-      <Gallery gallery={gallery} width="20%" />
+      <Gallery gallery={gallery} />
       <Footer />
     </>
   );

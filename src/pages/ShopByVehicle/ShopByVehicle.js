@@ -12,7 +12,16 @@ import img6 from "../../assets/gallery/ShopByVehicle/img6.jpg";
 import img7 from "../../assets/gallery/ShopByVehicle/img7.jpg";
 import Gallery from "../Home/Gallery";
 const ShopByVehicle = (props) => {
-  const gallery = [img0, img1, img2, img3, img4, img5, img6, img7];
+  const gallery = [
+    { id: 0, image: img0 },
+    { id: 1, image: img1 },
+    { id: 2, image: img2 },
+    { id: 3, image: img3 },
+    { id: 4, image: img4 },
+    { id: 5, image: img5 },
+    { id: 6, image: img6 },
+    { id: 7, image: img7 },
+  ];
   return (
     <>
       <Header

@@ -12,6 +12,7 @@ import VehicleElement5 from "./VehicleElement5";
 import HomeElement5 from "../Home/HomeElement5";
 const Vehicles = (props) => {
   const vehicle = brandDetails[0].cars[0];
+  console.log("Gallery >> ", vehicle.gallery);
   return (
     <>
       <Header

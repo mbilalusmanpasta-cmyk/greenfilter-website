@@ -270,10 +270,4 @@ const HomeElement4Wrapper = styled.div`
       width: 90%;
     }
   }
-
-  @media (max-width: 479px) {
-    .titles-div.top {
-      display: none;
-    }
-  }
 `;
