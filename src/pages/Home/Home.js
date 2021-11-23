@@ -59,7 +59,7 @@ const Home = (props) => {
       <HomeElement5 />
       <HomeElement6 />
       <HomeElement7 />
-      <Gallery gallery={gallery} />
+      <Gallery gallery={gallery} width="20%" />
       <Footer />
     </>
   );

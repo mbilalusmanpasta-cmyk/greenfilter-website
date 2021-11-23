@@ -108,8 +108,8 @@ const HomeElement6Wrapper = styled.div`
   .main-vehicle-row {
     margin-top: 25px;
     margin-bottom: 0px;
-    margin-left: -10px;
-    margin-right: -10px;
+    // margin-left: -10px;
+    // margin-right: -10px;
   }
 
   .w-row:before,
@@ -161,5 +161,22 @@ const HomeElement6Wrapper = styled.div`
   }
   .blue.simple {
     color: #000;
+  }
+  @media (max-width: 767px) {
+    .titles-div {
+      width: 90%;
+    }
+    .w-col {
+      width: 100%;
+      left: auto;
+      right: auto;
+    }
+    .link-block {
+      display: block;
+      width: 50%;
+      margin-top: 25px;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 `;

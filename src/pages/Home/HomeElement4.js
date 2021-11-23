@@ -7,6 +7,7 @@ import img1_0 from "../../assets/Asset-1goshadowicon.png";
 import img1_1 from "../../assets/fuel-160535.png";
 import img2_0 from "../../assets/usa-1177272.png";
 import img3_0 from "../../assets/green-filter-icon.png";
+import Button1 from "../../components/Button1";
 const HomeElement4 = () => {
   return (
     <>
@@ -25,6 +26,7 @@ const HomeElement4 = () => {
               It's not just about immediate gains, but the&nbsp; long term ones
               as well.
             </p>
+            <Button1 text="Find Your Green Filter" />
           </div>
           <div className="main-vehicle-row w-row">
             <div className="w-col w-col-3">
@@ -162,8 +164,8 @@ const HomeElement4Wrapper = styled.div`
   .main-vehicle-row {
     margin-top: 25px;
     margin-bottom: 0px;
-    margin-left: -10px;
-    margin-right: -10px;
+    // margin-left: -10px;
+    // margin-right: -10px;
   }
   .w-row:before,
   .w-row:after {
@@ -254,5 +256,24 @@ const HomeElement4Wrapper = styled.div`
   }
   .large-paragraph {
     font-family: Lato, sans-serif;
+  }
+
+  @media screen and (max-width: 767px) {
+    .w-col {
+      width: 100%;
+      left: auto;
+      right: auto;
+      margin-top: 20px;
+      // float: left;
+    }
+    .titles-div {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .titles-div.top {
+      display: none;
+    }
   }
 `;

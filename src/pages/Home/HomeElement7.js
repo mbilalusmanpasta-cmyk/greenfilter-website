@@ -102,8 +102,8 @@ const HomeElement7Wrapper = styled.div`
   .main-vehicle-row {
     margin-top: 25px;
     margin-bottom: 0px;
-    margin-left: -10px;
-    margin-right: -10px;
+    // margin-left: -10px;
+    // margin-right: -10px;
   }
 
   .w-row:before,
@@ -145,5 +145,13 @@ const HomeElement7Wrapper = styled.div`
 
   .titles-div > button {
     margin-top: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .w-col {
+      width: 100%;
+      left: auto;
+      right: auto;
+    }
   }
 `;

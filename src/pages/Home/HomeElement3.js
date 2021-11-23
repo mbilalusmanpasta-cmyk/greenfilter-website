@@ -137,8 +137,8 @@ const HomeElement3Wrapper = styled.div`
     text-transform: none;
   }
   .main-vehicle-row {
-    margin-left: -10px;
-    margin-right: -10px;
+    // margin-left: -10px;
+    // margin-right: -10px;
     margin-top: 25px;
     margin-bottom: 0px;
   }
@@ -191,5 +191,32 @@ const HomeElement3Wrapper = styled.div`
     padding-right: 25px;
     padding-left: 25px;
     text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .w-col {
+      width: 100%;
+      left: auto;
+      right: auto;
+    }
+    .link-block {
+      display: block;
+      width: 50%;
+      margin-top: 25px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .titles-div {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 479px) {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    .link-block {
+      width: 100%;
+      margin-top: 25px;
+    }
   }
 `;

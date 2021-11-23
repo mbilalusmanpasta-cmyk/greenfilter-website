@@ -12,15 +12,15 @@ const HomeElement5 = () => {
       items: 4,
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1230 },
       items: 4,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1230, min: 930 },
       items: 3,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 930, min: 0 },
       items: 1,
     },
   };
@@ -28,7 +28,7 @@ const HomeElement5 = () => {
     <>
       <HomeElement5Wrapper gradient={gradient}>
         <div className="w-container">
-          <div class="titles-div">
+          <div class="titles-div flex">
             <div class="titles-div flex w-clearfix">
               <h1>Watch The World Show Us Off on</h1>
               <img src={youtube} alt="youtube" class="image-6" />
@@ -44,7 +44,8 @@ const HomeElement5 = () => {
           >
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/GT9H2omp1WE"
                 title="YouTube video player"
@@ -55,7 +56,8 @@ const HomeElement5 = () => {
             </div>
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/om0RyH2ZXr8"
                 title="YouTube video player"
@@ -66,7 +68,8 @@ const HomeElement5 = () => {
             </div>
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/k5NcFQDlZ4g"
                 title="YouTube video player"
@@ -77,7 +80,8 @@ const HomeElement5 = () => {
             </div>
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/d7rETWxgZ8U"
                 title="YouTube video player"
@@ -88,7 +92,8 @@ const HomeElement5 = () => {
             </div>
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/GT9H2omp1WE"
                 title="YouTube video player"
@@ -99,7 +104,8 @@ const HomeElement5 = () => {
             </div>
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/om0RyH2ZXr8"
                 title="YouTube video player"
@@ -110,7 +116,8 @@ const HomeElement5 = () => {
             </div>
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/k5NcFQDlZ4g"
                 title="YouTube video player"
@@ -121,7 +128,8 @@ const HomeElement5 = () => {
             </div>
             <div className="carousel-item">
               <iframe
-                width="460"
+                // width="460"
+                width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/d7rETWxgZ8U"
                 title="YouTube video player"
@@ -208,5 +216,25 @@ const HomeElement5Wrapper = styled.div`
     height: 5px;
     margin-right: 20px;
     background: #ccc;
+  }
+
+  @media (max-width: 767px) {
+    .titles-div {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 1300px) {
+    padding-top: 100px;
+
+    .titles-div {
+      margin-top: 50px;
+    }
+  }
+  @media (max-width: 479px) {
+    .titles-div.flex {
+      display: flex;
+      flex-direction: column;
+    }
   }
 `;

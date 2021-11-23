@@ -45,4 +45,10 @@ const GalleryWrapper = styled.div`
     width: 100%;
     height: auto;
   }
+
+  @media (max-width: 479px) {
+    .lightbox {
+      width: 50%;
+    }
+  }
 `;

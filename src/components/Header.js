@@ -173,7 +173,7 @@ const HeaderWrapper = styled.div`
   .container {
     display: block;
     margin-right: 3%;
-    margin-left: 3%;
+    margin-left: 15%;
     padding: 10px 0;
   }
   .brand {
@@ -210,7 +210,7 @@ const HeaderWrapper = styled.div`
   .right-nav-div {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 15%;
     display: block;
     float: right;
   }
@@ -317,19 +317,29 @@ const HeaderWrapper = styled.div`
     margin-left: 10px;
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 912px) {
     .nav-links {
       display: none !important;
     }
     .container {
       text-align: center;
       position: relative;
+      margin-left: 3%;
     }
     .icon.flag {
       margin-top: 0;
     }
     .menu-button {
       display: inline-block;
+    }
+    .right-nav-div {
+      right: 0 !important;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .right-nav-div {
+      right: 8%;
     }
   }
 `;
