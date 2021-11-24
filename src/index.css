@@ -75,3 +75,7 @@ h4 {
   font-weight: 300;
   text-align: center;
 }
+center {
+  display: block;
+  text-align: -webkit-center;
+}

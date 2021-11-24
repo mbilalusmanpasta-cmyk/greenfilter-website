@@ -20,7 +20,13 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>How To Measure A Filter</Link>
+        <Link
+          to="/measure-filter"
+          onClick={() => props.handleClickIndex(1)}
+          style={{ color: props.clickedIndex === 1 ? "#0082f3" : null }}
+        >
+          How To Measure A Filter
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link>Cleaner Kits</Link>

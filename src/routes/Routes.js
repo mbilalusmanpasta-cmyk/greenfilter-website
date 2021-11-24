@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import { Switch, Route } from "react-router-dom";
 import ShopByVehicle from "../pages/ShopByVehicle/ShopByVehicle";
 import Vehicles from "../pages/Vehicles/Vehicles";
+import MeasureFilter from "../pages/MeasureFilter/MeasureFilter";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -13,6 +14,7 @@ const Routes = () => {
     setVehicle(value);
   };
   console.log("Vehicle Route >> ", vehicle);
+  console.log("Clicked Index >>>", clickedIndex);
   return (
     <>
       <Switch>
@@ -43,6 +45,17 @@ const Routes = () => {
           component={() => (
             <Vehicles
               vehicle={vehicle}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/measure-filter"
+          component={() => (
+            <MeasureFilter
+              clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}
             />
