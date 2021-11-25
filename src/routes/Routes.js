@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import ShopByVehicle from "../pages/ShopByVehicle/ShopByVehicle";
 import Vehicles from "../pages/Vehicles/Vehicles";
 import MeasureFilter from "../pages/MeasureFilter/MeasureFilter";
+import CleanerCare from "../pages/CleanerCare/CleanerCare";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -55,6 +56,17 @@ const Routes = () => {
           path="/measure-filter"
           component={() => (
             <MeasureFilter
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/cleaner-care"
+          component={() => (
+            <CleanerCare
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}

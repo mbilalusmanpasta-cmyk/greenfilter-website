@@ -29,7 +29,13 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Cleaner Kits</Link>
+        <Link
+          to="/cleaner-care"
+          onClick={() => props.handleClickIndex(2)}
+          style={{ color: props.clickedIndex === 2 ? "#0082f3" : null }}
+        >
+          Cleaner Kits
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link>Harley Filters</Link>

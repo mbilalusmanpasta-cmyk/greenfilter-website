@@ -84,7 +84,7 @@ const HomeElement1 = (props) => {
           <h1 class="heading-11">
             The Chosen Filter for Top Performing Brands
           </h1>
-          <div className="main-vehicle-row">
+          <div className="main-vehicle-row" style={{ display: "block" }}>
             {cars.map((car) => (
               <div key={car.id} className="w-col w-col-2">
                 <Link to="/" class="link-block w-inline-block">
