@@ -5,6 +5,7 @@ import ShopByVehicle from "../pages/ShopByVehicle/ShopByVehicle";
 import Vehicles from "../pages/Vehicles/Vehicles";
 import MeasureFilter from "../pages/MeasureFilter/MeasureFilter";
 import CleanerCare from "../pages/CleanerCare/CleanerCare";
+import UniversalCylinder from "../pages/UniversalCylinder/UniversalCylinder";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -67,6 +68,17 @@ const Routes = () => {
           path="/cleaner-care"
           component={() => (
             <CleanerCare
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/universal-cylinder"
+          component={() => (
+            <UniversalCylinder
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}

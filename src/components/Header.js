@@ -41,7 +41,13 @@ const Header = (props) => {
         <Link>Harley Filters</Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Universal Cone/Cylinder</Link>
+        <Link
+          to="/universal-cylinder"
+          onClick={() => props.handleClickIndex(4)}
+          style={{ color: props.clickedIndex === 4 ? "#0082f3" : null }}
+        >
+          Universal Cone/Cylinder
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link>Universal Round</Link>
