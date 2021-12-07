@@ -1,54 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import img0 from "../../assets/cylinders/cone-cylinder_chart.jpg";
-import img1 from "../../assets/cylinders/vid_measure_350.jpg";
-import img2 from "../../assets/cylinders/cone_filter_measurements_s.jpg";
+import img0 from "../../assets/cylinders/round.jpg";
+import img2 from "../../assets/cylinders/round_filter_measurements.jpg";
 import FilterTable from "../../components/FilterTable";
 const tableHeader = [
   {
     id: 0,
     name: "Filter Number",
-    maxWidth: 91,
+    maxWidth: 161,
   },
   {
     id: 1,
-    name: "Inlet Diameter (ID)",
-    maxWidth: 165,
+    name: "Outside Diameter (OD)",
+    maxWidth: 277,
   },
   {
     id: 2,
-    name: "Height (H)",
-    maxWidth: 82,
+    name: "Inside Diameter (ID)",
+    maxWidth: 255,
   },
   {
     id: 3,
-    name: "Outside Diameter - Base (OD-B)",
-    maxWidth: 171,
+    name: "Height (H)",
+    maxWidth: 143,
   },
   {
     id: 4,
-    name: "Outside Diameter - Top (OD-T)",
-    maxWidth: 171,
+    name: "Shape",
+    maxWidth: 236,
   },
   {
     id: 5,
-    name: "Style",
-    maxWidth: 165,
-  },
-  {
-    id: 6,
-    name: "End Cap",
-    maxWidth: 179,
-  },
-  {
-    id: 7,
-    name: "Inlet Type",
-    maxWidth: 131,
-  },
-  {
-    id: 8,
     name: "Color",
-    maxWidth: 76,
+    maxWidth: 130,
   },
 ];
 const tableData = [
@@ -57,40 +41,26 @@ const tableData = [
     rowColumns: [
       {
         id: 0,
-        name: 2007,
+        name: 2011,
       },
       {
         id: 1,
-        name: 3.75,
+        name: 12.0,
       },
       {
         id: 2,
-        name: 9.5,
+        name: 9.84,
       },
       {
         id: 3,
-        name: 6.0,
+        name: 3.43,
       },
       {
         id: 4,
-        name: 6.0,
+        name: "Round",
       },
       {
         id: 5,
-        name: "Cylinder",
-      },
-
-      {
-        id: 6,
-        name: "Rubber",
-      },
-
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
         name: "Green",
       },
     ],
@@ -100,40 +70,26 @@ const tableData = [
     rowColumns: [
       {
         id: 0,
-        name: 2024,
+        name: 2011,
       },
       {
         id: 1,
-        name: 3.5,
+        name: 12.0,
       },
       {
         id: 2,
-        name: 6.5,
+        name: 9.84,
       },
       {
         id: 3,
-        name: 5.5,
+        name: 3.43,
       },
       {
         id: 4,
-        name: 4.0,
+        name: "Round",
       },
       {
         id: 5,
-        name: "Cone",
-      },
-
-      {
-        id: 6,
-        name: null,
-      },
-
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
         name: "Green",
       },
     ],
@@ -143,40 +99,26 @@ const tableData = [
     rowColumns: [
       {
         id: 0,
-        name: 2024,
+        name: 2011,
       },
       {
         id: 1,
-        name: 3.5,
+        name: 12.0,
       },
       {
         id: 2,
-        name: 6.5,
+        name: 9.84,
       },
       {
         id: 3,
-        name: 5.5,
+        name: 3.43,
       },
       {
         id: 4,
-        name: 4.0,
+        name: "Round",
       },
       {
         id: 5,
-        name: "Cone",
-      },
-
-      {
-        id: 6,
-        name: null,
-      },
-
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
         name: "Green",
       },
     ],
@@ -186,52 +128,36 @@ const tableData = [
     rowColumns: [
       {
         id: 0,
-        name: 2024,
+        name: 2011,
       },
       {
         id: 1,
-        name: 3.5,
+        name: 12.0,
       },
       {
         id: 2,
-        name: 6.5,
+        name: 9.84,
       },
       {
         id: 3,
-        name: 5.5,
+        name: 3.43,
       },
       {
         id: 4,
-        name: 4.0,
+        name: "Round",
       },
       {
         id: 5,
-        name: "Cone",
-      },
-
-      {
-        id: 6,
-        name: null,
-      },
-
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
         name: "Green",
       },
     ],
   },
 ];
-const UCElement1 = () => {
+const URElement1 = () => {
   return (
     <>
-      <UCElement1Wrapper>
-        <h1 style={{ marginTop: 100, marginLeft: 20 }}>
-          Find a Cone or Cylinder Filter
-        </h1>
+      <URElement1Wrapper>
+        <h1 style={{ marginTop: 100, marginLeft: 20 }}>Find a Round Filter</h1>
         <div
           style={{
             textAlign: "center",
@@ -242,29 +168,12 @@ const UCElement1 = () => {
         >
           <img className="resize" alt="" src={img0} />
         </div>
+
         <div
           style={{
             textAlign: "center",
             float: "left",
-            width: "30%",
-            minWidth: 350,
-          }}
-        >
-          <a
-            href="https://www.youtube.com/watch?v=Gz90LhIE08E&ab_channel=GreenFilter"
-            className="videomediumpic"
-            style={{ color: "green" }}
-          >
-            <img src={img1} className="resize" alt="video" />
-            <br />
-            Green Filter USA - Measuring and Finding a Clamp-On Filter
-          </a>
-        </div>
-        <div
-          style={{
-            textAlign: "center",
-            float: "left",
-            width: "30%",
+            width: "20%",
             minWidth: 300,
           }}
         >
@@ -299,11 +208,11 @@ const UCElement1 = () => {
         </p>
 
         <FilterTable headers={tableHeader} tableData={tableData} />
-      </UCElement1Wrapper>
+      </URElement1Wrapper>
     </>
   );
 };
 
-export default UCElement1;
+export default URElement1;
 
-const UCElement1Wrapper = styled.div``;
+const URElement1Wrapper = styled.div``;

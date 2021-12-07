@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../../components/Header";
-import Gallery from "./Gallery";
+import GuaranteeElement3 from "../Guarantee/GuaranteeElement3";
+import HomeElement2 from "../Home/HomeElement2";
+import HomeElement3 from "../Home/HomeElement3";
 import Hero from "./Hero";
-import HomeElement1 from "./HomeElement1";
-import HomeElement2 from "./HomeElement2";
-import HomeElement3 from "./HomeElement3";
-import HomeElement4 from "./HomeElement4";
-import HomeElement5 from "./HomeElement5";
-import HomeElement6 from "./HomeElement6";
-import HomeElement7 from "./HomeElement7";
+import Gallery from "../Home/Gallery";
 import Footer from "../../components/Footer";
 import img0 from "../../assets/gallery/img0.jpeg";
 import img1 from "../../assets/gallery/img1.jpeg";
@@ -24,8 +20,8 @@ import img10 from "../../assets/gallery/img10.jpg";
 import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
-
-const Home = (props) => {
+import HomeElement4 from "../Home/HomeElement4";
+const WhyGoGreen = (props) => {
   const gallery = [
     { id: 0, image: img0 },
     { id: 1, image: img1 },
@@ -42,9 +38,6 @@ const Home = (props) => {
     { id: 12, image: img12 },
     { id: 13, image: img13 },
   ];
-  useEffect(() => {
-    props.handleClickIndex(-1);
-  }, [props]);
   return (
     <>
       <Header
@@ -52,17 +45,14 @@ const Home = (props) => {
         handleClickIndex={props.handleClickIndex}
       />
       <Hero />
-      <HomeElement1 handleClickIndex={props.handleClickIndex} />
+      <GuaranteeElement3 src="https://www.youtube.com/embed/pg9iV1mwlAI" />
       <HomeElement2 />
       <HomeElement3 />
-      <HomeElement4 text="It's not just about immediate gains, but the  long term ones as well." />
-      <HomeElement5 />
-      <HomeElement6 />
-      <HomeElement7 />
       <Gallery gallery={gallery} />
+      <HomeElement4 text="The benefits of Green Filter are not just about experiencing immediate gains, but there are long term ones as well." />
       <Footer />
     </>
   );
 };
 
-export default Home;
+export default WhyGoGreen;

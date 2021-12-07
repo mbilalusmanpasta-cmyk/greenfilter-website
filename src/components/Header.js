@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../assets/gflogo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import "../styles/Header.css";
 import flag from "../assets/USA-Flag.jpg";
 import { FaBars } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 const Header = (props) => {
+  const history = useHistory();
   const menu0 = (
     <Menu>
       <Menu.Item>
@@ -50,26 +51,56 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Universal Round</Link>
+        <Link
+          to="/universal-round"
+          onClick={() => props.handleClickIndex(5)}
+          style={{ color: props.clickedIndex === 5 ? "#0082f3" : null }}
+        >
+          Universal Round
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Air Clearner Assemblies</Link>
+        <Link
+          to="/air-cleaner"
+          onClick={() => props.handleClickIndex(6)}
+          style={{ color: props.clickedIndex === 6 ? "#0082f3" : null }}
+        >
+          Air Clearner Assemblies
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Bargain Basement</Link>
+        <a href="../assets/documents/BB.pdf">Bargain Basement</a>
       </Menu.Item>
     </Menu>
   );
   const menu1 = (
     <Menu>
       <Menu.Item>
-        <Link>About Us</Link>
+        <Link
+          to="/about-us"
+          onClick={() => props.handleClickIndex(7)}
+          style={{ color: props.clickedIndex === 7 ? "#0082f3" : null }}
+        >
+          About Us
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Our Guarantee</Link>
+        <Link
+          to="/our-guarantee"
+          onClick={() => props.handleClickIndex(8)}
+          style={{ color: props.clickedIndex === 8 ? "#0082f3" : null }}
+        >
+          Our Guarantee
+        </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>How We Outperform</Link>
+        <Link
+          to="/why-go-green"
+          onClick={() => props.handleClickIndex(9)}
+          style={{ color: props.clickedIndex === 9 ? "#0082f3" : null }}
+        >
+          How We Outperform
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link>Private Label</Link>
@@ -122,7 +153,14 @@ const Header = (props) => {
 
               <Button>Cleaner & Care</Button>
 
-              <Button>Contact Us</Button>
+              <Button
+                onClick={() => {
+                  props.handleClickIndex(10);
+                  history.push("./contact-us");
+                }}
+              >
+                Contact Us
+              </Button>
             </div>
             <div className="right-nav-div">
               <img className="icon flag" src={flag} alt="flag" />

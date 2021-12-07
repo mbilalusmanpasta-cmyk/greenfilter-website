@@ -1,18 +1,18 @@
 import React from "react";
 import Header from "../../components/Header";
-import UCElement1 from "./UCElement1";
+import URElement1 from "./URElement1";
 import Footer from "../../components/Footer";
-const UniversalCylinder = (props) => {
+const UniversalRound = (props) => {
   return (
     <>
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <UCElement1 />
+      <URElement1 />
       <Footer />
     </>
   );
 };
 
-export default UniversalCylinder;
+export default UniversalRound;

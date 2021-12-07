@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-const Button1 = ({ text, handleClick }) => {
+const Button1 = ({ text, handleClick, marginTop }) => {
   return (
     <>
-      <Button1Wrapper onClick={handleClick}>{text}</Button1Wrapper>
+      <Button1Wrapper onClick={handleClick} marginTop={marginTop}>
+        {text}
+      </Button1Wrapper>
     </>
   );
 };
@@ -23,4 +25,5 @@ const Button1Wrapper = styled.button`
   letter-spacing: 0.75px;
   border: none;
   cursor: pointer;
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : 0)}px;
 `;

@@ -1,18 +1,18 @@
 import React from "react";
 import Header from "../../components/Header";
-import UCElement1 from "./UCElement1";
+import ACElement1 from "./ACElement1";
 import Footer from "../../components/Footer";
-const UniversalCylinder = (props) => {
+const AirCleaner = (props) => {
   return (
     <>
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <UCElement1 />
+      <ACElement1 />
       <Footer />
     </>
   );
 };
 
-export default UniversalCylinder;
+export default AirCleaner;

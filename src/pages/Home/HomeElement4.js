@@ -8,7 +8,7 @@ import img1_1 from "../../assets/fuel-160535.png";
 import img2_0 from "../../assets/usa-1177272.png";
 import img3_0 from "../../assets/green-filter-icon.png";
 import Button1 from "../../components/Button1";
-const HomeElement4 = () => {
+const HomeElement4 = ({ text }) => {
   return (
     <>
       <HomeElement4Wrapper
@@ -22,11 +22,8 @@ const HomeElement4 = () => {
         <div className="center airflow w-container">
           <div className="titles-div">
             <h1 className="heading-9">It's not just better airflow</h1>
-            <p className="large-paragraph gray center">
-              It's not just about immediate gains, but the&nbsp; long term ones
-              as well.
-            </p>
-            <Button1 text="Find Your Green Filter" />
+            <p className="large-paragraph gray center">{text}</p>
+            <Button1 text="Find Your Green Filter" marginTop={20} />
           </div>
           <div className="main-vehicle-row w-row">
             <div className="w-col w-col-3">
