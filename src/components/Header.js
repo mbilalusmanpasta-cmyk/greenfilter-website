@@ -151,7 +151,15 @@ const Header = (props) => {
                 <Button>Why Green Filter?</Button>
               </Dropdown>
 
-              <Button>Cleaner & Care</Button>
+              <Button
+                onClick={() => {
+                  props.handleClickIndex(2);
+                  history.push("./cleaner-care");
+                }}
+              >
+                {" "}
+                Cleaner & Care
+              </Button>
 
               <Button
                 onClick={() => {

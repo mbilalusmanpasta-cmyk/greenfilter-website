@@ -12,6 +12,7 @@ import AboutUs from "../pages/AboutUs/AboutUs";
 import Guarantee from "../pages/Guarantee/Guarantee";
 import WhyGoGreen from "../pages/WhyGoGreen/WhyGoGreen";
 import Contact from "../pages/ContactUs/Contact";
+import Career from "../pages/Careers/Career";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -151,6 +152,17 @@ const Routes = () => {
           path="/contact-us"
           component={() => (
             <Contact
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/careers"
+          component={() => (
+            <Career
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}

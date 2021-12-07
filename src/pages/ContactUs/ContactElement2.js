@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import img0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.png";
 import img1 from "../../assets/icons8-gphone-100-3.png";
-import { Link } from "react-router-dom";
 const ContactElement2 = () => {
   return (
     <>
@@ -10,6 +9,9 @@ const ContactElement2 = () => {
         <div className="w-container">
           <div className="titles-div">
             <h1 className="heading-10">Other Ways to Contact Us</h1>
+            <p class="large-paragraph gray">
+              Shoot us an email or give us a call.
+            </p>
           </div>
           <div className="main-vehicle-row w-row">
             <div className="w-col w-col-6">
