@@ -70,7 +70,7 @@ const Footer = () => {
                 <h4 class="footer-h1">Resources</h4>
                 <ul className="unordered-list">
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/private-label" className="link">
                       Private Label
                     </Link>
                   </li>

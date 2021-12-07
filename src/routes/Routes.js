@@ -13,6 +13,7 @@ import Guarantee from "../pages/Guarantee/Guarantee";
 import WhyGoGreen from "../pages/WhyGoGreen/WhyGoGreen";
 import Contact from "../pages/ContactUs/Contact";
 import Career from "../pages/Careers/Career";
+import PrivateLabel from "../pages/PrivateLabel/PrivateLabel";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -163,6 +164,17 @@ const Routes = () => {
           path="/careers"
           component={() => (
             <Career
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/private-label"
+          component={() => (
+            <PrivateLabel
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}
