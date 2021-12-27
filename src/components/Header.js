@@ -190,7 +190,9 @@ const Header = (props) => {
                       overlayStyle={{ zIndex: 100000 }}
                     >
                       <div className="vehicle-dropdown-btn">
-                        Select a {props.vehicle.modelName} Model
+                        <span style={{ flexGrow: 1, textAlign: "left" }}>
+                          Select a {props.vehicle.modelName} Model
+                        </span>
                         <MdOutlineKeyboardArrowDown />
                       </div>
                     </Dropdown>
@@ -360,6 +362,7 @@ const HeaderWrapper = styled.div`
     position: absolute;
     right: 0;
     bottom: 15px;
+    width: 296px;
   }
   .vehicle-dropdown-btn {
     position: relative;
@@ -398,6 +401,27 @@ const HeaderWrapper = styled.div`
     }
     .right-nav-div {
       right: 0 !important;
+    }
+    .w-col-9 {
+      width: 100%;
+    }
+    .w-col-3 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .w-form {
+      position: static;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .hero-heading-1.left.smaller {
+      text-align: center;
+    }
+    .w-form {
+      width: 100%;
     }
   }
 

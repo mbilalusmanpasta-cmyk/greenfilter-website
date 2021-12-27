@@ -141,6 +141,7 @@ const HomeElement3Wrapper = styled.div`
     // margin-right: -10px;
     margin-top: 25px;
     margin-bottom: 0px;
+    flex-wrap: wrap;
   }
   .w-row:before,
   .w-row:after {

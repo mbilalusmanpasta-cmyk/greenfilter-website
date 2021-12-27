@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <>
       <FooterWrapper bgImg={bgImg}>
-        <div className="w-container">
+        <div className="w-container" style={{ padding: "0 20px" }}>
           <img
             alt="logo"
             src={logo}
@@ -193,8 +193,8 @@ const FooterWrapper = styled.div`
   .w-col {
     position: relative;
     min-height: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     display: inline-flex;
     flex-direction: column;
   }

@@ -69,7 +69,7 @@ export default Hero;
 const HeroWrapper = styled.div`
   .img-container {
     position: relative;
-    min-height: 700px;
+    min-height: 500px;
     background-repeat: no-repeat;
   }
   .wrapper0 {
@@ -126,6 +126,7 @@ const HeroWrapper = styled.div`
     font-weight: 400;
     text-align: center;
     letter-spacing: 0.75px;
+    padding: 0 10px;
   }
   .hero-heading-2 {
     margin-top: 0px;
@@ -160,7 +161,7 @@ const HeroWrapper = styled.div`
   }
   @media screen and (max-width: 767px) {
     .img-container {
-      height: 100vh;
+      // height: 100vh;
     }
     .filter {
       display: none !important;
