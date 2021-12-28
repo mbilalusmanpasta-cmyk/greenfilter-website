@@ -4,6 +4,25 @@ import icon0 from "../../assets/icons8-car-top-view-100_1icons8-car-top-view-100
 import icon1 from "../../assets/icons8-gas-pump-100_1icons8-gas-pump-100.png";
 import icon2 from "../../assets/icons8-receive-cash-100_1icons8-receive-cash-100.png";
 const VehicleElement2 = ({ vehicle }) => {
+  const [width, setWidth] = React.useState(window.innerWidth);
+
+  React.useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+  }, []);
+  const setImageWidth = (value) => {
+    if (value > 992) {
+      return { width: "530", height: "298" };
+    }
+    if (value <= 992 && value >= 767) {
+      return { width: "411", height: "250" };
+    }
+    if (value < 767) {
+      return { width: "100%", height: "375" };
+    }
+  };
   return (
     <>
       <VehicleElement2Wrapper>
@@ -19,8 +38,8 @@ const VehicleElement2 = ({ vehicle }) => {
           <div className="main-vehicle-row w-row">
             <div className="column-4 w-col w-col-7">
               <iframe
-                width="530"
-                height="298"
+                width={setImageWidth(width).width}
+                height={setImageWidth(width).height}
                 src="https://www.youtube.com/embed/LOgLMW-Bdh4"
                 title="YouTube video player"
                 frameborder="0"
@@ -105,9 +124,8 @@ const VehicleElement2Wrapper = styled.div`
   .main-vehicle-row {
     margin-top: 25px;
     margin-bottom: 0px;
-    margin-left: -10px;
-    margin-right: -10px;
     display: flex;
+    flex-wrap: wrap;
   }
 
   .w-row:before,
@@ -118,6 +136,8 @@ const VehicleElement2Wrapper = styled.div`
 
   .column-4 {
     padding-right: 2%;
+    display: flex;
+    justify-content: center;
   }
 
   .column-5 {
@@ -181,5 +201,22 @@ const VehicleElement2Wrapper = styled.div`
     margin-bottom: 0px;
     margin-left: auto;
     border: 0px none #fff;
+  }
+
+  @media screen and (max-width: 767px) {
+    .w-col-7 {
+      width: 100% !important;
+    }
+    .w-col-5 {
+      width: 100% !important;
+    }
+
+    .link-block {
+      display: block;
+      width: 50%;
+      margin-top: 25px;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 `;

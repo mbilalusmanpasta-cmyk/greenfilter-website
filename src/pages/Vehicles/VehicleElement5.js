@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Carousel } from "antd";
 import { Link } from "react-router-dom";
@@ -9,6 +9,14 @@ import profile2 from "../../assets/profiles/man3.jpg";
 import profile3 from "../../assets/profiles/man4.jpg";
 import Button1 from "../../components/Button1";
 const VehicleElement5 = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+  }, []);
   const testimonials = [
     {
       id: 0,
@@ -52,6 +60,120 @@ const VehicleElement5 = () => {
       ],
     },
   ];
+  const testimonials1 = [
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 0,
+          title: "Amazing Perfect Fit!",
+          description:
+            "Item looks great to say the least. The filter was an amazingly perfect fit for my vehicle. I drive a 2012 Ford Focus 2.0l and it changed out with the old stock filter in literally seconds. No having to wiggle it to fit and literally slid on the intake like butter. Tighten down the flat head bolt to hold it on tight and you're good to go! Great product!!",
+          author: "Z. Wilford",
+          location: "Charlotte, NC",
+          imgSrc: profile0,
+        },
+      ],
+    },
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 1,
+          title: "The Filter Sounds Fantastic.",
+          description:
+            "This filter sounds fantastic, fits in the stock airbox iwth the cover on or off, and isn't terribly expensive. I really enjoy hearing the turbo spool and blowoff through the new filter. Others online have said they've experienced marginally better fuel economy but its too early to say for me. If it is true, its another added bonus.",
+          author: "Bob Smith",
+          location: "Pittsburgh, PA",
+          imgSrc: profile1,
+        },
+      ],
+    },
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 2,
+          title: "Awesome & Re-usable",
+          description:
+            "Car can breathe! No but it really can now, the old paper filter is terrible. Replaced it with this one on my 2014 Ford Focus st and car even sounds better now. Can actually hear the intake induction sounds etc a lot more. You can also clean and re oil the filter to use it over and over. What a great bargain for a reusable filter.",
+          author: "Alex Palmas",
+          location: "Miami, FL",
+          imgSrc: profile2,
+        },
+      ],
+    },
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 3,
+          title: "Modern, Advanced Designs",
+          description:
+            "Green Filter USA may be a relative newcomer to the world of performance filters, but their products are truly making a splash. Green Air Filters feature modern, advanced designs and materials to provide not only unmatched flow, but also easy maintenance and a super long lifespan. What you get with Green is improved horsepower, awesome torque, and an air filter that truly pays for itself.",
+          author: "Jim Crawford",
+          location: "Sacramento, CA",
+          imgSrc: profile3,
+        },
+      ],
+    },
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 0,
+          title: "Amazing Perfect Fit!",
+          description:
+            "Item looks great to say the least. The filter was an amazingly perfect fit for my vehicle. I drive a 2012 Ford Focus 2.0l and it changed out with the old stock filter in literally seconds. No having to wiggle it to fit and literally slid on the intake like butter. Tighten down the flat head bolt to hold it on tight and you're good to go! Great product!!",
+          author: "Z. Wilford",
+          location: "Charlotte, NC",
+          imgSrc: profile0,
+        },
+      ],
+    },
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 1,
+          title: "The Filter Sounds Fantastic.",
+          description:
+            "This filter sounds fantastic, fits in the stock airbox iwth the cover on or off, and isn't terribly expensive. I really enjoy hearing the turbo spool and blowoff through the new filter. Others online have said they've experienced marginally better fuel economy but its too early to say for me. If it is true, its another added bonus.",
+          author: "Bob Smith",
+          location: "Pittsburgh, PA",
+          imgSrc: profile1,
+        },
+      ],
+    },
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 2,
+          title: "Awesome & Re-usable",
+          description:
+            "Car can breathe! No but it really can now, the old paper filter is terrible. Replaced it with this one on my 2014 Ford Focus st and car even sounds better now. Can actually hear the intake induction sounds etc a lot more. You can also clean and re oil the filter to use it over and over. What a great bargain for a reusable filter.",
+          author: "Alex Palmas",
+          location: "Miami, FL",
+          imgSrc: profile2,
+        },
+      ],
+    },
+    {
+      id: 0,
+      reviews: [
+        {
+          id: 3,
+          title: "Modern, Advanced Designs",
+          description:
+            "Green Filter USA may be a relative newcomer to the world of performance filters, but their products are truly making a splash. Green Air Filters feature modern, advanced designs and materials to provide not only unmatched flow, but also easy maintenance and a super long lifespan. What you get with Green is improved horsepower, awesome torque, and an air filter that truly pays for itself.",
+          author: "Jim Crawford",
+          location: "Sacramento, CA",
+          imgSrc: profile3,
+        },
+      ],
+    },
+  ];
   return (
     <>
       <VehicleElement5Wrapper>
@@ -63,35 +185,66 @@ const VehicleElement5 = () => {
           </p>
         </div>
         <Carousel dots={false}>
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="main-vehicle-row w-row">
-              {testimonial.reviews.map((review) => (
-                <div key={review.id} className="w-col w-col-3">
-                  <Link to="/" className="link-block white w-inline-block">
-                    <img
-                      alt="stars"
-                      src={star}
-                      width="124"
-                      sizes="(max-width: 479px) 100vw, (max-width: 767px) 124px, (max-width: 991px) 15vw, 124px"
-                      className="image"
-                    />
-                    <h4 className="testimonial-heading">{review.title}</h4>
-                    <p className="testimonial-paragraph">
-                      {review.description}
-                    </p>
-                    <div className="column-div">
-                      <div
-                        className="person"
-                        style={{ backgroundImage: `url(${review.imgSrc})` }}
+          {width >= 767 &&
+            testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="main-vehicle-row w-row">
+                {testimonial.reviews.map((review) => (
+                  <div key={review.id} className="w-col w-col-3">
+                    <Link to="/" className="link-block white w-inline-block">
+                      <img
+                        alt="stars"
+                        src={star}
+                        width="124"
+                        sizes="(max-width: 479px) 100vw, (max-width: 767px) 124px, (max-width: 991px) 15vw, 124px"
+                        className="image"
                       />
-                      <h6>{review.author}</h6>
-                      <p class="tiny">{review.location}</p>
-                    </div>
-                  </Link>
-                </div>
-              ))}
-            </div>
-          ))}
+                      <h4 className="testimonial-heading">{review.title}</h4>
+                      <p className="testimonial-paragraph">
+                        {review.description}
+                      </p>
+                      <div className="column-div">
+                        <div
+                          className="person"
+                          style={{ backgroundImage: `url(${review.imgSrc})` }}
+                        />
+                        <h6>{review.author}</h6>
+                        <p class="tiny">{review.location}</p>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ))}
+          {width < 767 &&
+            testimonials1.map((testimonial) => (
+              <div key={testimonial.id} className="main-vehicle-row w-row">
+                {testimonial.reviews.map((review) => (
+                  <div key={review.id} className="w-col w-col-3">
+                    <Link to="/" className="link-block white w-inline-block">
+                      <img
+                        alt="stars"
+                        src={star}
+                        width="124"
+                        sizes="(max-width: 479px) 100vw, (max-width: 767px) 124px, (max-width: 991px) 15vw, 124px"
+                        className="image"
+                      />
+                      <h4 className="testimonial-heading">{review.title}</h4>
+                      <p className="testimonial-paragraph">
+                        {review.description}
+                      </p>
+                      <div className="column-div">
+                        <div
+                          className="person"
+                          style={{ backgroundImage: `url(${review.imgSrc})` }}
+                        />
+                        <h6>{review.author}</h6>
+                        <p class="tiny">{review.location}</p>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            ))}
         </Carousel>
       </VehicleElement5Wrapper>
     </>
@@ -232,5 +385,34 @@ const VehicleElement5Wrapper = styled.div`
     margin-bottom: 0px;
     font-size: 12px;
     line-height: 19px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .w-col {
+      width: 100%;
+      left: auto;
+      right: auto;
+      float: left;
+    }
+    .link-block {
+      display: block;
+      width: 50%;
+      margin-top: 25px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .slick-slide > div {
+      min-height: unset;
+    }
+    .titles-div {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .main-header {
+      font-size: 32px;
+      line-height: 40px;
+    }
   }
 `;

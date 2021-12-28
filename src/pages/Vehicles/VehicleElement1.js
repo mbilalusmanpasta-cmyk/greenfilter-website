@@ -56,8 +56,6 @@ const VehicleElement1Wrapper = styled.div`
   .small-columns {
     display: block;
     width: 60%;
-    margin-left: -10px;
-    margin-right: -10px;
   }
 
   .w-row:before,
@@ -113,5 +111,25 @@ const VehicleElement1Wrapper = styled.div`
     font-family: Lato, sans-serif;
     color: #00ad23;
     text-align: left;
+  }
+
+  @media screen and (max-width: 900px) {
+    .w-col-6 {
+      width: 100% !important;
+    }
+
+    .small {
+      height: 100px;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .small-columns {
+      width: 90%;
+    }
+
+    .icon-2 {
+      width: 120px;
+    }
   }
 `;
