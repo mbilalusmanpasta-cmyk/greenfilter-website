@@ -32,7 +32,7 @@ const GuaranteeElement1 = () => {
             <div className="row-5 w-row">
               <Grid container columnSpacing={3} rowSpacing={1}>
                 {formData.map((field) => (
-                  <Grid item md={6} key={field.id}>
+                  <Grid item sm={12} xs={12} md={6} key={field.id}>
                     <div>
                       <div style={{ textAlign: "left" }}>
                         <label className="label">{field.label}:</label>

@@ -103,7 +103,13 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Private Label</Link>
+        <Link
+          to="/private-label"
+          onClick={() => props.handleClickIndex(10)}
+          style={{ color: props.clickedIndex === 10 ? "#0082f3" : null }}
+        >
+          Private Label
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link>Become An Affiliate</Link>

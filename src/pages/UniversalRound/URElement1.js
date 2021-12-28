@@ -197,7 +197,7 @@ const URElement1 = () => {
         </div>
         <div style={{ clear: "both", display: "table" }}></div>
         <br />
-        <h4>
+        <h4 style={{ padding: "0 10px" }}>
           Select a filter from the list below. The list can be sorted by
           clicking on a column heading. Clicking the heading again will sort it
           in the opposite direction. The table will scroll left and right for

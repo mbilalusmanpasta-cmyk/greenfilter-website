@@ -104,4 +104,39 @@ const GuaranteeElement3Wrapper = styled.div`
   .w-col {
     float: left;
   }
+
+  @media screen and (max-width: 767px) {
+    .w-col-2 {
+      width: 100% !important;
+      left: auto;
+      right: auto;
+      margin-bottom: 20px;
+    }
+    .w-col {
+      float: none;
+    }
+    .titles-div {
+      width: 90%;
+    }
+    .column-div._0 {
+      height: auto;
+    }
+    .top {
+      width: 100% !important;
+    }
+  }
+  @media (max-width: 1300px) {
+    .titles-div {
+      margin-top: 50px;
+    }
+    .top {
+      margin-top: 0px !important;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .titles-div.top {
+      display: none;
+    }
+  }
 `;

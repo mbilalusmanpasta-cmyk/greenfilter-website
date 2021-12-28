@@ -55,11 +55,14 @@ const CCElement2 = () => {
         </div>
         <div className="titles-div less-padding">
           <h1 className="main-header">Material Safety Data Sheets</h1>
-          <div className="w-row" style={{ display: "flex", marginTop: 30 }}>
-            <div className="w-col w-col-6">
+          <div
+            className="w-row"
+            style={{ display: "flex", marginTop: 30, flexWrap: "wrap" }}
+          >
+            <div className="w-col w-col-6 cc_btn">
               <Button1 text="Green Filter USA - Air Filter Oil MSDS" />
             </div>
-            <div className="w-col w-col-6">
+            <div className="w-col w-col-6 cc_btn">
               <Button1 text="Green Filter USA - Air Filter Cleaner MSDS" />
             </div>
           </div>
@@ -129,5 +132,10 @@ const CCElement1Wrapper = styled.div`
       rgba(0, 0, 0, 0.89) 32%,
       transparent
     );
+  }
+  @media screen and (max-width: 767px) {
+    .cc_btn button {
+      margin-top: 20px;
+    }
   }
 `;
