@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import logo from "../assets/gflogo.png";
 import { Link, useHistory } from "react-router-dom";
@@ -9,6 +9,8 @@ import { FaBars } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 const Header = (props) => {
   const history = useHistory();
+  const [toggle, setToggle] = useState(false);
+
   const menu0 = (
     <Menu>
       <Menu.Item>
@@ -128,14 +130,19 @@ const Header = (props) => {
       ))}
     </Menu>
   );
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
   return (
     <>
       <HeaderWrapper>
         <div className="r-navbar w-nav">
           <div className="container w-clearfix">
-            <div className="menu-button">
+            <div className="menu-button" onClick={handleToggle}>
               <FaBars />
             </div>
+
             <Link to="/" className="brand w-nav-brand w--current">
               <img src={logo} alt="logo" width="150" />
             </Link>
@@ -179,6 +186,26 @@ const Header = (props) => {
             <div className="right-nav-div">
               <img className="icon flag" src={flag} alt="flag" />
             </div>
+          </div>
+          <div
+            style={{
+              display: toggle ? "block" : "none",
+              position: "absolute",
+              overflow: "hidden",
+              height: "960px",
+              top: "100%",
+              left: 0,
+              right: 0,
+              width: "100%",
+            }}
+          >
+            <div
+              id="navbar"
+              style={{
+                transform: "translateY(0px) translateX(0px)",
+                transition: "transform 400ms ease 0s",
+              }}
+            ></div>
           </div>
           {props.isVehicle && (
             <div className="hero-header">
