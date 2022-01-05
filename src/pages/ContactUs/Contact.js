@@ -43,10 +43,12 @@ const Contact = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <Hero />
-      <ContactElement1 />
-      <ContactElement2 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <Hero />
+        <ContactElement1 />
+        <ContactElement2 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

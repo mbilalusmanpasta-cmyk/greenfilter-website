@@ -25,9 +25,9 @@ const Hero = () => {
                 "Proud to include Green Filter in our winning Ford GTs" - CHIP
                 GANASSI
               </h1>
-              <Link to="/">
+              {/* <Link to="/">
                 <Button1 text="Why Go Green?" />
-              </Link>
+              </Link> */}
             </div>
             <img src={filter0} alt="filter0" className="filter _600" />
           </div>
@@ -39,9 +39,9 @@ const Hero = () => {
               <h1 class="hero-heading-2">
                 Increase your horsepower & fuel efficiency.
               </h1>
-              <Link to="/">
+              {/* <Link to="/">
                 <Button1 text="Prove It!" />
-              </Link>
+              </Link> */}
             </div>
             <img src={filter1} alt="filter1" className="filter right" />
           </div>
@@ -52,9 +52,9 @@ const Hero = () => {
                 From gas mileage to lifetime durability ... Green Filters
                 outperform the competition.
               </h1>
-              <Link to="/">
+              {/* <Link to="/">
                 <Button1 text="Prove It!" />
-              </Link>
+              </Link> */}
             </div>
             <img src={filter2} alt="filter2" className="filter" />
           </div>

@@ -64,7 +64,7 @@ export default GuaranteeElement1;
 const GuaranteeElement1Wrapper = styled.div`
   position: relative;
   margin-top: 0%;
-  padding: 5% 5% 20%;
+  padding: 5% 0 20%;
   background-color: #fff;
   background-image: url(${(props) => props.bgImg});
   background-position: 50% 100%;
@@ -74,5 +74,9 @@ const GuaranteeElement1Wrapper = styled.div`
 
   input[type="text"] {
     width: 100%;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 5% 5% 20%;
   }
 `;

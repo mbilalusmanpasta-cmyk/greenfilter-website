@@ -44,10 +44,12 @@ const CleanerCare = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <Hero />
-      <CCElement1 />
-      <CCElement2 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <Hero />
+        <CCElement1 />
+        <CCElement2 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

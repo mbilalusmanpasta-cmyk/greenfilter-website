@@ -308,13 +308,13 @@ const VehicleElement4Wrapper = styled.div`
   }
 
   .w-col-2 {
-    width: 16.66666667%;
+    width: 16.66666667% !important;
   }
   .w-col-4 {
-    width: 33.33333333%;
+    width: 33.33333333% !important;
   }
   .w-col-8 {
-    width: 66.66666667%;
+    width: 66.66666667% !important;
   }
 
   .white-div.gray {
@@ -417,6 +417,10 @@ const VehicleElement4Wrapper = styled.div`
     }
     .column-6 {
       padding-left: 10px !important;
+    }
+
+    .titles-div {
+      width: 90%;
     }
   }
 `;

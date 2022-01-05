@@ -9,7 +9,9 @@ const UniversalCylinder = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <UCElement1 />
+      <div className="container-0">
+        <UCElement1 />
+      </div>
       <Footer />
     </>
   );

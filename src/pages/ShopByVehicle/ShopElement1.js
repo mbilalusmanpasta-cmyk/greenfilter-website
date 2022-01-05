@@ -138,4 +138,16 @@ const ShopElement1Wrapper = styled.div`
     font-weight: 700;
     text-transform: uppercase;
   }
+
+  @media screen and (max-width: 767px) {
+    .w-col-2 {
+      width: 33.33% !important;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .w-col-2 {
+      width: 50% !important;
+    }
+  }
 `;

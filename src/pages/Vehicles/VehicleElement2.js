@@ -218,5 +218,9 @@ const VehicleElement2Wrapper = styled.div`
       margin-right: auto;
       margin-left: auto;
     }
+
+    .sub-text {
+      padding: 0 20px;
+    }
   }
 `;

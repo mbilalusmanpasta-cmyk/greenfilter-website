@@ -401,6 +401,10 @@ label {
   margin-right: auto;
   max-width: 940px;
 }
+
+.container-0 {
+  padding: 0 10%;
+}
 @media screen and (max-width: 1300px) {
   .titles-div {
     margin-top: 50px;
@@ -421,6 +425,9 @@ label {
 
   .titles-div {
     width: 90%;
+  }
+  .container-0 {
+    padding: 0;
   }
 }
 @media screen and (max-width: 479px) {

@@ -26,17 +26,17 @@ const Footer = () => {
                 <h4 class="footer-h1">Navigate</h4>
                 <ul className="unordered-list">
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/shop-by-vehicle" className="link">
                       Shop by Vehicle
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/why-go-green" className="link">
                       Why Go Green?
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/about-us" className="link">
                       About Us
                     </Link>
                   </li>
@@ -48,17 +48,17 @@ const Footer = () => {
                 <h4 class="footer-h1">Guarantee</h4>
                 <ul className="unordered-list">
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/our-guarantee" className="link">
                       Warranty Info
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/our-guarantee" className="link">
                       Returns
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/cleaner-care" className="link">
                       Cleaner & Care
                     </Link>
                   </li>
@@ -75,7 +75,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="link">
+                    <Link to="/measure-filter" className="link">
                       How to Measure Filter
                     </Link>
                   </li>
@@ -143,9 +143,9 @@ export default Footer;
 
 const FooterWrapper = styled.div`
   position: relative;
-  margin-bottom: 0px;
   padding-top: 50px;
   padding-bottom: 0px;
+  margin: 0 10%;
   background-color: #000a1d;
   background-image: linear-gradient(
       180deg,
@@ -275,6 +275,7 @@ const FooterWrapper = styled.div`
   }
 
   @media screen and (max-width: 767px) {
+    margin: 0;
     .w-col {
       width: 100%;
       left: auto;

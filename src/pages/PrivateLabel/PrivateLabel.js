@@ -40,8 +40,10 @@ const PrivateLabel = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <PLElement1 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <PLElement1 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

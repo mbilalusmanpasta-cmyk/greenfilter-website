@@ -43,10 +43,12 @@ const Guarantee = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <GuaranteeElement1 />
-      <GuaranteeElement2 />
-      <GuaranteeElement3 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <GuaranteeElement1 />
+        <GuaranteeElement2 />
+        <GuaranteeElement3 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

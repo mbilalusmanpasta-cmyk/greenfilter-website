@@ -28,9 +28,10 @@ const ShopByVehicle = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <ShopElement1 handleVehicleRoute={props.handleVehicleRoute} />
-      <Gallery gallery={gallery} width="12.5%" />
-
+      <div className="container-0">
+        <ShopElement1 handleVehicleRoute={props.handleVehicleRoute} />
+        <Gallery gallery={gallery} width="12.5%" />
+      </div>
       <Footer />
     </>
   );

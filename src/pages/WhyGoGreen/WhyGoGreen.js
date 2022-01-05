@@ -45,14 +45,16 @@ const WhyGoGreen = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <Hero />
-      <GuaranteeElement3 src="https://www.youtube.com/embed/pg9iV1mwlAI" />
-      <HomeElement2 />
-      <HomeElement3 />
-      <Gallery gallery={gallery} />
-      <HomeElement4 text="The benefits of Green Filter are not just about experiencing immediate gains, but there are long term ones as well." />
-      <WGGElement1 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <Hero />
+        <GuaranteeElement3 src="https://www.youtube.com/embed/pg9iV1mwlAI" />
+        <HomeElement2 />
+        <HomeElement3 />
+        <Gallery gallery={gallery} />
+        <HomeElement4 text="The benefits of Green Filter are not just about experiencing immediate gains, but there are long term ones as well." />
+        <WGGElement1 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

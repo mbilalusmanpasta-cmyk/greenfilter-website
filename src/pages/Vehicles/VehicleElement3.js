@@ -18,7 +18,7 @@ export default VehicleElement3;
 const VehicleElement3Wrapper = styled.div`
   position: relative;
   display: flex;
-  height: 500px;
+  height: calc(500px + 167px);
   padding-right: 10%;
   padding-left: 10%;
   justify-content: center;
