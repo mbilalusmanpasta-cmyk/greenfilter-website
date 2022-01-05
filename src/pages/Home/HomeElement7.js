@@ -104,6 +104,7 @@ const HomeElement7Wrapper = styled.div`
     margin-bottom: 0px;
     // margin-left: -10px;
     // margin-right: -10px;
+    flex-wrap: wrap;
   }
 
   .w-row:before,

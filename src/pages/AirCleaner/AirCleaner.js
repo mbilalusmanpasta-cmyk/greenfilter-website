@@ -9,7 +9,9 @@ const AirCleaner = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <ACElement1 />
+      <div className="container-0">
+        <ACElement1 />
+      </div>
       <Footer />
     </>
   );

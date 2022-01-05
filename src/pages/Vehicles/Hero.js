@@ -1,18 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 import Button1 from "../../components/Button1";
+import { Carousel } from "antd";
+import VehicleElement3 from "./VehicleElement3";
 const Hero = (props) => {
   return (
     <>
-      <HeroWrapper bgImg={props.vehicle.bgImg}>
-        <div className="hero-text">
-          <h1 className="hero-heading-1 left">
-            Groundbreaking air filters - engineered to enhance any{" "}
-            {props.vehicle.modelName}'s performance
-          </h1>
-          <Button1 text="Prove It!" />
-        </div>
-      </HeroWrapper>
+      <Carousel autoplay dots={false}>
+        <HeroWrapper bgImg={props.vehicle.bgImg}>
+          <div className="hero-text">
+            <h1 className="hero-heading-1 left">
+              Groundbreaking air filters - engineered to enhance any{" "}
+              {props.vehicle.modelName}'s performance
+            </h1>
+            <Button1 text="Prove It!" />
+          </div>
+        </HeroWrapper>
+        <VehicleElement3 vehicle={props.vehicle} />
+      </Carousel>
     </>
   );
 };
@@ -25,7 +30,7 @@ const HeroWrapper = styled.div`
   top: 0px;
   right: 0px;
   bottom: 0px;
-  height: 100vh;
+  height: calc(500px + 167px);
   margin-top: 0px;
   padding-top: 0px;
   background-image: linear-gradient(180deg, #000, transparent 64%),

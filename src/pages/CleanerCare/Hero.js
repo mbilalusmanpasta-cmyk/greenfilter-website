@@ -94,6 +94,7 @@ const HeroWrapper = styled.div`
     font-weight: 400;
     text-align: center;
     letter-spacing: 0.75px;
+    padding: 0 10px;
   }
   .hero-heading-2 {
     margin-top: 0px;
@@ -104,6 +105,7 @@ const HeroWrapper = styled.div`
     font-weight: 400;
     text-align: center;
     letter-spacing: 0.75px;
+    padding: 0 10px;
   }
 
   .filter._600 {

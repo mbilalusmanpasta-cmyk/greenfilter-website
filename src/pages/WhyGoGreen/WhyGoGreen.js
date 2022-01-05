@@ -21,6 +21,7 @@ import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
 import HomeElement4 from "../Home/HomeElement4";
+import WGGElement1 from "./WGGElement1";
 const WhyGoGreen = (props) => {
   const gallery = [
     { id: 0, image: img0 },
@@ -44,12 +45,16 @@ const WhyGoGreen = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <Hero />
-      <GuaranteeElement3 src="https://www.youtube.com/embed/pg9iV1mwlAI" />
-      <HomeElement2 />
-      <HomeElement3 />
-      <Gallery gallery={gallery} />
-      <HomeElement4 text="The benefits of Green Filter are not just about experiencing immediate gains, but there are long term ones as well." />
+      <div className="container-0">
+        <Hero />
+        <GuaranteeElement3 src="https://www.youtube.com/embed/pg9iV1mwlAI" />
+        <HomeElement2 />
+        <HomeElement3 />
+        <Gallery gallery={gallery} />
+        <HomeElement4 text="The benefits of Green Filter are not just about experiencing immediate gains, but there are long term ones as well." />
+        <WGGElement1 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

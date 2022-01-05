@@ -47,19 +47,21 @@ const Home = (props) => {
   }, [props]);
   return (
     <>
-      <Header
-        clickedIndex={props.clickedIndex}
-        handleClickIndex={props.handleClickIndex}
-      />
-      <Hero />
-      <HomeElement1 handleClickIndex={props.handleClickIndex} />
-      <HomeElement2 />
-      <HomeElement3 />
-      <HomeElement4 text="It's not just about immediate gains, but the  long term ones as well." />
-      <HomeElement5 />
-      <HomeElement6 />
-      <HomeElement7 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <Header
+          clickedIndex={props.clickedIndex}
+          handleClickIndex={props.handleClickIndex}
+        />
+        <Hero />
+        <HomeElement1 handleClickIndex={props.handleClickIndex} />
+        <HomeElement2 />
+        <HomeElement3 />
+        <HomeElement4 text="It's not just about immediate gains, but the  long term ones as well." />
+        <HomeElement5 />
+        <HomeElement6 />
+        <HomeElement7 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

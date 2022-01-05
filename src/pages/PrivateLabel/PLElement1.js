@@ -72,7 +72,7 @@ const PLElement1 = () => {
                 </p>
                 <Grid container>
                   {customLabels.map((label, id) => (
-                    <Grid item md={4} key={id}>
+                    <Grid item xs={12} sm={6} md={4} key={id}>
                       <a
                         href="https://greenfilter.com/images/framework/custom-private-label/custom_triangle.jpg"
                         target="_blank"

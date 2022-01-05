@@ -16,7 +16,7 @@ const VehicleElement1 = () => {
                 </div>
               </div>
             </div>
-            <div className="w-col w-col-6">
+            <div className="w-col w-col-6 gap">
               <div className="column-div">
                 <img src={usaFlag} alt="flag" className="icon-2 small" />
                 <div className="green-text">
@@ -55,9 +55,7 @@ const VehicleElement1Wrapper = styled.div`
 
   .small-columns {
     display: block;
-    width: 60%;
-    margin-left: -10px;
-    margin-right: -10px;
+    width: 90%;
   }
 
   .w-row:before,
@@ -113,5 +111,31 @@ const VehicleElement1Wrapper = styled.div`
     font-family: Lato, sans-serif;
     color: #00ad23;
     text-align: left;
+  }
+  // .gap {
+  //   margin-left: 20px;
+  // }
+
+  @media screen and (max-width: 900px) {
+    .w-col-6 {
+      width: 100% !important;
+    }
+
+    .small {
+      height: 100px;
+    }
+    .small-columns {
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .small-columns {
+      width: 90%;
+    }
+
+    .icon-2 {
+      width: 120px;
+    }
   }
 `;

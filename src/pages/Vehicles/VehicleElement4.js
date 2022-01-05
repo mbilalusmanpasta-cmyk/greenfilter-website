@@ -225,9 +225,8 @@ const VehicleElement4Wrapper = styled.div`
   .main-vehicle-row {
     margin-top: 25px;
     margin-bottom: 0px;
-    margin-left: -10px;
-    margin-right: -10px;
     display: flex;
+    flex-wrap: wrap;
   }
 
   .w-row:before,
@@ -297,10 +296,7 @@ const VehicleElement4Wrapper = styled.div`
   .product-row.top {
     background-color: hsla(0, 0%, 60%, 0.07);
   }
-  .w-container .w-row {
-    margin-left: -10px;
-    margin-right: -10px;
-  }
+
   .product-row {
     display: flex;
     border-bottom: 1px solid darkgrey;
@@ -312,13 +308,13 @@ const VehicleElement4Wrapper = styled.div`
   }
 
   .w-col-2 {
-    width: 16.66666667%;
+    width: 16.66666667% !important;
   }
   .w-col-4 {
-    width: 33.33333333%;
+    width: 33.33333333% !important;
   }
   .w-col-8 {
-    width: 66.66666667%;
+    width: 66.66666667% !important;
   }
 
   .white-div.gray {
@@ -413,5 +409,18 @@ const VehicleElement4Wrapper = styled.div`
     font-size: 24px;
     line-height: 24px;
     font-weight: 400;
+  }
+
+  @media screen and (max-width: 767px) {
+    .w-col-6 {
+      width: 100% !important;
+    }
+    .column-6 {
+      padding-left: 10px !important;
+    }
+
+    .titles-div {
+      width: 90%;
+    }
   }
 `;

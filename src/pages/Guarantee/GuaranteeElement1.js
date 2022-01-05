@@ -32,7 +32,7 @@ const GuaranteeElement1 = () => {
             <div className="row-5 w-row">
               <Grid container columnSpacing={3} rowSpacing={1}>
                 {formData.map((field) => (
-                  <Grid item md={6} key={field.id}>
+                  <Grid item sm={12} xs={12} md={6} key={field.id}>
                     <div>
                       <div style={{ textAlign: "left" }}>
                         <label className="label">{field.label}:</label>
@@ -64,7 +64,7 @@ export default GuaranteeElement1;
 const GuaranteeElement1Wrapper = styled.div`
   position: relative;
   margin-top: 0%;
-  padding: 5% 5% 20%;
+  padding: 5% 0 20%;
   background-color: #fff;
   background-image: url(${(props) => props.bgImg});
   background-position: 50% 100%;
@@ -74,5 +74,9 @@ const GuaranteeElement1Wrapper = styled.div`
 
   input[type="text"] {
     width: 100%;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 5% 5% 20%;
   }
 `;

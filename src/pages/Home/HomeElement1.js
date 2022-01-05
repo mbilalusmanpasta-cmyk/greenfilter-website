@@ -84,7 +84,7 @@ const HomeElement1 = (props) => {
           <h1 class="heading-11">
             The Chosen Filter for Top Performing Brands
           </h1>
-          <div className="main-vehicle-row" style={{ display: "block" }}>
+          <div className="main-vehicle-row">
             {cars.map((car) => (
               <div key={car.id} className="w-col w-col-2">
                 <Link to="/" class="link-block w-inline-block">
@@ -144,7 +144,7 @@ const HomeElement1 = (props) => {
           </div>
           <div className="w-row">
             {brands.map((brand) => (
-              <div class="w-col w-col-2">
+              <div class="w-col w-col-2 single">
                 <div class="column-div _0">
                   <img
                     src={brand.imgSrc}
@@ -190,10 +190,10 @@ const HomeElement1Wrapper = styled.div`
   }
 
   .main-vehicle-row {
-    margin-left: -10px;
-    margin-right: -10px;
     margin-top: 25px;
     margin-bottom: 0px;
+    flex-wrap: wrap;
+    justify-content: center !important;
   }
   .w-col {
     position: relative;
@@ -356,10 +356,10 @@ const HomeElement1Wrapper = styled.div`
     content: " ";
     display: table;
   }
-  .w-row {
-    margin-left: -10px;
-    margin-right: -10px;
-  }
+  // .w-row {
+  //   margin-left: -10px;
+  //   margin-right: -10px;
+  // }
   .w-row:before,
   .w-row:after {
     content: " ";
@@ -393,10 +393,13 @@ const HomeElement1Wrapper = styled.div`
 
   @media screen and (max-width: 767px) {
     .w-col-2 {
-      width: 100% !important;
+      width: 50% !important;
       left: auto;
       right: auto;
       margin-bottom: 20px;
+    }
+    .single {
+      width: 100% !important;
     }
     .w-col {
       float: none;

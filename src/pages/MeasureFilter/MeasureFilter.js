@@ -41,9 +41,11 @@ const MeasureFilter = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <Hero />
-      <MeasureFilterElement1 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <Hero />
+        <MeasureFilterElement1 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

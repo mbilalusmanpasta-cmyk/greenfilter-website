@@ -220,7 +220,7 @@ const HomeElement5Wrapper = styled.div`
 
   @media (max-width: 767px) {
     .titles-div {
-      width: 90%;
+      width: 90% !important;
     }
   }
 

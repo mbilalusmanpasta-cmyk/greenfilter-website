@@ -1,17 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import icon0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.png";
-import icon1 from "../../assets/icons8-free-shipping-100_1icons8-free-shipping-100.png";
+import icon1 from "../../assets/icons8-free-shipping-100.png";
 import icon2 from "../../assets/icons8-communication-100_1icons8-communication-100.png";
 import { Link } from "react-router-dom";
-const HomeElement6 = () => {
+const WGGElement1 = () => {
   return (
     <>
-      <HomeElement6Wrapper>
+      <WGGElement1Wrapper>
         <div className="w-container">
           <div className="titles-div">
-            <h1 className="heading-10">The Green Filter Guarantee</h1>
-            <p className="large-paragraph gray">
+            <h1 className="heading-10 white">The Green Filter Guarantee</h1>
+            <p className="large-paragraph">
               As the leading American Made Manufacturer of Green Filters, we
               pride ourselves on our work ethic &amp; customer service.
             </p>
@@ -22,7 +22,7 @@ const HomeElement6 = () => {
                 <img alt="icon" src={icon0} className="icon-2 medium" />
                 <div class="column-div">
                   <h4 class="blue simple">100% Guaranteed</h4>
-                  <p>
+                  <p className="white">
                     All Green High Filters are designed to last for the lifetime
                     of your vehicle and are covered by our&nbsp;Limited Lifetime
                     Warranty.
@@ -35,7 +35,7 @@ const HomeElement6 = () => {
                 <img alt="icon" src={icon1} className="icon-2 medium" />
                 <div class="column-div">
                   <h4 class="blue simple">Shipping & Returns</h4>
-                  <p>
+                  <p className="white">
                     We stand by our product and offer fast shipping along with
                     returns or exchanges, no questions asked.
                   </p>
@@ -47,7 +47,7 @@ const HomeElement6 = () => {
                 <img alt="icon" src={icon2} className="icon-2 medium" />
                 <div class="column-div">
                   <h4 class="blue simple">Instant customer service</h4>
-                  <p>
+                  <p className="white">
                     We're available through email and you can call us during our
                     normal business hours found on our contact page.
                   </p>
@@ -56,20 +56,20 @@ const HomeElement6 = () => {
             </div>
           </div>
         </div>
-      </HomeElement6Wrapper>
+      </WGGElement1Wrapper>
     </>
   );
 };
 
-export default HomeElement6;
+export default WGGElement1;
 
-const HomeElement6Wrapper = styled.div`
+const WGGElement1Wrapper = styled.div`
   padding-top: 75px;
   padding-bottom: 100px;
-  background-color: #f3f3f3;
+  background-color: #000;
   text-align: center;
   position: relative;
-
+  margin-bottom: 10px;
   .w-container {
     margin-left: auto;
     margin-right: auto;

@@ -33,12 +33,17 @@ const gallery = [
   { id: 12, image: img12 },
   { id: 13, image: img13 },
 ];
-const PrivateLabel = () => {
+const PrivateLabel = (props) => {
   return (
     <>
-      <Header />
-      <PLElement1 />
-      <Gallery gallery={gallery} />
+      <Header
+        clickedIndex={props.clickedIndex}
+        handleClickIndex={props.handleClickIndex}
+      />
+      <div className="container-0">
+        <PLElement1 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

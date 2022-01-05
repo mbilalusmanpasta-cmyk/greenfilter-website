@@ -9,7 +9,9 @@ const UniversalRound = (props) => {
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
-      <URElement1 />
+      <div className="container-0">
+        <URElement1 />
+      </div>
       <Footer />
     </>
   );

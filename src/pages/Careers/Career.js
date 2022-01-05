@@ -38,9 +38,11 @@ const Career = () => {
   return (
     <>
       <Header />
-      <Hero />
-      <CareerElement1 />
-      <Gallery gallery={gallery} />
+      <div className="container-0">
+        <Hero />
+        <CareerElement1 />
+        <Gallery gallery={gallery} />
+      </div>
       <Footer />
     </>
   );

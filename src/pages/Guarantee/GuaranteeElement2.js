@@ -25,10 +25,10 @@ const GuaranteeElement2 = () => {
               returning a filter to us.
             </p>
             <Grid container style={{ margin: "15px 0 15px 0" }}>
-              <Grid item md={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <Button1 text="Warranty Return Form" />
               </Grid>
-              <Grid item md={6}>
+              <Grid item xs={12} sm={12} md={6}>
                 <Button1 text="Warranty Card" />
               </Grid>
             </Grid>

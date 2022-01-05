@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import logo from "../assets/gflogo.png";
 import { Link, useHistory } from "react-router-dom";
@@ -9,6 +9,8 @@ import { FaBars } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 const Header = (props) => {
   const history = useHistory();
+  const [toggle, setToggle] = useState(false);
+
   const menu0 = (
     <Menu>
       <Menu.Item>
@@ -103,7 +105,13 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Private Label</Link>
+        <Link
+          to="/private-label"
+          onClick={() => props.handleClickIndex(10)}
+          style={{ color: props.clickedIndex === 10 ? "#0082f3" : null }}
+        >
+          Private Label
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link>Become An Affiliate</Link>
@@ -122,14 +130,19 @@ const Header = (props) => {
       ))}
     </Menu>
   );
+
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
   return (
     <>
       <HeaderWrapper>
         <div className="r-navbar w-nav">
           <div className="container w-clearfix">
-            <div className="menu-button">
+            <div className="menu-button" onClick={handleToggle}>
               <FaBars />
             </div>
+
             <Link to="/" className="brand w-nav-brand w--current">
               <img src={logo} alt="logo" width="150" />
             </Link>
@@ -174,6 +187,26 @@ const Header = (props) => {
               <img className="icon flag" src={flag} alt="flag" />
             </div>
           </div>
+          <div
+            style={{
+              display: toggle ? "block" : "none",
+              position: "absolute",
+              overflow: "hidden",
+              height: "960px",
+              top: "100%",
+              left: 0,
+              right: 0,
+              width: "100%",
+            }}
+          >
+            <div
+              id="navbar"
+              style={{
+                transform: "translateY(0px) translateX(0px)",
+                transition: "transform 400ms ease 0s",
+              }}
+            ></div>
+          </div>
           {props.isVehicle && (
             <div className="hero-header">
               <div className="row-3 w-row">
@@ -190,7 +223,9 @@ const Header = (props) => {
                       overlayStyle={{ zIndex: 100000 }}
                     >
                       <div className="vehicle-dropdown-btn">
-                        Select a {props.vehicle.modelName} Model
+                        <span style={{ flexGrow: 1, textAlign: "left" }}>
+                          Select a {props.vehicle.modelName} Model
+                        </span>
                         <MdOutlineKeyboardArrowDown />
                       </div>
                     </Dropdown>
@@ -213,6 +248,7 @@ const HeaderWrapper = styled.div`
   top: 0px;
   right: 0px;
   z-index: 99996;
+  padding: 0 10%;
 
   .r-navbar {
     display: block;
@@ -237,7 +273,7 @@ const HeaderWrapper = styled.div`
   .container {
     display: block;
     margin-right: 3%;
-    margin-left: 15%;
+    margin-left: 3%;
     padding: 10px 0;
   }
   .brand {
@@ -274,7 +310,7 @@ const HeaderWrapper = styled.div`
   .right-nav-div {
     position: absolute;
     top: 0;
-    right: 15%;
+    right: 0;
     display: block;
     float: right;
   }
@@ -360,6 +396,7 @@ const HeaderWrapper = styled.div`
     position: absolute;
     right: 0;
     bottom: 15px;
+    width: 296px;
   }
   .vehicle-dropdown-btn {
     position: relative;
@@ -380,7 +417,9 @@ const HeaderWrapper = styled.div`
     color: #fff;
     margin-left: 10px;
   }
-
+  @media screen and (max-width: 767px) {
+    padding: 0;
+  }
   @media screen and (max-width: 912px) {
     .nav-links {
       display: none !important;
@@ -401,9 +440,28 @@ const HeaderWrapper = styled.div`
     }
   }
 
-  @media screen and (max-width: 1000px) {
-    .right-nav-div {
-      right: 8%;
+  @media screen and (max-width: 479px) {
+    .hero-heading-1.left.smaller {
+      text-align: center;
+    }
+    .w-form {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    .w-col-9 {
+      width: 100%;
+    }
+    .w-col-3 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .w-form {
+      position: static;
     }
   }
 `;
