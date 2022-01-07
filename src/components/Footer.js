@@ -40,6 +40,11 @@ const Footer = () => {
                       About Us
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/faqs" className="link">
+                      FAQs
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -133,6 +138,14 @@ const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="credit-sec">
+          <a href="#" className="link _15 grey">
+            Copyright © 2018 Green Filter USA
+          </a>
+          <Link to="privacy-policy" className="link _15 grey">
+            Privacy Policy
+          </Link>
         </div>
       </FooterWrapper>
     </>
@@ -272,6 +285,23 @@ const FooterWrapper = styled.div`
     text-decoration: none;
     cursor: pointer;
     border-radius: 0;
+  }
+
+  .credit-sec {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    text-align: center;
+  }
+
+  .link._15.grey {
+    color: #757575;
+    font-size: 12px;
+    margin-right: 25px;
+  }
+
+  .link:hover {
+    text-decoration: underline;
   }
 
   @media screen and (max-width: 767px) {
