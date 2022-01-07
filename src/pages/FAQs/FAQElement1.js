@@ -125,7 +125,7 @@ const FAQElement1 = () => {
               <ul>
                 {link.linkList.map((item) => (
                   <li>
-                    <a href={item.href} key={item.id}>
+                    <a href={`#${item.href}`} key={item.id}>
                       {item.txt}
                     </a>
                   </li>
@@ -138,7 +138,7 @@ const FAQElement1 = () => {
             <h2 className="faqs-links">
               <u>GENERAL</u>
             </h2>
-            <div className="desc-container">
+            <div className="desc-container" id="01">
               <p className="answer">
                 <span className="question">
                   What makes you different from "BRAND X"?
@@ -153,7 +153,7 @@ const FAQElement1 = () => {
               </p>
             </div>
 
-            <div className="desc-container">
+            <div className="desc-container" id="02">
               <p className="answer">
                 <span className="question">
                   Do you make a filter for a [insert vehicle here]?
@@ -164,7 +164,7 @@ const FAQElement1 = () => {
                 listed, contact us to see if we can make one for you.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="03">
               <p className="answer">
                 <span className="question">
                   How well does a Green High Performance Air Filter perform?
@@ -175,7 +175,7 @@ const FAQElement1 = () => {
                 filtration levels.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="04">
               <p className="answer">
                 <span className="question">
                   Can I get a Green High Performance Air Filter in a different
@@ -189,7 +189,7 @@ const FAQElement1 = () => {
                 dye packs.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="05">
               <p className="answer">
                 <span className="question">
                   Do you make private label/custom filters?
@@ -202,7 +202,7 @@ const FAQElement1 = () => {
                 <a href="#">contact us</a> for more information.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="06">
               <p className="answer">
                 <span className="question">
                   Do I need to oil the filter I just bought before I install it?
@@ -212,7 +212,7 @@ const FAQElement1 = () => {
                 the factory, so there is no need to oil it the first time.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="07">
               <p className="answer">
                 <span className="question">
                   Where are Green High Performance Air Filters made?
@@ -223,7 +223,7 @@ const FAQElement1 = () => {
                 manufactured in the USA.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="08">
               <p className="answer">
                 <span className="question">
                   Who uses Green High Performance Air Filters?
@@ -235,7 +235,7 @@ const FAQElement1 = () => {
                 for some specific examples.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="09">
               <p className="answer">
                 <span className="question">How long does the filter last?</span>
                 <br />
@@ -244,7 +244,7 @@ const FAQElement1 = () => {
                 <a href="">Limited Lifetime Warranty.</a>
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="10">
               <p className="answer">
                 <span className="question">
                   Where can I buy a Green High Performance Air Filter?
@@ -260,7 +260,7 @@ const FAQElement1 = () => {
             <h2 className="faqs-links">
               <u>FILTER MAINTENANCE</u>
             </h2>
-            <div className="desc-container">
+            <div className="desc-container" id="11">
               <p className="answer">
                 <span className="question">
                   How often should I clean my filter?
@@ -274,7 +274,7 @@ const FAQElement1 = () => {
                 may need to clean the filter more often.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="12">
               <p className="answer">
                 <span className="question">
                   Can I use an air hose to clean my Green High Performance Air
@@ -287,7 +287,7 @@ const FAQElement1 = () => {
                 dirt and debris from the filter.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="13">
               <p className="answer">
                 <span className="question">
                   Can I use other cleaners/oils on my Green High Performance Air
@@ -300,7 +300,7 @@ const FAQElement1 = () => {
                 may void the filter's Limited Lifetime Warranty.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="14">
               <p className="answer">
                 <span className="question">
                   What makes Green Filter oil different from other brands?
@@ -336,7 +336,7 @@ const FAQElement1 = () => {
             <h2 className="faqs-links">
               <u>WARRANTY & RETURNS</u>
             </h2>
-            <div className="desc-container">
+            <div className="desc-container" id="15">
               <p className="answer">
                 <span className="question">
                   I ordered the wrong filter. Can I exchange it?
@@ -358,7 +358,7 @@ const FAQElement1 = () => {
                 steps are followed to insure a quick exchange of your filter.
               </div>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="16">
               <p className="answer">
                 <span className="question">How can I return a filter?</span>
                 <br />
@@ -377,7 +377,7 @@ const FAQElement1 = () => {
                 steps are followed to insure a quick exchange of your filter.
               </div>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="17">
               <p className="answer">
                 <span className="question">
                   {" "}
@@ -389,7 +389,7 @@ const FAQElement1 = () => {
                 purchase to return it.
               </p>
             </div>
-            <div className="desc-container">
+            <div className="desc-container" id="18">
               <p className="answer">
                 <span className="question">
                   My filter is under warranty and needs to be replaced. What do
