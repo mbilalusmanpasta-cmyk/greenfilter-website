@@ -14,6 +14,12 @@ import WhyGoGreen from "../pages/WhyGoGreen/WhyGoGreen";
 import Contact from "../pages/ContactUs/Contact";
 import Career from "../pages/Careers/Career";
 import PrivateLabel from "../pages/PrivateLabel/PrivateLabel";
+import HarleyFilter from "../pages/HarleyFilter/HarleyFilter";
+import CrossReferenceBrand from "../pages/CrossReferenceBrand/CrossReferenceBrand";
+import CrossReferenceFilter from "../pages/CrossReferenceFilter/CrossReferenceFilter";
+import FAQs from "../pages/FAQs/FAQs";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -175,6 +181,72 @@ const Routes = () => {
           path="/private-label"
           component={() => (
             <PrivateLabel
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/harley-filter"
+          component={() => (
+            <HarleyFilter
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/cross-reference-brand"
+          component={() => (
+            <CrossReferenceBrand
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/cross-reference-filters"
+          component={() => (
+            <CrossReferenceFilter
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/faqs"
+          component={() => (
+            <FAQs
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/privacy-policy"
+          component={() => (
+            <PrivacyPolicy
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/universal-panel"
+          component={() => (
+            <UniversalPanel
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}

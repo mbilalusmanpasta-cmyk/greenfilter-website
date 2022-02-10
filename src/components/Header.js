@@ -41,7 +41,13 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Harley Filters</Link>
+        <Link
+          to="/harley-filter"
+          onClick={() => props.handleClickIndex(11)}
+          style={{ color: props.clickedIndex === 11 ? "#0082f3" : null }}
+        >
+          Harley Filters
+        </Link>
       </Menu.Item>
       <Menu.Item>
         <Link
@@ -68,6 +74,24 @@ const Header = (props) => {
           style={{ color: props.clickedIndex === 6 ? "#0082f3" : null }}
         >
           Air Clearner Assemblies
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link
+          to="/cross-reference-brand"
+          onClick={() => props.handleClickIndex(12)}
+          style={{ color: props.clickedIndex === 12 ? "#0082f3" : null }}
+        >
+          Cross Reference Brand
+        </Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link
+          to="/cross-reference-filters"
+          onClick={() => props.handleClickIndex(13)}
+          style={{ color: props.clickedIndex === 13 ? "#0082f3" : null }}
+        >
+          Cross Reference Filters
         </Link>
       </Menu.Item>
       <Menu.Item>
