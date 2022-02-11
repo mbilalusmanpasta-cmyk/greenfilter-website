@@ -226,24 +226,7 @@ const Header = (props) => {
               <img className="icon flag" src={flag} alt="flag" />
             </div>
           </div>
-          {/* <div>
-            <Drawer
-              anchor="top"
-              open={toggle}
-              style={{ top: "60px !important" }}
-            >
-              <div>
-                <h1>This is a toggle drawer</h1>
-              </div>
-            </Drawer>
-          </div> */}
-          <div
-            // style={{
-            //   display: toggle ? "block" : "none",
-            // }}
-            className="w-nav-overlay"
-            id="top-navigation"
-          >
+          <div className="w-nav-overlay" id="top-navigation">
             <nav role="navigation" className="nav-block">
               <Menu mode="inline">
                 <SubMenu key="sub1" title="Shop" icon={null}>
