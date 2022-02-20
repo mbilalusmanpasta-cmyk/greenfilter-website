@@ -7,10 +7,23 @@ import "../styles/Header.css";
 import flag from "../assets/USA-Flag.jpg";
 import { FaBars } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { Drawer } from "@mui/material";
+const { SubMenu } = Menu;
+const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
+
 const Header = (props) => {
   const history = useHistory();
   const [toggle, setToggle] = useState(false);
+  const [openKeys, setOpenKeys] = React.useState(["sub1"]);
 
+  const onOpenChange = (keys) => {
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
   const menu0 = (
     <Menu>
       <Menu.Item>
@@ -138,10 +151,10 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Become An Affiliate</Link>
+        <Link to="/">Become An Affiliate</Link>
       </Menu.Item>
       <Menu.Item>
-        <Link>Become A Dealer</Link>
+        <Link to="/">Become A Dealer</Link>
       </Menu.Item>
     </Menu>
   );
@@ -155,15 +168,212 @@ const Header = (props) => {
     </Menu>
   );
 
-  const handleToggle = () => {
+  const handleToggle = (value) => {
+    const elem = document.getElementById("top-navigation");
+    if (value) {
+      elem.style.top = "57px";
+      // elem.style.height = "max-content";
+    }
+    if (!value) {
+      elem.style.top = "-655px";
+      // elem.style.height = "0px";
+    }
     setToggle(!toggle);
   };
+  console.log("Toggle => ", toggle);
   return (
     <>
       <HeaderWrapper>
+        <div className="w-nav-overlay" id="top-navigation">
+          <nav role="navigation" className="nav-block">
+            <Menu mode="inline" openKeys={openKeys} onOpenChange={onOpenChange}>
+              <SubMenu key="sub1" title="Shop" icon={null}>
+                <Menu.Item key="1">
+                  <Link
+                    to="/shop-by-vehicle"
+                    onClick={() => props.handleClickIndex(0)}
+                    style={{
+                      color: props.clickedIndex === 0 ? "#0082f3" : null,
+                    }}
+                  >
+                    By Vehicle
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link
+                    to="/measure-filter"
+                    onClick={() => props.handleClickIndex(1)}
+                    style={{
+                      color: props.clickedIndex === 1 ? "#0082f3" : null,
+                    }}
+                  >
+                    How to Measure A Filter
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <Link
+                    to="/cleaner-care"
+                    onClick={() => props.handleClickIndex(2)}
+                    style={{
+                      color: props.clickedIndex === 2 ? "#0082f3" : null,
+                    }}
+                  >
+                    Cleaner Kits
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="4">
+                  <Link
+                    to="/harley-filter"
+                    onClick={() => props.handleClickIndex(11)}
+                    style={{
+                      color: props.clickedIndex === 11 ? "#0082f3" : null,
+                    }}
+                  >
+                    Harley Filters
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="5">
+                  <Link
+                    to="/universal-cylinder"
+                    onClick={() => props.handleClickIndex(4)}
+                    style={{
+                      color: props.clickedIndex === 4 ? "#0082f3" : null,
+                    }}
+                  >
+                    Universal Cone/Cylinder
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="6">
+                  <Link
+                    to="/universal-round"
+                    onClick={() => props.handleClickIndex(5)}
+                    style={{
+                      color: props.clickedIndex === 5 ? "#0082f3" : null,
+                    }}
+                  >
+                    Unviersal Round
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="7">
+                  <Link
+                    to="/air-cleaner"
+                    onClick={() => props.handleClickIndex(6)}
+                    style={{
+                      color: props.clickedIndex === 6 ? "#0082f3" : null,
+                    }}
+                  >
+                    Air Cleaner Assemblies
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="8">
+                  <Link
+                    to="/cross-reference-brand"
+                    onClick={() => props.handleClickIndex(12)}
+                    style={{
+                      color: props.clickedIndex === 12 ? "#0082f3" : null,
+                    }}
+                  >
+                    Cross Reference Brand
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="9">
+                  <Link
+                    to="/cross-reference-filters"
+                    onClick={() => props.handleClickIndex(13)}
+                    style={{
+                      color: props.clickedIndex === 13 ? "#0082f3" : null,
+                    }}
+                  >
+                    Cross Reference Filters
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="10">
+                  <a href="../assets/documents/BB.pdf">Bargain Basement</a>
+                </Menu.Item>
+              </SubMenu>
+              <SubMenu key="sub2" title="Why green filter?" icon={null}>
+                <Menu.Item key="1">
+                  <Link
+                    to="/about-us"
+                    onClick={() => props.handleClickIndex(7)}
+                    style={{
+                      color: props.clickedIndex === 7 ? "#0082f3" : null,
+                    }}
+                  >
+                    About Us
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link
+                    to="/our-guarantee"
+                    onClick={() => props.handleClickIndex(8)}
+                    style={{
+                      color: props.clickedIndex === 8 ? "#0082f3" : null,
+                    }}
+                  >
+                    Our Guarantee
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="3">
+                  <Link
+                    to="/why-go-green"
+                    onClick={() => props.handleClickIndex(9)}
+                    style={{
+                      color: props.clickedIndex === 9 ? "#0082f3" : null,
+                    }}
+                  >
+                    How We Outperform
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="4">
+                  <Link
+                    to="/private-label"
+                    onClick={() => props.handleClickIndex(10)}
+                    style={{
+                      color: props.clickedIndex === 10 ? "#0082f3" : null,
+                    }}
+                  >
+                    Private Label
+                  </Link>
+                </Menu.Item>
+                <Menu.Item key="5">
+                  <Link to="/">Become An Affiliate</Link>
+                </Menu.Item>
+                <Menu.Item key="6">
+                  <Link to="/">Become A Dealer</Link>
+                </Menu.Item>
+              </SubMenu>
+              <Menu.Item key="sub3">
+                <Link
+                  onClick={() => {
+                    props.handleClickIndex(2);
+                  }}
+                  to="/cleaner-care"
+                >
+                  Cleaner & Care
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="sub4">
+                <Link
+                  onClick={() => {
+                    props.handleClickIndex(10);
+                  }}
+                  to="/contact-us"
+                >
+                  Contact Us
+                </Link>
+              </Menu.Item>
+            </Menu>
+          </nav>
+        </div>
         <div className="r-navbar w-nav">
           <div className="container w-clearfix">
-            <div className="menu-button" onClick={handleToggle}>
+            <div
+              className="menu-button"
+              onClick={() =>
+                toggle ? handleToggle(false) : handleToggle(true)
+              }
+            >
               <FaBars />
             </div>
 
@@ -211,26 +421,7 @@ const Header = (props) => {
               <img className="icon flag" src={flag} alt="flag" />
             </div>
           </div>
-          <div
-            style={{
-              display: toggle ? "block" : "none",
-              position: "absolute",
-              overflow: "hidden",
-              height: "960px",
-              top: "100%",
-              left: 0,
-              right: 0,
-              width: "100%",
-            }}
-          >
-            <div
-              id="navbar"
-              style={{
-                transform: "translateY(0px) translateX(0px)",
-                transition: "transform 400ms ease 0s",
-              }}
-            ></div>
-          </div>
+
           {props.isVehicle && (
             <div className="hero-header">
               <div className="row-3 w-row">
@@ -299,6 +490,7 @@ const HeaderWrapper = styled.div`
     margin-right: 3%;
     margin-left: 3%;
     padding: 10px 0;
+    z-index: 1000;
   }
   .brand {
     margin-top: 8px;
@@ -441,6 +633,65 @@ const HeaderWrapper = styled.div`
     color: #fff;
     margin-left: 10px;
   }
+
+  .w-nav-overlay {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    top: -655px;
+    transition: top 0.4s, display 0.4s;
+    display: none;
+  }
+
+  .nav-block {
+    width: 100%;
+    margin-left: 5px;
+    float: left;
+    justify-content: space-between;
+    flex: 0 auto;
+    background-color: #000;
+  }
+
+  .nav-block .ant-menu {
+    background: #000 !important;
+    color: #fff;
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+  }
+
+  .nav-block .ant-menu-submenu-title {
+    padding-left: 15px !important;
+  }
+
+  .nav-block .ant-menu-submenu-arrow {
+    display: none;
+  }
+
+  .nav-block .ant-menu-sub.ant-menu-inline > .ant-menu-item {
+    padding-left: 25px !important;
+  }
+  .nav-block .ant-menu-submenu-title:hover,
+  .nav-block .ant-menu-item:hover,
+  .ant-menu-item-selected,
+  .ant-menu-submenu-selected,
+  .nav-block a:hover {
+    color: #757575;
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected,
+  .ant-menu-item:active,
+  .ant-menu-submenu-title:active {
+    background-color: #000;
+  }
+
+  .nav-block a {
+    color: #fff;
+    transition: color 0.3s ease-in-out !important;
+  }
+
+  .nav-block .ant-menu-item-only-child {
+    padding-left: 15px !important;
+  }
   @media screen and (max-width: 767px) {
     padding: 0;
   }
@@ -461,6 +712,9 @@ const HeaderWrapper = styled.div`
     }
     .right-nav-div {
       right: 0 !important;
+    }
+    .w-nav-overlay {
+      display: block;
     }
   }
 
