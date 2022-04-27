@@ -449,3 +449,57 @@ label {
     margin-top: 25px;
   }
 }
+
+
+.customFilters {
+  display: block;
+  width:90%;
+  padding:15px;
+  background-color: rgb(33, 173, 61);
+  margin:0px auto;
+  transform: translateY(-50%);
+  position: relative;
+}
+
+.customFilters h3 {
+  font-size: 25px;
+  font-weight: bold;;
+  color: #fff;
+}
+
+.customFilters .customSelects {
+  width: 20%;
+  margin:0px 5px
+}
+
+
+.selectController {
+  align-items: center;
+  display: flex;
+  margin:0px -5px;
+  flex-direction: row;
+}
+
+.selectController > span {
+color: #fff;
+font-weight: bold;
+font-size: 11px;
+}
+
+.selectActions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: right;
+}
+
+button.ant-btn.ant-btn-primary.customBtns {
+  background:#fff; 
+  color: rgba(0,173,35,1);
+  outline: none;
+  border:none;
+}
+
+button.ant-btn.ant-btn-link.customBtns {
+  color: #fff;
+  font-weight: bold;
+}

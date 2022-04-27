@@ -25,6 +25,11 @@ import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
 
+
+import { Select, Input, Button  } from 'antd';
+const { Option } = Select;
+
+
 const Home = (props) => {
   const gallery = [
     { id: 0, image: img0 },
@@ -42,9 +47,98 @@ const Home = (props) => {
     { id: 12, image: img12 },
     { id: 13, image: img13 },
   ];
+  
+  const [apiStr, setApiStr] = React.useState({
+    start_year: '',
+    make: '',
+    name: '',
+    engine:'' 
+  });
+
+  const [apiData, setApiData] = React.useState({});
+
+
+
   useEffect(() => {
     props.handleClickIndex(-1);
   }, [props]);
+
+  
+
+  const generateYearOptions = () => {
+    const arr = [];
+  
+    const startYear = 1959;
+    const endYear = new Date().getFullYear();
+  
+    for (let i = endYear; i >= startYear; i--) {
+      arr.push(<Option value={i}>{i}</Option>);
+    }
+  
+    return arr;
+  };
+
+
+
+  useEffect(()=>{
+    continueFetch();
+  },[apiStr])
+  
+  
+  const continueFetch = async () =>{
+    let url = 'https://us-central1-greenfilter-admin.cloudfunctions.net/models?hitsPerPage=10&page=0';
+    
+    const filterKeys = ['make','name','engine'];
+
+    let index = -1;
+    Object.keys(apiStr).map(key=>{
+      if(apiStr[key] !== '-1' && apiStr[key] !== '') {
+        url = url+'&'+key+'='+apiStr[key];
+        index++;
+      }
+    });
+
+    console.log({index}); 
+
+    if(index>=0) {
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if(data.hits.length) {
+          const getKey = filterKeys[index];
+          setApiData({...apiData, [getKey]:data.hits});
+        } 
+      });
+    }
+  }
+
+
+  const handleChange = (key, value) => {
+    const tempArr = ['start_year',
+    'make',
+    'name',
+    'engine'];
+
+    const index = tempArr.indexOf(key);
+    tempArr.splice(0, index+1);
+    
+    let tempData = apiData;
+    let tempStr = apiStr;
+    
+    tempArr.map(k=> {
+      delete tempData[k];
+      tempStr[k] = ''
+    })
+
+    setApiData({...tempData});
+    setApiStr({...tempStr, [key]: value});
+  }
+
+
+  console.log(apiData, apiStr); 
+
+
+
   return (
     <>
       <div className="container-0">
@@ -53,6 +147,48 @@ const Home = (props) => {
           handleClickIndex={props.handleClickIndex}
         />
         <Hero />
+        
+        <div className="customFilters">
+          <h3>Find by Filter</h3>
+
+          <div className="selectController">
+            <Select defaultValue="-1" className="customSelects" onChange={(v)=>handleChange('start_year', v)}>
+              <Option value="-1">Select Year</Option>
+              {generateYearOptions()}
+            </Select> 
+
+            <Select defaultValue="-1" value={apiStr.make.length && apiStr.make || '-1'} className="customSelects" onChange={(v)=>handleChange('make', v)} disabled={apiStr.start_year === '-1' || apiStr.start_year === ''}>
+                <Option value="-1">Select Make...</Option>
+                {apiData.make && apiData.make.length && apiData.make.map(({make})=>{
+                  return <Option value={make}>{make}</Option>
+                })}
+            </Select>
+
+
+            <Select defaultValue="-1" value={apiStr.name.length && apiStr.name || '-1'} className="customSelects" onChange={(v)=>handleChange('name', v)} disabled={apiStr.make === '-1' || apiStr.make === ''}>
+              <Option value="-1">Select Model...</Option>
+              {apiData.name && apiData.name.length && apiData.name.map(({name})=>{
+                  return <Option value={name}>{name}</Option>
+              })}
+            </Select>
+
+            <Select defaultValue="-1" value={apiStr.engine.length && apiStr.engine || '-1'} className="customSelects" onChange={(v)=>handleChange('engine', v)} disabled={apiStr.name === '-1' || apiStr.name === ''}>
+              <Option value="-1">Select Engine...</Option>
+              {apiData.engine && apiData.engine.length && apiData.engine.map(({engine})=>{
+                  return <Option value={engine}>{engine}</Option>
+              })}
+            </Select>
+
+            <span>OR</span>
+
+            <Input placeholder="Basic usage" className="customSelects"/>
+          </div>
+          <div className="selectActions">
+            <Button type="link" className="customBtns">Clear</Button>
+            <Button type="primary" className="customBtns">GO</Button>
+          </div>
+        </div>
+
         <HomeElement1 handleClickIndex={props.handleClickIndex} />
         <HomeElement2 />
         <HomeElement3 />
