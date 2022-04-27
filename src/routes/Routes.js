@@ -57,7 +57,7 @@ const Routes = () => {
         />
         <Route
           exact
-          path="/vehicles"
+          path="/brand/:name"
           component={() => (
             <Vehicles
               vehicle={vehicle}

@@ -1,37 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { brandDetails } from "../../data/cars";
+import getMultipleCollections from "../../data/getMultipleCollections";
+import { getMakeCollection } from "../../data/store";
 const ShopElement1 = (props) => {
+
+  const [categories,setCategories] = React.useState([]);
+
+  useEffect( async()=>
+  {
+    let collections = await getMultipleCollections(getMakeCollection().name)
+    setCategories(collections);
+  },[])
+
   return (
     <>
       <ShopElement1Wrapper>
-        {brandDetails.map((category) => (
-          <div className="container-4 w-container" key={category.categoryId}>
-            <h1 className="heading-11">{category.categoryName}</h1>
+        {categories.map((category) => (
+          <div className="container-4 w-container" key={category.id}>
+            <h1>
+            </h1>
+            <h1 className="heading-11">{category.title}</h1>
             <div className="shop-vehicle-row w-row">
-              {category.cars.map((car) => (
+              {category.makes.map((make) => (
                 <div
                   className="shop-vehicle-make w-col w-col-2"
-                  key={car.carId}
+                  key={make.id}
                 >
                   <Link
                     className="link-block"
-                    to="/vehicles"
-                    onClick={() => {
-                      props.handleVehicleRoute(car);
-                    }}
+                    to={`/brand/${make.name}`}
+                    // onClick={() => {
+                    //   props.handleVehicleRoute(make);
+                    // }}
                   >
                     <div className="column-div">
                       <div className="make-image">
                         <img
-                          src={car.img}
+                          src={make.imgSrc}
                           className="product-image"
                           alt="car"
                         />
                       </div>
                       <div className="text-block car-carousel">
-                        {car.carName}
+                        {make.name}
                       </div>
                     </div>
                   </Link>

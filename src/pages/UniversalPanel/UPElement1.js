@@ -1,159 +1,84 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import img0 from "../../assets/panel.jpg";
 import img2 from "../../assets/panel.jpg";
 import FilterTable from "../../components/FilterTable";
+import { collection, query, where, getDocs} from "firebase/firestore"; 
+import  {db} from '../../helper/firebase';
+
 const tableHeader = [
   {
     id: 0,
-    name: "Filter Number",
+    label: "Filter Number",
+    name: "gfu_part_num",
+
     maxWidth: 156,
   },
   {
     id: 1,
-    name: "Length (L)",
+    label: "Length (L)",
+    name: "filter_length_inch",
+
     maxWidth: 270,
   },
   {
     id: 2,
-    name: "Width (W)",
+    label: "Width (W)",
+    name: "filter_width_inch",
+
     maxWidth: 249,
   },
   {
     id: 3,
-    name: "Height (H)",
+    label: "Height (H)",
+    name: "filter_height_inch",
+
     maxWidth: 139,
   },
   {
     id: 4,
-    name: "Type",
+    label: "Type",
+    name: "filter_style",
     maxWidth: 126,
   },
   {
     id: 5,
-    name: "Weight",
+    label: "Weight",
+    name: "filter_weight_lbs",
+
     maxWidth: 136,
   },
 ];
-const tableData = [
-  {
-    rowNo: 0,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2004,
-      },
-      {
-        id: 1,
-        name: "13.50",
-      },
-      {
-        id: 2,
-        name: 6.73,
-      },
-      {
-        id: 3,
-        name: 0.97,
-      },
-      {
-        id: 4,
-        name: "Panel",
-      },
-      {
-        id: 5,
-        name: 1.6,
-      },
-    ],
-  },
-  {
-    rowNo: 1,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2004,
-      },
-      {
-        id: 1,
-        name: "13.50",
-      },
-      {
-        id: 2,
-        name: 6.73,
-      },
-      {
-        id: 3,
-        name: 0.97,
-      },
-      {
-        id: 4,
-        name: "Panel",
-      },
-      {
-        id: 5,
-        name: 1.6,
-      },
-    ],
-  },
-  {
-    rowNo: 2,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2004,
-      },
-      {
-        id: 1,
-        name: "13.50",
-      },
-      {
-        id: 2,
-        name: 6.73,
-      },
-      {
-        id: 3,
-        name: 0.97,
-      },
-      {
-        id: 4,
-        name: "Panel",
-      },
-      {
-        id: 5,
-        name: 1.6,
-      },
-    ],
-  },
-  {
-    rowNo: 3,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2004,
-      },
-      {
-        id: 1,
-        name: "13.50",
-      },
-      {
-        id: 2,
-        name: 6.73,
-      },
-      {
-        id: 3,
-        name: 0.97,
-      },
-      {
-        id: 4,
-        name: "Panel",
-      },
-      {
-        id: 5,
-        name: 1.6,
-      },
-    ],
-  },
-];
+
 const UPElement1 = () => {
+  const [tableData,setTableData] = React.useState([])
+
+  useEffect(()=>{
+
+    getTableData();
+  },[])
+
+  const getTableData = async () =>
+  {
+    const productsRef = collection(db, "product_variants");
+
+    const q = query(productsRef, where("category", "==", "Panel Filter"));
+
+    let tableDataT = [];
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      tableDataT.push(doc.data())
+
+    });
+
+    console.log(tableDataT)
+
+    setTableData(tableDataT);
+  }
+
   return (
     <>
       <UPElement1Wrapper>

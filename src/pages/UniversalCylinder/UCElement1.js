@@ -1,231 +1,100 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import img0 from "../../assets/cylinders/cone-cylinder_chart.jpg";
 import img1 from "../../assets/cylinders/vid_measure_350.jpg";
 import img2 from "../../assets/cylinders/cone_filter_measurements_s.jpg";
 import FilterTable from "../../components/FilterTable";
+import { collection, query, where, getDocs} from "firebase/firestore"; 
+import  {db} from '../../helper/firebase';
+
 const tableHeader = [
   {
     id: 0,
-    name: "Filter Number",
+    name: "gfu_part_num",
+    label: "Filter Number",
     maxWidth: 91,
   },
   {
     id: 1,
-    name: "Inlet Diameter (ID)",
+    name: "filter_id_length_inch",
+    label: "Inlet Diameter (ID)",
     maxWidth: 165,
   },
   {
     id: 2,
-    name: "Height (H)",
+    name: "filter_height_inch",
+    label: "Height (H)",
     maxWidth: 82,
   },
   {
     id: 3,
-    name: "Outside Diameter - Base (OD-B)",
+    name: "filter_od_base_length_inch",
+    label: "Outside Diameter - Base (OD-B)",
     maxWidth: 171,
   },
   {
     id: 4,
-    name: "Outside Diameter - Top (OD-T)",
+    name: "filter_od_top_length_inch",
+    label: "Outside Diameter - Top (OD-T)",
     maxWidth: 171,
   },
   {
     id: 5,
-    name: "Style",
+    name: "filter_style",
+    label: "Style",
     maxWidth: 165,
   },
   {
     id: 6,
-    name: "End Cap",
+    name: "filter_end_cap", 
+    label: "End Cap",
     maxWidth: 179,
   },
   {
     id: 7,
-    name: "Inlet Type",
+    name: "filter_inlet_type",
+    label: "Inlet Type",
     maxWidth: 131,
   },
   {
     id: 8,
-    name: "Color",
+    name: "filter_color",
+    label: "Color",
     maxWidth: 76,
   },
 ];
-const tableData = [
-  {
-    rowNo: 0,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2007,
-      },
-      {
-        id: 1,
-        name: 3.75,
-      },
-      {
-        id: 2,
-        name: 9.5,
-      },
-      {
-        id: 3,
-        name: 6.0,
-      },
-      {
-        id: 4,
-        name: 6.0,
-      },
-      {
-        id: 5,
-        name: "Cylinder",
-      },
 
-      {
-        id: 6,
-        name: "Rubber",
-      },
 
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
-        name: "Green",
-      },
-    ],
-  },
-  {
-    rowNo: 1,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2024,
-      },
-      {
-        id: 1,
-        name: 3.5,
-      },
-      {
-        id: 2,
-        name: 6.5,
-      },
-      {
-        id: 3,
-        name: 5.5,
-      },
-      {
-        id: 4,
-        name: 4.0,
-      },
-      {
-        id: 5,
-        name: "Cone",
-      },
-
-      {
-        id: 6,
-        name: null,
-      },
-
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
-        name: "Green",
-      },
-    ],
-  },
-  {
-    rowNo: 2,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2024,
-      },
-      {
-        id: 1,
-        name: 3.5,
-      },
-      {
-        id: 2,
-        name: 6.5,
-      },
-      {
-        id: 3,
-        name: 5.5,
-      },
-      {
-        id: 4,
-        name: 4.0,
-      },
-      {
-        id: 5,
-        name: "Cone",
-      },
-
-      {
-        id: 6,
-        name: null,
-      },
-
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
-        name: "Green",
-      },
-    ],
-  },
-  {
-    rowNo: 3,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2024,
-      },
-      {
-        id: 1,
-        name: 3.5,
-      },
-      {
-        id: 2,
-        name: 6.5,
-      },
-      {
-        id: 3,
-        name: 5.5,
-      },
-      {
-        id: 4,
-        name: 4.0,
-      },
-      {
-        id: 5,
-        name: "Cone",
-      },
-
-      {
-        id: 6,
-        name: null,
-      },
-
-      {
-        id: 7,
-        name: "Straight",
-      },
-      {
-        id: 8,
-        name: "Green",
-      },
-    ],
-  },
-];
 const UCElement1 = () => {
+  
+
+  const [tableData,setTableData] = React.useState([])
+
+  useEffect(()=>{
+
+    getTableData();
+  },[])
+
+  const getTableData = async () =>
+  {
+    const productsRef = collection(db, "product_variants");
+
+    const q = query(productsRef, where("category", "==", "Cone/Cylinder Filter"));
+
+    let tableDataT = [];
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+      tableDataT.push(doc.data())
+
+    });
+
+    console.log(tableDataT)
+
+    setTableData(tableDataT);
+  }
   return (
     <>
       <UCElement1Wrapper>

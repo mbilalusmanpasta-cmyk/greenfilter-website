@@ -3,20 +3,35 @@ import styled from "styled-components";
 import Button1 from "../../components/Button1";
 import { Carousel } from "antd";
 import VehicleElement3 from "./VehicleElement3";
-const Hero = (props) => {
+
+const  HeroImage = ({image}) =>
+{
+  return(
+    <HeroWrapper bgImg={image.imgSrc}>
+      <div className="hero-text">
+        <h1 className="hero-heading-1 left">
+          {/* Groundbreaking air filters - engineered to enhance any{" "}
+          {make.name}'s performance */}
+          {image.text}
+        </h1>
+        {/* <Button1 text="Prove It!" /> */}
+      </div>
+    </HeroWrapper>
+  )
+}
+
+const Hero = ({make}) => {
   return (
     <>
       <Carousel autoplay dots={false}>
-        <HeroWrapper bgImg={props.vehicle.bgImg}>
-          <div className="hero-text">
-            <h1 className="hero-heading-1 left">
-              Groundbreaking air filters - engineered to enhance any{" "}
-              {props.vehicle.modelName}'s performance
-            </h1>
-            <Button1 text="Prove It!" />
-          </div>
-        </HeroWrapper>
-        <VehicleElement3 vehicle={props.vehicle} />
+        {
+          make && make.imageGallery?.map((image)=>
+          {
+            <HeroImage image={image} />
+          })
+        }
+        
+        {/* <VehicleElement3 vehicle={props.vehicle} /> */}
       </Carousel>
     </>
   );

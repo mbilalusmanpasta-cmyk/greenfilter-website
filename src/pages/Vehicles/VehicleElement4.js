@@ -5,25 +5,25 @@ import filterImg from "../../assets/7157_v1_500.jpg";
 import cleaner from "../../assets/2000_v1_500.jpg";
 import { Link } from "react-router-dom";
 import Button1 from "../../components/Button1";
-const VehicleElement4 = ({ vehicle }) => {
+const VehicleElement4 = ({ models,make }) => {
   return (
     <>
       <VehicleElement4Wrapper>
         <div className="titles-div">
           <h1 className="main-header">
-            Popular {vehicle.modelName} Models Use Green Filter
+            Popular {make.name} Models Use Green Filter
           </h1>
           <p className="large-paragraph gray reviews">
-            Below are the {vehicle.modelName} models that support the
+            Below are the {make.name} models that support the
             application of Green Filter.
           </p>
         </div>
-        {vehicle.tables.map((table) => (
-          <div className="container-6 w-container" key={table.id}>
+        {models && models.map((model,key) => ( 
+          <div className="container-6 w-container" key={key}>
             <div className="main-vehicle-row w-row">
               <div className="column-4 w-col w-col-6">
                 <img
-                  src={table.tableCar}
+                  src={model.categories[0].imgSrc}
                   alt="car"
                   style={{ maxWidth: "84%" }}
                 />
@@ -31,14 +31,14 @@ const VehicleElement4 = ({ vehicle }) => {
               <div className="column-6 w-col w-col-6">
                 <div className="column-div left">
                   <h1 className="product-header">
-                    {table.name} High Performance Air Filter
+                    {model.name} High Performance Air Filter
                   </h1>
                   <h1 className="product-descr">
                     Green Filter - Part{" "}
-                    <Link style={{ color: "green" }}>{table.partNo}</Link>
+                    <Link style={{ color: "green" }}>{model.categories[0].products[0].gfu_part_num}</Link>
                   </h1>
                 </div>
-                <img src={table.tableImg} alt="filter" className="product" />
+                <img src={model.categories[0].products[0].imgSrc} alt="filter" className="product" />
               </div>
             </div>
             <div className="product-row top w-row">
@@ -68,32 +68,32 @@ const VehicleElement4 = ({ vehicle }) => {
                 </div>
               </div>
             </div>
-            {table.columnData.map((column) => (
-              <div className="product-row w-row" key={column.id}>
+            {model.categories.map((category) => (
+              <div className="product-row w-row" key={category.products[0].id}>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
                     <div class="product-table-text">
-                      {column.year}
+                      {category.start_year} - {category.end_year}
                       <br />
-                      <Link style={{ color: "green" }} href="store/7157">
-                        {column.partNo}
+                      <Link style={{ color: "green" }} href={`store/${category.products[0].gfu_part_num}`}>
+                        {category.products[0].gfu_part_num}
                       </Link>
                     </div>
                   </div>
                 </div>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
-                    <div class="product-table-text">{column.disp}</div>
+                    <div class="product-table-text">{category.displacement}</div>
                   </div>
                 </div>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
-                    <div class="product-table-text">{column.engineSize}</div>
+                    <div class="product-table-text">{category.engine}</div>
                   </div>
                 </div>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
-                    <div class="product-table-text">{column.intake}</div>
+                    <div class="product-table-text">{category.intake}</div>
                   </div>
                 </div>
                 <div className="w-col w-col-4 w-col-small-4 w-col-tiny-4">
@@ -105,10 +105,10 @@ const VehicleElement4 = ({ vehicle }) => {
                       >
                         <div className="price-text">
                           <span className="discounted-price">
-                            ${column.discPrice}
+                            ${category.products[0].discPrice}
                           </span>
                           <span className="actual-price">
-                            ${column.actPrice}
+                            ${category.products[0].actPrice}
                           </span>
                         </div>
                         {/* <div className="shop-btn"></div> */}
@@ -116,7 +116,7 @@ const VehicleElement4 = ({ vehicle }) => {
                       </div>
                     </div>
                     <img
-                      src={column.prodImg}
+                      src={category.products[0].imgSrc}
                       alt="filter"
                       className="filter-table-thumb right"
                     />
@@ -166,6 +166,7 @@ const VehicleElement4 = ({ vehicle }) => {
               </div>
             </div>
           </div>
+         
         ))}
       </VehicleElement4Wrapper>
     </>

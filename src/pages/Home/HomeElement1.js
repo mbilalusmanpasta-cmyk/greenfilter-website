@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import gradient from "../../assets/green-gradient-blue.png";
 import { Link } from "react-router-dom";
@@ -17,8 +17,19 @@ import brand4 from "../../assets/trust/brand4.png";
 import brand5 from "../../assets/trust/brand5.jpg";
 import Button1 from "../../components/Button1";
 import { useHistory } from "react-router-dom";
+import getCollection from "../../data/getSingleCollection";
+import { getMakeCollection } from "../../data/store";
 const HomeElement1 = (props) => {
+
   const history = useHistory();
+  const [topPerformingBrands,setTopPerformingBrands] = React.useState([]);
+
+  useEffect(async ()=>
+  {
+    let topPerformingBrandsT = await getCollection(null,"top-performing-brands");
+    setTopPerformingBrands(topPerformingBrandsT)
+  },[])
+
   const cars = [
     {
       id: 0,
@@ -85,7 +96,7 @@ const HomeElement1 = (props) => {
             The Chosen Filter for Top Performing Brands
           </h1>
           <div className="main-vehicle-row">
-            {cars.map((car) => (
+            {topPerformingBrands.map((car) => (
               <div key={car.id} className="w-col w-col-2">
                 <Link to="/" class="link-block w-inline-block">
                   <div class="column-div">

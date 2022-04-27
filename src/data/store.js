@@ -128,6 +128,35 @@ const form2 = [
     label: "Message (Include your car make & model)",
   },
 ];
+
+const MakeCollection =   {name:"make",label:"Make",slug:"brands"},
+ModelCollection =   {name:"model",label:"Model",slug:"model"},
+ProductCollection =   {name:"product",label:"Product",slug:"item"};
+
+export const getMakeCollection = () =>
+{
+  return MakeCollection;
+}
+export const getModelCollection = () =>
+{
+  return ModelCollection;
+}
+export const getProductCollection = () =>
+{
+  return ProductCollection;
+}
+
+export const collectionCategories = [
+  getMakeCollection(),
+  getModelCollection(),
+  getProductCollection()
+]
+
+export const getCollectionCategories = () =>
+{
+  return collectionCategories;
+}
+
 export const getForm1 = () => {
   const formData = JSON.parse(JSON.stringify(form1));
   return formData;
