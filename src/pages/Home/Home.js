@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Gallery from "./Gallery";
 import Hero from "./Hero";
+import { CaretDownOutlined } from '@ant-design/icons';
+
 import HomeElement1 from "./HomeElement1";
 import HomeElement2 from "./HomeElement2";
 import HomeElement3 from "./HomeElement3";
@@ -24,6 +26,8 @@ import img10 from "../../assets/gallery/img10.jpg";
 import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
+
+import logo from "../../assets/gflogo.png";
 
 
 import { Select, Input, Button  } from 'antd';
@@ -56,7 +60,8 @@ const Home = (props) => {
   });
 
   const [apiData, setApiData] = React.useState({});
-
+  const stickyComponentRef = React.useRef();
+  const [sticky, setSticky] = React.useState(false);
 
 
   useEffect(() => {
@@ -79,12 +84,25 @@ const Home = (props) => {
   };
 
 
+  useEffect(()=>{
+    window.addEventListener('scroll',checkSticky);
+    return () => window.removeEventListener('scroll',checkSticky);
+  },[])
 
   useEffect(()=>{
     continueFetch();
   },[apiStr])
   
   
+  const checkSticky = ()=>{
+    const getTop = stickyComponentRef.current.getBoundingClientRect();
+    if(getTop.top <= 153) {
+      setSticky(true)
+    } else {
+      setSticky(false)
+    }
+  }
+
   const continueFetch = async () =>{
     let url = 'https://us-central1-greenfilter-admin.cloudfunctions.net/models?hitsPerPage=10&page=0';
     
@@ -98,7 +116,6 @@ const Home = (props) => {
       }
     });
 
-    console.log({index}); 
 
     if(index>=0) {
       fetch(url)
@@ -135,7 +152,6 @@ const Home = (props) => {
   }
 
 
-  console.log(apiData, apiStr); 
 
 
 
@@ -147,17 +163,17 @@ const Home = (props) => {
           handleClickIndex={props.handleClickIndex}
         />
         <Hero />
-        
-        <div className="customFilters">
-          <h3>Find by Filter</h3>
+        <div ref={stickyComponentRef}></div>
+        <div className={`customFilters ${sticky ? 'sticky' : ''}`}>
+          <h3><img src={logo} alt="logo" width="150" />Find a Filter</h3>
 
           <div className="selectController">
-            <Select defaultValue="-1" className="customSelects" onChange={(v)=>handleChange('start_year', v)}>
+            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />} className="customSelects" onChange={(v)=>handleChange('start_year', v)}>
               <Option value="-1">Select Year</Option>
               {generateYearOptions()}
             </Select> 
 
-            <Select defaultValue="-1" value={apiStr.make.length && apiStr.make || '-1'} className="customSelects" onChange={(v)=>handleChange('make', v)} disabled={apiStr.start_year === '-1' || apiStr.start_year === ''}>
+            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.make.length && apiStr.make || '-1'} className="customSelects" onChange={(v)=>handleChange('make', v)} disabled={apiStr.start_year === '-1' || apiStr.start_year === ''}>
                 <Option value="-1">Select Make...</Option>
                 {apiData.make && apiData.make.length && apiData.make.map(({make})=>{
                   return <Option value={make}>{make}</Option>
@@ -165,14 +181,14 @@ const Home = (props) => {
             </Select>
 
 
-            <Select defaultValue="-1" value={apiStr.name.length && apiStr.name || '-1'} className="customSelects" onChange={(v)=>handleChange('name', v)} disabled={apiStr.make === '-1' || apiStr.make === ''}>
+            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.name.length && apiStr.name || '-1'} className="customSelects" onChange={(v)=>handleChange('name', v)} disabled={apiStr.make === '-1' || apiStr.make === ''}>
               <Option value="-1">Select Model...</Option>
               {apiData.name && apiData.name.length && apiData.name.map(({name})=>{
                   return <Option value={name}>{name}</Option>
               })}
             </Select>
 
-            <Select defaultValue="-1" value={apiStr.engine.length && apiStr.engine || '-1'} className="customSelects" onChange={(v)=>handleChange('engine', v)} disabled={apiStr.name === '-1' || apiStr.name === ''}>
+            <Select defaultValue="-1"  suffixIcon={<CaretDownOutlined />}  value={apiStr.engine.length && apiStr.engine || '-1'} className="customSelects" onChange={(v)=>handleChange('engine', v)} disabled={apiStr.name === '-1' || apiStr.name === ''}>
               <Option value="-1">Select Engine...</Option>
               {apiData.engine && apiData.engine.length && apiData.engine.map(({engine})=>{
                   return <Option value={engine}>{engine}</Option>
@@ -186,6 +202,29 @@ const Home = (props) => {
           <div className="selectActions">
             <Button type="link" className="customBtns">Clear</Button>
             <Button type="primary" className="customBtns">GO</Button>
+          </div>
+
+          <div className="searchedItems">
+            <h2>Green Filter Part #7088</h2>
+            <div className="searchedProductDetails">
+              <div className="searchProductLeftContainer">
+                <div className="searchProductImage">
+                  <img src={logo} alt=""/>
+                </div>
+                <div className="searchProductPrice">
+                  <h5>$85.00</h5>
+                  <Button type="primary">Add To Cart</Button>
+                </div>
+              </div>
+              <div className="searchedProductRight">
+                <p>Year: 2019</p>
+                <p>Engine: ACE</p>
+                <p>Disp: 600</p>
+                <p>Intake: 600</p>
+                <p>Fitment Note: - All Models</p>
+                <p><a href="#">Click here</a> for more product information</p>
+              </div>
+            </div>
           </div>
         </div>
 

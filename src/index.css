@@ -273,7 +273,6 @@ label {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  vertical-align: middle;
   background-color: #ffffff;
   border: 1px solid #cccccc;
 }
@@ -404,7 +403,8 @@ label {
 }
 
 .container-0 {
-  padding: 0 10%;
+  margin: 0 10%;
+  position: relative;
 }
 @media screen and (max-width: 1300px) {
   .titles-div {
@@ -428,6 +428,7 @@ label {
     width: 90%;
   }
   .container-0 {
+    position: relative;
     padding: 0;
   }
 }
@@ -453,12 +454,26 @@ label {
 
 .customFilters {
   display: block;
-  width:90%;
   padding:15px;
-  background-color: rgb(33, 173, 61);
+  background-color:rgba(0,173,35,0.86);
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.39);
   margin:0px auto;
   transform: translateY(-50%);
-  position: relative;
+  position: absolute;
+  left:5%;
+  right:5%;
+  z-index: 9;
+  transition:300ms ease;
+}
+@media screen and (min-width: 767px) {
+
+  .sticky {
+    position: fixed;
+    top: 0;
+    left: 10%;
+    transform: translateY(44%);
+    right: 10%;
+  }
 }
 
 .customFilters h3 {
@@ -467,16 +482,21 @@ label {
   color: #fff;
 }
 
+
+
 .customFilters .customSelects {
-  width: 20%;
-  margin:0px 5px
+  width: 18%;
+  margin:0px 0px;
+  box-sizing: border-box;
 }
 
 
 .selectController {
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   display: flex;
-  margin:0px -5px;
+  margin:0px -0px;
   flex-direction: row;
 }
 
@@ -502,4 +522,94 @@ button.ant-btn.ant-btn-primary.customBtns {
 button.ant-btn.ant-btn-link.customBtns {
   color: #fff;
   font-weight: bold;
+}
+
+.ant-select-arrow .anticon:not(.ant-select-suffix) {
+  color: rgba(0,173,35,1);
+  font-size: 14px;
+}
+
+@media screen and (max-width: 767px) {
+ .customFilters {
+   position: relative;
+   transform: none;
+   left:0px;
+   right:0px;
+   margin-top: 25px;
+   margin-bottom: -50px;
+   box-shadow: none;
+ } 
+
+ .selectController {
+   flex-direction: column;
+ }
+ .customFilters .customSelects {
+   width: 100%;
+   margin: 10px 0px;
+   height: 40px;
+ }
+ .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+   height:40px;
+ }
+ .ant-select-single .ant-select-selector .ant-select-selection-item, .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
+   line-height: 40px;
+ }
+}
+
+
+.searchedItems {
+  /* display: flex; */
+  display: none;
+  flex-direction: column;
+}
+
+.searchedItems h2 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.searchProductImage {
+  width:100px;
+  height:100px;
+  border-radius: 5px;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchedProductDetails {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchProductLeftContainer {
+  margin-right: 45px;
+}
+.searchedProductRight p {
+  text-align: left;
+  font-size: 16px;
+  color: #fff;
+  margin:3px 0px; 
+}
+.searchedProductRight a:hover{
+  color: #fff;
+}
+
+
+.searchProductPrice {
+  margin-top:10px;
+}
+.searchProductPrice h5 {
+  font-size: 16px;
+  font-weight: bold;
+  color:#fff;
+}
+
+.searchProductPrice button {
+  background-color: #fff;
+  color: rgba(0,173,35,0.86);
+  cursor: pointer;
 }
