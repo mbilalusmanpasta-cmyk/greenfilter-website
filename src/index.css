@@ -558,8 +558,7 @@ button.ant-btn.ant-btn-link.customBtns {
 
 
 .searchedItems {
-  /* display: flex; */
-  display: none;
+  display: flex;
   flex-direction: column;
 }
 
@@ -583,6 +582,7 @@ button.ant-btn.ant-btn-link.customBtns {
 .searchedProductDetails {
   display: flex;
   flex-direction: row;
+  margin-top: 20px;
 }
 
 .searchProductLeftContainer {

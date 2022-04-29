@@ -62,6 +62,9 @@ const Home = (props) => {
   const [apiData, setApiData] = React.useState({});
   const stickyComponentRef = React.useRef();
   const [sticky, setSticky] = React.useState(false);
+  const [finalSelectedId, setFinalSelectedId] = React.useState(null);
+  const [productDetails, setProductDetails] = React.useState([]);
+
 
 
   useEffect(() => {
@@ -104,26 +107,65 @@ const Home = (props) => {
   }
 
   const continueFetch = async () =>{
-    let url = 'https://us-central1-greenfilter-admin.cloudfunctions.net/models?hitsPerPage=10&page=0';
+
+
+
+    // try { 
+    //   const data = await axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/models', 
+    //   ).catch(error=>this._handleError(error)) 
+    //   console.log(data.data,"daaaattaaaa") 
+        
+
+
+    const filterArray = []
+ 
+
+    let url = 'https://us-central1-greenfilter-admin.cloudfunctions.net/models';
     
     const filterKeys = ['make','name','engine'];
 
     let index = -1;
     Object.keys(apiStr).map(key=>{
       if(apiStr[key] !== '-1' && apiStr[key] !== '') {
-        url = url+'&'+key+'='+apiStr[key];
+        const temp = {accessor:key, value:apiStr[key]}
+        filterArray.push(temp)
         index++;
       }
     });
 
 
+    console.log(filterArray); 
     if(index>=0) {
-      fetch(url)
+      fetch(url, { params:{ hitsPerPage: 430, page: 0, filters: filterArray }})
       .then(response => response.json())
       .then(data => {
         if(data.hits.length) {
+          let filteredData = [];
+          console.log(data.hits); 
+          
           const getKey = filterKeys[index];
-          setApiData({...apiData, [getKey]:data.hits});
+
+          let bunchOfArray = data.hits;
+          console.log(bunchOfArray)
+          Object.keys(apiStr).map(apiStrKey => {
+            if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '') {
+              const get = bunchOfArray.filter(v=>{
+                console.log(v[apiStrKey] == apiStr[apiStrKey]);
+                if(v[apiStrKey] == apiStr[apiStrKey]){
+                  return v;
+                }
+              });
+              filteredData = get
+              bunchOfArray = get; 
+            }
+          })
+
+          // always get selected value filteredData[0] engine
+          if(getKey === 'engine' && filteredData.length) {
+            setFinalSelectedId(filteredData[0].objectID); 
+          }
+
+          setApiData({...apiData, [getKey]:filteredData});
         } 
       });
     }
@@ -152,8 +194,32 @@ const Home = (props) => {
   }
 
 
+  const finalSearch = () =>{
+    console.log(finalSelectedId)
+    if(!finalSelectedId) {
+      return
+    }
+    fetch(`https://us-central1-greenfilter-admin.cloudfunctions.net/products?hitsPerPage=10&page=0&keyword=${finalSelectedId}`)
+      .then(response => response.json())
+      .then(data => {
+        if(data.hits) {
+          setProductDetails(data.hits);
+        }
+      })
+  }
 
 
+  const reset = () =>{
+    setApiData({})
+    setProductDetails([])
+    setFinalSelectedId(null)
+    setApiStr({
+      start_year: '',
+      make: '',
+      name: '',
+      engine:'' 
+    })
+  }
 
   return (
     <>
@@ -188,7 +254,10 @@ const Home = (props) => {
               })}
             </Select>
 
-            <Select defaultValue="-1"  suffixIcon={<CaretDownOutlined />}  value={apiStr.engine.length && apiStr.engine || '-1'} className="customSelects" onChange={(v)=>handleChange('engine', v)} disabled={apiStr.name === '-1' || apiStr.name === ''}>
+            <Select defaultValue="-1"  suffixIcon={<CaretDownOutlined />}  value={apiStr.engine.length && apiStr.engine || '-1'} className="customSelects" onChange={(v)=>{
+                handleChange('engine', v);
+                
+              }} disabled={apiStr.name === '-1' || apiStr.name === ''}>
               <Option value="-1">Select Engine...</Option>
               {apiData.engine && apiData.engine.length && apiData.engine.map(({engine})=>{
                   return <Option value={engine}>{engine}</Option>
@@ -197,35 +266,44 @@ const Home = (props) => {
 
             <span>OR</span>
 
-            <Input placeholder="Basic usage" className="customSelects"/>
+            <Input placeholder="Basic usage" className="customSelects" onChange={(e)=>setFinalSelectedId(e.target.value)}/>
           </div>
           <div className="selectActions">
-            <Button type="link" className="customBtns">Clear</Button>
-            <Button type="primary" className="customBtns">GO</Button>
+            <Button type="link" className="customBtns" onClick={reset}>Clear</Button>
+            <Button type="primary" disabled={!finalSelectedId} className="customBtns" onClick={finalSearch}>Search</Button>
           </div>
-
-          <div className="searchedItems">
-            <h2>Green Filter Part #7088</h2>
-            <div className="searchedProductDetails">
-              <div className="searchProductLeftContainer">
-                <div className="searchProductImage">
-                  <img src={logo} alt=""/>
-                </div>
-                <div className="searchProductPrice">
-                  <h5>$85.00</h5>
-                  <Button type="primary">Add To Cart</Button>
-                </div>
-              </div>
-              <div className="searchedProductRight">
-                <p>Year: 2019</p>
-                <p>Engine: ACE</p>
-                <p>Disp: 600</p>
-                <p>Intake: 600</p>
-                <p>Fitment Note: - All Models</p>
-                <p><a href="#">Click here</a> for more product information</p>
-              </div>
-            </div>
-          </div>
+             
+              
+          {Boolean(productDetails.length) && <div className=""> 
+            {
+              productDetails.map((product,key)=>{
+                return (
+                  <div key={key} className="searchedItems">
+                      <h2>{product.title}</h2>
+                      <div  className="searchedProductDetails">
+                        <div className="searchProductLeftContainer">
+                          <div className="searchProductImage">
+                            <img src={(product.images && product.images.length) ? product.images[0] : 'https://via.placeholder.com/150'} alt=""/>
+                          </div>
+                          <div className="searchProductPrice">
+                            <h5>{product?.price || '$00.00'}</h5>
+                            <Button type="primary">Add To Cart</Button>
+                          </div>
+                        </div>
+                        <div className="searchedProductRight">
+                          <p>Year: 2019</p>
+                          <p>Engine: ACE</p>
+                          <p>Disp: 600</p>
+                          <p>Intake: 600</p>
+                          <p>Fitment Note: - All Models</p>
+                          <p><a href="#">Click here</a> for more product information</p>
+                        </div>
+                      </div>
+                  </div>
+                )
+              })
+            }
+          </div>}
         </div>
 
         <HomeElement1 handleClickIndex={props.handleClickIndex} />
