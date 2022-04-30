@@ -232,7 +232,7 @@ const CCElement1Wrapper = styled.div`
 
   .heading-2 {
     position: relative;
-    z-index: 999;
+    z-index: 9;
     color: #fff;
     font-weight: 300;
   }

@@ -146,14 +146,30 @@ const Home = (props) => {
           const getKey = filterKeys[index];
 
           let bunchOfArray = data.hits;
-          console.log(bunchOfArray)
+          // console.log(apiStr); 
+
+          
           Object.keys(apiStr).map(apiStrKey => {
             if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '') {
               const get = bunchOfArray.filter(v=>{
-                console.log(v[apiStrKey] == apiStr[apiStrKey]);
-                if(v[apiStrKey] == apiStr[apiStrKey]){
-                  return v;
+                // console.log(v[apiStrKey] , apiStr[apiStrKey]);
+
+                if(apiStrKey === 'start_year') {
+                  const selectedYear = parseInt(apiStr[apiStrKey]);
+                  
+                  
+
+                  if(selectedYear >= parseInt(v.start_year) && selectedYear <= parseInt(v.end_year)) {
+                    console.log(parseInt(v.start_year),  selectedYear ,  parseInt(v.end_year))
+                    return v;
+                  }
+                } else {
+                  if(v[apiStrKey] == apiStr[apiStrKey]){
+                    return v;
+                  }
                 }
+
+                
               });
               filteredData = get
               bunchOfArray = get; 
@@ -184,11 +200,13 @@ const Home = (props) => {
     let tempData = apiData;
     let tempStr = apiStr;
     
-    tempArr.map(k=> {
+    tempArr.map(k => {
       delete tempData[k];
       tempStr[k] = ''
     })
 
+    setProductDetails([])
+    setFinalSelectedId(null)
     setApiData({...tempData});
     setApiStr({...tempStr, [key]: value});
   }
@@ -230,7 +248,7 @@ const Home = (props) => {
         />
         <Hero />
         <div ref={stickyComponentRef}></div>
-        <div className={`customFilters ${sticky ? 'sticky' : ''}`}>
+        <div className={`customFilters ${(sticky || productDetails.length) ? 'sticky' : ''}`}>
           <h3><img src={logo} alt="logo" width="150" />Find a Filter</h3>
 
           <div className="selectController">
@@ -266,7 +284,7 @@ const Home = (props) => {
 
             <span>OR</span>
 
-            <Input placeholder="Basic usage" className="customSelects" onChange={(e)=>setFinalSelectedId(e.target.value)}/>
+            <Input placeholder="Basic usage" className="customSelects" value={finalSelectedId} onChange={(e)=>setFinalSelectedId(e.target.value)}/>
           </div>
           <div className="selectActions">
             <Button type="link" className="customBtns" onClick={reset}>Clear</Button>
@@ -274,7 +292,7 @@ const Home = (props) => {
           </div>
              
               
-          {Boolean(productDetails.length) && <div className=""> 
+          {Boolean(productDetails.length) && <div className="productRenderContainer"> 
             {
               productDetails.map((product,key)=>{
                 return (

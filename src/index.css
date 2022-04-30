@@ -464,6 +464,16 @@ label {
   right:5%;
   z-index: 9;
   transition:300ms ease;
+  display: flex;
+  max-height: 90%;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.productRenderContainer {
+  max-height: 100%;
+  margin-top: 10px;
+  overflow-y: auto; 
 }
 @media screen and (min-width: 767px) {
 
@@ -471,8 +481,13 @@ label {
     position: fixed;
     top: 0;
     left: 10%;
-    transform: translateY(44%);
+    transform: translateY(0%);
     right: 10%;
+    z-index: 99;
+    background-color:rgba(0,173,35,1)
+  }
+  .sticky > h3 {
+    visibility: hidden;
   }
 }
 
