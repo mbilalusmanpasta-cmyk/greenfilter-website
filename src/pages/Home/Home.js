@@ -141,7 +141,7 @@ const [modelsId,setModelsId]=useState([])
     if(index>=0) {
       console.log(filterArray); 
 
-    await  axios.get('http://localhost:5001/greenfilter-admin/us-central1/modelssearch', {
+    await  axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/modelssearch', {
         params:{
           filters:[...filterArray],
         }
@@ -318,7 +318,7 @@ const [modelsId,setModelsId]=useState([])
 
     }
 
-   await axios.get(`http://localhost:5001/greenfilter-admin/us-central1/productssearch?hitsPerPage=${setModelsId.length+1}&page=0`,{
+   await axios.get(`https://us-central1-greenfilter-admin.cloudfunctions.net/productssearch?hitsPerPage=${setModelsId.length+1}&page=0`,{
       params:{
         filters:filters,
       }
