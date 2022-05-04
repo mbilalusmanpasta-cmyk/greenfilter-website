@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Gallery from "./Gallery";
 import Hero from "./Hero";
 import { CaretDownOutlined } from '@ant-design/icons';
+import axios from "axios"
 
 import HomeElement1 from "./HomeElement1";
 import HomeElement2 from "./HomeElement2";
@@ -31,6 +32,7 @@ import logo from "../../assets/gflogo.png";
 
 
 import { Select, Input, Button  } from 'antd';
+import { async } from "@firebase/util";
 const { Option } = Select;
 
 
@@ -53,7 +55,7 @@ const Home = (props) => {
   ];
   
   const [apiStr, setApiStr] = React.useState({
-    start_year: '',
+    year: '',
     make: '',
     name: '',
     engine:'' 
@@ -63,8 +65,10 @@ const Home = (props) => {
   const stickyComponentRef = React.useRef();
   const [sticky, setSticky] = React.useState(false);
   const [finalSelectedId, setFinalSelectedId] = React.useState(null);
-  const [productDetails, setProductDetails] = React.useState([]);
+  const [searchpartNo, setSearchPartNo] = React.useState('');
 
+  const [productDetails, setProductDetails] = React.useState([]);
+const [modelsId,setModelsId]=useState([])
 
 
   useEffect(() => {
@@ -120,7 +124,7 @@ const Home = (props) => {
     const filterArray = []
  
 
-    let url = 'https://us-central1-greenfilter-admin.cloudfunctions.net/models';
+    let url = 'https://us-central1-greenfilter-admin.cloudfunctions.net/modelssearch';
     
     const filterKeys = ['make','name','engine'];
 
@@ -134,62 +138,154 @@ const Home = (props) => {
     });
 
 
-    console.log(filterArray); 
     if(index>=0) {
-      fetch(url, { params:{ hitsPerPage: 430, page: 0, filters: filterArray }})
-      .then(response => response.json())
-      .then(data => {
-        if(data.hits.length) {
-          let filteredData = [];
-          console.log(data.hits); 
+      console.log(filterArray); 
+
+    await  axios.get('http://localhost:5001/greenfilter-admin/us-central1/modelssearch', {
+        params:{
+          filters:[...filterArray],
+        }
+          }).then((data)=>{
+           console.log(data?.data,"bilal data") 
+
+            if(data?.data?.length>0) {
+              let filteredData = [];
+              
+              const getKey = filterKeys[index];
+    
+              let bunchOfArray = data.data;
+              filteredData=[...data.data]
+              // Object.keys(apiStr).map(apiStrKey => {
+              //   console.log(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '',"cooonnndddii",apiStr,"apiStr")
+              //   if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] == '') {
+              //     // const get = bunchOfArray.filter(v=>{
+              //     //   // if(apiStrKey === 'year') {
+              //     //   //   const selectedYear = parseInt(apiStr[apiStrKey]);
+              //     //   //   if(selectedYear >= parseInt(v.year) && selectedYear <= parseInt(v.end_year)) {
+              //     //   //     console.log(parseInt(v.year),  selectedYear ,  parseInt(v.end_year))
+              //     //   //     return v;
+              //     //   //   }
+              //     //   // } else {
+              //     //     // if(v[apiStrKey] == apiStr[apiStrKey]){
+              //     //       return v;
+              //     //     // }
+              //     //   }
+    
+                    
+              //     // });
+              //     console.log(get,"get")
+              //     filteredData = get
+              //     bunchOfArray = get; 
+    
+              //     console.log(filteredData,"filteredData")
+              //   }
+              // })
+    
+              // always get selected value filteredData[0] engine
+              if(getKey === 'engine' && filteredData.length) {
+                setFinalSelectedId(filteredData[0].objectID);
+                const modelIds=filteredData.map((item)=>({objectID: item.objectID}))
+                setModelsId([...modelIds]) 
+              }
+    
+              setApiData({...apiData, [getKey]:filteredData});
+            } 
+
+          }).catch(error=>console.log(error))
+
+        //        if(data?.data?.length>0) {
+        //   let filteredData = [];
           
-          const getKey = filterKeys[index];
+        //   const getKey = filterKeys[index];
 
-          let bunchOfArray = data.hits;
-          // console.log(apiStr); 
-
-          
-          Object.keys(apiStr).map(apiStrKey => {
-            if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '') {
-              const get = bunchOfArray.filter(v=>{
-                // console.log(v[apiStrKey] , apiStr[apiStrKey]);
-
-                if(apiStrKey === 'start_year') {
-                  const selectedYear = parseInt(apiStr[apiStrKey]);
-                  
-                  
-
-                  if(selectedYear >= parseInt(v.start_year) && selectedYear <= parseInt(v.end_year)) {
-                    console.log(parseInt(v.start_year),  selectedYear ,  parseInt(v.end_year))
-                    return v;
-                  }
-                } else {
-                  if(v[apiStrKey] == apiStr[apiStrKey]){
-                    return v;
-                  }
-                }
+        //   let bunchOfArray = data.data;
+        //   Object.keys(apiStr).map(apiStrKey => {
+        //     if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '') {
+        //       const get = bunchOfArray.filter(v=>{
+        //         if(apiStrKey === 'year') {
+        //           const selectedYear = parseInt(apiStr[apiStrKey]);
+        //           if(selectedYear >= parseInt(v.year) && selectedYear <= parseInt(v.end_year)) {
+        //             console.log(parseInt(v.year),  selectedYear ,  parseInt(v.end_year))
+        //             return v;
+        //           }
+        //         } else {
+        //           if(v[apiStrKey] == apiStr[apiStrKey]){
+        //             return v;
+        //           }
+        //         }
 
                 
-              });
-              filteredData = get
-              bunchOfArray = get; 
-            }
-          })
+        //       });
+        //       filteredData = get
+        //       bunchOfArray = get; 
 
-          // always get selected value filteredData[0] engine
-          if(getKey === 'engine' && filteredData.length) {
-            setFinalSelectedId(filteredData[0].objectID); 
-          }
+        //       console.log(filteredData,"filteredData")
+        //     }
+        //   })
 
-          setApiData({...apiData, [getKey]:filteredData});
-        } 
-      });
+        //   // always get selected value filteredData[0] engine
+        //   if(getKey === 'engine' && filteredData.length) {
+        //     setFinalSelectedId(filteredData[0].objectID); 
+        //   }
+
+        //   setApiData({...apiData, [getKey]:filteredData});
+        // } 
+            // console.log(data.data,"daaaattaaaa")
+
+      // fetch(url, { params:{ hitsPerPage: 430, page: 0, filters: filterArray }})
+      // .then(response => response.json())
+      // .then(data => {
+      //   if(data.hits.length) {
+      //     let filteredData = [];
+      //     console.log(data.hits); 
+          
+      //     const getKey = filterKeys[index];
+
+      //     let bunchOfArray = data.hits;
+      //     // console.log(apiStr); 
+
+          
+      //     Object.keys(apiStr).map(apiStrKey => {
+      //       if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '') {
+      //         const get = bunchOfArray.filter(v=>{
+      //           // console.log(v[apiStrKey] , apiStr[apiStrKey]);
+
+      //           if(apiStrKey === 'year') {
+      //             const selectedYear = parseInt(apiStr[apiStrKey]);
+                  
+                  
+
+      //             if(selectedYear >= parseInt(v.year) && selectedYear <= parseInt(v.end_year)) {
+      //               console.log(parseInt(v.year),  selectedYear ,  parseInt(v.end_year))
+      //               return v;
+      //             }
+      //           } else {
+      //             if(v[apiStrKey] == apiStr[apiStrKey]){
+      //               return v;
+      //             }
+      //           }
+
+                
+      //         });
+      //         filteredData = get
+      //         bunchOfArray = get; 
+      //       }
+      //     })
+
+      //     // always get selected value filteredData[0] engine
+      //     if(getKey === 'engine' && filteredData.length) {
+      //       setFinalSelectedId(filteredData[0].objectID); 
+      //     }
+
+      //     setApiData({...apiData, [getKey]:filteredData});
+      //   } 
+      // });
     }
   }
 
 
   const handleChange = (key, value) => {
-    const tempArr = ['start_year',
+    const tempArr = ['year',
     'make',
     'name',
     'engine'];
@@ -212,18 +308,32 @@ const Home = (props) => {
   }
 
 
-  const finalSearch = () =>{
-    console.log(finalSelectedId)
-    if(!finalSelectedId) {
-      return
+  const finalSearch =async () =>{
+    let filters=[];
+    if(modelsId){
+      filters.push({accessor:"model",value:modelsId})
     }
-    fetch(`https://us-central1-greenfilter-admin.cloudfunctions.net/products?hitsPerPage=10&page=0&keyword=${finalSelectedId}`)
-      .then(response => response.json())
-      .then(data => {
-        if(data.hits) {
-          setProductDetails(data.hits);
-        }
-      })
+    if(searchpartNo){
+      filters.push({accessor:"gfu_part_num",value:searchpartNo})
+
+    }
+
+   await axios.get(`http://localhost:5001/greenfilter-admin/us-central1/productssearch?hitsPerPage=${setModelsId.length+1}&page=0`,{
+      params:{
+        filters:filters,
+      }
+    }).then((data)=>{
+          setProductDetails(data.data.hits);
+  }).catch((err)=>{
+console.log(err,"error")
+    })
+    // fetch(`https://us-central1-greenfilter-admin.cloudfunctions.net/products?hitsPerPage=${setModelsId.length+1}&page=0&keyword=${finalSelectedId}`)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     if(data.hits) {
+    //       setProductDetails(data.hits);
+    //     }
+    //   })
   }
 
 
@@ -232,11 +342,12 @@ const Home = (props) => {
     setProductDetails([])
     setFinalSelectedId(null)
     setApiStr({
-      start_year: '',
+      year: '',
       make: '',
       name: '',
       engine:'' 
     })
+    setSearchPartNo('')
   }
 
   return (
@@ -252,12 +363,12 @@ const Home = (props) => {
           <h3><img src={logo} alt="logo" width="150" />Find a Filter</h3>
 
           <div className="selectController">
-            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />} className="customSelects" onChange={(v)=>handleChange('start_year', v)}>
+            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />} className="customSelects" onChange={(v)=>handleChange('year', v)}>
               <Option value="-1">Select Year</Option>
               {generateYearOptions()}
             </Select> 
 
-            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.make.length && apiStr.make || '-1'} className="customSelects" onChange={(v)=>handleChange('make', v)} disabled={apiStr.start_year === '-1' || apiStr.start_year === ''}>
+            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.make.length && apiStr.make || '-1'} className="customSelects" onChange={(v)=>handleChange('make', v)} disabled={apiStr.year === '-1' || apiStr.year === ''}>
                 <Option value="-1">Select Make...</Option>
                 {apiData.make && apiData.make.length && apiData.make.map(({make})=>{
                   return <Option value={make}>{make}</Option>
@@ -284,11 +395,13 @@ const Home = (props) => {
 
             <span>OR</span>
 
-            <Input placeholder="Basic usage" className="customSelects" value={finalSelectedId} onChange={(e)=>setFinalSelectedId(e.target.value)}/>
+            <Input placeholder="Basic usage" className="customSelects" value={searchpartNo} onChange={(e)=>setSearchPartNo(e.target.value)}/>
           </div>
           <div className="selectActions">
             <Button type="link" className="customBtns" onClick={reset}>Clear</Button>
-            <Button type="primary" disabled={!finalSelectedId} className="customBtns" onClick={finalSearch}>Search</Button>
+            <Button type="primary" 
+            // disabled={!finalSelectedId}
+             className="customBtns" onClick={finalSearch}>Search</Button>
           </div>
              
               
