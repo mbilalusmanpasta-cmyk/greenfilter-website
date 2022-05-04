@@ -52,7 +52,7 @@ const HomeElement7 = () => {
             </div>
           </div>
           <div className="titles-div">
-            <Button1 text="Search for Your Perfect Green Filter" />
+            <Button1 isLink={true} to="/shop-by-vehicle" text="Search for Your Perfect Green Filter" />
           </div>
         </div>
       </HomeElement7Wrapper>
@@ -63,8 +63,8 @@ const HomeElement7 = () => {
 export default HomeElement7;
 
 const HomeElement7Wrapper = styled.div`
-  padding-top: 100px;
-  padding-bottom: 100px;
+  // padding-top: 100px;
+  // padding-bottom: 100px;
   background-image: none;
   background-color: #fff;
 

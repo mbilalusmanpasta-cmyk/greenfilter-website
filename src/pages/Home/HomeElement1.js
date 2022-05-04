@@ -30,38 +30,7 @@ const HomeElement1 = (props) => {
     setTopPerformingBrands(topPerformingBrandsT)
   },[])
 
-  const cars = [
-    {
-      id: 0,
-      imgSrc: car0,
-      name: "camaro",
-    },
-    {
-      id: 1,
-      imgSrc: car1,
-      name: "corvette",
-    },
-    {
-      id: 2,
-      imgSrc: car2,
-      name: "mustang",
-    },
-    {
-      id: 3,
-      imgSrc: car3,
-      name: "viper",
-    },
-    {
-      id: 4,
-      imgSrc: car4,
-      name: "focus",
-    },
-    {
-      id: 5,
-      imgSrc: car5,
-      name: "porsche",
-    },
-  ];
+ 
   const brands = [
     {
       id: 0,
@@ -98,10 +67,11 @@ const HomeElement1 = (props) => {
           <div className="main-vehicle-row">
             {topPerformingBrands.map((car) => (
               <div key={car.id} className="w-col w-col-2">
-                <Link to="/" class="link-block w-inline-block">
+                {console.log(car)}
+                <Link to={`/brand/${car.name}`} class="link-block w-inline-block">
                   <div class="column-div">
                     <img
-                      src={car.imgSrc}
+                      src={car?.main_image?.[0].url}
                       sizes="(max-width: 479px) 82vw, (max-width: 767px) 200px, 13vw"
                       class="product-image"
                       alt="car"

@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <>
       <FooterWrapper bgImg={bgImg}>
-        <div className="w-container" style={{ padding: "0 20px" }}>
+        {/* <div className="w-container" style={{ padding: "0 20px" }}>
           <img
             alt="logo"
             src={logo}
@@ -18,7 +18,7 @@ const Footer = () => {
             sizes="(max-width: 479px) 100vw, 239px"
             className="image-9"
           />
-        </div>
+        </div> */}
         <div className="footer-container w-container">
           <div className="w-row">
             <div className="w-col w-col-2">

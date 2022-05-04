@@ -192,7 +192,7 @@ const CCElement1Wrapper = styled.div`
     font-size: 13px;
     color: #4a4a4a;
     display: inline-block;
-    tetx-decoration: line-through;
+    text-decoration: line-through;
     padding-left: 7px;
     opacity: 0.76;
   }

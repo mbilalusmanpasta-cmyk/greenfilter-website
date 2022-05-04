@@ -150,7 +150,7 @@ export default HomeElement5;
 
 const HomeElement5Wrapper = styled.div`
   padding-top: 250px;
-  padding-bottom: 200px;
+  // padding-bottom: 200px;
   background-image: url(${(props) => props.gradient});
   background-position: 0px 0px;
   background-size: contain;
