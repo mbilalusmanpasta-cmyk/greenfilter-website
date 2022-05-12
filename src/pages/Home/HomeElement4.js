@@ -23,7 +23,7 @@ const HomeElement4 = ({ text }) => {
           <div className="titles-div">
             <h1 className="heading-9">It's not just better airflow</h1>
             <p className="large-paragraph gray center">{text}</p>
-            <Button1 text="Find Your Green Filter" marginTop={20} />
+            <Button1 text="Find Your Green Filter" isLink={true} to="/shop-by-vehicle"  marginTop={20} />
           </div>
           <div className="main-vehicle-row w-row">
             <div className="w-col w-col-3">

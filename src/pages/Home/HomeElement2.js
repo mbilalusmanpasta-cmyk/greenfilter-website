@@ -288,7 +288,11 @@ const HomeElement2 = () => {
               </div>
             ))}
         </Carousel>
-        <Button1 text="Find Your Greeen Filter" />
+        <Button1 
+          isLink={true}
+          to="/shop-by-vehicle" 
+          text="Find Your Greeen Filter"
+        />
       </HomeElement2Wrapper>
     </>
   );

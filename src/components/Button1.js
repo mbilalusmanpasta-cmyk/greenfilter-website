@@ -1,12 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-const Button1 = ({ text, handleClick, marginTop }) => {
+import { Link } from "react-router-dom";
+
+const Button1 = ({ text, handleClick, marginTop,isLink,to }) => {
   return (
-    <>
-      <Button1Wrapper onClick={handleClick} marginTop={marginTop}>
+
+    isLink ?
+    <Button1Wrapper marginTop={marginTop}>
+      <Link to={to}>
         {text}
-      </Button1Wrapper>
-    </>
+      </Link>
+    </Button1Wrapper>
+  :
+    <Button1Wrapper
+    onClick={handleClick}
+    marginTop={marginTop}>
+      {text}
+    </Button1Wrapper>
+  
   );
 };
 
