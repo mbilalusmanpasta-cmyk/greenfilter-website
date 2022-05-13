@@ -64,7 +64,7 @@ const Home = (props) => {
   const [apiData, setApiData] = React.useState({});
   const stickyComponentRef = React.useRef();
   const [sticky, setSticky] = React.useState(false);
-  const [finalSelectedId, setFinalSelectedId] = React.useState(null);
+
   const [searchpartNo, setSearchPartNo] = React.useState('');
   const [makes, setMakes] = React.useState([]);
 
@@ -96,17 +96,7 @@ const [modelsId,setModelsId]=useState([])
     return arr;
   };
 
-  const getAllMakes = async() => {
 
-  let data= await axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/makes', {
-    
-        });
-        setApiData({...apiData,make:[...data.data.hits]})
-
-        console.log(data.data.hits,"data")
-
-
-  };
 
 
 
@@ -115,11 +105,9 @@ const [modelsId,setModelsId]=useState([])
     return () => window.removeEventListener('scroll',checkSticky);
   },[])
 
-  useEffect(()=>{
- getAllMakes();
-  },[])
 
   useEffect(()=>{
+    console.log(apiStr,"apiStr");
     continueFetch();
   },[apiStr])
 
@@ -160,7 +148,7 @@ const [modelsId,setModelsId]=useState([])
         index++;
       }
     });
-
+console.log(index,"innndexx")
 
     if(index>=1) {
       console.log(filterArray); 
@@ -181,17 +169,16 @@ const [modelsId,setModelsId]=useState([])
               filteredData=[...data.data]
               
               if(getKey === 'engine' && filteredData.length) {
-                setFinalSelectedId(filteredData[0].objectID);
-                const modelIds=filteredData.map((item)=>({objectID: item.objectID}))
+                let modelIds=filteredData&&filteredData.map((item)=>({objectID: item.objectID}))||[]
                 setModelsId([...modelIds]) 
               }
-    
+    console.log({...apiData, [getKey]:filteredData},"kjjjj")
               setApiData({...apiData, [getKey]:filteredData});
             } 
 
           }).catch(error=>console.log(error))
 
-    }else if(index>=0){
+    }else if(index==0){
       await  axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/makes', {
       params:{
         page:0,
@@ -234,7 +221,6 @@ const [modelsId,setModelsId]=useState([])
     })
 
     setProductDetails([])
-    setFinalSelectedId(null)
     setApiData({...tempData});
     setApiStr({...tempStr, [key]: value});
   }
@@ -250,7 +236,7 @@ const [modelsId,setModelsId]=useState([])
 
     }
 
-   await axios.get(`https://us-central1-greenfilter-admin.cloudfunctions.net/productssearch?hitsPerPage=${setModelsId.length+1}&page=0`,{
+   await axios.get(`https://us-central1-greenfilter-admin.cloudfunctions.net/productssearch?hitsPerPage=1&page=0`,{
       params:{
         filters:filters,
       }
@@ -272,7 +258,6 @@ console.log(err,"error")
   const reset = () =>{
     setApiData({})
     setProductDetails([])
-    setFinalSelectedId(null)
     setApiStr({
       year: '',
       make: '',
