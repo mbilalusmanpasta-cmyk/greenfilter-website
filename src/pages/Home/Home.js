@@ -146,7 +146,6 @@ const [modelsId,setModelsId]=useState([])
           filters:[...filterArray],
         }
           }).then((data)=>{
-           console.log(data?.data,"bilal data") 
 
             if(data?.data?.length>0) {
               let filteredData = [];

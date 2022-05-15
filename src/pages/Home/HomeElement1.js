@@ -18,7 +18,10 @@ import brand5 from "../../assets/trust/brand5.jpg";
 import Button1 from "../../components/Button1";
 import { useHistory } from "react-router-dom";
 import getCollection from "../../data/getSingleCollection";
-import { getMakeCollection } from "../../data/store";
+import { collection, query, where, getDocs, getDoc,doc} from "firebase/firestore"; 
+import  {db} from '../../helper/firebase';
+
+
 const HomeElement1 = (props) => {
 
   const history = useHistory();
@@ -27,7 +30,19 @@ const HomeElement1 = (props) => {
   useEffect(async ()=>
   {
     let topPerformingBrandsT = await getCollection(null,"top-performing-brands");
-    setTopPerformingBrands(topPerformingBrandsT)
+
+    let allCars = [];
+
+    topPerformingBrandsT.forEach((t)=>{
+      const docRef = doc(db, "makes", t.id);
+      allCars.push(getDoc(docRef).then((docSnap)=>docSnap.data()))
+    })
+
+    Promise.all(allCars).then(function(res) { 
+
+      setTopPerformingBrands(res)
+    });
+
   },[])
 
  
@@ -60,6 +75,9 @@ const HomeElement1 = (props) => {
   return (
     <>
       <HomeElement1Wrapper gradient={gradient}>
+        {
+          console.log('a',topPerformingBrands)
+        }
         <div className="container-4">
           <h1 class="heading-11">
             The Chosen Filter for Top Performing Brands
@@ -71,7 +89,7 @@ const HomeElement1 = (props) => {
                 <Link to={`/brand/${car.name}`} class="link-block w-inline-block">
                   <div class="column-div">
                     <img
-                      src={car?.main_image?.[0].url}
+                        src={car?.main_image?.[0]?.url}
                       sizes="(max-width: 479px) 82vw, (max-width: 767px) 200px, 13vw"
                       class="product-image"
                       alt="car"
