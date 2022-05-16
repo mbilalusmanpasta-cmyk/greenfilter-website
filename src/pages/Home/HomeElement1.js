@@ -39,7 +39,6 @@ const HomeElement1 = (props) => {
     })
 
     Promise.all(allCars).then(function(res) { 
-
       setTopPerformingBrands(res)
     });
 
@@ -85,7 +84,6 @@ const HomeElement1 = (props) => {
           <div className="main-vehicle-row">
             {topPerformingBrands.map((car) => (
               <div key={car.id} className="w-col w-col-2">
-                {console.log(car)}
                 <Link to={`/brand/${car.name}`} class="link-block w-inline-block">
                   <div class="column-div">
                     <img

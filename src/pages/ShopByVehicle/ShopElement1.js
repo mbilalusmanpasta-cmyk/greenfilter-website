@@ -4,15 +4,44 @@ import styled from "styled-components";
 import { brandDetails } from "../../data/cars";
 import getMultipleCollections from "../../data/getMultipleCollections";
 import { getMakeCollection } from "../../data/store";
+import { getMakesFromCollection } from "../../data/firebaseHelper";
+
 const ShopElement1 = (props) => {
 
   const [categories,setCategories] = React.useState([]);
 
+
   useEffect( async()=>
   {
-    let collections = await getMultipleCollections(getMakeCollection().name)
-    setCategories(collections);
+    let collections = await getCategories();
+    getMultipleCollectionsMakes(collections);
   },[])
+
+
+  const getMultipleCollectionsMakes = (collections) =>
+  {
+    let allCategories = [];
+    collections.forEach((collection)=>{
+      allCategories.push( getMakesDetail(collection));
+    })
+
+    Promise.all(allCategories).then((res)=>{
+      setCategories(res)
+    });
+  }
+
+  const getCategories = async () =>
+  {
+    let collections = await getMultipleCollections(getMakeCollection().name)
+    return collections;
+  }
+
+  const getMakesDetail = async(collection) =>
+  {
+    let allMakes = await getMakesFromCollection(collection);
+    collection.makes = allMakes;
+    return collection;
+  }
 
   return (
     <>
@@ -23,7 +52,7 @@ const ShopElement1 = (props) => {
             </h1>
             <h1 className="heading-11">{category.title}</h1>
             <div className="shop-vehicle-row w-row">
-              {category.makes.map((make) => (
+              {category?.makes?.map((make) => (
                 <div
                   className="shop-vehicle-make w-col w-col-2"
                   key={make.id}
@@ -38,7 +67,7 @@ const ShopElement1 = (props) => {
                     <div className="column-div">
                       <div className="make-image">
                         <img
-                          src={make.imgSrc}
+                          src={make.main_image?.[0]?.url}
                           className="product-image"
                           alt="car"
                         />

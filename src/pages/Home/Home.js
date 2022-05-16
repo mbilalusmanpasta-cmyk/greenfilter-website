@@ -66,6 +66,7 @@ const Home = (props) => {
   const [sticky, setSticky] = React.useState(false);
   const [finalSelectedId, setFinalSelectedId] = React.useState(null);
   const [searchpartNo, setSearchPartNo] = React.useState('');
+  const [makes, setMakes] = React.useState([]);
 
   const [productDetails, setProductDetails] = React.useState([]);
 const [modelsId,setModelsId]=useState([])
@@ -74,6 +75,11 @@ const [modelsId,setModelsId]=useState([])
   useEffect(() => {
     props.handleClickIndex(-1);
   }, [props]);
+
+
+  useEffect(()=>{
+    console.log(apiData,"apiData")
+  },[apiData])
 
   
 
@@ -90,6 +96,19 @@ const [modelsId,setModelsId]=useState([])
     return arr;
   };
 
+  const getAllMakes = async() => {
+
+  let data= await axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/makes', {
+    
+        });
+        setApiData({...apiData,make:[...data.data.hits]})
+
+        console.log(data.data.hits,"data")
+
+
+  };
+
+
 
   useEffect(()=>{
     window.addEventListener('scroll',checkSticky);
@@ -97,8 +116,13 @@ const [modelsId,setModelsId]=useState([])
   },[])
 
   useEffect(()=>{
+ getAllMakes();
+  },[])
+
+  useEffect(()=>{
     continueFetch();
   },[apiStr])
+
   
   
   const checkSticky = ()=>{
@@ -138,7 +162,7 @@ const [modelsId,setModelsId]=useState([])
     });
 
 
-    if(index>=0) {
+    if(index>=1) {
       console.log(filterArray); 
 
     await  axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/modelssearch', {
@@ -154,33 +178,7 @@ const [modelsId,setModelsId]=useState([])
     
               let bunchOfArray = data.data;
               filteredData=[...data.data]
-              // Object.keys(apiStr).map(apiStrKey => {
-              //   console.log(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '',"cooonnndddii",apiStr,"apiStr")
-              //   if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] == '') {
-              //     // const get = bunchOfArray.filter(v=>{
-              //     //   // if(apiStrKey === 'year') {
-              //     //   //   const selectedYear = parseInt(apiStr[apiStrKey]);
-              //     //   //   if(selectedYear >= parseInt(v.year) && selectedYear <= parseInt(v.end_year)) {
-              //     //   //     console.log(parseInt(v.year),  selectedYear ,  parseInt(v.end_year))
-              //     //   //     return v;
-              //     //   //   }
-              //     //   // } else {
-              //     //     // if(v[apiStrKey] == apiStr[apiStrKey]){
-              //     //       return v;
-              //     //     // }
-              //     //   }
-    
-                    
-              //     // });
-              //     console.log(get,"get")
-              //     filteredData = get
-              //     bunchOfArray = get; 
-    
-              //     console.log(filteredData,"filteredData")
-              //   }
-              // })
-    
-              // always get selected value filteredData[0] engine
+              
               if(getKey === 'engine' && filteredData.length) {
                 setFinalSelectedId(filteredData[0].objectID);
                 const modelIds=filteredData.map((item)=>({objectID: item.objectID}))
@@ -192,93 +190,27 @@ const [modelsId,setModelsId]=useState([])
 
           }).catch(error=>console.log(error))
 
-        //        if(data?.data?.length>0) {
-        //   let filteredData = [];
+    }else if(index>=0){
+      await  axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/makes', {
+      params:{
+        page:0,
+        hitsPerPage:90
+      }
+          }).then((data)=>{
+
+            if(data?.data?.hits.length>0) {
+              let filteredData = [];
+              
+              const getKey = filterKeys[index];
+    
+              filteredData=[...data.data.hits]
+              
           
-        //   const getKey = filterKeys[index];
+    
+              setApiData({...apiData, [getKey]:filteredData});
+            } 
 
-        //   let bunchOfArray = data.data;
-        //   Object.keys(apiStr).map(apiStrKey => {
-        //     if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '') {
-        //       const get = bunchOfArray.filter(v=>{
-        //         if(apiStrKey === 'year') {
-        //           const selectedYear = parseInt(apiStr[apiStrKey]);
-        //           if(selectedYear >= parseInt(v.year) && selectedYear <= parseInt(v.end_year)) {
-        //             console.log(parseInt(v.year),  selectedYear ,  parseInt(v.end_year))
-        //             return v;
-        //           }
-        //         } else {
-        //           if(v[apiStrKey] == apiStr[apiStrKey]){
-        //             return v;
-        //           }
-        //         }
-
-                
-        //       });
-        //       filteredData = get
-        //       bunchOfArray = get; 
-
-        //       console.log(filteredData,"filteredData")
-        //     }
-        //   })
-
-        //   // always get selected value filteredData[0] engine
-        //   if(getKey === 'engine' && filteredData.length) {
-        //     setFinalSelectedId(filteredData[0].objectID); 
-        //   }
-
-        //   setApiData({...apiData, [getKey]:filteredData});
-        // } 
-            // console.log(data.data,"daaaattaaaa")
-
-      // fetch(url, { params:{ hitsPerPage: 430, page: 0, filters: filterArray }})
-      // .then(response => response.json())
-      // .then(data => {
-      //   if(data.hits.length) {
-      //     let filteredData = [];
-      //     console.log(data.hits); 
-          
-      //     const getKey = filterKeys[index];
-
-      //     let bunchOfArray = data.hits;
-      //     // console.log(apiStr); 
-
-          
-      //     Object.keys(apiStr).map(apiStrKey => {
-      //       if(apiStr[apiStrKey] !== '-1' && apiStr[apiStrKey] !== '') {
-      //         const get = bunchOfArray.filter(v=>{
-      //           // console.log(v[apiStrKey] , apiStr[apiStrKey]);
-
-      //           if(apiStrKey === 'year') {
-      //             const selectedYear = parseInt(apiStr[apiStrKey]);
-                  
-                  
-
-      //             if(selectedYear >= parseInt(v.year) && selectedYear <= parseInt(v.end_year)) {
-      //               console.log(parseInt(v.year),  selectedYear ,  parseInt(v.end_year))
-      //               return v;
-      //             }
-      //           } else {
-      //             if(v[apiStrKey] == apiStr[apiStrKey]){
-      //               return v;
-      //             }
-      //           }
-
-                
-      //         });
-      //         filteredData = get
-      //         bunchOfArray = get; 
-      //       }
-      //     })
-
-      //     // always get selected value filteredData[0] engine
-      //     if(getKey === 'engine' && filteredData.length) {
-      //       setFinalSelectedId(filteredData[0].objectID); 
-      //     }
-
-      //     setApiData({...apiData, [getKey]:filteredData});
-      //   } 
-      // });
+          }).catch(error=>console.log(error))
     }
   }
 
@@ -369,10 +301,13 @@ console.log(err,"error")
 
             <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.make.length && apiStr.make || '-1'} className="customSelects" onChange={(v)=>handleChange('make', v)} disabled={apiStr.year === '-1' || apiStr.year === ''}>
                 <Option value="-1">Select Make...</Option>
-                {apiData.make && apiData.make.length && apiData.make.map(({make})=>{
-                  return <Option value={make}>{make}</Option>
+                {apiData.make && apiData.make.length && apiData.make.map((item,index)=>{
+                  return <Option value={item.name}>{item.name}</Option>
                 })}
-            </Select>
+{/* {makes && makes.length && makes.map(({name})=>{
+                  return <Option value={name}>{name}</Option>
+                })}             */}
+                </Select>
 
 
             <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.name.length && apiStr.name || '-1'} className="customSelects" onChange={(v)=>handleChange('name', v)} disabled={apiStr.make === '-1' || apiStr.make === ''}>

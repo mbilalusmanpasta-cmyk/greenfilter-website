@@ -16,7 +16,7 @@ const CCElement1 = () => {
               alt=""
             />
           </div>
-          <div className="column-6 w-col w-col-6">
+          <div className="column-6 w-col w-col-6" id="kit">
             <div className="column-div left">
               <h1 className="product-header">Green Filter Cleaner</h1>
               <h1 className="product-descr">Green Filter - Part 2000</h1>
