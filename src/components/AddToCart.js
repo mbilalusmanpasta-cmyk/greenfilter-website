@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButtonId, transform }) => {
+const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButtonId, transform,id }) => {
 
   const prevBuyButtonIdRef = useRef();
 
@@ -14,7 +14,6 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
     if(buyButtonId && prevBuyButtonIdRef.current?.toString()!=buyButtonId?.toString())
     {
       let c = document.getElementById(`product-component-${buyButtonId}`)
-      console.log("buyButtonId",buyButtonId)
   
       if(true)
       {
@@ -48,7 +47,7 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
             window.ShopifyBuy.UI.onReady(client).then(function (ui) {
               ui.createComponent('product', {
                 id: buyButtonId,
-                node: document.getElementById(`product-component-${buyButtonId}`),
+                node: document.getElementById(`product-component-${id}`),
                 moneyFormat: '%24%7B%7Bamount%7D%7D',
                 options: {
                   "product": {
@@ -220,7 +219,7 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
 
     isLink ?
     <Button1Wrapper marginTop={marginTop}>
-          <div id={`product-component-${buyButtonId}`} ></div>
+          <div id={`product-component-${id}`} ></div>
 
         {/* <div id={`product-component-${buyButtonId}`}></div> */}
 
@@ -229,7 +228,7 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
       </Link> */}
     </Button1Wrapper>
   :
-    <div id={`product-component-${buyButtonId}`} style={{transform:transform || ""}}></div>
+    <div id={`product-component-${id}`} style={{transform:transform || ""}}></div>
 
     // <Button1Wrapper
     // onClick={handleClick}
