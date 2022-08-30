@@ -33,6 +33,8 @@ import logo from "../../assets/gflogo.png";
 
 import { Select, Input, Button  } from 'antd';
 import { async } from "@firebase/util";
+import { statics } from "../../data/store";
+import AddToCart from "../../components/AddToCart";
 const { Option } = Select;
 
 
@@ -56,8 +58,8 @@ const Home = (props) => {
   
   const [apiStr, setApiStr] = React.useState({
     year: '',
-    make: '',
-    name: '',
+    make_id: '',
+    model_name: '',
     engine:'' 
   });
 
@@ -98,15 +100,11 @@ const [modelsId,setModelsId]=useState([])
 
   const getAllMakes = async() => {
 
-  let data= await axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/makes', {
-    
-        });
-        setApiData({...apiData,make:[...data.data.hits]})
+  let data= await axios.get('https:greenfilter-backend-production.herokuapp.com/makes', {});
+  setApiData({...apiData,make:[...data.data.hits]})
 
-        console.log(data.data.hits,"data")
-
-
-  };
+  console.log(data.data.hits,"data")
+};
 
 
 
@@ -115,9 +113,9 @@ const [modelsId,setModelsId]=useState([])
     return () => window.removeEventListener('scroll',checkSticky);
   },[])
 
-  useEffect(()=>{
- getAllMakes();
-  },[])
+  // useEffect(()=>{
+  //   getAllMakes();
+  // },[])
 
   useEffect(()=>{
     continueFetch();
@@ -148,9 +146,11 @@ const [modelsId,setModelsId]=useState([])
     const filterArray = []
  
 
-    let url = 'https://us-central1-greenfilter-admin.cloudfunctions.net/modelssearch';
+    let url = statics.BaseUrl+'/product-search';
     
     const filterKeys = ['make','name','engine'];
+
+    console.log('apiStr',apiStr)
 
     let index = -1;
     Object.keys(apiStr).map(key=>{
@@ -161,23 +161,28 @@ const [modelsId,setModelsId]=useState([])
       }
     });
 
+    console.log('index',index)
 
-    if(index>=1) {
-      console.log(filterArray); 
-
-    await  axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/modelssearch', {
-        params:{
-          filters:[...filterArray],
-        }
+    await  axios.get(url, {
+            params:apiStr
           }).then((data)=>{
 
-            if(data?.data?.length>0) {
+            let response = data.data;
+
+            if(response?.data?.length>0) {
               let filteredData = [];
               
               const getKey = filterKeys[index];
+              let objectKey = getKey;
+
+              console.log("getKey",getKey)
+              // if(getKey==="engine")
+              // {
+              //   objectKey = "displacement"
+              // }
     
-              let bunchOfArray = data.data;
-              filteredData=[...data.data]
+              let bunchOfArray = response.data;
+              filteredData=response.data;
               
               if(getKey === 'engine' && filteredData.length) {
                 setFinalSelectedId(filteredData[0].objectID);
@@ -185,44 +190,50 @@ const [modelsId,setModelsId]=useState([])
                 setModelsId([...modelIds]) 
               }
     
-              setApiData({...apiData, [getKey]:filteredData});
+              setApiData({...apiData, [objectKey]:filteredData});
             } 
 
           }).catch(error=>console.log(error))
 
-    }else if(index>=0){
-      await  axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/makes', {
-      params:{
-        page:0,
-        hitsPerPage:90
-      }
-          }).then((data)=>{
 
-            if(data?.data?.hits.length>0) {
-              let filteredData = [];
-              
-              const getKey = filterKeys[index];
-    
-              filteredData=[...data.data.hits]
-              
+
+          // else if(index>=0){
+          //   await  axios.get('https://us-central1-greenfilter-admin.cloudfunctions.net/makes', {
+          //   params:{
+          //     page:0,
+          //     hitsPerPage:90
+          //   }
+          //       }).then((data)=>{
+      
+          //         if(data?.data?.hits.length>0) {
+          //           let filteredData = [];
+                    
+          //           const getKey = filterKeys[index];
           
-    
-              setApiData({...apiData, [getKey]:filteredData});
-            } 
+          //           filteredData=[...data.data.hits]
+                    
+                
+          
+          //           setApiData({...apiData, [getKey]:filteredData});
+          //         } 
+      
+          //       }).catch(error=>console.log(error))
+          // }
 
-          }).catch(error=>console.log(error))
     }
-  }
+    
 
 
   const handleChange = (key, value) => {
     const tempArr = ['year',
-    'make',
-    'name',
+    'make_id',
+    'model_name',
     'engine'];
 
     const index = tempArr.indexOf(key);
     tempArr.splice(0, index+1);
+
+    console.log(tempArr)
     
     let tempData = apiData;
     let tempStr = apiStr;
@@ -232,6 +243,10 @@ const [modelsId,setModelsId]=useState([])
       tempStr[k] = ''
     })
 
+    console.log(tempArr)
+    console.log(tempStr)
+    console.log(tempData)
+
     setProductDetails([])
     setFinalSelectedId(null)
     setApiData({...tempData});
@@ -240,21 +255,19 @@ const [modelsId,setModelsId]=useState([])
 
 
   const finalSearch =async () =>{
-    let filters=[];
-    if(modelsId){
-      filters.push({accessor:"model",value:modelsId})
-    }
+    let filters={};
+    // if(modelsId){
+    //   filters.push({accessor:"model",value:modelsId})
+    // }
     if(searchpartNo){
-      filters.push({accessor:"gfu_part_num",value:searchpartNo})
+      filters["gfu_part_num"] = searchpartNo;
 
     }
 
-   await axios.get(`https://us-central1-greenfilter-admin.cloudfunctions.net/productssearch?hitsPerPage=${setModelsId.length+1}&page=0`,{
-      params:{
-        filters:filters,
-      }
+   await axios.get(statics.BaseUrl+`/product-search`,{
+      params:filters
     }).then((data)=>{
-          setProductDetails(data.data.hits);
+          setProductDetails(data?.data?.data);
   }).catch((err)=>{
 console.log(err,"error")
     })
@@ -274,8 +287,8 @@ console.log(err,"error")
     setFinalSelectedId(null)
     setApiStr({
       year: '',
-      make: '',
-      name: '',
+      make_id: '',
+      model_name: '',
       engine:'' 
     })
     setSearchPartNo('')
@@ -290,6 +303,9 @@ console.log(err,"error")
         />
         <Hero />
         <div ref={stickyComponentRef}></div>
+        {
+          console.log(productDetails.length)
+        }
         <div className={`customFilters ${(sticky || productDetails.length) ? 'sticky' : ''}`}>
           <h3><img src={logo} alt="logo" width="150" />Find a Filter</h3>
 
@@ -299,10 +315,10 @@ console.log(err,"error")
               {generateYearOptions()}
             </Select> 
 
-            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.make.length && apiStr.make || '-1'} className="customSelects" onChange={(v)=>handleChange('make', v)} disabled={apiStr.year === '-1' || apiStr.year === ''}>
+            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.make_id.length && apiStr.make_id || '-1'} className="customSelects" onChange={(v)=>handleChange('make_id', v)} disabled={apiStr.year === '-1' || apiStr.year === ''}>
                 <Option value="-1">Select Make...</Option>
                 {apiData.make && apiData.make.length && apiData.make.map((item,index)=>{
-                  return <Option value={item.name}>{item.name}</Option>
+                  return <Option value={item.id.toString()}>{item.title}</Option>
                 })}
 {/* {makes && makes.length && makes.map(({name})=>{
                   return <Option value={name}>{name}</Option>
@@ -310,7 +326,7 @@ console.log(err,"error")
                 </Select>
 
 
-            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.name.length && apiStr.name || '-1'} className="customSelects" onChange={(v)=>handleChange('name', v)} disabled={apiStr.make === '-1' || apiStr.make === ''}>
+            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.model_name.length && apiStr.model_name || '-1'} className="customSelects" onChange={(v)=>handleChange('model_name', v)} disabled={apiStr.make_id === '-1' || apiStr.make_id === ''}>
               <Option value="-1">Select Model...</Option>
               {apiData.name && apiData.name.length && apiData.name.map(({name})=>{
                   return <Option value={name}>{name}</Option>
@@ -320,10 +336,13 @@ console.log(err,"error")
             <Select defaultValue="-1"  suffixIcon={<CaretDownOutlined />}  value={apiStr.engine.length && apiStr.engine || '-1'} className="customSelects" onChange={(v)=>{
                 handleChange('engine', v);
                 
-              }} disabled={apiStr.name === '-1' || apiStr.name === ''}>
+              }} disabled={apiStr.model_name === '-1' || apiStr.model_name === ''}>
               <Option value="-1">Select Engine...</Option>
-              {apiData.engine && apiData.engine.length && apiData.engine.map(({engine})=>{
-                  return <Option value={engine}>{engine}</Option>
+              {
+                console.log("apiData",apiData)
+              }
+              {apiData.engine && apiData.engine.length && apiData.engine.map((engine)=>{
+                  return <Option value={engine.displacement}>{engine.displacement}</Option>
               })}
             </Select>
 
@@ -351,8 +370,10 @@ console.log(err,"error")
                             <img src={(product.images && product.images.length) ? product.images[0] : 'https://via.placeholder.com/150'} alt=""/>
                           </div>
                           <div className="searchProductPrice">
-                            <h5>{product?.price || '$00.00'}</h5>
-                            <Button type="primary">Add To Cart</Button>
+                            {/* <h5>{product?.price || '$00.00'}</h5> */}
+                            <AddToCart text="ADD TO CART" buyButtonId={product?.buy_url}  id={product?.id}  transform="translateX(-60px)"/>
+
+                            {/* <Button type="primary">Add To Cart</Button> */}
                           </div>
                         </div>
                         <div className="searchedProductRight">

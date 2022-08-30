@@ -27,7 +27,7 @@ const VehicleElement2 = ({ vehicle }) => {
     <>
       <VehicleElement2Wrapper>
         <div className="sub-text">
-          Precisely engineered for {vehicle.modelName} performance
+          Precisely engineered for {vehicle?.title} performance
           <br />
           <span className="bold">
             It’s a breakthrough in air filter technology.
@@ -52,7 +52,7 @@ const VehicleElement2 = ({ vehicle }) => {
                 <div className="column-div">
                   <img className="icon-2 light" src={icon0} alt="icon" />
                   <h4 className="blue simple smaller">
-                    Increase your {vehicle.modelName}'s horsepower
+                    Increase your {vehicle?.title}'s horsepower
                   </h4>
                 </div>
                 <div className="column-div">

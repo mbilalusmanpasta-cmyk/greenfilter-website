@@ -5,11 +5,13 @@ import img2 from "../../assets/cylinders/round_filter_measurements.jpg";
 import FilterTable from "../../components/FilterTable";
 import { collection, query, where, getDocs} from "firebase/firestore"; 
 import  {db} from '../../helper/firebase';
+import { GetData } from "../../helper/request";
+import { statics } from "../../data/store";
 
 const tableHeader = [
   {
     id: 0,
-    name: "gfu_part_num",
+    name: "title",
     label: "Filter Number",
     maxWidth: 161,
   },
@@ -56,24 +58,16 @@ const URElement1 = () => {
 
   const getTableData = async () =>
   {
-    const productsRef = collection(db, "product_variants");
-
-    const q = query(productsRef, where("category", "==", "Round Filter"));
-
+    const product_type_id = 4;
     let tableDataT = [];
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      tableDataT.push(doc.data())
-
-    });
-
-    console.log(tableDataT)
-
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+    if(response.ResponseCode === "Success")
+    {
+      tableDataT = response?.data?.rows;
+    }
     setTableData(tableDataT);
   }
+
 
   return (
     <>
@@ -100,14 +94,14 @@ const URElement1 = () => {
         >
           <center>
             <a
-              href="https://greenfilter.com/images/cone_filter_measurements.jpg"
+              href="images/round_filter_measurements.jpg"
               style={{ color: "green" }}
             >
               <img src={img2} className="resize" alt="" />
             </a>
             <br />
             <a
-              href="images/cone_filter_measurements.jpg"
+              href="images/round_filter_measurements.jpg"
               style={{ color: "green" }}
               title="Green Filter USA - Cone &amp; Cylinder Filter Dimensions"
             >

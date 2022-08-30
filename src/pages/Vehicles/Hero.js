@@ -4,15 +4,16 @@ import Button1 from "../../components/Button1";
 import { Carousel } from "antd";
 import VehicleElement3 from "./VehicleElement3";
 
-const  HeroImage = ({image}) =>
+const  HeroImage = ({image,make}) =>
 {
+  console.log('image',image)
   return(
-    <HeroWrapper bgImg={image.imgSrc}>
+    <HeroWrapper bgImg={image.link}>
       <div className="hero-text">
         <h1 className="hero-heading-1 left">
           {/* Groundbreaking air filters - engineered to enhance any{" "}
           {make.name}'s performance */}
-          {image.text}
+          {make?.hero_text}
         </h1>
         {/* <Button1 text="Prove It!" /> */}
       </div>
@@ -21,25 +22,30 @@ const  HeroImage = ({image}) =>
 }
 
 const Hero = ({make}) => {
+
   return (
-    <>
+    <CarouselWrapper>
+    
       <Carousel autoplay dots={false}>
-        {
-          make && make.imageGallery?.map((image)=>
-          {
-            <HeroImage image={image} />
-          })
-        }
+        { make?.images?.[1] && <HeroImage make={make} image={make.images[1]} /> }
+        { make?.images?.[16] && <HeroImage make={make} image={make.images[16]} /> }
         
         {/* <VehicleElement3 vehicle={props.vehicle} /> */}
       </Carousel>
-    </>
+      </CarouselWrapper>
   );
 };
 
 export default Hero;
 
+const CarouselWrapper = styled.div`
+  height: calc(500px + 167px);
+
+`;
+
 const HeroWrapper = styled.div`
+
+
   position: relative;
   left: 0px;
   top: 0px;

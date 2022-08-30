@@ -10,9 +10,7 @@ import React from "react";
 import styled from "styled-components";
 import sortIcon from "../assets/download.gif";
 import upperIcon from "../assets/upperIcon.gif";
-import { useHistory } from "react-router-dom";
 
-import { DataGrid } from "@mui/x-data-grid";
 // const useStyles = makeStyles({
 //   table: {
 //     width: "100%",
@@ -23,28 +21,67 @@ import { DataGrid } from "@mui/x-data-grid";
 //     padding: 0,
 //   },
 // });
-const FilterTable = ({ headers, tableData }) => {
 
-  const history = useHistory();
+
+const tableHeader = [
+  {
+    id: 0,
+    name: "years",
+    label: "Years",
+    maxWidth: 91,
+  },
+  {
+    id: 1,
+    name: "make",
+    label: "Make",
+    maxWidth: 82,
+  },
+  {
+      id: 2,
+      name: "title",
+      label: "Model",
+      maxWidth: 82,
+  },
+  {
+      id: 3,
+      name: "displacement",
+      label: "Disp.",
+      maxWidth: 82,
+  },
+  {
+      id: 4,
+      name: "engine",
+      label: "Engine",
+      maxWidth: 82,
+  },
+  {
+      id: 5,
+      name: "intake",
+      label: "Intake",
+      maxWidth: 82,
+  },
+  {
+      id: 6,
+      name: "description",
+      label: "Fits",
+      maxWidth: 82,
+  },
+];
+
+
+const VehicleTable = ({ tableData }) => {
   const [sortedColumn, setSortedColumn] = React.useState(-1);
 
-  const handleClick = (row) =>
-  {
-    if(row?.id)
-    {
-
-      history.push(`/store?product_id=${row.id}`);
-    }
-  }
-
   return (
-    <FilterTableWrapper>
+    <VehicleTableWrapper>
+
+      {console.log(tableData.models)}
       <div className="fakeiframe">
-        <TableContainer>
+        <TableContainer >
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                {headers.map((header, id) => (
+                {tableHeader.map((header, id) => (
                   <TableCell
                     className="table-head-cell"
                     key={header.id}
@@ -57,8 +94,8 @@ const FilterTable = ({ headers, tableData }) => {
                           : `url(${sortIcon})`,
                       whiteSpace: "normal",
                       backgroundColor:
-                        sortedColumn === id ? "#46ff3d" : "#14800d",
-                      color: sortedColumn === id ? "#3d3d3d" : "#ffffff",
+                      sortedColumn === id ? "black" : "black",
+                      color: sortedColumn === id ? "#fff" : "#ffffff",
                     }}
                     onClick={() => setSortedColumn(id)}
                   >
@@ -67,30 +104,34 @@ const FilterTable = ({ headers, tableData }) => {
                 ))}
               </TableRow>
             </TableHead>
-
             <TableBody>
-              {tableData.map((row, id) => (
+              {tableData?.models.map((row, id) => (
+                <TableRow
+                  key={row.id}
+                  style={{ background: id % 2 === 0 ? "lightgrey" : "#fff" }}
+                >
+                  
+                  {
+                    tableHeader.map((header, id) => (
+                        <TableCell
+                        key={header.id}
+                        className="table-row-cell"
+                        style={{ color: "#3d3d3d" }}
+                      >
+                        {
+                          header.name === "make" ? 
+                            row["make"]?.title
+                          :
+                          header.name === "years" ? 
+                          ( <span> {(row?.['start_year'] || "")}  {row?.['end_year'] && ("-" + row?.['end_year'])} </span>)
+                          :
+                          row?.[header.name || ""]
+                        }
+                      </TableCell>
+                    ))
 
-                // <Link to={`/store/${row?.id}`} class="link-block w-inline-block">
-                  <TableRow
-                    key={row.rowNo}
-                    style={{ background: id % 2 === 0 ? "#ebfaeb" : "#fff" }}
-                    onClick={()=>handleClick(row)}
-                  >
-                    {
-                      headers.map((header, id) => (
-                          <TableCell
-                          key={header.id}
-                          className="table-row-cell"
-                          style={{ color: id === 0 ? "green" : "#3d3d3d" }}
-                        >
-                          {row[header.name]}
-                        </TableCell>
-                      ))
-
-                    }
-                  </TableRow>
-                // </Link>
+                  }
+                </TableRow>
               ))}
             </TableBody>
           </Table>
@@ -104,13 +145,13 @@ const FilterTable = ({ headers, tableData }) => {
           disableSelectionOnClick
         /> */}
       </div>
-    </FilterTableWrapper>
+    </VehicleTableWrapper>
   );
 };
 
-export default FilterTable;
+export default VehicleTable;
 
-const FilterTableWrapper = styled.div`
+const VehicleTableWrapper = styled.div`
   .fakeiframe {
     width: 100%;
     margin-bottom: 50px;
@@ -119,10 +160,12 @@ const FilterTableWrapper = styled.div`
     width: 100%;
     max-width: 1200px;
     font: 12px/18px Arial, Sans-serif;
-    border: #cdcdcd 1px solid;
+    border: #cdcdcd 0px solid;
     border-spacing: 0;
     padding: 0;
     margin: 0 auto;
+    max-height:calc(100vh - 500px);
+    min-height:300px;
   }
   .table-head-cell,
   .table-row-cell {

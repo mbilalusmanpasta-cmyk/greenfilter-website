@@ -5,16 +5,17 @@ import filterImg from "../../assets/7157_v1_500.jpg";
 import cleaner from "../../assets/2000_v1_500.jpg";
 import { Link } from "react-router-dom";
 import Button1 from "../../components/Button1";
-const VehicleElement4 = ({ models,make }) => {
+import AddToCart from "../../components/AddToCart";
+const VehicleElement4 = ({ models,make,cleaningKit }) => {
   return (
     <>
       <VehicleElement4Wrapper>
         <div className="titles-div">
           <h1 className="main-header">
-            Popular {make.name} Models Use Green Filter
+            Popular {make?.title} Models Use Green Filter
           </h1>
           <p className="large-paragraph gray reviews">
-            Below are the {make.name} models that support the
+            Below are the {make?.title} models that support the
             application of Green Filter.
           </p>
         </div>
@@ -23,7 +24,7 @@ const VehicleElement4 = ({ models,make }) => {
             <div className="main-vehicle-row w-row">
               <div className="column-4 w-col w-col-6">
                 <img
-                  src={model.categories[0].imgSrc}
+                  src={model?.images?.[0]?.link}
                   alt="car"
                   style={{ maxWidth: "84%" }}
                 />
@@ -31,14 +32,14 @@ const VehicleElement4 = ({ models,make }) => {
               <div className="column-6 w-col w-col-6">
                 <div className="column-div left">
                   <h1 className="product-header">
-                    {model.name} High Performance Air Filter
+                    {model.title} High Performance Air Filter
                   </h1>
                   <h1 className="product-descr">
                     Green Filter - Part{" "}
-                    <Link style={{ color: "green" }}>{model.categories[0].products[0].gfu_part_num}</Link>
+                    <Link to={`/store?product_id=${model?.products?.[0]?.model_products?.[0]?.product?.id}`} style={{ color: "green" }}>#{model?.products?.[0]?.model_products?.[0]?.product?.gfu_part_num}</Link>
                   </h1>
                 </div>
-                <img src={model.categories[0].products[0].imgSrc} alt="filter" className="product" />
+                <img src={model?.products?.[0]?.model_products?.[0]?.product?.images?.[0]?.link} alt="filter" className="product" />
               </div>
             </div>
             <div className="product-row top w-row">
@@ -68,55 +69,58 @@ const VehicleElement4 = ({ models,make }) => {
                 </div>
               </div>
             </div>
-            {model.categories.map((category) => (
-              <div className="product-row w-row" key={category.products[0].id}>
+            {model?.products?.map((product) => (
+              <div className="product-row w-row" key={product.id}>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
                     <div class="product-table-text">
-                      {category.start_year} - {category.end_year}
+                      {product.start_year} - {product.end_year}
                       <br />
-                      <Link style={{ color: "green" }} href={`store/${category.products[0].gfu_part_num}`}>
-                        {category.products[0].gfu_part_num}
+                      <Link style={{ color: "green" }} to={`/store?product_id=${product.id}`}>
+                        #{product?.gfu_part_num}
                       </Link>
                     </div>
                   </div>
                 </div>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
-                    <div class="product-table-text">{category.displacement}</div>
+                    <div class="product-table-text">{product.displacement}</div>
                   </div>
                 </div>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
-                    <div class="product-table-text">{category.engine}</div>
+                    <div class="product-table-text">{product.engine}</div>
                   </div>
                 </div>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
-                    <div class="product-table-text">{category.intake}</div>
+                    <div class="product-table-text">{product.intake}</div>
                   </div>
                 </div>
                 <div className="w-col w-col-4 w-col-small-4 w-col-tiny-4">
                   <div className="white-div ctr">
                     <div style={{ float: "left", paddingBottom: "5px" }}>
-                      <div
+                      <div  className="shopify-buy-frame--product-cus"
+                        style={{ maxWidth: 120 }}>
+                         <AddToCart text="ADD TO CART"  buyButtonId={product?.buy_url}  id={product.id}/>
+                      </div>
+                      {/* <div
                         className="shopify-buy-frame--product"
                         style={{ maxWidth: 120 }}
                       >
                         <div className="price-text">
                           <span className="discounted-price">
-                            ${category.products[0].discPrice}
+                            ${product?.model_products?.[0]?.product?.compare_at_price}
                           </span>
                           <span className="actual-price">
-                            ${category.products[0].actPrice}
+                            ${product?.model_products?.[0]?.product?.price}
                           </span>
                         </div>
-                        {/* <div className="shop-btn"></div> */}
-                        <Button1 text="ADD TO CART" />
-                      </div>
+                      </div> */}
+
                     </div>
                     <img
-                      src={category.products[0].imgSrc}
+                      src={product?.images?.[0]?.link}
                       alt="filter"
                       className="filter-table-thumb right"
                     />
@@ -129,7 +133,7 @@ const VehicleElement4 = ({ models,make }) => {
                 <div className="white-div">
                   <div class="product-table-text">
                     <h4 style={{ textAlign: "left" }}>
-                      Cleaning Kit Part #2000
+                      {cleaningKit.product_type_name} #{cleaningKit.gfu_part_num || 2000}
                     </h4>
                   </div>
                 </div>
@@ -137,17 +141,15 @@ const VehicleElement4 = ({ models,make }) => {
               <div className="w-col w-col-4 w-col-small-4 w-col-tiny-4">
                 <div className="white-div ctr">
                   <div style={{ float: "left", paddingBottom: "5px" }}>
-                    <div
-                      className="shopify-buy-frame--product"
+                    {/* <div
+                      className="shopify-buy-frame--product-cus"
                       style={{ maxWidth: 120 }}
                     >
-                      <div className="price-text">
-                        <span className="discounted-price">$88.11</span>
-                        <span className="actual-price">$134.27</span>
-                      </div>
-                      {/* <div className="shop-btn"></div> */}
-                      <Button1 text="ADD TO CART" />
-                    </div>
+
+                    </div> */}
+                    {console.log("cleaningKit?.buy_url",cleaningKit?.buy_url)}
+                    <AddToCart text="ADD TO CART"  buyButtonId={cleaningKit?.buy_url}  id={model.id.toString() + cleaningKit?.id?.toString(())}/>
+
                   </div>
                   <img
                     src={cleaner}
@@ -350,10 +352,11 @@ const VehicleElement4Wrapper = styled.div`
     font-family: Lato, sans-serif;
     line-height: 18px;
   }
-  .shopify-buy-frame--product {
+  .shopify-buy-frame--product-cus {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width:150px;
   }
   .price-text {
     display: flex;
@@ -373,13 +376,13 @@ const VehicleElement4Wrapper = styled.div`
     padding-left: 7px;
     opacity: 0.76;
   }
-  .shopify-buy-frame--product button {
+  .shopify-buy-frame--product-cus button {
     padding: 7px !important;
     font-size: 13px;
     margin-top: 20px;
     transition: background-color 200ms ease;
   }
-  .shopify-buy-frame--product button:hover {
+  .shopify-buy-frame--product-cus button:hover {
     background-color: #003ead !important;
   }
 

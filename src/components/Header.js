@@ -108,7 +108,10 @@ const Header = (props) => {
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <a href="../assets/documents/BB.pdf">Bargain Basement</a>
+        <a href="/documents/Porsche_Flyer.pdf">Porsche Product Flyer</a>
+      </Menu.Item>
+      <Menu.Item>
+        <a href="/documents/BB.pdf">Bargain Basement</a>
       </Menu.Item>
     </Menu>
   );
@@ -162,7 +165,7 @@ const Header = (props) => {
     <Menu style={{ background: "#ddd", position: "static", borderRadius: 5 }}>
       {props.models?.map((model,key) => (
         <Menu.Item className="vehicle-dropdown-menu-item" key={key}>
-          <Link>{model.name}</Link>
+          <Link>{model?.title}</Link>
         </Menu.Item>
       ))}
     </Menu>
@@ -422,12 +425,13 @@ const Header = (props) => {
             </div>
           </div>
 
+
           {props.isVehicle && (
             <div className="hero-header">
               <div className="row-3 w-row">
                 <div className="column-3 _0 w-col w-col-9">
                   <h1 className="hero-heading-1 left smaller">
-                    {props.make.name} Performance Air Filters
+                    {props.make.title} Performance Air Filters
                   </h1>
                 </div>
                 <div className="column-2 w-col w-col-3">
@@ -439,7 +443,7 @@ const Header = (props) => {
                     >
                       <div className="vehicle-dropdown-btn">
                         <span style={{ flexGrow: 1, textAlign: "left" }}>
-                          Select a {props.make.name} Model
+                          Select a {props.make.title} Model
                         </span>
                         <MdOutlineKeyboardArrowDown />
                       </div>

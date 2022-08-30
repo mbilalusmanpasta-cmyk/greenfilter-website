@@ -1,9 +1,71 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import bgImg from "../../assets/green-gradient-blue.png";
 import filter0 from "../../assets/cleaner-p-800.png";
 import Button1 from "../../components/Button1";
+import FilterTable from "../../components/FilterTable";
+import { GetData } from "../../helper/request";
+import { statics } from "../../data/store";
+import AddToCart from "../../components/AddToCart";
+
+
+const tableHeader = [
+  {
+    id: 0,
+    name: "title",
+    label: "Green Filter #",
+    maxWidth: 91,
+  },
+  {
+    id: 2,
+    name: "description",
+    label: "Description",
+    maxWidth: 82,
+  },
+];
+
 const CCElement1 = () => {
+
+  const [tableData,setTableData] = React.useState([])
+  const [productData,setProductData] = React.useState({})
+
+
+  useEffect(()=>{
+
+    getTableData();
+  },[])
+
+  const getTableData = async () =>
+  {
+    const product_type_id = 8;
+    let tableDataT = [];
+    let productDataT = {};
+
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+    if(response.ResponseCode === "Success")
+    {
+      tableDataT = response?.data?.rows;
+      productDataT = tableDataT.find((p)=>p.id===1890) || tableDataT?.[0] || {};
+    }
+    setTableData(tableDataT);
+    setProductData(productDataT)
+  }
+
+
+  const getSingleProduct = async () =>
+  {
+    const product_type_id = 8;
+    let tableDataT = [];
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+    if(response.ResponseCode === "Success")
+    {
+      tableDataT = response?.data?.rows;
+    }
+    setTableData(tableDataT);
+  }
+
+
+
   return (
     <CCElement1Wrapper bgImg={bgImg}>
       <div className="cleaner w-container">
@@ -19,28 +81,34 @@ const CCElement1 = () => {
           <div className="column-6 w-col w-col-6" id="kit">
             <div className="column-div left">
               <h1 className="product-header">Green Filter Cleaner</h1>
-              <h1 className="product-descr">Green Filter - Part 2000</h1>
+              <h1 className="product-descr">{productData?.title}</h1>
               <p className="large-paragraph gray left">
-                Keep your Green High Performance Air Filter in perfect condition
+                {productData?.title && 
+                `Keep your Green High Performance Air Filter in perfect condition
                 with our specially formulated Recharge Oil (8 oz.) and Cleaner
                 Spray (12 oz.).&nbsp; Our Recharge Oil is designed to not damage
                 any vehicle sensors and ensure that your Green Filter can trap
-                the smallest dirt particles before they reach your engine.
+                the smallest dirt particles before they reach your engine.`}
               </p>
               <div
                 className="shopify-buy-frame--product"
                 style={{ maxWidth: 120 }}
               >
                 <div className="price-text">
-                  <span className="discounted-price">$17.99</span>
-                  <span className="actual-price">$21.03</span>
+                  <span className="discounted-price">{productData?.compare_at_price} </span>
+                  <span className="actual-price">{productData?.price}</span>
                 </div>
-                <Button1 text="ADD TO CART" />
+                <AddToCart text="ADD TO CART" buyButtonId={productData?.buy_url}  id={productData?.id}/>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <FilterTable headers={tableHeader} tableData={tableData} />
+
+
+      
       <div className="titles-div">
         <h1 className="main-header">Green Filter Cleaning Instructions</h1>
         <p class="large-paragraph gray reviews">
@@ -52,7 +120,7 @@ const CCElement1 = () => {
           filter more often.
         </p>
         <div style={{ marginTop: 20 }}>
-          <Button1 text="Download Cleaning Instructions" />
+          <Button1 text="Download Cleaning Instructions" isLink to="/documents/green-filter-cleaning.pdf" target="_blank" />
         </div>
       </div>
       <div className="div-block-3">

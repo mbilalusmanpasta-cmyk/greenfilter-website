@@ -1,4 +1,4 @@
-const GetData = async (url, statusCode, token, callback) => {
+export const GetData = async (url, statusCode, token, callback) => {
     let response = await fetch(url, {
       method: "GET",
     
@@ -25,5 +25,5 @@ const GetData = async (url, statusCode, token, callback) => {
     
     return response
   };
-module.exports = { GetData };
+// module.exports = { GetData };
   

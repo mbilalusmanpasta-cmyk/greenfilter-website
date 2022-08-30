@@ -60,10 +60,11 @@ const CCElement2 = () => {
             style={{ display: "flex", marginTop: 30, flexWrap: "wrap" }}
           >
             <div className="w-col w-col-6 cc_btn">
-              <Button1 text="Green Filter USA - Air Filter Oil MSDS" />
+              <Button1 isLink text="Green Filter USA - Air Filter Oil MSDS" to="/documents/gfu_msds_oil.pdf" target="_blank"/>
+
             </div>
             <div className="w-col w-col-6 cc_btn">
-              <Button1 text="Green Filter USA - Air Filter Cleaner MSDS" />
+              <Button1 isLink text="Green Filter USA - Air Filter Cleaner MSDS" to="/documents/gfu_msds_cleaner.pdf" target="_blank"/>
             </div>
           </div>
         </div>
