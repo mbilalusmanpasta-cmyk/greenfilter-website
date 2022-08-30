@@ -148,7 +148,7 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
 
                     </div> */}
                     {console.log("cleaningKit?.buy_url",cleaningKit?.buy_url)}
-                    <AddToCart text="ADD TO CART"  buyButtonId={cleaningKit?.buy_url}  id={model.id.toString() + cleaningKit?.id?.toString(())}/>
+                    <AddToCart text="ADD TO CART"  buyButtonId={cleaningKit?.buy_url}  id={model.id.toString() + cleaningKit?.id?.toString()}/>
 
                   </div>
                   <img

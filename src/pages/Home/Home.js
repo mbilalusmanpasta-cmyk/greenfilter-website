@@ -358,16 +358,18 @@ console.log(err,"error")
           </div>
              
               
-          {Boolean(productDetails.length) && <div className="productRenderContainer"> 
+          {Boolean(productDetails.length) && <div className="productRenderContainer">
             {
               productDetails.map((product,key)=>{
                 return (
                   <div key={key} className="searchedItems">
+                              {console.log(product)} 
+
                       <h2>{product.title}</h2>
                       <div  className="searchedProductDetails">
                         <div className="searchProductLeftContainer">
                           <div className="searchProductImage">
-                            <img src={(product.images && product.images.length) ? product.images[0] : 'https://via.placeholder.com/150'} alt=""/>
+                            <img src={(product.images && product.images.length) ? product?.images[0]?.link : 'https://via.placeholder.com/150'} alt=""/>
                           </div>
                           <div className="searchProductPrice">
                             {/* <h5>{product?.price || '$00.00'}</h5> */}
