@@ -589,7 +589,7 @@ button.ant-btn.ant-btn-link.customBtns {
   border-radius: 5px;
   background-color: #fff;
   overflow: hidden;
-  display: flex;
+  display: inline-block;
   justify-content: center;
   align-items: center;
 }
@@ -615,6 +615,7 @@ button.ant-btn.ant-btn-link.customBtns {
 
 
 .searchProductPrice {
+  display: inline-block;
   margin-top:10px;
 }
 .searchProductPrice h5 {

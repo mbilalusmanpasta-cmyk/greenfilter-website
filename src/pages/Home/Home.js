@@ -35,6 +35,7 @@ import { Select, Input, Button  } from 'antd';
 import { async } from "@firebase/util";
 import { statics } from "../../data/store";
 import AddToCart from "../../components/AddToCart";
+import { Link } from "react-router-dom";
 const { Option } = Select;
 
 
@@ -97,15 +98,6 @@ const [modelsId,setModelsId]=useState([])
   
     return arr;
   };
-
-  const getAllMakes = async() => {
-
-  let data= await axios.get('https:greenfilter-backend-production.herokuapp.com/makes', {});
-  setApiData({...apiData,make:[...data.data.hits]})
-
-  console.log(data.data.hits,"data")
-};
-
 
 
   useEffect(()=>{
@@ -175,22 +167,33 @@ const [modelsId,setModelsId]=useState([])
               const getKey = filterKeys[index];
               let objectKey = getKey;
 
-              console.log("getKey",getKey)
-              // if(getKey==="engine")
-              // {
-              //   objectKey = "displacement"
-              // }
+              
+            
     
               let bunchOfArray = response.data;
               filteredData=response.data;
-              
-              if(getKey === 'engine' && filteredData.length) {
-                setFinalSelectedId(filteredData[0].objectID);
-                const modelIds=filteredData.map((item)=>({objectID: item.objectID}))
-                setModelsId([...modelIds]) 
+              console.log("data",data);
+              console.log("filteredData",filteredData);
+
+              if(!getKey && (apiData.make && apiData.name && apiData.engine))
+              {
+                setProductDetails(filteredData)
+
               }
-    
-              setApiData({...apiData, [objectKey]:filteredData});
+
+              else
+              {
+                if(getKey === 'engine' && filteredData.length) {
+                  setFinalSelectedId(filteredData[0].id);
+                  const modelIds=filteredData.map((item)=>({objectID: item.id}))
+                  setModelsId([...modelIds]) 
+                  // setProductDetails(filteredData)
+                }
+      
+                setApiData({...apiData, [objectKey]:filteredData});
+              }
+              
+              
             } 
 
           }).catch(error=>console.log(error))
@@ -242,9 +245,6 @@ const [modelsId,setModelsId]=useState([])
       delete tempData[k];
       tempStr[k] = ''
     })
-
-    console.log(tempArr)
-    console.log(tempStr)
     console.log(tempData)
 
     setProductDetails([])
@@ -255,6 +255,17 @@ const [modelsId,setModelsId]=useState([])
 
 
   const finalSearch =async () =>{
+
+    setApiData({})
+    setProductDetails([])
+    setFinalSelectedId(null)
+    setApiStr({
+      year: '',
+      make_id: '',
+      model_name: '',
+      engine:'' 
+    })
+
     let filters={};
     // if(modelsId){
     //   filters.push({accessor:"model",value:modelsId})
@@ -267,6 +278,8 @@ const [modelsId,setModelsId]=useState([])
    await axios.get(statics.BaseUrl+`/product-search`,{
       params:filters
     }).then((data)=>{
+
+          console.log(data?.data?.data)
           setProductDetails(data?.data?.data);
   }).catch((err)=>{
 console.log(err,"error")
@@ -310,7 +323,7 @@ console.log(err,"error")
           <h3><img src={logo} alt="logo" width="150" />Find a Filter</h3>
 
           <div className="selectController">
-            <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />} className="customSelects" onChange={(v)=>handleChange('year', v)}>
+            <Select defaultValue="-1" value={apiStr.year.toString().length && apiStr.year || '-1'} suffixIcon={<CaretDownOutlined />} className="customSelects" onChange={(v)=>handleChange('year', v)}>
               <Option value="-1">Select Year</Option>
               {generateYearOptions()}
             </Select> 
@@ -328,19 +341,14 @@ console.log(err,"error")
 
             <Select defaultValue="-1" suffixIcon={<CaretDownOutlined />}  value={apiStr.model_name.length && apiStr.model_name || '-1'} className="customSelects" onChange={(v)=>handleChange('model_name', v)} disabled={apiStr.make_id === '-1' || apiStr.make_id === ''}>
               <Option value="-1">Select Model...</Option>
-              {apiData.name && apiData.name.length && apiData.name.map(({name})=>{
-                  return <Option value={name}>{name}</Option>
+              {apiData.name && apiData.name.length && apiData.name.map(({name,title})=>{
+                  return <Option value={name}>{title}</Option>
               })}
             </Select>
 
             <Select defaultValue="-1"  suffixIcon={<CaretDownOutlined />}  value={apiStr.engine.length && apiStr.engine || '-1'} className="customSelects" onChange={(v)=>{
-                handleChange('engine', v);
-                
-              }} disabled={apiStr.model_name === '-1' || apiStr.model_name === ''}>
+                handleChange('engine', v); }} disabled={apiStr.model_name === '-1' || apiStr.model_name === ''}>
               <Option value="-1">Select Engine...</Option>
-              {
-                console.log("apiData",apiData)
-              }
               {apiData.engine && apiData.engine.length && apiData.engine.map((engine)=>{
                   return <Option value={engine.displacement}>{engine.displacement}</Option>
               })}
@@ -368,23 +376,34 @@ console.log(err,"error")
                       <h2>{product.title}</h2>
                       <div  className="searchedProductDetails">
                         <div className="searchProductLeftContainer">
-                          <div className="searchProductImage">
+                          {/* <div className="searchProductImage">
                             <img src={(product.images && product.images.length) ? product?.images[0]?.link : 'https://via.placeholder.com/150'} alt=""/>
-                          </div>
+                          </div> */}
                           <div className="searchProductPrice">
                             {/* <h5>{product?.price || '$00.00'}</h5> */}
-                            <AddToCart text="ADD TO CART" buyButtonId={product?.buy_url}  id={product?.id}  transform="translateX(-60px)"/>
+                            <AddToCart text="ADD TO CART" buyButtonId={product?.buy_url}  id={product?.id?.toString() + key.toString()} background="white" color="#00ad23" />
 
                             {/* <Button type="primary">Add To Cart</Button> */}
                           </div>
                         </div>
                         <div className="searchedProductRight">
-                          <p>Year: 2019</p>
-                          <p>Engine: ACE</p>
-                          <p>Disp: 600</p>
-                          <p>Intake: 600</p>
-                          <p>Fitment Note: - All Models</p>
-                          <p><a href="#">Click here</a> for more product information</p>
+                          {
+                            apiStr?.year && <p>Year: {apiStr?.year} </p>
+                          }
+                          {
+                            apiStr?.engine &&  <p>Engine: {apiData?.engine?.[0]?.engine}</p>
+                          }
+                          {
+                            apiStr?.engine && <p>Disp: {apiData?.engine?.[0]?.displacement}</p>
+                          }
+                          {
+                            apiStr?.engine && <p>Intake: {apiData?.engine?.[0]?.intake}</p>
+                          }
+                          {
+                            apiStr?.engine && <p>Fitment Note: - {apiData?.engine?.[0]?.description} Models</p>
+                          }
+                          
+                          <p><Link to={`/store?product_id=${product.id}`}>Click here for more product information </Link> </p>
                         </div>
                       </div>
                   </div>

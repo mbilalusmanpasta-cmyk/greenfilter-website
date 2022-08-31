@@ -26,7 +26,8 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
                 <img
                   src={model?.images?.[0]?.link}
                   alt="car"
-                  style={{ maxWidth: "84%" }}
+                  style={{ maxWidth: "100%", verticalAlign: "middle", display: "inline-block"}}
+                  width={"384px"}
                 />
               </div>
               <div className="column-6 w-col w-col-6">
@@ -36,10 +37,10 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
                   </h1>
                   <h1 className="product-descr">
                     Green Filter - Part{" "}
-                    <Link to={`/store?product_id=${model?.products?.[0]?.model_products?.[0]?.product?.id}`} style={{ color: "green" }}>#{model?.products?.[0]?.model_products?.[0]?.product?.gfu_part_num}</Link>
+                    <Link to={`/store?product_id=${model?.products?.[0]?.id}`} style={{ color: "green" }}>#{model?.products?.[0]?.gfu_part_num}</Link>
                   </h1>
                 </div>
-                <img src={model?.products?.[0]?.model_products?.[0]?.product?.images?.[0]?.link} alt="filter" className="product" />
+                <img src={model?.products?.[0]?.images?.[0]?.link} alt="filter" className="product" />
               </div>
             </div>
             <div className="product-row top w-row">
@@ -104,19 +105,7 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
                         style={{ maxWidth: 120 }}>
                          <AddToCart text="ADD TO CART"  buyButtonId={product?.buy_url}  id={product.id}/>
                       </div>
-                      {/* <div
-                        className="shopify-buy-frame--product"
-                        style={{ maxWidth: 120 }}
-                      >
-                        <div className="price-text">
-                          <span className="discounted-price">
-                            ${product?.model_products?.[0]?.product?.compare_at_price}
-                          </span>
-                          <span className="actual-price">
-                            ${product?.model_products?.[0]?.product?.price}
-                          </span>
-                        </div>
-                      </div> */}
+                     
 
                     </div>
                     <img
@@ -140,17 +129,12 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
               </div>
               <div className="w-col w-col-4 w-col-small-4 w-col-tiny-4">
                 <div className="white-div ctr">
-                  <div style={{ float: "left", paddingBottom: "5px" }}>
-                    {/* <div
-                      className="shopify-buy-frame--product-cus"
-                      style={{ maxWidth: 120 }}
-                    >
-
-                    </div> */}
-                    {console.log("cleaningKit?.buy_url",cleaningKit?.buy_url)}
-                    <AddToCart text="ADD TO CART"  buyButtonId={cleaningKit?.buy_url}  id={model.id.toString() + cleaningKit?.id?.toString()}/>
-
-                  </div>
+                <div style={{ float: "left", paddingBottom: "5px" }}>
+                      <div  className="shopify-buy-frame--product-cus"
+                        style={{ maxWidth: 120 }}>
+                  <AddToCart text="ADD TO CART"  buyButtonId={cleaningKit?.buy_url}  id={model.id.toString() + cleaningKit?.id?.toString()}/>
+                </div>
+                </div>
                   <img
                     src={cleaner}
                     alt="filter"
@@ -242,20 +226,32 @@ const VehicleElement4Wrapper = styled.div`
     padding-right: 2%;
   }
 
-  .column-6 {
-    padding-left: 0%;
+ 
+
+  
+
+  .w-col {
+    // position: relative;
+    // width: 100%;
+    // min-height: 1px;
+    // padding-left: 10px;
+    // padding-right: 10px;
+
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+
   }
 
   .w-col-6 {
     width: 50%;
   }
 
-  .w-col {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
+  .column-6 {
+    padding-left: 0%;
   }
 
   img {

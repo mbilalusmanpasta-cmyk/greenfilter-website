@@ -75,10 +75,10 @@ const SingleProduct = () => {
                             </Grid>
                             <Grid  item xs={12} sm={6} md={6} lg={6} xl={4}> 
                                 <div className="add-to-cart-wrapper">
-                                    <div className="price-text">
+                                    {/* <div className="price-text">
                                         <span className="discounted-price">{productData?.compare_at_price} </span>
                                         <span className="actual-price">{productData?.price}</span>
-                                    </div>
+                                    </div> */}
                                     <AddToCart text="ADD TO CART" buyButtonId={productData?.buy_url}  id={productData?.id} />
                                 </div>
                             </Grid>

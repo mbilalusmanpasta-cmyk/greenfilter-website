@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButtonId, transform,id }) => {
+const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButtonId, transform,id,background,color }) => {
 
   const prevBuyButtonIdRef = useRef();
 
@@ -65,6 +65,7 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
                     },
                     "styles": {
                       "product": {
+                        
                         "text-align": "center",
                         "@media (min-width: 601px)": {
                           "max-width": "100%",
@@ -74,16 +75,22 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
                       },
                       "button": {
                         "font-family": "Lato, sans-serif",
-                        "font-size": "12px",
+                        "font-size": "13px",
                         "padding-top": "5px",
-                        "padding-bottom": "5px",
-                        "background-color": "#00ad23",
+                        "display" : "inline-block",
+                        "padding": "7px",
+                        "margin": "20px auto 0",
+                        "margin-top": "0",
+                        "background-color": background?background:"#00ad23",
+                        "color":color?color:"#fff",
                             ":hover": {
-                          "background-color": "#6ca44e"
+                              "color":"#fff",
+                          "background-color": "#003EAD"
                         },
                         "font-weight": "bold",
                         ":focus": {
-                          "background-color": "#00ad23"
+                          "color":"#fff",
+                          "background-color": "#003EAD"
                         }
                       },
                       "title": {
@@ -91,7 +98,7 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
                       },
                       "price": {
                         "font-size": "18px"
-                          },
+                        },
                       "quantityInput": {
                         "font-size": "13px",
                         "padding-top": "14.5px",
