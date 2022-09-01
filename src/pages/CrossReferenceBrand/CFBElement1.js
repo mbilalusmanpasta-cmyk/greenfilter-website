@@ -1,7 +1,75 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import styled from "styled-components";
 import img0 from "../../assets/filters.jpg";
+import { GetData } from "../../helper/request";
+import { statics } from "../../data/store";
+import { useHistory } from "react-router-dom";
+
 const CFBElement1 = () => {
+  const [companies, setCompanies] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState();
+  const [selectedFilters, setSelectedFilters] = useState({});
+  const [selectedGreenFilters, setselectedGreenFilters] = useState();
+  const [showModel, setShowModel] = useState(false);
+  const history = useHistory();
+
+  useEffect(() => {
+    getCompanies();
+  }, []);
+
+  useEffect(() => {
+    if (selectedGreenFilters) {
+      setShowModel(!showModel)
+    }
+  }, [selectedGreenFilters]);
+
+  const getCompanies = async () => {
+    let tableDataT = [];
+    let response = await GetData(
+      statics.BaseUrl + `/competitor?pageSize=200`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
+      tableDataT = response?.data?.rows;
+    }
+    setCompanies(tableDataT);
+  };
+
+  const getProductById = async (id) => {
+    let tableDataT = {};
+    let response = await GetData(
+      statics.BaseUrl + `/product?id=${id}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
+      tableDataT = response?.data?.rows;
+    }
+    setselectedGreenFilters(tableDataT[0]);
+  };
+
+  const onChangeCompanyHandler = (id) => {
+    setShowModel(false);
+    setSelectedCompany(undefined);
+    setSelectedFilters(undefined);
+    let selectedCompany = companies.filter((item) => item.id === parseInt(id));
+    if (selectedCompany.length) {
+      setSelectedCompany(selectedCompany[0]);
+    }
+  };
+
+  const onChangeFilterHandler = (id) => {
+    setShowModel(false);
+    let selectedFilters = selectedCompany.compatitor_products.filter(
+      (item) => item.id === parseInt(id)
+    );
+    if (selectedFilters.length) {
+      setSelectedFilters(selectedFilters[0]);
+      getProductById(selectedFilters[0].product_id);
+    }
+  };
+
   return (
     <>
       <CFBElement1Wrapper>
@@ -34,8 +102,17 @@ const CFBElement1 = () => {
                       </td>
                       <td>
                         &nbsp;&nbsp;
-                        <select>
+                        <select
+                          style={{ width: "194px" }}
+                          onChange={(e) => {
+                            onChangeCompanyHandler(e.target.value || undefined);
+                          }}
+                        >
                           <option>Select</option>
+                          {companies &&
+                            companies?.map((item, index) => (
+                              <option value={item.id}>{item.title}</option>
+                            ))}
                         </select>
                       </td>
                     </tr>
@@ -51,8 +128,19 @@ const CFBElement1 = () => {
                       </td>
                       <td>
                         &nbsp;&nbsp;
-                        <select>
+                        <select
+                          style={{ width: "194px" }}
+                          onChange={(e) => {
+                            onChangeFilterHandler(e.target.value || undefined);
+                          }}
+                        >
                           <option>Select</option>
+                          {selectedCompany &&
+                            selectedCompany.compatitor_products?.map((item, index) => (
+                              <option value={item.id}>
+                                {item.competitor_part_number}
+                              </option>
+                            ))}
                         </select>
                       </td>
                     </tr>
@@ -61,9 +149,11 @@ const CFBElement1 = () => {
                 <table>
                   <tbody>
                     <tr>
-                      <td>
-                        AEM Filter #2820042 = Green Filter #<a>2009</a>
-                      </td>
+                      {showModel && (
+                        <td>
+                          {selectedCompany?.title} Filter {selectedFilters?.competitor_part_number} = Green Filter #<span style={{color: "blue", cursor: "pointer" }} onClick={() => {history.push(`/store?product_id=${selectedGreenFilters?.gfu_part_num}`)}} >{selectedGreenFilters?.gfu_part_num}</span>
+                        </td>
+                      )}
                     </tr>
                   </tbody>
                 </table>
