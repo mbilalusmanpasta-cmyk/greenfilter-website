@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButtonId, transform,id,background,color }) => {
+const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButtonId, transform,id,background,color,isLeft }) => {
 
   const prevBuyButtonIdRef = useRef();
 
@@ -66,7 +66,7 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
                     "styles": {
                       "product": {
                         
-                        "text-align": "center",
+                        "text-align": isLeft?"left":"center",
                         "@media (min-width: 601px)": {
                           "max-width": "100%",
                           "margin-left": "0",
@@ -214,6 +214,7 @@ const AddToCart = ({ text, handleClick, marginTop,isLink,to,height,width,buyButt
         })();
       }
     }
+    
 
     prevBuyButtonIdRef.current  = buyButtonId;
 

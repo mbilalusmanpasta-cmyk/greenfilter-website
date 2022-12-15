@@ -6,6 +6,7 @@ import cleaner from "../../assets/2000_v1_500.jpg";
 import { Link } from "react-router-dom";
 import Button1 from "../../components/Button1";
 import AddToCart from "../../components/AddToCart";
+import { simplifyId } from "../../helper/simplifyId";
 const VehicleElement4 = ({ models,make,cleaningKit }) => {
   return (
     <>
@@ -20,7 +21,7 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
           </p>
         </div>
         {models && models.map((model,key) => ( 
-          <div className="container-6 w-container" key={key}>
+          <div className="container-6 w-container" key={key} id={simplifyId(model.slug)} >
             <div className="main-vehicle-row w-row">
               <div className="column-4 w-col w-col-6">
                 <img
@@ -37,7 +38,7 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
                   </h1>
                   <h1 className="product-descr">
                     Green Filter - Part{" "}
-                    <Link to={`/store?product_id=${model?.products?.[0]?.id}`} style={{ color: "green" }}>#{model?.products?.[0]?.gfu_part_num}</Link>
+                    <Link to={`/store/filter/${model?.products?.[0]?.gfu_part_num}`} style={{ color: "green" }}>#{model?.products?.[0]?.gfu_part_num}</Link>
                   </h1>
                 </div>
                 <img src={model?.products?.[0]?.images?.[0]?.link} alt="filter" className="product" />
@@ -70,14 +71,14 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
                 </div>
               </div>
             </div>
-            {model?.products?.map((product) => (
+            {model?.products?.map((product,id) => (
               <div className="product-row w-row" key={product.id}>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
                     <div class="product-table-text">
                       {product.start_year} - {product.end_year}
                       <br />
-                      <Link style={{ color: "green" }} to={`/store?product_id=${product.id}`}>
+                      <Link style={{ color: "green" }} to={`/store/filter/${product.gfu_part_num}`}>
                         #{product?.gfu_part_num}
                       </Link>
                     </div>
@@ -103,7 +104,7 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
                     <div style={{ float: "left", paddingBottom: "5px" }}>
                       <div  className="shopify-buy-frame--product-cus"
                         style={{ maxWidth: 120 }}>
-                         <AddToCart text="ADD TO CART"  buyButtonId={product?.buy_url}  id={product.id}/>
+                         <AddToCart text="ADD TO CART"  buyButtonId={product?.buy_url}  id={product.id + id.toString() + model.slug.toString()}/>
                       </div>
                      
 
@@ -352,7 +353,7 @@ const VehicleElement4Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width:150px;
+    // min-width:150px;
   }
   .price-text {
     display: flex;
@@ -388,8 +389,7 @@ const VehicleElement4Wrapper = styled.div`
     height: 60px;
     min-width: 60px;
     min-height: 60px;
-    margin-left: 45px;
-    transform-origin: bottom right;
+      transform-origin: bottom right;
     transition: border-color 0.25s ease-in-out;
     transition: transform 0.25s ease-in-out;
     border: 1px solid white;

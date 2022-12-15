@@ -6,11 +6,11 @@ const Button1 = ({ text, handleClick, marginTop,isLink,to,target,download }) => 
   return (
 
     isLink ?
-    <Button1Wrapper marginTop={marginTop}>
       <Link to={to} target={target} download={download || false}>
-        {text}
+        <Button1Wrapper marginTop={marginTop}>
+          {text}
+        </Button1Wrapper>
       </Link>
-    </Button1Wrapper>
   :
     <Button1Wrapper
     onClick={handleClick}

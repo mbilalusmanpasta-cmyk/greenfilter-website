@@ -8,6 +8,7 @@ import flag from "../assets/USA-Flag.jpg";
 import { FaBars } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Drawer } from "@mui/material";
+import { simplifyId } from "../helper/simplifyId";
 const { SubMenu } = Menu;
 const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
 
@@ -86,7 +87,7 @@ const Header = (props) => {
           onClick={() => props.handleClickIndex(6)}
           style={{ color: props.clickedIndex === 6 ? "#0082f3" : null }}
         >
-          Air Clearner Assemblies
+          Air Cleaner Assemblies
         </Link>
       </Menu.Item>
       <Menu.Item>
@@ -165,7 +166,7 @@ const Header = (props) => {
     <Menu style={{ background: "#ddd", position: "static", borderRadius: 5 }}>
       {props.models?.map((model,key) => (
         <Menu.Item className="vehicle-dropdown-menu-item" key={key}>
-          <Link>{model?.title}</Link>
+          <Link onClick={(e)=>{scroll(e,simplifyId(model.slug))}}>{model?.title}</Link>
         </Menu.Item>
       ))}
     </Menu>
@@ -183,7 +184,16 @@ const Header = (props) => {
     }
     setToggle(!toggle);
   };
-  console.log("Toggle => ", toggle);
+
+  const scroll = (e,id) => {
+
+    e.preventDefault();
+    id = simplifyId(id);
+
+    const section = document.querySelector( `#${id}` );
+    section?.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+  };
+  
   return (
     <>
       <HeaderWrapper>
@@ -404,7 +414,7 @@ const Header = (props) => {
               <Button
                 onClick={() => {
                   props.handleClickIndex(2);
-                  history.push("./cleaner-care");
+                  history.push("/cleaner-care");
                 }}
               >
                 {" "}
@@ -414,7 +424,7 @@ const Header = (props) => {
               <Button
                 onClick={() => {
                   props.handleClickIndex(10);
-                  history.push("./contact-us");
+                  history.push("/contact-us");
                 }}
               >
                 Contact Us
@@ -435,11 +445,12 @@ const Header = (props) => {
                   </h1>
                 </div>
                 <div className="column-2 w-col w-col-3">
-                  <div className="w-form">
+                  <div className="w-form" id="menu2-dropdown-container">
                     <Dropdown
                       overlay={menu2}
                       trigger={["click"]}
                       overlayStyle={{ zIndex: 100000 }}
+                      getPopupContainer={() => document.getElementById('menu2-dropdown-container') || document.body}
                     >
                       <div className="vehicle-dropdown-btn">
                         <span style={{ flexGrow: 1, textAlign: "left" }}>
@@ -468,6 +479,10 @@ const HeaderWrapper = styled.div`
   right: 0px;
   z-index: 99996;
   padding: 0 10%;
+
+  #menu2-dropdown-container .ant-dropdown-placement-topCenter {
+    position: fixed;
+    }
 
   .r-navbar {
     display: block;

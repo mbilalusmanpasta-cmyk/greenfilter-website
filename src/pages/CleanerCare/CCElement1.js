@@ -7,6 +7,7 @@ import FilterTable from "../../components/FilterTable";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 import AddToCart from "../../components/AddToCart";
+import CircleLoader from "react-spinners/CircleLoader";
 
 
 const tableHeader = [
@@ -28,6 +29,7 @@ const CCElement1 = () => {
 
   const [tableData,setTableData] = React.useState([])
   const [productData,setProductData] = React.useState({})
+  const [loading,setLoading] = React.useState(false)
 
 
   useEffect(()=>{
@@ -37,11 +39,13 @@ const CCElement1 = () => {
 
   const getTableData = async () =>
   {
+    setLoading(true)
+
     const product_type_id = 8;
     let tableDataT = [];
     let productDataT = {};
 
-    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200&is_active=1`,200,null)
     if(response.ResponseCode === "Success")
     {
       tableDataT = response?.data?.rows;
@@ -49,25 +53,46 @@ const CCElement1 = () => {
     }
     setTableData(tableDataT);
     setProductData(productDataT)
+    setLoading(false)
+
   }
 
 
-  const getSingleProduct = async () =>
-  {
-    const product_type_id = 8;
-    let tableDataT = [];
-    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
-    if(response.ResponseCode === "Success")
-    {
-      tableDataT = response?.data?.rows;
-    }
-    setTableData(tableDataT);
-  }
+  // const getSingleProduct = async () =>
+  // {
+  //   const product_type_id = 8;
+  //   let tableDataT = [];
+  //   let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+  //   if(response.ResponseCode === "Success")
+  //   {
+  //     tableDataT = response?.data?.rows;
+  //   }
+  //   setTableData(tableDataT);
+  // }
 
 
 
   return (
-    <CCElement1Wrapper bgImg={bgImg}>
+    <>
+      {
+        loading &&
+        <React.Fragment>
+            <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
+            <div style = {{
+                display: "block",
+                margin: "0 auto",
+                borderColor: "red",
+                zIndex:"9999",
+                position: "absolute",
+                top: "calc(50vh - 75px)",
+                left:"calc(50% - 75px)"
+              }}>
+              <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+            </div>
+        </React.Fragment>
+        }
+
+<CCElement1Wrapper bgImg={bgImg}>
       <div className="cleaner w-container">
         <div className="main-vehicle-row w-row">
           <div className="column-4 w-col w-col-6">
@@ -200,6 +225,9 @@ const CCElement1 = () => {
         </div>
       </div>
     </CCElement1Wrapper>
+    
+    </>
+   
   );
 };
 

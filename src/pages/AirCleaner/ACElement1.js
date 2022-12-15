@@ -5,6 +5,9 @@ import img2 from "../../assets/cylinders/round_filter_measurements.jpg";
 import FilterTable from "../../components/FilterTable";
 import { statics } from "../../data/store";
 import { GetData } from "../../helper/request";
+
+import CircleLoader from "react-spinners/CircleLoader";
+
 const tableHeader = [
   {
     id: 0,
@@ -21,20 +24,20 @@ const tableHeader = [
   {
     id: 2,
     name: "assemblie_mounting_dia_inch",
-    label: "Assemblie Mounting Diameter (Inch)",
+    label: "Assembly Mounting Diameter (Inch)",
     maxWidth: 270,
   },
   {
     id: 3,
     name: "assemblie_type",
-    label: "Assemblie Type",
+    label: "Assembly Type",
     maxWidth: 249,
   },
 
   {
     id: 4,
     name: "assemblie_installed_height_inch",
-    label: "Assemblie Installed Height (Inch)",
+    label: "Assembly Installed Height (Inch)",
     maxWidth: 126,
   },
   {
@@ -48,31 +51,52 @@ const tableHeader = [
 const ACElement1 = () => {
 
   const [tableData,setTableData] = React.useState([])
+  const [loading,setLoading] = React.useState(false)
+
 
   useEffect(()=>{
-
     getTableData();
   },[])
 
   const getTableData = async () =>
   {
+    setLoading(true);
     const product_type_id = 1;
     let tableDataT = [];
-    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200&is_active=1`,200,null)
     if(response.ResponseCode === "Success")
     {
       tableDataT = response?.data?.rows;
     }
     setTableData(tableDataT);
+    setLoading(false);
+
   }
-
-
 
   return (
     <>
+
+    {
+      loading &&
+      <React.Fragment>
+          <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
+          <div style = {{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              zIndex:"9999",
+              position: "absolute",
+              top: "calc(50vh - 75px)",
+              left:"calc(50% - 75px)"
+            }}>
+            <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+          </div>
+      </React.Fragment>
+      }
+      
       <ACElement1Wrapper>
         <h1 style={{ marginTop: 100, marginLeft: 20 }}>
-          Air Cleaner Assemblies
+          Air Cleaner Assembly
         </h1>
         <div
           style={{

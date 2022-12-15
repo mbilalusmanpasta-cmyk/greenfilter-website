@@ -1,7 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import img0 from "../../assets/filters.jpg";
+import CircleLoader from "react-spinners/CircleLoader";
+import { GetData } from "../../helper/request";
+import { statics } from "../../data/store";
+
 const CRFElement1 = () => {
+
+  const [loading,setLoading] = React.useState(false)
+  const [greenFilters,setGreenFilters] = React.useState([])
+  const [showModel, setShowModel] = useState(false);
+  const [selectedFilter,setSelectedFilter] = React.useState(null)
+  const [filterCodes,setFilterCodes] = React.useState([])
+
+
+  useEffect(()=>{
+    _GetGreenFilters();
+  },[])
+
+
+  useEffect(() => {
+    if(selectedFilter)
+    {
+      getFilterCodes();
+    }
+  }, [selectedFilter]);
+
+  const _GetGreenFilters = async() =>{
+    let response  =  await GetData(statics.BaseUrl + `/product?pageNo=1&pageSize=10000&is_active=1`,200,null);
+    let tableDataT = [];
+    if(response.ResponseCode === "Success")
+    {
+      tableDataT = response?.data?.rows;
+    }
+    console.log(tableDataT);
+    setGreenFilters(tableDataT);
+    setLoading(false)
+
+  }    
+
+
+  const onChangeGreenFilter = (id) => {
+    setShowModel(false);
+    setSelectedFilter(undefined);
+    let selectedFilterT = greenFilters.filter((item) => item.id === parseInt(id));
+
+    console.log(selectedFilterT)
+    if (selectedFilterT.length) {
+      setSelectedFilter(selectedFilterT[0]);
+      // getFilterCodes(selectedCompany[0].id)
+    }
+  };
+
+  const getFilterCodes = async() =>{
+    let tableDataT = [];
+    let response = await GetData(
+      statics.BaseUrl + `/competitor-products?product_id=${selectedFilter?.id}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
+      tableDataT = response?.data;
+    }
+    console.log(response);
+    setFilterCodes(tableDataT);
+    setShowModel(true);
+  }
+
+
+  
   return (
     <>
       <CRFElement1Wrapper>
@@ -34,93 +101,50 @@ const CRFElement1 = () => {
                       </td>
                       <td>
                         &nbsp;&nbsp;
-                        <select>
+                        <select
+                          onChange={(e) => {
+                            onChangeGreenFilter(e.target.value || undefined);
+                          }}
+                        >
                           <option>Select</option>
+                          {greenFilters &&
+                            greenFilters?.map((item, index) =>
+                              {
+                                if(item.gfu_part_num)
+                                {
+                                  return  (<option value={item.id}> {item.gfu_part_num} </option>)
+                                }
+                              }
+                              
+                            )}
                         </select>
                       </td>
                     </tr>
                   </tbody>
                 </table>
+
+                {
+                  showModel &&
+                
                 <table className="xref">
                   <tbody>
                     <tr>
                       <th>Brand</th>
                       <th>Filter Number</th>
                     </tr>
-                    <tr>
-                      <td>AC Delco</td>
-                      <td>A1517C</td>
-                    </tr>
-                    <tr>
-                      <td>AEM</td>
-                      <td>AE09045</td>
-                    </tr>
-                    <tr>
-                      <td>Ford</td>
-                      <td>F50Z9601BA</td>
-                    </tr>
-                    <tr>
-                      <td>Ford</td>
-                      <td>F5UZ9601BA</td>
-                    </tr>
-                    <tr>
-                      <td>Ford</td>
-                      <td>F6ZX9601AA</td>
-                    </tr>
-                    <tr>
-                      <td>Ford</td>
-                      <td>F6ZX9601AB</td>
-                    </tr>
-                    <tr>
-                      <td>Ford</td>
-                      <td>F6ZZ9601A</td>
-                    </tr>
-                    <tr>
-                      <td>Fram</td>
-                      <td>CA7730</td>
-                    </tr>
-                    <tr>
-                      <td>Fram</td>
-                      <td>CA8039</td>
-                    </tr>
-                    <tr>
-                      <td>K&amp;N</td>
-                      <td>E-0945</td>
-                    </tr>
-                    <tr>
-                      <td>Mighty</td>
-                      <td>A34877</td>
-                    </tr>
-                    <tr>
-                      <td>Motorcraft</td>
-                      <td>FA1615</td>
-                    </tr>
-                    <tr>
-                      <td>Motorcraft</td>
-                      <td>FA1632</td>
-                    </tr>
-                    <tr>
-                      <td>Motorcraft</td>
-                      <td>FA1634</td>
-                    </tr>
-                    <tr>
-                      <td>Napa</td>
-                      <td>6418</td>
-                    </tr>
-                    <tr>
-                      <td>Purolator</td>
-                      <td>A34878</td>
-                    </tr>
-                    <tr>
-                      <td>Spectre</td>
-                      <td>HPR8039</td>
-                    </tr>
-                    <tr>
-                      <td>WIX</td>
-                      <td>46418</td>
-                    </tr>
+
+                    {
+                      filterCodes.map((item)=>(
+                      <tr>
+                        <td>{item?.compatitor?.title}</td>
+                        <td>{item?.competitor_part_number}</td>
+                      </tr>))
+                    }
+                    
+                    
                   </tbody>
                 </table>
+              }
               </td>
             </tr>
           </tbody>
