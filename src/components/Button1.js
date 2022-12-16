@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const Button1 = ({ text, handleClick, marginTop,isLink,to }) => {
+const Button1 = ({ text, handleClick, marginTop,isLink,to,target,download }) => {
   return (
 
     isLink ?
     <Button1Wrapper marginTop={marginTop}>
-      <Link to={to}>
+      <Link to={to} target={target} download={download || false}>
         {text}
       </Link>
     </Button1Wrapper>
@@ -37,4 +37,8 @@ const Button1Wrapper = styled.button`
   border: none;
   cursor: pointer;
   margin-top: ${(props) => (props.marginTop ? props.marginTop : 0)}px;
+
+  a:hover{
+    color:#fff;
+  }
 `;

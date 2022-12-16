@@ -129,6 +129,10 @@ const form2 = [
   },
 ];
 
+export const statics = {
+  BaseUrl: "https://greenfilter-backend-production.herokuapp.com"
+}
+
 const MakeCollection =   {name:"make",label:"Make",slug:"brands"},
 ModelCollection =   {name:"model",label:"Model",slug:"model"},
 ProductCollection =   {name:"product",label:"Product",slug:"item"};

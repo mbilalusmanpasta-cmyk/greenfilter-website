@@ -1,181 +1,73 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import img0 from "../../assets/cylinders/round.jpg";
 import img2 from "../../assets/cylinders/round_filter_measurements.jpg";
 import FilterTable from "../../components/FilterTable";
+import { statics } from "../../data/store";
+import { GetData } from "../../helper/request";
 const tableHeader = [
   {
     id: 0,
-    name: "Filter Number",
+    name: "title",
+    label: "Filter Number",
     maxWidth: 156,
   },
   {
     id: 1,
-    name: "Outside Diameter (OD)",
-    maxWidth: 270,
-  },
-  {
-    id: 2,
-    name: "Inside Diameter (ID)",
-    maxWidth: 249,
-  },
-  {
-    id: 3,
-    name: "Height (H)",
+    name: "filter_height_inch",
+    label: "Height (H)",
     maxWidth: 139,
   },
   {
-    id: 4,
-    name: "Style",
-    maxWidth: 126,
+    id: 2,
+    name: "assemblie_mounting_dia_inch",
+    label: "Assemblie Mounting Diameter (Inch)",
+    maxWidth: 270,
   },
   {
-    id: 5,
-    name: "Shape",
-    maxWidth: 136,
+    id: 3,
+    name: "assemblie_type",
+    label: "Assemblie Type",
+    maxWidth: 249,
   },
 
   {
+    id: 4,
+    name: "assemblie_installed_height_inch",
+    label: "Assemblie Installed Height (Inch)",
+    maxWidth: 126,
+  },
+  {
     id: 6,
-    name: "Color",
+    name: "filter_color",
+    label: "Color",
     maxWidth: 126,
   },
 ];
-const tableData = [
-  {
-    rowNo: 0,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2175,
-      },
-      {
-        id: 1,
-        name: "0.00 x 14.00",
-      },
-      {
-        id: 2,
-        name: 12.0,
-      },
-      {
-        id: 3,
-        name: 5.0,
-      },
-      {
-        id: 4,
-        name: "Round",
-      },
-      {
-        id: 5,
-        name: null,
-      },
-      {
-        id: 6,
-        name: "Green",
-      },
-    ],
-  },
-  {
-    rowNo: 1,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2175,
-      },
-      {
-        id: 1,
-        name: "0.00 x 14.00",
-      },
-      {
-        id: 2,
-        name: 12.0,
-      },
-      {
-        id: 3,
-        name: 5.0,
-      },
-      {
-        id: 4,
-        name: "Round",
-      },
-      {
-        id: 5,
-        name: null,
-      },
-      {
-        id: 6,
-        name: "Green",
-      },
-    ],
-  },
-  {
-    rowNo: 2,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2175,
-      },
-      {
-        id: 1,
-        name: "0.00 x 14.00",
-      },
-      {
-        id: 2,
-        name: 12.0,
-      },
-      {
-        id: 3,
-        name: 5.0,
-      },
-      {
-        id: 4,
-        name: "Round",
-      },
-      {
-        id: 5,
-        name: null,
-      },
-      {
-        id: 6,
-        name: "Green",
-      },
-    ],
-  },
-  {
-    rowNo: 3,
-    rowColumns: [
-      {
-        id: 0,
-        name: 2175,
-      },
-      {
-        id: 1,
-        name: "0.00 x 14.00",
-      },
-      {
-        id: 2,
-        name: 12.0,
-      },
-      {
-        id: 3,
-        name: 5.0,
-      },
-      {
-        id: 4,
-        name: "Round",
-      },
-      {
-        id: 5,
-        name: null,
-      },
-      {
-        id: 6,
-        name: "Green",
-      },
-    ],
-  },
-];
+
 const ACElement1 = () => {
+
+  const [tableData,setTableData] = React.useState([])
+
+  useEffect(()=>{
+
+    getTableData();
+  },[])
+
+  const getTableData = async () =>
+  {
+    const product_type_id = 1;
+    let tableDataT = [];
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+    if(response.ResponseCode === "Success")
+    {
+      tableDataT = response?.data?.rows;
+    }
+    setTableData(tableDataT);
+  }
+
+
+
   return (
     <>
       <ACElement1Wrapper>

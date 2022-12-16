@@ -16,14 +16,16 @@ const Gallery = ({ gallery, width }) => {
   return (
     <>
       <GalleryWrapper width={width}>
-        {gallery?.map((image) => (
+        {gallery?.map((image,id) => (
+
+          (id > 1 && id < 16) && (
           <Link
             key={image.id}
             to="#"
             className="lightbox w-inline-block w-lightbox"
           >
             <img
-              src={image.image}
+              src={image.link || image.image}
               alt="gallery"
               sizes="(max-width: 479px) 50vw, 14vw"
               className="lb-image"
@@ -31,8 +33,9 @@ const Gallery = ({ gallery, width }) => {
                 lightBoxHandler(true, gallery.indexOf(image));
               }}
             />
-          </Link>
+          </Link>)
         ))}
+
         <LightBox
           state={toggle}
           event={lightBoxHandler}

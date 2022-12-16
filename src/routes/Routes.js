@@ -22,6 +22,7 @@ import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
 
 import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
+import Product from "../pages/Product";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -51,6 +52,17 @@ const Routes = () => {
           path="/shop-by-vehicle"
           component={() => (
             <ShopByVehicle
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+         <Route
+          exact
+          path="/store"
+          component={() => (
+            <Product
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}

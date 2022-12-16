@@ -56,7 +56,7 @@ const Hero = () => {
                 <Button1 text="Prove It!" />
               </Link> */}
             </div>
-            <img src={filter2} alt="filter2" className="filter" />
+            <img src={filter2} alt="filter2" className="filter"  />
           </div>
         </Carousel>
       </HeroWrapper>
@@ -67,6 +67,8 @@ const Hero = () => {
 export default Hero;
 
 const HeroWrapper = styled.div`
+
+max-height:500px;
   .img-container {
     position: relative;
     min-height: 500px;
@@ -157,7 +159,8 @@ const HeroWrapper = styled.div`
     position: absolute;
     right: 0%;
     bottom: -3%;
-    width: 500px;
+    width: auto;
+    max-height: 100%;
   }
   @media screen and (max-width: 767px) {
     .img-container {

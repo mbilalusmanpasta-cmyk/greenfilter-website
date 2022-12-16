@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -25,8 +25,12 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js" type="text/javascript"></script>
+    <script src="/js/cart-init.js?v=1.0.5" type="text/javascript"></script>
+    
   </head>
   <body>
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -39,5 +43,86 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+   
+
+<script>
+
+      (function () {
+        ShopifyBuyInit();
+      
+        function ShopifyBuyInit() {
+              var client = ShopifyBuy.buildClient({
+                domain: 'store.greenfilter.com',
+                storefrontAccessToken: 'b0f6e285934ab0374588e085bda31072',
+                appId: '6',
+              });
+
+              ShopifyBuy.UI.onReady(client).then(function (ui) {
+                ui.createComponent('cart', {
+                      options: {
+        "cart": {
+              //"iframe": false,
+              "contents": {
+                "button": true
+              },
+              "styles": {
+                "button": {
+                      "font-family": "Lato, sans-serif",
+                      "font-size": "13px",
+                      "padding-top": "14.5px",
+                      "padding-bottom": "14.5px",
+                      "background-color": "#00ad23",
+                      ":hover": {
+                        "background-color": "#003ead"
+                      },
+                      "font-weight": "bold",
+                      ":focus": {
+                        "background-color": "#00ad23"
+                      }
+                },
+                "footer": {
+                      "background-color": "#ffffff"
+                }
+              },
+              "googleFonts": [
+                "Lato"
+              ]
+        },
+        "toggle": {
+              "styles": {
+                "toggle": {
+                      "font-family": "Lato, sans-serif",
+                      "background-color": "#00ad23",
+                      ":hover": {
+                        "background-color": "#003ead"
+                      },
+                      "font-weight": "bold",
+                      ":focus": {
+                        "background-color": "#00ad23"
+                      }
+                },
+                "count": {
+                      "font-size": "13px"
+                }
+              },
+              "googleFonts": [
+                "Lato"
+              ]
+        },
+        "productSet": {
+              "styles": {
+                "products": {
+                      "@media (min-width: 601px)": {
+                        "margin-left": "-20px"
+                      }
+                }
+              }
+        }
+      }
+                });
+              });
+        }
+      })();
+    </script>
   </body>
 </html>

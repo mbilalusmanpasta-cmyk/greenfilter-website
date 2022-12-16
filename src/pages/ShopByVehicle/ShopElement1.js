@@ -3,27 +3,235 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { brandDetails } from "../../data/cars";
 import getMultipleCollections from "../../data/getMultipleCollections";
-import { getMakeCollection } from "../../data/store";
+import { getMakeCollection, statics } from "../../data/store";
+import { getMakesFromCollection } from "../../data/firebaseHelper";
+import { GetData } from "../../helper/request";
+
 const ShopElement1 = (props) => {
 
   const [categories,setCategories] = React.useState([]);
+  const [highPerformanceCollection,setHighPerformanceCollection] = React.useState([]);
+  const [popularPickupTrucksCollection,setPopularPickupTrucksCollection] = React.useState([]);
+  const [popularBrandsCollection,setPopularBrandsCollection] = React.useState([]);
+  const [insaneSupercarsCollection,setInsaneSupercarsCollection] = React.useState([]);
+
+
 
   useEffect( async()=>
   {
-    let collections = await getMultipleCollections(getMakeCollection().name)
-    setCategories(collections);
+    // let collections = await getCategories();
+    getMultipleCollectionsMakes();
   },[])
 
+
+  const getMultipleCollectionsMakes = (collections) =>
+  {
+
+    getHighPerformanceCollection();
+    getPopularPickupTrucksCollection();
+    getPopularBrandsCollection();
+    getInsaneSupercarsCollection();
+  }
+
+  const getHighPerformanceCollection = async () => {
+    const HighPerformanceCollectionId = 1;
+    let collectionT = {};
+    let response = await GetData(statics.BaseUrl+`/collection?id=${HighPerformanceCollectionId}`,200,null);
+    if(response.ResponseCode === "Success")
+    {
+      collectionT = response?.data?.rows?.[0];
+    }
+    setHighPerformanceCollection(collectionT);
+
+  }
+
+  const getPopularPickupTrucksCollection = async () => {
+    const PopularPickupTrucksCollectionId = 2;
+    let collectionT = {};
+    let response = await GetData(statics.BaseUrl+`/collection?id=${PopularPickupTrucksCollectionId}`,200,null);
+    if(response.ResponseCode === "Success")
+    {
+      collectionT = response?.data?.rows?.[0];
+    }
+    setPopularPickupTrucksCollection(collectionT);
+
+  }
+
+  const getPopularBrandsCollection = async () => {
+    const PopularBrandsCollectionId = 5;
+    let collectionT = {};
+    let response = await GetData(statics.BaseUrl+`/collection?id=${PopularBrandsCollectionId}`,200,null);
+    if(response.ResponseCode === "Success")
+    {
+      collectionT = response?.data?.rows?.[0];
+    }
+    setPopularBrandsCollection(collectionT);
+
+  }
+
+  const getInsaneSupercarsCollection = async () => {
+    const InsaneSupercarsCollectionId = 4;
+    let collectionT = {};
+    let response = await GetData(statics.BaseUrl+`/collection?id=${InsaneSupercarsCollectionId}`,200,null);
+    if(response.ResponseCode === "Success")
+    {
+      collectionT = response?.data?.rows?.[0];
+    }
+    setInsaneSupercarsCollection(collectionT);
+  }
+  
   return (
     <>
       <ShopElement1Wrapper>
-        {categories.map((category) => (
+
+        <div className="container-4 w-container">
+          <h1>
+          </h1>
+          <h1 className="heading-11">{"High Performance Cars"}</h1>
+          <div className="shop-vehicle-row w-row">
+            {highPerformanceCollection?.makes?.map((make) => (
+              <div
+                className="shop-vehicle-make w-col w-col-2"
+                key={make.id}
+              >
+                <Link
+                  className="link-block"
+                  to={`/brand/${make?.slug}`}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
+                >
+                  <div className="column-div">
+                    <div className="make-image">
+                      <img
+                        src={make?.images?.[0]?.link}
+                        className="product-image"
+                        alt="car"
+                      />
+                    </div>
+                    <div className="text-block car-carousel">
+                      {make?.title}
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>          
+
+        <div className="container-4 w-container">
+          <h1>
+          </h1>
+          <h1 className="heading-11">{"Popular Pickup Trucks"}</h1>
+          <div className="shop-vehicle-row w-row">
+            {popularPickupTrucksCollection?.makes?.map((make) => (
+              <div
+                className="shop-vehicle-make w-col w-col-2"
+                key={make?.id}
+              >
+                <Link
+                  className="link-block"
+                  to={`/brand/${make?.slug}`}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
+                >
+                  <div className="column-div">
+                    <div className="make-image">
+                      <img
+                        src={make.images?.[0]?.link}
+                        className="product-image"
+                        alt="car"
+                      />
+                    </div>
+                    <div className="text-block car-carousel">
+                      {make.title}
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="container-4 w-container">
+          <h1>
+          </h1>
+          <h1 className="heading-11">{"Popular Brands"}</h1>
+          <div className="shop-vehicle-row w-row">
+            {popularBrandsCollection?.makes?.map((make) => (
+              <div
+                className="shop-vehicle-make w-col w-col-2"
+                key={make?.id}
+              >
+                <Link
+                  className="link-block"
+                  to={`/brand/${make?.slug}`}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
+                >
+                  <div className="column-div">
+                    <div className="make-image">
+                      <img
+                        src={make.images?.[0]?.link}
+                        className="product-image"
+                        alt="car"
+                      />
+                    </div>
+                    <div className="text-block car-carousel">
+                      {make.title}
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="container-4 w-container">
+          <h1>
+          </h1>
+          <h1 className="heading-11">{"Insane Supercars"}</h1>
+          <div className="shop-vehicle-row w-row">
+            {insaneSupercarsCollection?.makes?.map((make) => (
+              <div
+                className="shop-vehicle-make w-col w-col-2"
+                key={make?.id}
+              >
+                <Link
+                  className="link-block"
+                  to={`/brand/${make?.slug}`}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
+                >
+                  <div className="column-div">
+                    <div className="make-image">
+                      <img
+                        src={make.images?.[0]?.link}
+                        className="product-image"
+                        alt="car"
+                      />
+                    </div>
+                    <div className="text-block car-carousel">
+                      {make.title}
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+       
+        {/* {categories.map((category) => (
           <div className="container-4 w-container" key={category.id}>
             <h1>
             </h1>
             <h1 className="heading-11">{category.title}</h1>
             <div className="shop-vehicle-row w-row">
-              {category.makes.map((make) => (
+              {category?.makes?.map((make) => (
                 <div
                   className="shop-vehicle-make w-col w-col-2"
                   key={make.id}
@@ -38,7 +246,7 @@ const ShopElement1 = (props) => {
                     <div className="column-div">
                       <div className="make-image">
                         <img
-                          src={make.imgSrc}
+                          src={make.main_image?.[0]?.url}
                           className="product-image"
                           alt="car"
                         />
@@ -52,7 +260,7 @@ const ShopElement1 = (props) => {
               ))}
             </div>
           </div>
-        ))}
+        ))} */}
         <div></div>
       </ShopElement1Wrapper>
     </>

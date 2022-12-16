@@ -18,7 +18,12 @@ import brand5 from "../../assets/trust/brand5.jpg";
 import Button1 from "../../components/Button1";
 import { useHistory } from "react-router-dom";
 import getCollection from "../../data/getSingleCollection";
-import { getMakeCollection } from "../../data/store";
+import { collection, query, where, getDocs, getDoc,doc} from "firebase/firestore"; 
+import  {db} from '../../helper/firebase';
+import { GetData } from "../../helper/request";
+import { statics } from "../../data/store";
+
+
 const HomeElement1 = (props) => {
 
   const history = useHistory();
@@ -26,8 +31,16 @@ const HomeElement1 = (props) => {
 
   useEffect(async ()=>
   {
-    let topPerformingBrandsT = await getCollection(null,"top-performing-brands");
-    setTopPerformingBrands(topPerformingBrandsT)
+    
+    const topPerformingBrandsCollectionId = 6;
+    let topPerformingBrandsT = {};
+    let response = await GetData(statics.BaseUrl+`/collection?id=${topPerformingBrandsCollectionId}`,200,null);
+    if(response.ResponseCode === "Success")
+    {
+      topPerformingBrandsT = response?.data?.rows?.[0];
+    }
+    setTopPerformingBrands(topPerformingBrandsT);
+
   },[])
 
  
@@ -60,23 +73,25 @@ const HomeElement1 = (props) => {
   return (
     <>
       <HomeElement1Wrapper gradient={gradient}>
+        {
+          console.log('a',topPerformingBrands)
+        }
         <div className="container-4">
           <h1 class="heading-11">
             The Chosen Filter for Top Performing Brands
           </h1>
           <div className="main-vehicle-row">
-            {topPerformingBrands.map((car) => (
-              <div key={car.id} className="w-col w-col-2">
-                {console.log(car)}
-                <Link to={`/brand/${car.name}`} class="link-block w-inline-block">
+            {topPerformingBrands?.makes?.map((make) => (
+              <div key={make.id} className="w-col w-col-2">
+                <Link to={`/brand/${make.slug}`} class="link-block w-inline-block">
                   <div class="column-div">
                     <img
-                      src={car?.main_image?.[0].url}
+                        src={make?.images?.[0]?.link}
                       sizes="(max-width: 479px) 82vw, (max-width: 767px) 200px, 13vw"
                       class="product-image"
                       alt="car"
                     />
-                    <div class="text-block car-carousel">{car.name}</div>
+                    <div class="text-block car-carousel">{make.name}</div>
                   </div>
                 </Link>
               </div>

@@ -20,9 +20,9 @@ const Hero = () => {
               <h1 class="hero-heading-2">
                 Keep your air filter in perfect condition for lifetime usage
               </h1>
-              <Link to="/">
+              <div onClick={()=>window.scrollTo(0, 650)  }>
                 <Button1 text="BUY NOW" />
-              </Link>
+              </div>
             </div>
             <img src={filter0} alt="filter0" className="filter _600" />
           </div>
