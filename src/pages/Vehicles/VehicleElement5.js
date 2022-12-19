@@ -287,8 +287,13 @@ const VehicleElement5Wrapper = styled.div`
     line-height: 28px;
     font-weight: 300;
   }
+
+  .slick-track{
+    height: fit-content;
+  }
+  
   .slick-slide > div {
-    min-height: 700px;
+    //min-height: 700px;
   }
   .review-container {
     position: relative;

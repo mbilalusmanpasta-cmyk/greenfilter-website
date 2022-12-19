@@ -306,6 +306,10 @@ const HomeElement2Wrapper = styled.div`
   text-align: center;
   position: relative;
 
+  .slick-track{
+    height: fit-content;
+  }
+
   .titles-div {
     position: relative;
     left: 0%;

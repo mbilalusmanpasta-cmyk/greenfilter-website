@@ -1,16 +1,22 @@
-import { React, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
+import React from 'react';
+
 import styled from "styled-components";
 import img0 from "../../assets/filters.jpg";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 import { useHistory } from "react-router-dom";
+import CircleLoader from "react-spinners/CircleLoader";
 
 const CFBElement1 = () => {
   const [companies, setCompanies] = useState([]);
-  const [selectedCompany, setSelectedCompany] = useState();
-  const [selectedFilters, setSelectedFilters] = useState({});
-  const [selectedGreenFilters, setselectedGreenFilters] = useState();
+  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [selectedGreenFilters, setselectedGreenFilters] = useState(null);
   const [showModel, setShowModel] = useState(false);
+  const [loading,setLoading] = useState(false)
+
   const history = useHistory();
 
   useEffect(() => {
@@ -18,12 +24,26 @@ const CFBElement1 = () => {
   }, []);
 
   useEffect(() => {
+    if(selectedFilter)
+    {
+      getProductById();
+    }
+  }, [selectedFilter]);
+
+  useEffect(() => {
     if (selectedGreenFilters) {
       setShowModel(!showModel)
     }
-  }, [selectedGreenFilters]);
+    if(selectedCompany)
+    {
+      getFilterCodes();
+    }
+  }, [selectedCompany]);
 
   const getCompanies = async () => {
+
+    setLoading(true)
+
     let tableDataT = [];
     let response = await GetData(
       statics.BaseUrl + `/competitor?pageSize=200`,
@@ -34,12 +54,32 @@ const CFBElement1 = () => {
       tableDataT = response?.data?.rows;
     }
     setCompanies(tableDataT);
+    setLoading(false)
+
   };
 
-  const getProductById = async (id) => {
-    let tableDataT = {};
+  const getFilterCodes = async (id) => {
+
+    let tableDataT = [];
     let response = await GetData(
-      statics.BaseUrl + `/product?id=${id}`,
+      statics.BaseUrl + `/competitor?id=${selectedCompany?.id}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
+      tableDataT = response?.data?.com_products;
+    }
+    setSelectedFilters(tableDataT);
+  };
+
+  const getProductById = async (filter) => {
+
+    let tableDataT = {};
+
+    console.log(selectedFilter);
+
+    let response = await GetData(
+      statics.BaseUrl + `/product?id=${selectedFilter?.product_id}`,
       200,
       null
     );
@@ -47,31 +87,52 @@ const CFBElement1 = () => {
       tableDataT = response?.data?.rows;
     }
     setselectedGreenFilters(tableDataT[0]);
+    setShowModel(true);
+
   };
 
   const onChangeCompanyHandler = (id) => {
     setShowModel(false);
     setSelectedCompany(undefined);
-    setSelectedFilters(undefined);
+    setSelectedFilter(undefined);
     let selectedCompany = companies.filter((item) => item.id === parseInt(id));
+
+    console.log(selectedCompany)
     if (selectedCompany.length) {
       setSelectedCompany(selectedCompany[0]);
+      // getFilterCodes(selectedCompany[0].id)
     }
   };
 
   const onChangeFilterHandler = (id) => {
     setShowModel(false);
-    let selectedFilters = selectedCompany.compatitor_products.filter(
+    let selectedFilter = selectedCompany.compatitor_products.filter(
       (item) => item.id === parseInt(id)
     );
-    if (selectedFilters.length) {
-      setSelectedFilters(selectedFilters[0]);
-      getProductById(selectedFilters[0].product_id);
+    if (selectedFilter.length) {
+      setSelectedFilter(selectedFilter[0]);
     }
   };
 
   return (
     <>
+    {
+      loading &&
+      <React.Fragment>
+          <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
+          <div style = {{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              zIndex:"9999",
+              position: "absolute",
+              top: "calc(50vh - 75px)",
+              left:"calc(50% - 75px)"
+            }}>
+            <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+          </div>
+      </React.Fragment>
+      }
       <CFBElement1Wrapper>
         <h1 className="heading">
           Cross-Reference for Another Brand to Green Filter
@@ -135,8 +196,8 @@ const CFBElement1 = () => {
                           }}
                         >
                           <option>Select</option>
-                          {selectedCompany &&
-                            selectedCompany.compatitor_products?.map((item, index) => (
+                          {selectedFilters &&
+                            selectedFilters?.map((item, index) => (
                               <option value={item.id}>
                                 {item.competitor_part_number}
                               </option>
@@ -151,7 +212,7 @@ const CFBElement1 = () => {
                     <tr>
                       {showModel && (
                         <td>
-                          {selectedCompany?.title} Filter {selectedFilters?.competitor_part_number} = Green Filter #<span style={{color: "blue", cursor: "pointer" }} onClick={() => {history.push(`/store?product_id=${selectedGreenFilters?.gfu_part_num}`)}} >{selectedGreenFilters?.gfu_part_num}</span>
+                          {selectedCompany?.title} Filter {selectedFilter?.competitor_part_number} = Green Filter #<span style={{color: "blue", cursor: "pointer" }} onClick={() => {history.push(`/store/filter/${selectedGreenFilters?.gfu_part_num}`)}} >{selectedGreenFilters?.gfu_part_num}</span>
                         </td>
                       )}
                     </tr>

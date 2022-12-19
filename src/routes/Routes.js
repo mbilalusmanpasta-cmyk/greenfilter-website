@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Home from "../pages/Home/Home";
 import { Switch, Route } from "react-router-dom";
 import ShopByVehicle from "../pages/ShopByVehicle/ShopByVehicle";
 import Vehicles from "../pages/Vehicles/Vehicles";
@@ -23,6 +22,7 @@ import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
 
 import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
 import Product from "../pages/Product";
+import Home from "../pages/Home/Home.jsx";
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
@@ -69,6 +69,19 @@ const Routes = () => {
             />
           )}
         />
+
+        <Route
+          exact
+          path="/store/filter/:id"
+          component={() => (
+            <Product
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+
         <Route
           exact
           path="/brand/:name"

@@ -7,6 +7,9 @@ import { getMakeCollection, statics } from "../../data/store";
 import { getMakesFromCollection } from "../../data/firebaseHelper";
 import { GetData } from "../../helper/request";
 
+import BeatLoader from "react-spinners/BeatLoader";
+
+
 const ShopElement1 = (props) => {
 
   const [categories,setCategories] = React.useState([]);
@@ -15,6 +18,10 @@ const ShopElement1 = (props) => {
   const [popularBrandsCollection,setPopularBrandsCollection] = React.useState([]);
   const [insaneSupercarsCollection,setInsaneSupercarsCollection] = React.useState([]);
 
+  const [highPerformanceCollectionLoading,setHighPerformanceCollectionLoading] = React.useState(false);
+  const [popularPickupTrucksCollectionLoading,setPopularPickupTrucksCollectionLoading] = React.useState(false);
+  const [popularBrandsCollectionLoading,setPopularBrandsCollectionLoading] = React.useState(false);
+  const [insaneSupercarsCollectionLoading,setInsaneSupercarsCollectionLoading] = React.useState(false);
 
 
   useEffect( async()=>
@@ -31,9 +38,12 @@ const ShopElement1 = (props) => {
     getPopularPickupTrucksCollection();
     getPopularBrandsCollection();
     getInsaneSupercarsCollection();
+
   }
 
   const getHighPerformanceCollection = async () => {
+
+    setHighPerformanceCollectionLoading(true);
     const HighPerformanceCollectionId = 1;
     let collectionT = {};
     let response = await GetData(statics.BaseUrl+`/collection?id=${HighPerformanceCollectionId}`,200,null);
@@ -42,10 +52,13 @@ const ShopElement1 = (props) => {
       collectionT = response?.data?.rows?.[0];
     }
     setHighPerformanceCollection(collectionT);
+    setHighPerformanceCollectionLoading(false)
 
   }
 
   const getPopularPickupTrucksCollection = async () => {
+
+    setPopularPickupTrucksCollectionLoading(true)
     const PopularPickupTrucksCollectionId = 2;
     let collectionT = {};
     let response = await GetData(statics.BaseUrl+`/collection?id=${PopularPickupTrucksCollectionId}`,200,null);
@@ -54,10 +67,12 @@ const ShopElement1 = (props) => {
       collectionT = response?.data?.rows?.[0];
     }
     setPopularPickupTrucksCollection(collectionT);
+    setPopularPickupTrucksCollectionLoading(false)
 
   }
 
   const getPopularBrandsCollection = async () => {
+    setPopularBrandsCollectionLoading(true)
     const PopularBrandsCollectionId = 5;
     let collectionT = {};
     let response = await GetData(statics.BaseUrl+`/collection?id=${PopularBrandsCollectionId}`,200,null);
@@ -66,10 +81,11 @@ const ShopElement1 = (props) => {
       collectionT = response?.data?.rows?.[0];
     }
     setPopularBrandsCollection(collectionT);
-
+    setPopularBrandsCollectionLoading(false)
   }
 
   const getInsaneSupercarsCollection = async () => {
+    setInsaneSupercarsCollectionLoading(true)
     const InsaneSupercarsCollectionId = 4;
     let collectionT = {};
     let response = await GetData(statics.BaseUrl+`/collection?id=${InsaneSupercarsCollectionId}`,200,null);
@@ -78,6 +94,7 @@ const ShopElement1 = (props) => {
       collectionT = response?.data?.rows?.[0];
     }
     setInsaneSupercarsCollection(collectionT);
+    setInsaneSupercarsCollectionLoading(false)
   }
   
   return (
@@ -85,11 +102,20 @@ const ShopElement1 = (props) => {
       <ShopElement1Wrapper>
 
         <div className="container-4 w-container">
-          <h1>
-          </h1>
+         
           <h1 className="heading-11">{"High Performance Cars"}</h1>
           <div className="shop-vehicle-row w-row">
-            {highPerformanceCollection?.makes?.map((make) => (
+
+            
+            {highPerformanceCollectionLoading ? 
+
+              <div className="loader-wrapper">
+                <BeatLoader  color={"green"} loading={true}  />
+              </div>
+
+            
+            
+            :highPerformanceCollection?.makes?.map((make) => (
               <div
                 className="shop-vehicle-make w-col w-col-2"
                 key={make.id}
@@ -120,11 +146,16 @@ const ShopElement1 = (props) => {
         </div>          
 
         <div className="container-4 w-container">
-          <h1>
-          </h1>
+          
           <h1 className="heading-11">{"Popular Pickup Trucks"}</h1>
           <div className="shop-vehicle-row w-row">
-            {popularPickupTrucksCollection?.makes?.map((make) => (
+            {
+             popularPickupTrucksCollectionLoading ? 
+
+              <div className="loader-wrapper">
+                <BeatLoader  color={"green"} loading={true}  />
+              </div> :
+              popularPickupTrucksCollection?.makes?.map((make) => (
               <div
                 className="shop-vehicle-make w-col w-col-2"
                 key={make?.id}
@@ -155,11 +186,16 @@ const ShopElement1 = (props) => {
         </div>
 
         <div className="container-4 w-container">
-          <h1>
-          </h1>
+         
           <h1 className="heading-11">{"Popular Brands"}</h1>
           <div className="shop-vehicle-row w-row">
-            {popularBrandsCollection?.makes?.map((make) => (
+            {
+            popularBrandsCollectionLoading ? 
+
+            <div className="loader-wrapper">
+              <BeatLoader  color={"green"} loading={true}  />
+            </div> :
+            popularBrandsCollection?.makes?.map((make) => (
               <div
                 className="shop-vehicle-make w-col w-col-2"
                 key={make?.id}
@@ -194,7 +230,13 @@ const ShopElement1 = (props) => {
           </h1>
           <h1 className="heading-11">{"Insane Supercars"}</h1>
           <div className="shop-vehicle-row w-row">
-            {insaneSupercarsCollection?.makes?.map((make) => (
+            {
+            insaneSupercarsCollectionLoading ? 
+
+            <div className="loader-wrapper">
+              <BeatLoader  color={"green"} loading={true}  />
+            </div> :
+            insaneSupercarsCollection?.makes?.map((make) => (
               <div
                 className="shop-vehicle-make w-col w-col-2"
                 key={make?.id}
@@ -274,6 +316,11 @@ const ShopElement1Wrapper = styled.div`
   padding-top: 75px;
   padding-bottom: 75px;
   background-color: #fff;
+
+  .loader-wrapper{
+    text-align: center;
+    width: 100%;
+  }
 
   .container-4 {
     padding-top: 50px;

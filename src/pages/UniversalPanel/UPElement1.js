@@ -5,6 +5,9 @@ import img2 from "../../assets/panel.jpg";
 import FilterTable from "../../components/FilterTable";
 import { collection, query, where, getDocs} from "firebase/firestore"; 
 import  {db} from '../../helper/firebase';
+import { GetData } from "../../helper/request";
+import { statics } from "../../data/store";
+import CircleLoader from "react-spinners/CircleLoader";
 
 const tableHeader = [
   {
@@ -52,35 +55,48 @@ const tableHeader = [
 
 const UPElement1 = () => {
   const [tableData,setTableData] = React.useState([])
+  const [loading,setLoading] = React.useState(false)
 
   useEffect(()=>{
 
     getTableData();
   },[])
 
+
   const getTableData = async () =>
   {
-    const productsRef = collection(db, "product_variants");
-
-    const q = query(productsRef, where("category", "==", "Panel Filter"));
-
+    setLoading(true)
+    const product_type_id = 2;
     let tableDataT = [];
-
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      tableDataT.push(doc.data())
-
-    });
-
-    console.log(tableDataT)
-
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200&is_active=1`,200,null)
+    if(response.ResponseCode === "Success")
+    {
+      tableDataT = response?.data?.rows;
+    }
     setTableData(tableDataT);
+    setLoading(false)
+
   }
 
   return (
     <>
+    {
+      loading &&
+      <React.Fragment>
+          <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
+          <div style = {{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              zIndex:"9999",
+              position: "absolute",
+              top: "calc(50vh - 75px)",
+              left:"calc(50% - 75px)"
+            }}>
+            <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+          </div>
+      </React.Fragment>
+      }
       <UPElement1Wrapper>
         <h1 style={{ marginTop: 100, marginLeft: 20 }}>Find a Panel Filter</h1>
         <div

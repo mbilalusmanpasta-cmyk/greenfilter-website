@@ -8,6 +8,7 @@ import { collection, query, where, getDocs} from "firebase/firestore";
 import  {db} from '../../helper/firebase';
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
+import CircleLoader from "react-spinners/CircleLoader";
 
 const tableHeader = [
   {
@@ -15,54 +16,71 @@ const tableHeader = [
     name: "title",
     label: "Filter Number",
     maxWidth: 91,
+    numeric: false,
   },
   {
     id: 1,
     name: "filter_id_length_inch",
     label: "Inlet Diameter (ID)",
     maxWidth: 165,
+    numeric: true,
+
   },
   {
     id: 2,
     name: "filter_height_inch",
     label: "Height (H)",
     maxWidth: 82,
+    numeric: true,
+
   },
   {
     id: 3,
     name: "filter_od_base_length_inch",
     label: "Outside Diameter - Base (OD-B)",
     maxWidth: 171,
+    numeric: true,
+
   },
   {
     id: 4,
     name: "filter_od_top_length_inch",
     label: "Outside Diameter - Top (OD-T)",
     maxWidth: 171,
+    numeric: true,
+
   },
   {
     id: 5,
     name: "filter_style",
     label: "Style",
     maxWidth: 165,
+    numeric: false,
+
   },
   {
     id: 6,
     name: "filter_end_cap", 
     label: "End Cap",
     maxWidth: 179,
+    numeric: false,
+
   },
   {
     id: 7,
     name: "filter_inlet_type",
     label: "Inlet Type",
     maxWidth: 131,
+    numeric: false,
+
   },
   {
     id: 8,
     name: "filter_color",
     label: "Color",
     maxWidth: 76,
+    numeric: false,
+
   },
 ];
 
@@ -71,6 +89,7 @@ const UCElement1 = () => {
   
 
   const [tableData,setTableData] = React.useState([])
+  const [loading,setLoading] = React.useState(false)
 
   useEffect(()=>{
 
@@ -79,18 +98,37 @@ const UCElement1 = () => {
 
   const getTableData = async () =>
   {
-    
+    setLoading(true)
     const product_type_id = 7;
     let tableDataT = [];
-    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200`,200,null)
+    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200&is_active=1`,200,null)
     if(response.ResponseCode === "Success")
     {
       tableDataT = response?.data?.rows;
     }
     setTableData(tableDataT);
+    setLoading(false)
+
   }
   return (
     <>
+    {
+      loading &&
+      <React.Fragment>
+          <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
+          <div style = {{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              zIndex:"9999",
+              position: "absolute",
+              top: "calc(50vh - 75px)",
+              left:"calc(50% - 75px)"
+            }}>
+            <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+          </div>
+      </React.Fragment>
+      }
       <UCElement1Wrapper>
         <h1 style={{ marginTop: 100, marginLeft: 20 }}>
           Find a Cone or Cylinder Filter

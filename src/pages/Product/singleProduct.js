@@ -6,23 +6,44 @@ import { GetData } from "../../helper/request";
 import styled from "styled-components";
 import AddToCart from "../../components/AddToCart";
 import ProductInformationTable from "../../components/ProductInformationTable";
-
-
+import CircleLoader from "react-spinners/CircleLoader";
+import ProductShopifyImage from "../../components/ProductImage";
 const SingleProduct = () => {
 
     const [tableData,setTableData] = React.useState([])
     const [productData,setProductData] = React.useState({})
+    const [loading,setLoading] = React.useState(false)
 
 
     useEffect(()=>{
         getProductData();
-    },[])
+    },[window.location.pathname])
 
     const getProductData = async () =>
     {
+        setLoading(true)
         const queryParams = new URLSearchParams(window.location.search)
+        let gfu_part_num = queryParams.get("gfu_part_num")
         const product_id = queryParams.get("product_id")
-        let response  =  await GetData(statics.BaseUrl + `/product?id=${product_id}`,200,null)
+
+        if(!gfu_part_num && !product_id)
+        {
+            if(window.location.pathname.includes("/store/filter/"))
+            {
+                gfu_part_num = window.location.pathname.split('/')[3];
+            }
+        }
+
+        let response = null;
+        if(gfu_part_num)
+        {
+            response  =  await GetData(statics.BaseUrl + `/product?gfu_part_num=${gfu_part_num}`,200,null)
+        }
+
+        else {
+            response  =  await GetData(statics.BaseUrl + `/product?product_id=${product_id}`,200,null)
+        }
+        
         let productDataT = {};
         if(response.ResponseCode === "Success")
         {
@@ -30,6 +51,8 @@ const SingleProduct = () => {
         }
 
         setProductData(productDataT);
+        setLoading(false)
+
     }
 
     // const getTableData = async () =>
@@ -46,6 +69,23 @@ const SingleProduct = () => {
 
     return (
       <>
+        {
+      loading &&
+      <React.Fragment>
+          <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
+          <div style = {{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              zIndex:"9999",
+              position: "absolute",
+              top: "calc(50vh - 75px)",
+              left:"calc(50% - 75px)"
+            }}>
+            <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+          </div>
+      </React.Fragment>
+      }
         <SingleProductWrapper >
             <Grid container spacing={4}>
                 <Grid item xs={12} sm={12} md={4} lg={6} xl={4} >
@@ -53,9 +93,12 @@ const SingleProduct = () => {
                         <div style={{marginBottom:"140px"}}>
                             <h1> {productData?.title} </h1>
                         </div>
-                        <img src={productData?.variants?.[0]?.images?.[0]?.link} />
+                        {/* <img src={productData?.variants?.[0]?.images?.[0]?.link} /> */}
+
+                        <ProductShopifyImage  buyButtonId={productData?.buy_url}  id={productData?.id} />
+
                         <div>
-                            <h3 style={{marginTop:"-20px"}}>Use cleaner kit <a style={{color:"green"}} href="/store/1989">#2000</a></h3>
+                            <h3 style={{marginTop:"-20px"}}>Use cleaner kit <a style={{color:"green"}} onClick={()=>window.location.href="/store/filter/2000"} >#2000</a></h3>
                             <a href="https://www.p65warnings.ca.gov/"><img width="300px" src="/images/Prop65.jpg" /></a>
                         </div>
                     </div>
@@ -108,7 +151,7 @@ const SingleProduct = () => {
   
   const SingleProductWrapper = styled.div`
     position: relative;
-    margin-top: 100px;
+    margin-top: 50px;
     padding: 0% 5% 20%;
     background-color: #fff;
     text-align: center;

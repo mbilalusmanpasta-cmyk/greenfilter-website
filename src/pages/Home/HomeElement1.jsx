@@ -17,21 +17,20 @@ import brand4 from "../../assets/trust/brand4.png";
 import brand5 from "../../assets/trust/brand5.jpg";
 import Button1 from "../../components/Button1";
 import { useHistory } from "react-router-dom";
-import getCollection from "../../data/getSingleCollection";
-import { collection, query, where, getDocs, getDoc,doc} from "firebase/firestore"; 
-import  {db} from '../../helper/firebase';
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 
+import CircleLoader from "react-spinners/CircleLoader";
 
 const HomeElement1 = (props) => {
 
   const history = useHistory();
   const [topPerformingBrands,setTopPerformingBrands] = React.useState([]);
+  const [loading,setLoading] = React.useState(false)
 
   useEffect(async ()=>
   {
-    
+    setLoading(true)
     const topPerformingBrandsCollectionId = 6;
     let topPerformingBrandsT = {};
     let response = await GetData(statics.BaseUrl+`/collection?id=${topPerformingBrandsCollectionId}`,200,null);
@@ -40,6 +39,7 @@ const HomeElement1 = (props) => {
       topPerformingBrandsT = response?.data?.rows?.[0];
     }
     setTopPerformingBrands(topPerformingBrandsT);
+    setLoading(false)
 
   },[])
 
@@ -72,10 +72,25 @@ const HomeElement1 = (props) => {
   ];
   return (
     <>
+     {
+      loading &&
+      <React.Fragment>
+          <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
+          <div style = {{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+              zIndex:"9999",
+              position: "absolute",
+              top: "calc(50vh - 75px)",
+              left:"calc(50% - 75px)"
+            }}>
+            <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+          </div>
+      </React.Fragment>
+      }
+
       <HomeElement1Wrapper gradient={gradient}>
-        {
-          console.log('a',topPerformingBrands)
-        }
         <div className="container-4">
           <h1 class="heading-11">
             The Chosen Filter for Top Performing Brands
@@ -96,7 +111,9 @@ const HomeElement1 = (props) => {
                 </Link>
               </div>
             ))}
-            <div className="div-block-5">
+            
+          </div>
+          <div className="div-block-5">
               <Button1
                 text="See All Brands"
                 handleClick={() => {
@@ -105,7 +122,6 @@ const HomeElement1 = (props) => {
                 }}
               />
             </div>
-          </div>
         </div>
         <div className="div-block-3">
           <div

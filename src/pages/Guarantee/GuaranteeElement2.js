@@ -26,10 +26,10 @@ const GuaranteeElement2 = () => {
             </p>
             <Grid container style={{ margin: "15px 0 15px 0" }}>
               <Grid item xs={12} sm={12} md={6}>
-                <Button1 text="Warranty Return Form" />
+                <Button1 isLink text="Warranty Return Form" to="/documents/gfu_warranty_return.pdf" target="_blank"/>
               </Grid>
               <Grid item xs={12} sm={12} md={6}>
-                <Button1 text="Warranty Card" />
+                <Button1 isLink text="Warranty Card" to="/documents/gfu_warranty_card.pdf" target="_blank" />
               </Grid>
             </Grid>
             <div className="tiny-text">
@@ -62,7 +62,7 @@ const GuaranteeElement2 = () => {
           </p>
         </div>
         <div class="titles-div less-padding"></div>
-        <Button1 text="Filter Return Form" marginTop={20} />
+        <Button1 isLink text="Filter Return Form" marginTop={20} to="/documents/gfu_filter_credit_return.pdf" target="_blank" /> 
       </GuaranteeElement2Wrapper>
     </>
   );

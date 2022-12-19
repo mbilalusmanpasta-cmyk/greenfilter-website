@@ -51,7 +51,7 @@ const MeasureFilterElement1 = () => {
                 outsides of the flange.
                 <br />
                 <center>
-                  <a href="https://greenfilter.com/images/framework/measure/id-right.jpg">
+                  <a href={tImg1}>
                     <img src={tImg1} alt="table" />
                   </a>
                   <a href="https://greenfilter.com/images/framework/measure/id-wrong.jpg">

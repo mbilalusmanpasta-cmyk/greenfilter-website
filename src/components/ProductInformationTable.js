@@ -35,7 +35,7 @@ const tableHeader = [
   {
     id: 1,
     name: "value",
-    label: "value",
+    label: "Value",
     maxWidth: 82,
   },
 ];
@@ -123,6 +123,8 @@ const tableRows = [
 ];
 
 
+
+
 const ProductInformationTable = ({ tableData }) => {
 
   const history = useHistory();
@@ -133,7 +135,7 @@ const ProductInformationTable = ({ tableData }) => {
     if(row?.id)
     {
 
-      history.push(`/store?product_id=${row.id}`);
+      history.push(`/store/filter/${row.gfu_part_num}`);
     }
   }
 
@@ -162,16 +164,11 @@ const ProductInformationTable = ({ tableData }) => {
                       width: header.maxWidth,
                       background: "no-repeat 5px center",
                       textAlign:"center",
-                      backgroundImage:
-                        sortedColumn === id
-                          ? `url(${upperIcon})`
-                          : `url(${sortIcon})`,
                       whiteSpace: "normal",
                       backgroundColor:
                       sortedColumn === id ? "black" : "black",
                       color: sortedColumn === id ? "#fff" : "#ffffff",
                     }}
-                    onClick={() => setSortedColumn(id)}
                   >
                     <div class="tablesorter-header-inner">{header.label}</div>
                   </TableCell>
@@ -180,9 +177,12 @@ const ProductInformationTable = ({ tableData }) => {
             </TableHead>
 
             <TableBody>
-              {tableRows.map((row, id) => (
 
-                tableData[row.name] && (
+              
+              {tableData && tableRows.map((row, id) => (
+
+
+                tableData[row?.name] && (
 
                 // <Link to={`/store/${row?.id}`} class="link-block w-inline-block">
                   <TableRow
@@ -201,7 +201,7 @@ const ProductInformationTable = ({ tableData }) => {
                       className="table-row-cell"
                       style={{ color: "#3d3d3d" }}
                     >
-                      {tableData[row.name]}
+                      {tableData[row?.name]}
                     </TableCell>
                   </TableRow>)
                 // </Link>
