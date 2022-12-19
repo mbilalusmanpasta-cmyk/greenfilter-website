@@ -356,7 +356,7 @@ const GreenSearch = ({ Sticky }) => {
 
                         {
                           window.location.pathname.includes("/store/filter/") ? <p className="cust-link" onClick={() => window.location.href = `/store/filter/${product.gfu_part_num}`}> Click here for more product information </p>
-                            : <p> <Link to={`/store/filter/${product.gfu_part_num}`}> </Link> </p>
+                            : <p> <Link to={`/store/filter/${product.gfu_part_num}`}> Click here for more product information </Link> </p>
                         }
                         <AddToCart isLeft text="ADD TO CART" buyButtonId={product?.buy_url} id={product?.id?.toString() + key.toString()} background="white" color="#00ad23" />
 
@@ -380,7 +380,7 @@ const GreenSearch = ({ Sticky }) => {
                         apiStr?.engine && <p>Fitment Note: - {apiData?.engine?.[0]?.description} Models</p>
                       }
 
-                      {/* <p><Link to={`/store?product_id=${product.id}`}>Click here for more product information </Link> </p> */}
+                      {/* <p><Link to={`/store/filter/${product.gfu_part_num}`}>Click here for more product information </Link> </p> */}
                     </div>
                   </div>
                 </div>

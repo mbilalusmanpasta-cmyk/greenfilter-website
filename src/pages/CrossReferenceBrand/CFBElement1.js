@@ -75,8 +75,11 @@ const CFBElement1 = () => {
   const getProductById = async (filter) => {
 
     let tableDataT = {};
+
+    console.log(selectedFilter);
+
     let response = await GetData(
-      statics.BaseUrl + `/product?id=${selectedFilter?.gfu_part_num}`,
+      statics.BaseUrl + `/product?id=${selectedFilter?.product_id}`,
       200,
       null
     );

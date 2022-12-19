@@ -18,6 +18,8 @@ import CrossReferenceBrand from "../pages/CrossReferenceBrand/CrossReferenceBran
 import CrossReferenceFilter from "../pages/CrossReferenceFilter/CrossReferenceFilter";
 import FAQs from "../pages/FAQs/FAQs";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
+
 import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
 import Product from "../pages/Product";
 import Home from "../pages/Home/Home.jsx";
@@ -261,6 +263,18 @@ const Routes = () => {
           path="/privacy-policy"
           component={() => (
             <PrivacyPolicy
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+
+<Route
+          exact
+          path="/terms-of-service"
+          component={() => (
+            <TermsAndConditions
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}

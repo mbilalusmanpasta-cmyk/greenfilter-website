@@ -9,7 +9,7 @@ import VehicleElement3 from "./VehicleElement3";
 import VehicleElement4 from "./VehicleElement4";
 import { brandDetails } from "../../data/cars";
 import VehicleElement5 from "./VehicleElement5";
-import HomeElement5 from "../Home/HomeElement5";
+import HomeElement5 from "../Home/HomeElement5.jsx";
 import VehicleElement12 from "./VehicleElement12";
 import { collection, query, where, getDocs,startAt,endAt, collectionGroup,getDoc} from "firebase/firestore"; 
 import  {db} from '../../helper/firebase';
