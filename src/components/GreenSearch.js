@@ -334,7 +334,7 @@ const GreenSearch = ({ Sticky }) => {
           <Button type="link" className="customBtns" onClick={reset}>Clear</Button>
           <Button type="primary"
             // disabled={!finalSelectedId}
-            className="customBtns" onClick={finalSearch}>Search</Button>
+            className={searchpartNo.length < 1 ? "customBtns disabledSearch" :"customBtns"} onClick={finalSearch} disabled={searchpartNo.length < 1}>Search</Button>
         </div>
 
 
@@ -426,6 +426,11 @@ const GreenSearchWrapper = styled.div`
   }
   .cust-link:hover {
     color:blue;
+  }
+
+  .disabledSearch {
+    background: #ffffff7a !important;
+
   }
 `
 
