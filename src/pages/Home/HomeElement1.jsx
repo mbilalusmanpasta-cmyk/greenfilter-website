@@ -402,7 +402,12 @@ const HomeElement1Wrapper = styled.div`
   .image-5 {
     width: 125px;
   }
-
+.disclaimer{
+  margin-bottom: 10px;
+  font-family: Lato, sans-serif;
+  color: #757575;
+  font-weight: 300;
+}
   @media screen and (max-width: 767px) {
     .w-col-2 {
       width: 50% !important;
@@ -434,4 +439,5 @@ const HomeElement1Wrapper = styled.div`
       display: none;
     }
   }
+
 `;

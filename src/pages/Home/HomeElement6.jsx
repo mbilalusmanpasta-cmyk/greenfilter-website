@@ -55,6 +55,8 @@ const HomeElement6 = () => {
               </Link>
             </div>
           </div>
+   
+          <div style={{padding:"10px",fontFamily:"Lato, sans-serif",color:"#757575",fontWeight:"bold",textAlign:"left"}}>Please inspect all merchandise for damage or missing parts and make sure all parts invoiced are received before you sign for the merchandise. Keystone-NTP/STAG reserves the right to deny credit on all shortages that are called in after delivery has been made and you have signed for the product without notation of a shortage. Items damaged due to improper installation or customer mishandling will not be credited upon return.</div>
         </div>
       </HomeElement6Wrapper>
     </>
