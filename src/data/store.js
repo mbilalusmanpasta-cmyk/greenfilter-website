@@ -131,7 +131,7 @@ const form2 = [
 
 export const statics = {
   // BaseUrl: "https://greenfilter-backend-production.herokuapp.com"
-  BaseUrl: "http://greenfilter-api.codingtier.com"
+  BaseUrl: "https://greenfilter-api.codingtier.com"
   
 }
 
