@@ -123,6 +123,7 @@ const GreenSearch = ({ Sticky }) => {
     // }
     if (searchpartNo) {
       filters["gfu_part_num"] = searchpartNo;
+      filters["is_active"] = 1;
 
     }
 
