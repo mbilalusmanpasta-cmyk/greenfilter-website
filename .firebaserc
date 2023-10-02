@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "greenfilterusa"
+    "default": "greenfilterusa",
+    "staging": "greenfilter-stag"
+
   }
 }

@@ -11,12 +11,32 @@ import filter0 from "../../assets/filter0.png";
 import filter1 from "../../assets/filter1.png";
 import filter2 from "../../assets/filter2.png";
 
-const Hero = () => {
+const Hero = ({sliders}) => {
   return (
     <>
-      <HeroWrapper bg0={bg0} bg1={bg1} bg2={bg2}>
+      <HeroWrapper bg0={bg0} bg1={bg1} bg2={bg2} sliders={sliders}>
         <Carousel autoplay dots={false}>
-          <div className="img-container wrapper0">
+          {
+            sliders.map((slider,index)=>
+              <HeroSliderWrapper bg={slider.hero?.[0]?.link}>
+                  <div className="img-container wrapper0">
+                    <div className="container-3">
+                      <h1 class="hero-heading-1">
+                        {slider.title}
+                      </h1>
+                      <h1 class="hero-heading-2">
+                      {slider.description}
+                      </h1>
+                      {/* <Link to="/">
+                        <Button1 text="Why Go Green?" />
+                      </Link> */}
+                    </div>
+                </div>
+              </HeroSliderWrapper>
+              
+            )
+          }
+          {/* <div className="img-container wrapper0">
             <div className="container-3">
               <h1 class="hero-heading-1">
                 Green Filter Wins at the 2018 Rolex
@@ -25,9 +45,6 @@ const Hero = () => {
                 "Proud to include Green Filter in our winning Ford GTs" - CHIP
                 GANASSI
               </h1>
-              {/* <Link to="/">
-                <Button1 text="Why Go Green?" />
-              </Link> */}
             </div>
             <img src={filter0} alt="filter0" className="filter _600" />
           </div>
@@ -39,9 +56,6 @@ const Hero = () => {
               <h1 class="hero-heading-2">
                 Increase your horsepower & fuel efficiency.
               </h1>
-              {/* <Link to="/">
-                <Button1 text="Prove It!" />
-              </Link> */}
             </div>
             <img src={filter1} alt="filter1" className="filter right" />
           </div>
@@ -52,12 +66,9 @@ const Hero = () => {
                 From gas mileage to lifetime durability ... Green Filters
                 outperform the competition.
               </h1>
-              {/* <Link to="/">
-                <Button1 text="Prove It!" />
-              </Link> */}
             </div>
             <img src={filter2} alt="filter2" className="filter"  />
-          </div>
+          </div> */}
         </Carousel>
       </HeroWrapper>
     </>
@@ -81,7 +92,7 @@ max-height:500px;
         rgba(0, 0, 0, 0.21)
       ),
       linear-gradient(180deg, rgba(0, 0, 0, 0.98), transparent 53%),
-      url(${(props) => props.bg0});
+      url(${(props) => props.slider});
     background-position: 0px 0px, 0px 0px, 50% 50%;
     background-size: auto, auto, cover;
   }
@@ -175,4 +186,27 @@ max-height:500px;
       max-width: 728px;
     }
   }
+`;
+
+
+const HeroSliderWrapper = styled.div`
+
+  .img-container {
+    position: relative;
+    min-height: 500px;
+    background-repeat: no-repeat;
+  }
+  .wrapper0 {
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.21),
+        rgba(0, 0, 0, 0.21)
+      ),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.98), transparent 53%),
+      url(${(props) => props.bg});
+    background-position: 0px 0px, 0px 0px, 50% 50%;
+    background-size: auto, auto, cover;
+  }
+
+  
 `;

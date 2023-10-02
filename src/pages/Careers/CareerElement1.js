@@ -28,7 +28,9 @@ const CareerElement1 = () => {
                   Please download and fill out the application below, then email
                   the completed application to accounting@greenfilterusa.com{" "}
                 </p>
-                <a href="https://greenfliter.com/documents/GreenFilter_APP.doc">
+
+                {/* <Button1 isLink text="Warranty Return Form" to="/documents/gfu_warranty_return.pdf" target="_blank"/> */}
+                <a href="/documents/GreenFilter_APP.doc"  target="_blank">
                   <img src={link} alt="documents" />
                 </a>
               </Grid>

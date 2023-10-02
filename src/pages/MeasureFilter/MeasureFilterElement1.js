@@ -10,7 +10,22 @@ import tImg5 from "../../assets/od-b-wrong_s.jpg";
 import tImg6 from "../../assets/h-right_s.jpg";
 import tImg7 from "../../assets/h-wrong_s.jpg";
 
+import { LightBox } from 'react-lightbox-pack';
+import "react-lightbox-pack/dist/index.css";
+import ZoomBox from "../../components/ZoomBox";
+
+
 const MeasureFilterElement1 = () => {
+
+  const [toggle, setToggle] =  React.useState(false);
+	const [sIndex, setSIndex] =  React.useState(0);
+
+  const  ZoomBoxHandler  = (state, sIndex) => {
+		setToggle(state);
+		setSIndex(sIndex);
+	};
+
+
   return (
     <>
       <MeasureFilterElement1Wrapper bgImg={bgImg}>
@@ -51,12 +66,20 @@ const MeasureFilterElement1 = () => {
                 outsides of the flange.
                 <br />
                 <center>
-                  <a href={tImg1}>
-                    <img src={tImg1} alt="table" />
-                  </a>
-                  <a href="https://greenfilter.com/images/framework/measure/id-wrong.jpg">
-                    <img src={tImg2} alt="table" />
-                  </a>
+                    <img src={tImg1} alt="table" 
+                      onClick={() => {
+                        ZoomBoxHandler(true, 0);
+                      }}
+                    />
+                  {/* <a href="https://greenfilter.com/images/framework/measure/id-wrong.jpg">
+                    
+                  </a> */}
+
+                  <img src={tImg2} alt="table"
+                      onClick={() => {
+                        ZoomBoxHandler(true, 1);
+                      }}
+                    />
                 </center>
               </li>
               <br />
@@ -66,9 +89,13 @@ const MeasureFilterElement1 = () => {
                 edges.
                 <br />
                 <center>
-                  <a href="https://greenfilter.com/images/framework/measure/od-t.jpg">
-                    <img src={tImg3} alt="table" />
-                  </a>
+                  {/* <a href="https://greenfilter.com/images/framework/measure/od-t.jpg"> */}
+                    <img src={tImg3} alt="table"
+                      onClick={() => {
+                        ZoomBoxHandler(true, 2);
+                      }}
+                     />
+                  {/* </a> */}
                 </center>
               </li>
               <br />
@@ -79,12 +106,13 @@ const MeasureFilterElement1 = () => {
                 the flange to get the dimension.
                 <br />
                 <center>
-                  <a href="https://greenfilter.com/images/framework/measure/od-b-right.jpg">
-                    <img src={tImg4} alt="table" />
-                  </a>
-                  <a href="https://greenfilter.com/images/framework/measure/od-b-wrong.jpg">
-                    <img src={tImg5} alt="table" />
-                  </a>
+                    <img src={tImg4} alt="table" onClick={() => {
+                        ZoomBoxHandler(true, 3);
+                      }}/>
+                 
+                    <img src={tImg5} alt="table" onClick={() => {
+                        ZoomBoxHandler(true, 4);
+                      }} />
                 </center>
               </li>
               <br />
@@ -94,17 +122,31 @@ const MeasureFilterElement1 = () => {
                 filter end cap.
                 <br />
                 <center>
-                  <a href="https://greenfilter.com/images/framework/measure/h-right.jpg">
-                    <img src={tImg6} alt="table" />
-                  </a>
-                  <a href="https://greenfilter.com/images/framework/measure/h-wrong.jpg">
-                    <img src={tImg7} alt="table" />
-                  </a>
+                    <img src={tImg6} alt="table" onClick={() => {
+                        ZoomBoxHandler(true, 5);
+                      }} />
+                  
+                    <img src={tImg7} alt="table"
+                      onClick={() => {
+                        ZoomBoxHandler(true, 6);
+                      }}/>
                 </center>
               </li>
             </left>
           </ul>
         </div>
+
+        <ZoomBox 
+          // image={}
+          event={ZoomBoxHandler}
+          dataArr={[tImg1,tImg2,tImg3,tImg4,tImg5,tImg6,tImg7]}
+          imageIndex={sIndex}
+          setImageIndex={setSIndex}
+          state={toggle}
+          imageWidth="60vw"
+          imageHeight="70vh"
+        />
+        
       </MeasureFilterElement1Wrapper>
     </>
   );

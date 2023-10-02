@@ -52,7 +52,7 @@ const GuaranteeElement2 = () => {
             *NOTE: YOU MUST CALL US FOR AN RGA NUMBER BEFORE SENDING ANY FILTER
             TO US.&nbsp;Any filter sent to us without an RGA number may not be
             exchanged. Please read the form carefully and make sure that all
-            steps are followed to insure a quick refund or exchange of your
+            steps are followed to ensure a quick refund or exchange of your
             filter.
           </div>
         </div>
