@@ -38,7 +38,7 @@ const GreenSearch = ({ Sticky }) => {
   const [searchpartNo, setSearchPartNo] = React.useState('');
   const [makes, setMakes] = React.useState([]);
 
-  const [productDetails, setProductDetails] = React.useState([]);
+  const [productDetails, setProductDetails] = React.useState(null);
   const [modelsId, setModelsId] = useState([])
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const GreenSearch = ({ Sticky }) => {
     /* ------------------------------------------------ */
 
 
-    setProductDetails([])
+    setProductDetails(null)
     setFinalSelectedId(null)
     setApiData({ ...tempData });
     setApiStr({ ...tempStr, [key]: value });
@@ -108,7 +108,7 @@ const GreenSearch = ({ Sticky }) => {
   const finalSearch = async () => {
 
     setApiData({})
-    setProductDetails([])
+    setProductDetails(null)
     setFinalSelectedId(null)
     setApiStr({
       year: '',
@@ -147,7 +147,7 @@ const GreenSearch = ({ Sticky }) => {
 
   const reset = () => {
     setApiData({})
-    setProductDetails([])
+    setProductDetails(null)
     setFinalSelectedId(null)
     setApiStr({
       year: '',
@@ -284,6 +284,15 @@ const GreenSearch = ({ Sticky }) => {
     return arr;
   };
 
+  const handleKeyPress = (event) => {
+    if(searchpartNo.length > 0)
+    {
+      if (event.key === 'Enter') {
+        finalSearch();
+      }
+    }
+  }
+
   return (
 
 
@@ -291,7 +300,7 @@ const GreenSearch = ({ Sticky }) => {
 
       <div ref={stickyComponentRef}></div>
 
-      <div className={`customFilters ${(sticky || productDetails.length) ? 'sticky' : ''}`}>
+      <div className={`customFilters ${(sticky || ( productDetails && productDetails.length)) ? 'sticky' : ''}`}>
         <h3><img src={logo} alt="logo" width="150" />Find a Filter</h3>
 
         <div className="selectController">
@@ -329,7 +338,7 @@ const GreenSearch = ({ Sticky }) => {
 
           <span>OR</span>
 
-          <Input placeholder="Basic usage" className="customSelects" value={searchpartNo} onChange={(e) => setSearchPartNo(e.target.value)} />
+          <Input placeholder="Search Part No here" onKeyDown={handleKeyPress} className="customSelects" value={searchpartNo} onChange={(e) => setSearchPartNo(e.target.value)} />
         </div>
         <div className="selectActions">
           <Button type="link" className="customBtns" onClick={reset}>Clear</Button>
@@ -338,10 +347,28 @@ const GreenSearch = ({ Sticky }) => {
             className={searchpartNo.length < 1 ? "customBtns disabledSearch" :"customBtns"} onClick={finalSearch} disabled={searchpartNo.length < 1}>Search</Button>
         </div>
 
+{        console.log(Boolean(productDetails),'dsada')
+}
 
-        {Boolean(productDetails.length) && <div className="productRenderContainer">
+        {Boolean(productDetails) && <div className="productRenderContainer">
           {
-            productDetails.map((product, key) => {
+
+            productDetails.length < 1 ?
+
+            <div className="searchedItems" style={{height:"100px",position:"relative",paddingTop:"10px"}}>
+
+              <div style={{color:"black",fontSize:"large"}}>
+                Product Removed or Replaced, Search Another.
+              </div>
+
+              
+              <div style={{top:'calc(50% + 20px)',left:'50%',transform:"translate(-50%,-50%)",position:"absolute",color: "#ddd"}}>
+                No Product Found
+              </div>
+
+            </div>
+
+            : productDetails.map((product, key) => {
               return (
                 <div key={key} className="searchedItems">
                   {console.log(product)}

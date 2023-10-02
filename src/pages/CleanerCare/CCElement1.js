@@ -111,7 +111,7 @@ const CCElement1 = () => {
                 {productData?.title && 
                 `Keep your Green High Performance Air Filter in perfect condition
                 with our specially formulated Recharge Oil (8 oz.) and Cleaner
-                Spray (12 oz.).&nbsp; Our Recharge Oil is designed to not damage
+                Spray (12 oz.). Our Recharge Oil is designed to not damage
                 any vehicle sensors and ensure that your Green Filter can trap
                 the smallest dirt particles before they reach your engine.`}
               </p>
@@ -119,10 +119,10 @@ const CCElement1 = () => {
                 className="shopify-buy-frame--product"
                 style={{ maxWidth: 120 }}
               >
-                <div className="price-text">
+                {/* <div className="price-text">
                   <span className="discounted-price">{productData?.compare_at_price} </span>
                   <span className="actual-price">{productData?.price}</span>
-                </div>
+                </div> */}
                 <AddToCart text="ADD TO CART" buyButtonId={productData?.buy_url}  id={productData?.id}/>
               </div>
             </div>

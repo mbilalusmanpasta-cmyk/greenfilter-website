@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import ShopByVehicle from "../pages/ShopByVehicle/ShopByVehicle";
 import Vehicles from "../pages/Vehicles/Vehicles";
@@ -23,19 +23,54 @@ import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
 import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
 import Product from "../pages/Product";
 import Home from "../pages/Home/Home.jsx";
+import {getGlobalData} from "../helper/util/getGlobalData";
+
+import './routes.css';
+
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
+  const [globalData, setGlobalData] = useState({});
+
+  useEffect(()=>{
+    _loadData();
+  },[])
+
   const handleClickIndex = (value) => {
     setClickedIndex(value);
   };
   const handleVehicleRoute = (value) => {
     setVehicle(value);
   };
-  console.log("Vehicle Route >> ", vehicle);
-  console.log("Clicked Index >>>", clickedIndex);
+
+  const _loadData = async () => {
+    let res = await getGlobalData();
+    console.log('res',res)
+    setGlobalData(res);
+  }
+
+
+  const banner = globalData?.fields?.banner || null;
+  const bannerAdditionalText = globalData?.fields?.['banner-additional-text'] || null;
+
+  
+  
+
   return (
     <>
+
+      {
+        banner && 
+        <div className="top-banner">
+        <div className="top-banner-content">
+          <h4 className="title" >{banner}</h4>
+          {
+            bannerAdditionalText &&  <p>{bannerAdditionalText}</p>
+          }
+        </div>
+      </div>
+      }
+
       <Switch>
         <Route
           exact

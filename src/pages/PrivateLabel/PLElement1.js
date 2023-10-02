@@ -12,50 +12,91 @@ import img6 from "../../assets/privateLabels/custom_text_s.jpg";
 import img7 from "../../assets/privateLabels/custom_2_inlet_s.jpg";
 import img8 from "../../assets/privateLabels/custom_3_hole_angled_inlet_s.jpg";
 import img9 from "../../assets/privateLabels/custom_dry_flow_s.jpg";
+
+import img10 from "../../assets/privateLabels/custom_triangle.jpg";
+import img11 from "../../assets/privateLabels/custom_long_cone.jpg";
+import img12 from "../../assets/privateLabels/custom_screen.jpg";
+import img13 from "../../assets/privateLabels/custom_threaded_insert.jpg";
+import img14 from "../../assets/privateLabels/custom_colors.jpg";
+import img15 from "../../assets/privateLabels/custom_end_cap.jpg";
+import img16 from "../../assets/privateLabels/custom_text.jpg";
+import img17 from "../../assets/privateLabels/custom_2_inlet.jpg";
+import img18 from "../../assets/privateLabels/custom_3_hole_angled_inlet.jpg";
+import img19 from "../../assets/privateLabels/custom_dry_flow.jpg";
+
 import { Link } from "react-router-dom";
+import ZoomBox from "../../components/ZoomBox";
 const customLabels = [
   {
     label: "Offset Inlets",
     imgSrc: img0,
+    image: img10,
+
   },
   {
     label: "Non-Standard Shapes",
     imgSrc: img1,
+    image: img11,
+
   },
   {
     label: "Heavy Duty Mesh",
+    image: img12,
     imgSrc: img2,
   },
   {
     label: "Threaded Inserts",
     imgSrc: img3,
+    image: img13,
+
   },
   {
     label: "Custom Colors",
     imgSrc: img4,
+    image: img14,
+
   },
   {
     label: "Personalized End Caps",
     imgSrc: img5,
+    image: img15,
+
   },
   {
     label: "Customized Text",
     imgSrc: img6,
+    image: img16,
+
   },
   {
     label: "Multiple Inlets",
     imgSrc: img7,
+    image: img17,
+
   },
   {
     label: "Angled Inlet",
     imgSrc: img8,
+    image: img18,
+
   },
   {
     label: "Dry Flow Oil-Free Filter",
     imgSrc: img9,
+    image: img19,
+
   },
 ];
 const PLElement1 = () => {
+
+  const [toggle, setToggle] =  React.useState(false);
+	const [sIndex, setSIndex] =  React.useState(0);
+
+  const  ZoomBoxHandler  = (state, sIndex) => {
+		setToggle(state);
+		setSIndex(sIndex);
+	};
+
   return (
     <>
       <PLElement1Wrapper bgImg={bgImg}>
@@ -72,17 +113,17 @@ const PLElement1 = () => {
                 </p>
                 <Grid container>
                   {customLabels.map((label, id) => (
-                    <Grid item xs={12} sm={6} md={4} key={id}>
-                      <a
-                        href="https://greenfilter.com/images/framework/custom-private-label/custom_triangle.jpg"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
+                    <Grid item xs={12} sm={6} md={4} key={id} >
+
+                      <div  onClick={() => { ZoomBoxHandler(true, id); }}>
                         <img src={label.imgSrc} alt="custom" />
                         <h2>{label.label}</h2>
-                      </a>
+                      </div>
+                     
                     </Grid>
                   ))}
+
+                  
                 </Grid>
                 <p>
                   Cost, setup, and delivery will vary based on the complexity
@@ -97,6 +138,18 @@ const PLElement1 = () => {
             </Grid>
           </div>
         </div>
+
+        <ZoomBox 
+          // image={}
+          event={ZoomBoxHandler}
+          imageVar={"image"}
+          data={customLabels}
+          imageIndex={sIndex}
+          setImageIndex={setSIndex}
+          state={toggle}
+          zoom={1}
+        />
+
       </PLElement1Wrapper>
     </>
   );

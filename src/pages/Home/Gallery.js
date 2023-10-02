@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { LightBox } from "react-lightbox-pack";
@@ -12,6 +12,15 @@ const Gallery = ({ gallery, width }) => {
     setToggle(state);
     setSIndex(sIndex);
   };
+
+  useEffect(()=>{
+    if(gallery && gallery.length > 0)
+    {
+      gallery.forEach(element => {
+        element.image = element.link;
+      });
+    }
+  },[gallery])
 
   return (
     <>

@@ -1,5 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Button1 from "../../components/Button1";
+import Link1 from "../../components/Link1";
+import VideoBox from "../../components/VideoBox";
 const links = [
   {
     id: 0,
@@ -114,6 +118,15 @@ const links = [
 ];
 
 const FAQElement1 = () => {
+  
+  const [toggle, setToggle] =  React.useState(false);
+	const [sVideo, setSVideo] =  React.useState(null);
+
+  const  VideoBoxHandler  = (state, video) => {
+		setToggle(state);
+		setSVideo(video);
+	};
+
   return (
     <>
       <FAQElement1Wrapper>
@@ -145,11 +158,19 @@ const FAQElement1 = () => {
                 </span>
                 <br />A Green High Performance Air Filter flows more air than
                 our competitors, which you can see in our{" "}
-                <a href="#">Airflow Simulator video</a>, without sacrificing
+                {/* <a href="#"></a> */}
+                <Link1 text="Airflow Simulator video" handleClick={()=>VideoBoxHandler(true,"https://www.youtube.com/embed/cY7fSPvI8bY") } />
+                <VideoBox 
+                  // image={}
+                  event={VideoBoxHandler}
+                  video={sVideo}
+                  state={toggle}
+                />
+                , without sacrificing
                 filtration. Other factors that we believe make a Green High
                 Performance Air Filter the best filter on the market include
                 quality materials and solid craftsmanship. Check out our{" "}
-                <a href="#">Features and Benefits</a> page for more information.
+                <a href="https://wholesale.greenfilter.com/features-and-benefits.php">Features and Benefits</a> page for more information.
               </p>
             </div>
 
@@ -159,7 +180,7 @@ const FAQElement1 = () => {
                   Do you make a filter for a [insert vehicle here]?
                 </span>
                 <br />
-                You can check our <a href="#">vehicle fitment </a>list to see if
+                You can check our <Link1 to={"/"} text="vehicle fitment" isLink /> list to see if
                 we make a filter for your vehicle. If your vehicle is not
                 listed, contact us to see if we can make one for you.
               </p>
@@ -197,9 +218,9 @@ const FAQElement1 = () => {
                 <br />
                 Yes, we can make a wide variety of filters. If you are
                 interested in a private label or custom filter, check out our
-                <a href="#">Custom & Private Label Filters</a> page to see some
+                <Link1 to={"/private-label"} text="Custom & Private Label Filters" isLink /> page to see some
                 of the features we can provide. You can also{" "}
-                <a href="#">contact us</a> for more information.
+                <Link1 to={"/contact-us"} text="contact us" isLink /> for more information.
               </p>
             </div>
             <div className="desc-container" id="06">
@@ -231,7 +252,7 @@ const FAQElement1 = () => {
                 <br />
                 In addition to a legion of satisfied customers, many top tier
                 race teams at all different levels of competition use Green High
-                Performance Air Filters. Check our <a href="#">About Us</a> page
+                Performance Air Filters. Check our <Link1 to={"/about-us"} text="About Us" isLink /> page
                 for some specific examples.
               </p>
             </div>
@@ -241,7 +262,7 @@ const FAQElement1 = () => {
                 <br />
                 Green High Performance Air Filters are designed to last for the
                 lifetime of your vehicle and are covered by our{" "}
-                <a href="">Limited Lifetime Warranty.</a>
+                <Link1 to={"/our-guarantee"} text="Limited Lifetime Warranty." isLink />
               </p>
             </div>
             <div className="desc-container" id="10">
@@ -343,7 +364,7 @@ const FAQElement1 = () => {
                 </span>
                 <br />
                 Yes, please{" "}
-                <a href="#">download and complete the Filter Exchange form</a>.
+                <Link1 isLink text="download and complete the Filter Exchange form." marginTop={20} to="/documents/gfu_filter_credit_return.pdf" target="_blank" />
                 Once you have completed the form, send it along with the filter
                 (and any payment, if necessary) to the address listed on the
                 form.
@@ -363,7 +384,7 @@ const FAQElement1 = () => {
                 <span className="question">How can I return a filter?</span>
                 <br />
                 Please{" "}
-                <a href="#">download and complete the Filter Return form</a>.
+                <Link1 isLink text="download and complete the Filter Return form" marginTop={20} to="/documents/gfu_filter_credit_return.pdf" target="_blank" />
                 Once you have completed the form, send it along with the filter
                 to the address listed on the form.
               </p>
@@ -413,7 +434,7 @@ const FAQElement1 = () => {
           </div>
           <span>
             If you have a question that is not answered here, please{" "}
-            <a href="#">contact us</a>.
+            <Link to="/contact-us">contact us</Link>.
           </span>
         </div>
       </FAQElement1Wrapper>

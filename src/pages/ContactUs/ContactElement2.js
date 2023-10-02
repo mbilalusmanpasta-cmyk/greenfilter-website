@@ -1,12 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import img0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.png";
 import img1 from "../../assets/icons8-gphone-100-3.png";
 const ContactElement2 = () => {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://secure.wufoo.com/scripts/embed/form.js';
+    script.async = true;
+    script.onload = script.onreadystatechange = () => {
+      const rs = script.readyState;
+      if (rs && rs !== 'complete' && rs !== 'loaded') return;
+      try {
+        const mlxmwl41vsidqt = new window.WufooForm();
+        mlxmwl41vsidqt.initialize({
+          userName: 'bbai',
+          formHash: 'mlxmwl41vsidqt',
+          autoResize: true,
+          height: '519',
+          async: true,
+          host: 'wufoo.com',
+          header: 'show',
+          ssl: true
+        });
+        mlxmwl41vsidqt.display();
+      } catch (e) {}
+    };
+
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup code
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <>
       <ContactElement2Wrapper>
-        <div className="w-container">
+        {/* <div className="w-container">
           <div className="titles-div">
             <h1 className="heading-10">Other Ways to Contact Us</h1>
             <p class="large-paragraph gray">
@@ -49,7 +81,8 @@ const ContactElement2 = () => {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
+        <div id="wufoo-mlxmwl41vsidqt"> Fill out my <a href="https://bbai.wufoo.com/forms/mlxmwl41vsidqt" >online form</a>. </div>
       </ContactElement2Wrapper>
     </>
   );

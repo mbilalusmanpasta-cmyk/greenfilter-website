@@ -31,9 +31,13 @@ import styled from "styled-components";
 
 import HomeElement2 from "./HomeElement2";
 import GreenSearch from "../../components/GreenSearch";
+import {getPageData} from "../../helper/util/getPageData";
 
 
 const Home = (props) => {
+
+  const [pageData,setPageData] = React.useState({});
+  
   const gallery = [
     { id: 0, image: img0 },
     { id: 1, image: img1 },
@@ -59,28 +63,20 @@ const Home = (props) => {
   }, [props]);
 
 
-  // useEffect(()=>{
-  //   console.log(apiData,"apiData")
-  // },[apiData])
+  useEffect(()=>{
+    _loadData();
+  },[])
 
-  
+  const _loadData = async() => {
+    let page = await getPageData(window.location.pathname);
+    if(page)
+    {
+      setPageData(page)
+    }
 
+  }  
 
-
-  
-
-  // useEffect(()=>{
-  //   getAllMakes();
-  // },[])
-
-
-    
-
-
-
-
-
-  
+  const sliders = pageData?.fields?.slider || []
 
   return (
     <HomeWrapper>
@@ -89,7 +85,7 @@ const Home = (props) => {
           clickedIndex={props.clickedIndex}
           handleClickIndex={props.handleClickIndex}
         />
-        <Hero />
+        <Hero sliders={sliders} />
 
         <GreenSearch />
         
