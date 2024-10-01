@@ -9,264 +9,257 @@ import { GetData } from "../../helper/request";
 
 import BeatLoader from "react-spinners/BeatLoader";
 
-
 const ShopElement1 = (props) => {
+  const [categories, setCategories] = React.useState([]);
+  const [highPerformanceCollection, setHighPerformanceCollection] =
+    React.useState([]);
+  const [popularPickupTrucksCollection, setPopularPickupTrucksCollection] =
+    React.useState([]);
+  const [popularBrandsCollection, setPopularBrandsCollection] = React.useState(
+    []
+  );
+  const [insaneSupercarsCollection, setInsaneSupercarsCollection] =
+    React.useState([]);
 
-  const [categories,setCategories] = React.useState([]);
-  const [highPerformanceCollection,setHighPerformanceCollection] = React.useState([]);
-  const [popularPickupTrucksCollection,setPopularPickupTrucksCollection] = React.useState([]);
-  const [popularBrandsCollection,setPopularBrandsCollection] = React.useState([]);
-  const [insaneSupercarsCollection,setInsaneSupercarsCollection] = React.useState([]);
+  const [
+    highPerformanceCollectionLoading,
+    setHighPerformanceCollectionLoading,
+  ] = React.useState(false);
+  const [
+    popularPickupTrucksCollectionLoading,
+    setPopularPickupTrucksCollectionLoading,
+  ] = React.useState(false);
+  const [popularBrandsCollectionLoading, setPopularBrandsCollectionLoading] =
+    React.useState(false);
+  const [
+    insaneSupercarsCollectionLoading,
+    setInsaneSupercarsCollectionLoading,
+  ] = React.useState(false);
 
-  const [highPerformanceCollectionLoading,setHighPerformanceCollectionLoading] = React.useState(false);
-  const [popularPickupTrucksCollectionLoading,setPopularPickupTrucksCollectionLoading] = React.useState(false);
-  const [popularBrandsCollectionLoading,setPopularBrandsCollectionLoading] = React.useState(false);
-  const [insaneSupercarsCollectionLoading,setInsaneSupercarsCollectionLoading] = React.useState(false);
-
-
-  useEffect( async()=>
-  {
+  useEffect(async () => {
     // let collections = await getCategories();
     getMultipleCollectionsMakes();
-  },[])
+  }, []);
 
-
-  const getMultipleCollectionsMakes = (collections) =>
-  {
-
+  const getMultipleCollectionsMakes = (collections) => {
     getHighPerformanceCollection();
     getPopularPickupTrucksCollection();
     getPopularBrandsCollection();
     getInsaneSupercarsCollection();
-
-  }
+  };
 
   const getHighPerformanceCollection = async () => {
-
     setHighPerformanceCollectionLoading(true);
     const HighPerformanceCollectionId = 1;
     let collectionT = {};
-    let response = await GetData(statics.BaseUrl+`/collection?id=${HighPerformanceCollectionId}`,200,null);
-    if(response.ResponseCode === "Success")
-    {
+    let response = await GetData(
+      statics.BaseUrl + `/collection?id=${HighPerformanceCollectionId}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
       collectionT = response?.data?.rows?.[0];
     }
     setHighPerformanceCollection(collectionT);
-    setHighPerformanceCollectionLoading(false)
-
-  }
+    setHighPerformanceCollectionLoading(false);
+  };
 
   const getPopularPickupTrucksCollection = async () => {
-
-    setPopularPickupTrucksCollectionLoading(true)
+    setPopularPickupTrucksCollectionLoading(true);
     const PopularPickupTrucksCollectionId = 2;
     let collectionT = {};
-    let response = await GetData(statics.BaseUrl+`/collection?id=${PopularPickupTrucksCollectionId}`,200,null);
-    if(response.ResponseCode === "Success")
-    {
+    let response = await GetData(
+      statics.BaseUrl + `/collection?id=${PopularPickupTrucksCollectionId}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
       collectionT = response?.data?.rows?.[0];
     }
     setPopularPickupTrucksCollection(collectionT);
-    setPopularPickupTrucksCollectionLoading(false)
-
-  }
+    setPopularPickupTrucksCollectionLoading(false);
+  };
 
   const getPopularBrandsCollection = async () => {
-    setPopularBrandsCollectionLoading(true)
+    setPopularBrandsCollectionLoading(true);
     const PopularBrandsCollectionId = 5;
     let collectionT = {};
-    let response = await GetData(statics.BaseUrl+`/collection?id=${PopularBrandsCollectionId}`,200,null);
-    if(response.ResponseCode === "Success")
-    {
+    let response = await GetData(
+      statics.BaseUrl + `/collection?id=${PopularBrandsCollectionId}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
       collectionT = response?.data?.rows?.[0];
     }
     setPopularBrandsCollection(collectionT);
-    setPopularBrandsCollectionLoading(false)
-  }
+    setPopularBrandsCollectionLoading(false);
+  };
 
   const getInsaneSupercarsCollection = async () => {
-    setInsaneSupercarsCollectionLoading(true)
+    setInsaneSupercarsCollectionLoading(true);
     const InsaneSupercarsCollectionId = 4;
     let collectionT = {};
-    let response = await GetData(statics.BaseUrl+`/collection?id=${InsaneSupercarsCollectionId}`,200,null);
-    if(response.ResponseCode === "Success")
-    {
+    let response = await GetData(
+      statics.BaseUrl + `/collection?id=${InsaneSupercarsCollectionId}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
       collectionT = response?.data?.rows?.[0];
     }
     setInsaneSupercarsCollection(collectionT);
-    setInsaneSupercarsCollectionLoading(false)
-  }
-  
+    setInsaneSupercarsCollectionLoading(false);
+  };
+
   return (
     <>
       <ShopElement1Wrapper>
-
         <div className="container-4 w-container">
-         
           <h1 className="heading-11">{"High Performance Cars"}</h1>
           <div className="shop-vehicle-row w-row">
-
-            
-            {highPerformanceCollectionLoading ? 
-
+            {highPerformanceCollectionLoading ? (
               <div className="loader-wrapper">
-                <BeatLoader  color={"green"} loading={true}  />
+                <BeatLoader color={"green"} loading={true} />
               </div>
-
-            
-            
-            :highPerformanceCollection?.makes?.map((make) => (
-              <div
-                className="shop-vehicle-make w-col w-col-2"
-                key={make.id}
-              >
-                <Link
-                  className="link-block"
-                  to={`/brand/${make?.slug}`}
-                  // onClick={() => {
-                  //   props.handleVehicleRoute(make);
-                  // }}
-                >
-                  <div className="column-div">
-                    <div className="make-image">
+            ) : (
+              highPerformanceCollection?.makes?.map((make) => (
+                <div className="shop-vehicle-make w-col w-col-2" key={make.id}>
+                  <Link
+                    className="link-block"
+                    to={`/brand/${make?.slug}`}
+                    // onClick={() => {
+                    //   props.handleVehicleRoute(make);
+                    // }}
+                  >
+                    <div className="column-div custom-button-temp">
+                      {/* <div className="make-image">
                       <img
                         src={make?.images?.[0]?.link}
                         className="product-image"
                         alt="car"
                       />
+                    </div> */}
+                      <div className="text-block car-carousel">
+                        {make?.title}
+                      </div>
                     </div>
-                    <div className="text-block car-carousel">
-                      {make?.title}
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
-        </div>          
+        </div>
 
         <div className="container-4 w-container">
-          
           <h1 className="heading-11">{"Popular Pickup Trucks"}</h1>
           <div className="shop-vehicle-row w-row">
-            {
-             popularPickupTrucksCollectionLoading ? 
-
+            {popularPickupTrucksCollectionLoading ? (
               <div className="loader-wrapper">
-                <BeatLoader  color={"green"} loading={true}  />
-              </div> :
-              popularPickupTrucksCollection?.makes?.map((make) => (
-              <div
-                className="shop-vehicle-make w-col w-col-2"
-                key={make?.id}
-              >
-                <Link
-                  className="link-block"
-                  to={`/brand/${make?.slug}`}
-                  // onClick={() => {
-                  //   props.handleVehicleRoute(make);
-                  // }}
-                >
-                  <div className="column-div">
-                    <div className="make-image">
-                      <img
-                        src={make.images?.[0]?.link}
-                        className="product-image"
-                        alt="car"
-                      />
-                    </div>
-                    <div className="text-block car-carousel">
-                      {make.title}
-                    </div>
-                  </div>
-                </Link>
+                <BeatLoader color={"green"} loading={true} />
               </div>
-            ))}
+            ) : (
+              popularPickupTrucksCollection?.makes?.map((make) => (
+                <div className="shop-vehicle-make w-col w-col-2" key={make?.id}>
+                  <Link
+                    className="link-block"
+                    to={`/brand/${make?.slug}`}
+                    // onClick={() => {
+                    //   props.handleVehicleRoute(make);
+                    // }}
+                  >
+                    <div className="column-div custom-button-temp">
+                      {/* <div className="make-image">
+                        <img
+                          src={make.images?.[0]?.link}
+                          className="product-image"
+                          alt="car"
+                        />
+                      </div> */}
+                      <div className="text-block car-carousel">
+                        {make.title}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
         <div className="container-4 w-container">
-         
           <h1 className="heading-11">{"Popular Brands"}</h1>
           <div className="shop-vehicle-row w-row">
-            {
-            popularBrandsCollectionLoading ? 
-
-            <div className="loader-wrapper">
-              <BeatLoader  color={"green"} loading={true}  />
-            </div> :
-            popularBrandsCollection?.makes?.map((make) => (
-              <div
-                className="shop-vehicle-make w-col w-col-2"
-                key={make?.id}
-              >
-                <Link
-                  className="link-block"
-                  to={`/brand/${make?.slug}`}
-                  // onClick={() => {
-                  //   props.handleVehicleRoute(make);
-                  // }}
-                >
-                  <div className="column-div">
-                    <div className="make-image">
-                      <img
-                        src={make.images?.[0]?.link}
-                        className="product-image"
-                        alt="car"
-                      />
-                    </div>
-                    <div className="text-block car-carousel">
-                      {make.title}
-                    </div>
-                  </div>
-                </Link>
+            {popularBrandsCollectionLoading ? (
+              <div className="loader-wrapper">
+                <BeatLoader color={"green"} loading={true} />
               </div>
-            ))}
+            ) : (
+              popularBrandsCollection?.makes?.map((make) => (
+                <div className="shop-vehicle-make w-col w-col-2" key={make?.id}>
+                  <Link
+                    className="link-block"
+                    to={`/brand/${make?.slug}`}
+                    // onClick={() => {
+                    //   props.handleVehicleRoute(make);
+                    // }}
+                  >
+                    <div className="column-div custom-button-temp">
+                      {/* <div className="make-image">
+                        <img
+                          src={make.images?.[0]?.link}
+                          className="product-image"
+                          alt="car"
+                        />
+                      </div> */}
+                      <div className="text-block car-carousel">
+                        {make.title}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
         <div className="container-4 w-container">
-          <h1>
-          </h1>
+          <h1></h1>
           <h1 className="heading-11">{"Insane Supercars"}</h1>
           <div className="shop-vehicle-row w-row">
-            {
-            insaneSupercarsCollectionLoading ? 
-
-            <div className="loader-wrapper">
-              <BeatLoader  color={"green"} loading={true}  />
-            </div> :
-            insaneSupercarsCollection?.makes?.map((make) => (
-              <div
-                className="shop-vehicle-make w-col w-col-2"
-                key={make?.id}
-              >
-                <Link
-                  className="link-block"
-                  to={`/brand/${make?.slug}`}
-                  // onClick={() => {
-                  //   props.handleVehicleRoute(make);
-                  // }}
-                >
-                  <div className="column-div">
-                    <div className="make-image">
-                      <img
-                        src={make.images?.[0]?.link}
-                        className="product-image"
-                        alt="car"
-                      />
-                    </div>
-                    <div className="text-block car-carousel">
-                      {make.title}
-                    </div>
-                  </div>
-                </Link>
+            {insaneSupercarsCollectionLoading ? (
+              <div className="loader-wrapper">
+                <BeatLoader color={"green"} loading={true} />
               </div>
-            ))}
+            ) : (
+              insaneSupercarsCollection?.makes?.map((make) => (
+                <div className="shop-vehicle-make w-col w-col-2" key={make?.id}>
+                  <Link
+                    className="link-block"
+                    to={`/brand/${make?.slug}`}
+                    // onClick={() => {
+                    //   props.handleVehicleRoute(make);
+                    // }}
+                  >
+                    <div className="column-div custom-button-temp">
+                      {/* <div className="make-image">
+                        <img
+                          src={make.images?.[0]?.link}
+                          className="product-image"
+                          alt="car"
+                        />
+                      </div> */}
+                      <div className="text-block car-carousel">
+                        {make.title}
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
-       
         {/* {categories.map((category) => (
           <div className="container-4 w-container" key={category.id}>
             <h1>
@@ -317,7 +310,7 @@ const ShopElement1Wrapper = styled.div`
   padding-bottom: 75px;
   background-color: #fff;
 
-  .loader-wrapper{
+  .loader-wrapper {
     text-align: center;
     width: 100%;
   }
