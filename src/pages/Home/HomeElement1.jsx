@@ -258,13 +258,6 @@ const HomeElement1Wrapper = styled.div`
     width: 200px;
   }
 
-  .text-block {
-    font-family: Lato, sans-serif;
-    color: #525252;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
   .div-block-5 {
     text-align: center;
   }

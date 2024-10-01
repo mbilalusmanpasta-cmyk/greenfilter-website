@@ -382,14 +382,6 @@ const ShopElement1Wrapper = styled.div`
     border: 0;
   }
 
-  .text-block.car-carousel {
-    margin-top: 10px;
-    color: #757575;
-    font-size: 12px;
-    line-height: 14px;
-    text-transform: uppercase;
-  }
-
   @media screen and (max-width: 767px) {
     .w-col-2 {
       width: 33.33% !important;
