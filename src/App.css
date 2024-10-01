@@ -36,3 +36,83 @@
     transform: rotate(360deg);
   }
 }
+
+.custom-button-temp {
+  background: black;
+  color: rgb(0, 173, 35);
+  padding: 20px;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  border-radius: 20px;
+  min-width: 150px;
+}
+
+/* .text-block {
+  font-family: Lato, sans-serif;
+  color: #525252;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+} */
+
+.custom-button-temp .text-block:hover {
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 0px;
+  color: #fff;
+}
+
+.custom-button-temp .text-block:hover {
+  color: #6eff00;
+}
+
+@media only screen and (max-width: 1000px) {
+  .custom-button-temp {
+    min-width: 120px !important;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .custom-button-temp {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    min-width: 100px !important;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .custom-button-temp {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    min-width: 150px !important;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .custom-button-temp {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    min-width: 120px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .custom-button-temp {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    min-width: 150px !important;
+  }
+}
+
+.shop-vehicle-make {
+  margin: 10px !important;
+}
+
+/*SHOP BY*/
+.shop-vehicle-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -23,27 +23,26 @@ import { statics } from "../../data/store";
 import CircleLoader from "react-spinners/CircleLoader";
 
 const HomeElement1 = (props) => {
-
   const history = useHistory();
-  const [topPerformingBrands,setTopPerformingBrands] = React.useState([]);
-  const [loading,setLoading] = React.useState(false)
+  const [topPerformingBrands, setTopPerformingBrands] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
 
-  useEffect(async ()=>
-  {
-    setLoading(true)
+  useEffect(async () => {
+    setLoading(true);
     const topPerformingBrandsCollectionId = 6;
     let topPerformingBrandsT = {};
-    let response = await GetData(statics.BaseUrl+`/collection?id=${topPerformingBrandsCollectionId}`,200,null);
-    if(response.ResponseCode === "Success")
-    {
+    let response = await GetData(
+      statics.BaseUrl + `/collection?id=${topPerformingBrandsCollectionId}`,
+      200,
+      null
+    );
+    if (response.ResponseCode === "Success") {
       topPerformingBrandsT = response?.data?.rows?.[0];
     }
     setTopPerformingBrands(topPerformingBrandsT);
-    setLoading(false)
+    setLoading(false);
+  }, []);
 
-  },[])
-
- 
   const brands = [
     {
       id: 0,
@@ -72,23 +71,42 @@ const HomeElement1 = (props) => {
   ];
   return (
     <>
-     {
-      loading &&
-      <React.Fragment>
-          <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
-          <div style = {{
+      {loading && (
+        <React.Fragment>
+          <div
+            style={{
+              top: "0px",
+              left: "0px",
+              position: "fixed",
+              width: "100vw",
+              height: "100vh",
+              backgroundColor: "rgb(64 57 57 / 20%)",
+              backdropFilter: "blur(3px)",
+              zIndex: 9999,
+            }}
+          >
+            {" "}
+          </div>
+          <div
+            style={{
               display: "block",
               margin: "0 auto",
               borderColor: "red",
-              zIndex:"9999",
+              zIndex: "9999",
               position: "absolute",
               top: "calc(50vh - 75px)",
-              left:"calc(50% - 75px)"
-            }}>
-            <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
+              left: "calc(50% - 75px)",
+            }}
+          >
+            <CircleLoader
+              color={"white"}
+              loading={true}
+              size={150}
+              id="custom-loader-el"
+            />
           </div>
-      </React.Fragment>
-      }
+        </React.Fragment>
+      )}
 
       <HomeElement1Wrapper gradient={gradient}>
         <div className="container-4">
@@ -98,30 +116,32 @@ const HomeElement1 = (props) => {
           <div className="main-vehicle-row">
             {topPerformingBrands?.makes?.map((make) => (
               <div key={make.id} className="w-col w-col-2">
-                <Link to={`/brand/${make.slug}`} class="link-block w-inline-block">
-                  <div class="column-div">
-                    <img
+                <Link
+                  to={`/brand/${make.slug}`}
+                  class="link-block w-inline-block"
+                >
+                  <div className="column-div custom-button-temp">
+                    {/* <img
                         src={make?.images?.[0]?.link}
                       sizes="(max-width: 479px) 82vw, (max-width: 767px) 200px, 13vw"
                       class="product-image"
                       alt="car"
-                    />
+                    /> */}
                     <div class="text-block car-carousel">{make.name}</div>
                   </div>
                 </Link>
               </div>
             ))}
-            
           </div>
           <div className="div-block-5">
-              <Button1
-                text="See All Brands"
-                handleClick={() => {
-                  props.handleClickIndex(0);
-                  history.push("/shop-by-vehicle");
-                }}
-              />
-            </div>
+            <Button1
+              text="See All Brands"
+              handleClick={() => {
+                props.handleClickIndex(0);
+                history.push("/shop-by-vehicle");
+              }}
+            />
+          </div>
         </div>
         <div className="div-block-3">
           <div
@@ -237,13 +257,7 @@ const HomeElement1Wrapper = styled.div`
   .product-image {
     width: 200px;
   }
-  .text-block.car-carousel {
-    margin-top: 10px;
-    color: #757575;
-    font-size: 12px;
-    line-height: 14px;
-    text-transform: uppercase;
-  }
+
   .text-block {
     font-family: Lato, sans-serif;
     color: #525252;
@@ -402,12 +416,12 @@ const HomeElement1Wrapper = styled.div`
   .image-5 {
     width: 125px;
   }
-.disclaimer{
-  margin-bottom: 10px;
-  font-family: Lato, sans-serif;
-  color: #757575;
-  font-weight: 300;
-}
+  .disclaimer {
+    margin-bottom: 10px;
+    font-family: Lato, sans-serif;
+    color: #757575;
+    font-weight: 300;
+  }
   @media screen and (max-width: 767px) {
     .w-col-2 {
       width: 50% !important;
@@ -439,5 +453,4 @@ const HomeElement1Wrapper = styled.div`
       display: none;
     }
   }
-
 `;

@@ -329,10 +329,7 @@ const ShopElement1Wrapper = styled.div`
     content: " ";
     display: table;
   }
-  .shop-vehicle-row {
-    display: flex;
-    flex-wrap: wrap;
-  }
+
   .w-row:before,
   .w-row:after {
     content: " ";
@@ -390,13 +387,6 @@ const ShopElement1Wrapper = styled.div`
     color: #757575;
     font-size: 12px;
     line-height: 14px;
-    text-transform: uppercase;
-  }
-  .text-block {
-    font-family: Lato, sans-serif;
-    color: #525252;
-    font-size: 14px;
-    font-weight: 700;
     text-transform: uppercase;
   }
 
