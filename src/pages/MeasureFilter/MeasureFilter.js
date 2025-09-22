@@ -18,6 +18,8 @@ import img10 from "../../assets/gallery/img10.jpg";
 import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
+import { Helmet } from "react-helmet";
+
 const MeasureFilter = (props) => {
   const gallery = [
     { id: 0, image: img0 },
@@ -37,6 +39,16 @@ const MeasureFilter = (props) => {
   ];
   return (
     <>
+      <Helmet>
+        <title>{"MEASURE A FILTER | Green Filter "} </title>
+        <meta name="description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
+        <meta property="og:title" content={"MEASURE A FILTER | Green Filter"} />
+        <meta property="og:description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
+        <meta property="og:image" content={img0} />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://greenfilter.com/measure-filter" />
+      </Helmet>
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}

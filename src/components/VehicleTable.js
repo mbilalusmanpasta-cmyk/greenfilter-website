@@ -30,62 +30,61 @@ const tableHeader = [
     name: "years",
     label: "Years",
     maxWidth: 91,
-    numeric:false
+    numeric: false
   },
   {
     id: 1,
     name: "make",
     label: "Make",
     maxWidth: 82,
-    numeric:false
+    numeric: false
 
   },
   {
-      id: 2,
-      name: "title",
-      label: "Model",
-      maxWidth: 82,
-      numeric:false
+    id: 2,
+    name: "title",
+    label: "Model",
+    maxWidth: 82,
+    numeric: false
 
   },
   {
-      id: 3,
-      name: "displacement",
-      label: "Disp.",
-      maxWidth: 82,
-      numeric:true
+    id: 3,
+    name: "displacement",
+    label: "Disp.",
+    maxWidth: 82,
+    numeric: true
 
   },
   {
-      id: 4,
-      name: "engine",
-      label: "Engine",
-      maxWidth: 82,
-      numeric:false
+    id: 4,
+    name: "engine",
+    label: "Engine",
+    maxWidth: 82,
+    numeric: false
 
   },
   {
-      id: 5,
-      name: "intake",
-      label: "Intake",
-      maxWidth: 82,
-      numeric:false
+    id: 5,
+    name: "intake",
+    label: "Intake",
+    maxWidth: 82,
+    numeric: false
 
   },
   {
-      id: 6,
-      name: "description",
-      label: "Fits",
-      maxWidth: 82,
-      numeric:false
+    id: 6,
+    name: "description",
+    label: "Fits",
+    maxWidth: 82,
+    numeric: false
 
   },
 ];
 
 function descendingComparator(a, b, orderBy) {
 
-  if(orderBy==="make")
-  {
+  if (orderBy === "make") {
     if (b[orderBy]?.title < a[orderBy]?.title) {
       return -1;
     }
@@ -95,8 +94,7 @@ function descendingComparator(a, b, orderBy) {
     return 0;
   }
 
-  else if(orderBy==="years")
-  {
+  else if (orderBy === "years") {
 
     if (b['start_year'] < a['start_year']) {
       return -1;
@@ -138,7 +136,7 @@ function stableSort(array, comparator) {
 
 
 function EnhancedTableHead(props) {
-  const {  order, orderBy,  onRequestSort, headers } =
+  const { order, orderBy, onRequestSort, headers } =
     props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -147,7 +145,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {headers.map((header,id) => (
+        {headers.map((header, id) => (
           <TableCell
             className="table-head-cell"
             key={header.id}
@@ -155,12 +153,12 @@ function EnhancedTableHead(props) {
               width: header.maxWidth,
               background: "no-repeat 5px center",
               backgroundImage:
-              orderBy === header.name && order ==="asc"
+                orderBy === header.name && order === "asc"
                   ? `url(${upperIcon})`
-                  :  orderBy === header.name && order ==="desc" ? `url(${downIcon})` : `url(${sortIcon})`,
+                  : orderBy === header.name && order === "desc" ? `url(${downIcon})` : `url(${sortIcon})`,
               whiteSpace: "normal",
               backgroundColor:
-              orderBy === header.name ? "black" : "black",
+                orderBy === header.name ? "black" : "black",
               color: orderBy === header.name ? "#fff" : "#ffffff",
             }}
             sortDirection={orderBy === header.name ? order : false}
@@ -196,7 +194,7 @@ const VehicleTable = ({ tableData }) => {
     setOrderBy(property);
   };
 
-  
+
   return (
     <VehicleTableWrapper>
 
@@ -229,34 +227,34 @@ const VehicleTable = ({ tableData }) => {
               </TableRow>
             </TableHead> */}
 
-              <EnhancedTableHead
-                order={order}
-                orderBy={orderBy}
-                onRequestSort={handleRequestSort}
-                headers={tableHeader}
-              />
+            <EnhancedTableHead
+              order={order}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+              headers={tableHeader}
+            />
             <TableBody>
-              {tableData && tableData.models && stableSort(tableData.models, getComparator(order, orderBy)) .map((row, id) => (
+              {tableData && tableData.models && stableSort(tableData.models, getComparator(order, orderBy)).map((row, id) => (
                 <TableRow
                   key={row.id}
                   style={{ background: id % 2 === 0 ? "lightgrey" : "#fff" }}
                 >
-                  
+
                   {
                     tableHeader.map((header, id) => (
-                        <TableCell
+                      <TableCell
                         key={header.id}
                         className="table-row-cell"
                         style={{ color: "#3d3d3d" }}
                       >
                         {
-                          header.name === "make" ? 
+                          header.name === "make" ?
                             row["make"]?.title
-                          :
-                          header.name === "years" ? 
-                          ( <span> {(row?.['start_year'] || "")}  {row?.['end_year'] && ("-" + row?.['end_year'])} </span>)
-                          :
-                          row?.[header.name || ""]
+                            :
+                            header.name === "years" ?
+                              (<span> {(row?.['start_year'] || "")}  {row?.['end_year'] && ("-" + row?.['end_year'])} </span>)
+                              :
+                              row?.[header.name || ""]
                         }
                       </TableCell>
                     ))

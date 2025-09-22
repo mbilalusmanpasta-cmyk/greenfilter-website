@@ -27,29 +27,27 @@ const tableHeader = [
 
 const CCElement1 = () => {
 
-  const [tableData,setTableData] = React.useState([])
-  const [productData,setProductData] = React.useState({})
-  const [loading,setLoading] = React.useState(false)
+  const [tableData, setTableData] = React.useState([])
+  const [productData, setProductData] = React.useState({})
+  const [loading, setLoading] = React.useState(false)
 
 
-  useEffect(()=>{
+  useEffect(() => {
 
     getTableData();
-  },[])
+  }, [])
 
-  const getTableData = async () =>
-  {
+  const getTableData = async () => {
     setLoading(true)
 
     const product_type_id = 8;
     let tableDataT = [];
     let productDataT = {};
 
-    let response  =  await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200&is_active=1`,200,null)
-    if(response.ResponseCode === "Success")
-    {
+    let response = await GetData(statics.BaseUrl + `/product?product_type_id=${product_type_id}&pageNo=1&pageSize=200&is_active=1`, 200, null)
+    if (response.ResponseCode === "Success") {
       tableDataT = response?.data?.rows;
-      productDataT = tableDataT.find((p)=>p.id===1890) || tableDataT?.[0] || {};
+      productDataT = tableDataT.find((p) => p.id === 1890) || tableDataT?.[0] || {};
     }
     setTableData(tableDataT);
     setProductData(productDataT)
@@ -77,157 +75,253 @@ const CCElement1 = () => {
       {
         loading &&
         <React.Fragment>
-            <div style={{top:"0px",left:"0px",position:"fixed",width:"100vw",height:"100vh",backgroundColor:"rgb(64 57 57 / 20%)" ,backdropFilter:"blur(3px)",zIndex:9999}}> </div>
-            <div style = {{
-                display: "block",
-                margin: "0 auto",
-                borderColor: "red",
-                zIndex:"9999",
-                position: "absolute",
-                top: "calc(50vh - 75px)",
-                left:"calc(50% - 75px)"
-              }}>
-              <CircleLoader  color={"white"} loading={true} size={150} id="custom-loader-el" />
-            </div>
-        </React.Fragment>
-        }
-
-<CCElement1Wrapper bgImg={bgImg}>
-      <div className="cleaner w-container">
-        <div className="main-vehicle-row w-row">
-          <div className="column-4 w-col w-col-6">
-            <img
-              src={filter0}
-              width="403"
-              sizes="(max-width: 479px) 86vw, (max-width: 767px) 403px, (max-width: 991px) 43vw, 403px"
-              alt=""
-            />
+          <div style={{ top: "0px", left: "0px", position: "fixed", width: "100vw", height: "100vh", backgroundColor: "rgb(64 57 57 / 20%)", backdropFilter: "blur(3px)", zIndex: 9999 }}> </div>
+          <div style={{
+            display: "block",
+            margin: "0 auto",
+            borderColor: "red",
+            zIndex: "9999",
+            position: "absolute",
+            top: "calc(50vh - 75px)",
+            left: "calc(50% - 75px)"
+          }}>
+            <CircleLoader color={"white"} loading={true} size={150} id="custom-loader-el" />
           </div>
-          <div className="column-6 w-col w-col-6" id="kit">
-            <div className="column-div left">
-              <h1 className="product-header">Green Filter Cleaner</h1>
-              <h1 className="product-descr">{productData?.title}</h1>
-              <p className="large-paragraph gray left">
-                {productData?.title && 
-                `Keep your Green High Performance Air Filter in perfect condition
+        </React.Fragment>
+      }
+
+      <CCElement1Wrapper bgImg={bgImg}>
+
+
+        <div className="static-mfx-div" style={{ marginTop: "0px" }}>
+          <div className="vh-brand-main-header">
+            Our Air Filter Cleaner and Oil Kits
+          </div>
+          <div className="static-mfx-text-div">
+            Our Green Filter Cleaner and Oil Kits keep your washable air filter clean, efficient and
+            performing at its peak. The Green Filter Cleaner removes filter-clogging buildup to maintain
+            optimal airflow and filtration. The air filter cleaner is packaged in a 12-ounce spray bottle, ready
+            to use straight out of the box, saving you time and effort. Always follow the label instructions for
+            best results.
+          </div>
+        </div>
+
+        <div className="cleaner w-container">
+          <div className="main-vehicle-row w-row">
+            <div className="column-4 w-col w-col-6">
+              <img
+                src={filter0}
+                width="403"
+                sizes="(max-width: 479px) 86vw, (max-width: 767px) 403px, (max-width: 991px) 43vw, 403px"
+                alt=""
+              />
+            </div>
+            <div className="column-6 w-col w-col-6" id="kit">
+              <div className="column-div left">
+                <div className="product-header">Green Filter Cleaner</div>
+                <div className="product-descr">{productData?.title}</div>
+                <p className="large-paragraph gray left">
+                  {productData?.title &&
+                    `Keep your Green High Performance Air Filter in perfect condition
                 with our specially formulated Recharge Oil (8 oz.) and Cleaner
                 Spray (12 oz.). Our Recharge Oil is designed to not damage
                 any vehicle sensors and ensure that your Green Filter can trap
                 the smallest dirt particles before they reach your engine.`}
-              </p>
-              <div
-                className="shopify-buy-frame--product"
-                style={{ maxWidth: 120 }}
-              >
-                {/* <div className="price-text">
+                </p>
+                <div
+                  className="shopify-buy-frame--product"
+                  style={{ maxWidth: 120 }}
+                >
+                  {/* <div className="price-text">
                   <span className="discounted-price">{productData?.compare_at_price} </span>
                   <span className="actual-price">{productData?.price}</span>
                 </div> */}
-                <AddToCart text="ADD TO CART" buyButtonId={productData?.buy_url}  id={productData?.id}/>
+                  <AddToCart text="ADD TO CART" buyButtonId={productData?.buy_url} id={productData?.id} />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <FilterTable headers={tableHeader} tableData={tableData} />
+        <FilterTable headers={tableHeader} tableData={tableData} />
 
 
-      
-      <div className="titles-div">
-        <h1 className="main-header">Green Filter Cleaning Instructions</h1>
-        <p class="large-paragraph gray reviews">
-          We recommend that you visually inspect your Green High Performance Air
-          Filter at every oil change. As a general rule, a Green High
-          Performance Air Filter should be cleaned at every 30,000 miles;
-          however, this interval can be greatly influenced by your environment
-          and driving conditions. In dusty areas, you may need to clean the
-          filter more often.
-        </p>
-        <div style={{ marginTop: 20 }}>
-          <Button1 text="Download Cleaning Instructions" isLink to="/documents/green-filter-cleaning.pdf" target="_blank" />
-        </div>
-      </div>
-      <div className="div-block-3">
-        <div
-          style={{ paddingTop: "56.17021276595745%" }}
-          className="video w-video w-embed"
-        >
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/d7rETWxgZ8U"
-            title="YouTube video player"
-            frameborder="0"
-            allow="autoplay; encrypted-media;"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div className="titles-div top">
-          <h1 class="heading-2">Watch A Green Filter Cleaning Demo</h1>
-          <p class="large-paragraph w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">
-            Watch President
+
+        <div className="titles-div">
+          <h2 className="main-header">Green Filter Cleaning Instructions</h2>
+          <p class="large-paragraph gray reviews">
+            We recommend that you visually inspect your Green High Performance Air
+            Filter at every oil change. As a general rule, a Green High
+            Performance Air Filter should be cleaned at every 30,000 miles;
+            however, this interval can be greatly influenced by your environment
+            and driving conditions. In dusty areas, you may need to clean the
+            filter more often.
           </p>
-          <div class="gradient"></div>
+          <div style={{ marginTop: 20 }}>
+            <Button1 text="Download Cleaning Instructions" isLink to="/documents/green-filter-cleaning.pdf" target="_blank" />
+          </div>
         </div>
-      </div>
-      <div className="main-vehicle-row w-row">
-        <div className="c1 w-col w-col-6">
-          <div>
-            <div className="column-div">
-              <h1 className="white left">1. PRE-CLEANING</h1>
-              <p className="large-paragraph gray left">
-                Tap the filter to remove excess dirt.
-              </p>
+
+        <div className="static-mfx-div" style={{ marginTop: "0px" }}>
+
+          <h3>
+            How to Use Our Air Filter Cleaner Kit
+          </h3>
+          <div className="static-mfx-text-div">
+            Follow these simple steps to maintain your Green High Performance Air Filter:
+          </div>
+          <div className="static-mfx-text-div">
+            <div>
+              Tap the filter to remove dirt.
             </div>
-            <div className="column-div">
-              <h1 className="white left">2. APPLY CLEANER</h1>
-              <p className="large-paragraph gray left">
-                Spray the filter with Green Filter Cleaner and allow the
-                solution to soak in for about 15 minutes.
-              </p>
-              <div className="tiny-text">
-                * Never use strong detergents, high pressure water, or gasoline.
-              </div>
+            <div>
+              Spray the filter with Green Filter Cleaner and allow the solution to soak for about 15 minutes.
             </div>
-            <div className="column-div">
-              <h1 className="white left">3. RINSE</h1>
-              <p className="large-paragraph gray left">
-                Rinse the filter with warm water, clean side to dirty side to
-                flush out the dirt. Do NOT use extreme high pressure.
-              </p>
+            <div>
+              Rinse the filter with warm water from the inside out.
+            </div>
+            <div>
+              Allow the filter to air dry. Avoid heat, as it may shrink the cotton.
+            </div>
+            <div>
+              Re-oil the filter using Green Filter Oil. Use one spray per 2 square inches.
+            </div>
+          </div>
+          <div className="static-mfx-text-div">
+            Clean your air filter every 30,000 miles or less based on your environment and driving
+            conditions. In dusty areas, you may need to clean the filter more often. We recommend that you
+            visually inspect your Green High Performance Air Filter at every oil change. Never use strong
+            detergents, high-pressure water or gasoline.
+          </div>
+
+          <h4>
+            About Green Filter Oil
+          </h4>
+          <div className="static-mfx-text-div">
+            Our Recharge Oil doesn't affect vehicle sensors, protects your engine, and maximizes filtration. It
+            ensures that your Green Filter traps even the smallest dirt particles before they reach your engine.
+            The formula creates an ionic bond with the filter's steel mesh, attracting negatively charged dust
+            particles that cling to the mesh. Green Filter oil also contains a swelling additive that causes the
+            cotton fibers to swell and collect contaminants effectively.
+          </div>
+          <h4>
+            Why Choose a Reusable Green Filter?
+          </h4>
+          <div className="static-mfx-text-div">
+            Green Filter reusable air filters are highly accepted and sought after by racing professionals,
+            leading engine performance engineers and builders of high-performance vehicles. They are made
+            in the USA and are easy to install, clean and maintain. They can be reused repeatedly, which
+            gives them a longer lifespan and benefits the environment. We are very excited to build you a
+            leading high-performance filter that:
+          </div>
+          <div className="static-mfx-text-div">
+            <div>
+              Traps particles as small as 5 microns.
+            </div>
+            <div>
+              Increases air flow for a more potent air/fuel mixture.
+            </div>
+            <div>
+              Increases horsepower.
+            </div>
+            <div>
+              Provides better fuel mileage, saving money at the pump.
+            </div>
+            <div>
+              Does not interfere with engine monitoring systems.
+            </div>
+          </div>
+
+          <div className="static-mfx-div" style={{ marginBottom: "50px", marginTop: "0px" }}>
+            <h2>
+              Purchase Your Air Filter Recharge Kit Today!
+            </h2>
+            <div className="static-mfx-text-div">
+              Keep your Green High Performance Air Filter in top condition with our specially formulated air
+              filter oil and cleaner.
             </div>
           </div>
         </div>
-        <div class="c2 w-col w-col-6">
-          <div>
-            <div class="column-div">
-              <h1 class="white left">4. DRYING</h1>
-              <p class="large-paragraph gray left">
-                Allow the filter to dry naturally. Try to avoid heat because it
-                might shrink the cotton.
-              </p>
+        <div className="div-block-3">
+          <div
+            style={{ paddingTop: "56.17021276595745%" }}
+            className="video w-video w-embed"
+          >
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/d7rETWxgZ8U"
+              title="YouTube video player"
+              frameborder="0"
+              allow="autoplay; encrypted-media;"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div className="titles-div top">
+            <div className="heading-2 vh-brand-main-header">Watch A Green Filter Cleaning Demo</div>
+            <p class="large-paragraph w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">
+              Watch President
+            </p>
+            <div class="gradient"></div>
+          </div>
+        </div>
+        <div className="main-vehicle-row w-row">
+          <div className="c1 w-col w-col-6">
+            <div>
+              <div className="column-div">
+                <div className="white left my-20">1. PRE-CLEANING</div>
+                <p className="large-paragraph gray left">
+                  Tap the filter to remove excess dirt.
+                </p>
+              </div>
+              <div className="column-div">
+                <div className="white left my-20">2. APPLY CLEANER</div>
+                <p className="large-paragraph gray left">
+                  Spray the filter with Green Filter Cleaner and allow the
+                  solution to soak in for about 15 minutes.
+                </p>
+                <div className="tiny-text">
+                  * Never use strong detergents, high pressure water, or gasoline.
+                </div>
+              </div>
+              <div className="column-div">
+                <div className="white left my-20">3. RINSE</div>
+                <p className="large-paragraph gray left">
+                  Rinse the filter with warm water, clean side to dirty side to
+                  flush out the dirt. Do NOT use extreme high pressure.
+                </p>
+              </div>
             </div>
-            <div className="column-div">
-              <h1 className="white left">5. APPLY OIL</h1>
-              <p className="large-paragraph gray left">
-                Re-oil the filter using&nbsp;Green Filter Oil&nbsp;by using 1
-                spray per 2 square inches of filter. Take care to not over-oil
-                your filter.
-              </p>
-              <div className="tiny-text">
-                * Never use motor oil, transmission fluid, WD-40®, or any other
-                brand of filter oil as these may damage your Green Filter. Use
-                only genuine Green Filter Oil.
+          </div>
+          <div class="c2 w-col w-col-6">
+            <div>
+              <div class="column-div">
+                <div class="white left my-20">4. DRYING</div>
+                <p class="large-paragraph gray left">
+                  Allow the filter to dry naturally. Try to avoid heat because it
+                  might shrink the cotton.
+                </p>
+              </div>
+              <div className="column-div">
+                <div className="white left my-20">5. APPLY OIL</div>
+                <p className="large-paragraph gray left">
+                  Re-oil the filter using&nbsp;Green Filter Oil&nbsp;by using 1
+                  spray per 2 square inches of filter. Take care to not over-oil
+                  your filter.
+                </p>
+                <div className="tiny-text">
+                  * Never use motor oil, transmission fluid, WD-40®, or any other
+                  brand of filter oil as these may damage your Green Filter. Use
+                  only genuine Green Filter Oil.
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </CCElement1Wrapper>
-    
+      </CCElement1Wrapper>
+
     </>
-   
+
   );
 };
 

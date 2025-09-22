@@ -119,3 +119,46 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
+.static-mfx-div {
+  margin-top: 100;
+  margin-left: 20;
+  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.static-mfx-text-div {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.mfx-static-text-a {
+      font-family: Lato, sans-serif !important;
+    color: #00ad23 !important ;
+    font-weight: 400;
+}
+
+.mfx-static-text-a:hover {
+    text-decoration: underline;
+}
+
+.static-mfx-div h1 {
+text-align: left;
+}
+
+
+.static-mfx-div h3 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.static-mfx-div h4 {
+  font-size: 20px;
+  font-weight: 500;
+  text-align: left;
+}

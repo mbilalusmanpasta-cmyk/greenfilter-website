@@ -146,6 +146,9 @@ const Footer = () => {
           <Link to="privacy-policy" className="link _15 grey">
             Privacy Policy
           </Link>
+          <Link to="/sitemap" className="link _15 grey">
+            Sitemap
+          </Link>
         </div>
       </FooterWrapper>
     </>

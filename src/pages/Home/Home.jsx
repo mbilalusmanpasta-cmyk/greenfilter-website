@@ -32,6 +32,7 @@ import styled from "styled-components";
 import HomeElement2 from "./HomeElement2";
 import GreenSearch from "../../components/GreenSearch";
 import {getPageData} from "../../helper/util/getPageData";
+import { Helmet } from "react-helmet";
 
 
 const Home = (props) => {
@@ -80,6 +81,18 @@ const Home = (props) => {
 
   return (
     <HomeWrapper>
+
+      <Helmet>
+        <title>{"Green Filter - High Performance Air Filters"} </title>
+        <meta name="description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
+        <meta property="og:title" content={"Green Filter - High Performance Air Filters"} />
+        <meta property="og:description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
+        <meta property="og:image" content={img0} />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://greenfilter.com/" />
+      </Helmet>
+      
       <div className="container-0">
         <Header
           clickedIndex={props.clickedIndex}

@@ -61,7 +61,7 @@ function stableSort(array, comparator) {
 
 
 function EnhancedTableHead(props) {
-  const {  order, orderBy,  onRequestSort, headers } =
+  const { order, orderBy, onRequestSort, headers } =
     props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -70,7 +70,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {headers.map((header,id) => (
+        {headers.map((header, id) => (
           <TableCell
             className="table-head-cell"
             key={header.id}
@@ -78,12 +78,12 @@ function EnhancedTableHead(props) {
               width: header.maxWidth,
               background: "no-repeat 5px center",
               backgroundImage:
-              orderBy === header.name && order ==="asc"
+                orderBy === header.name && order === "asc"
                   ? `url(${upperIcon})`
-                  :  orderBy === header.name && order ==="desc" ? `url(${downIcon})` : `url(${sortIcon})`,
+                  : orderBy === header.name && order === "desc" ? `url(${downIcon})` : `url(${sortIcon})`,
               whiteSpace: "normal",
               backgroundColor:
-              orderBy === header.name ? "#46ff3d" : "#14800d",
+                orderBy === header.name ? "#46ff3d" : "#14800d",
               color: orderBy === header.name ? "#3d3d3d" : "#ffffff",
             }}
             sortDirection={orderBy === header.name ? order : false}
@@ -124,10 +124,8 @@ const FilterTable = ({ headers, tableData }) => {
   };
 
 
-  const handleClick = (row) =>
-  {
-    if(row?.id)
-    {
+  const handleClick = (row) => {
+    if (row?.id) {
 
       history.push(`/store/filter/${row.gfu_part_num}`);
     }
@@ -175,15 +173,15 @@ const FilterTable = ({ headers, tableData }) => {
               {stableSort(tableData, getComparator(order, orderBy))
                 .map((row, id) => (
 
-                // <Link to={`/store/${row?.id}`} class="link-block w-inline-block">
+                  // <Link to={`/store/${row?.id}`} class="link-block w-inline-block">
                   <TableRow
                     key={row.rowNo}
                     style={{ background: id % 2 === 0 ? "#ebfaeb" : "#fff" }}
-                    onClick={()=>handleClick(row)}
+                    onClick={() => handleClick(row)}
                   >
                     {
                       headers.map((header, id) => (
-                          <TableCell
+                        <TableCell
                           key={header.id}
                           className="table-row-cell"
                           style={{ color: id === 0 ? "green" : "#3d3d3d" }}
@@ -194,8 +192,8 @@ const FilterTable = ({ headers, tableData }) => {
 
                     }
                   </TableRow>
-                // </Link>
-              ))}
+                  // </Link>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>

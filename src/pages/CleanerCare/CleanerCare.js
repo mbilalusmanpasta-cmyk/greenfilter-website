@@ -20,6 +20,7 @@ import img10 from "../../assets/gallery/img10.jpg";
 import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
+import { Helmet } from "react-helmet";
 
 const CleanerCare = (props) => {
   const gallery = [
@@ -40,6 +41,17 @@ const CleanerCare = (props) => {
   ];
   return (
     <>
+      <Helmet>
+        <title>Engine Air Filter Cleaner - Green Filter USA</title>
+        <meta name="description" content="Green Filter Cleaner: Specially formulated to clean & re-oil your Green High Performance Air Filter. Protect your engine & maximize airflow. Shop now!" />
+        <meta property="og:title" content="Engine Air Filter Cleaner - Green Filter USA" />
+        <meta property="og:description" content="Green Filter Cleaner: Specially formulated to clean & re-oil your Green High Performance Air Filter. Protect your engine & maximize airflow. Shop now!" />
+        <meta property="og:image" content={img0} />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://greenfilter.com/cleaner-care" />
+
+      </Helmet>
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
@@ -48,6 +60,7 @@ const CleanerCare = (props) => {
         <Hero />
         <CCElement1 />
         <CCElement2 />
+
         <Gallery gallery={gallery} />
       </div>
       <Footer />

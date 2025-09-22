@@ -23,18 +23,20 @@ import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
 import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
 import Product from "../pages/Product";
 import Home from "../pages/Home/Home.jsx";
-import {getGlobalData} from "../helper/util/getGlobalData";
+import { getGlobalData } from "../helper/util/getGlobalData";
 
 import './routes.css';
+import NotFound from "../pages/NotFound/index.jsx";
+import Sitemap from "../pages/Sitemap/Sitemap.jsx";
 
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
   const [vehicle, setVehicle] = useState({});
   const [globalData, setGlobalData] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     _loadData();
-  },[])
+  }, [])
 
   const handleClickIndex = (value) => {
     setClickedIndex(value);
@@ -45,7 +47,7 @@ const Routes = () => {
 
   const _loadData = async () => {
     let res = await getGlobalData();
-    console.log('res',res)
+    console.log('res', res)
     setGlobalData(res);
   }
 
@@ -53,22 +55,22 @@ const Routes = () => {
   const banner = globalData?.fields?.banner || null;
   const bannerAdditionalText = globalData?.fields?.['banner-additional-text'] || null;
 
-  
-  
+
+
 
   return (
     <>
 
       {
-        banner && 
+        banner &&
         <div className="top-banner">
-        <div className="top-banner-content">
-          <h4 className="title" >{banner}</h4>
-          {
-            bannerAdditionalText &&  <p>{bannerAdditionalText}</p>
-          }
+          <div className="top-banner-content">
+            <h4 className="title" >{banner}</h4>
+            {
+              bannerAdditionalText && <p>{bannerAdditionalText}</p>
+            }
+          </div>
         </div>
-      </div>
       }
 
       <Switch>
@@ -93,7 +95,7 @@ const Routes = () => {
             />
           )}
         />
-         <Route
+        <Route
           exact
           path="/store"
           component={() => (
@@ -305,7 +307,7 @@ const Routes = () => {
           )}
         />
 
-<Route
+        <Route
           exact
           path="/terms-of-service"
           component={() => (
@@ -327,6 +329,21 @@ const Routes = () => {
             />
           )}
         />
+
+        <Route
+          exact
+          path="/sitemap"
+          component={() => (
+            <Sitemap
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+
+        <Route component={NotFound} />
+
       </Switch>
     </>
   );

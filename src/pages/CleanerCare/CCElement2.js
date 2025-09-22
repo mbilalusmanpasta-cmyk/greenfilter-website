@@ -6,7 +6,7 @@ const CCElement2 = () => {
     <>
       <CCElement1Wrapper>
         <div className="titles-div less-padding">
-          <h1 className="main-header">About Green Filter Oil</h1>
+          <div className="main-header vh-brand-main-header">About Green Filter Oil</div>
           <p className="large-paragraph gray reviews">
             Green High Performance Air Filters come pretreated with a specially
             formulated dirt-trapping oil. Our proprietary lightweight, synthetic
@@ -45,7 +45,7 @@ const CCElement2 = () => {
               ></iframe>
             </div>
             <div className="titles-div top">
-              <h1 class="heading-2">Oiled vs Unoiled</h1>
+              <div class="heading-2 vh-brand-main-header">Oiled vs Unoiled</div>
               <p class="large-paragraph w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">
                 Watch President
               </p>
@@ -54,17 +54,17 @@ const CCElement2 = () => {
           </div>
         </div>
         <div className="titles-div less-padding">
-          <h1 className="main-header">Material Safety Data Sheets</h1>
+          <div className="main-header vh-brand-main-header">Material Safety Data Sheets</div>
           <div
             className="w-row"
             style={{ display: "flex", marginTop: 30, flexWrap: "wrap" }}
           >
             <div className="w-col w-col-6 cc_btn">
-              <Button1 isLink text="Green Filter USA - Air Filter Oil MSDS" to="/documents/gfu_msds_oil.pdf" target="_blank"/>
+              <Button1 isLink text="Green Filter USA - Air Filter Oil MSDS" to="/documents/gfu_msds_oil.pdf" target="_blank" />
 
             </div>
             <div className="w-col w-col-6 cc_btn">
-              <Button1 isLink text="Green Filter USA - Air Filter Cleaner MSDS" to="/documents/gfu_msds_cleaner.pdf" target="_blank"/>
+              <Button1 isLink text="Green Filter USA - Air Filter Cleaner MSDS" to="/documents/gfu_msds_cleaner.pdf" target="_blank" />
             </div>
           </div>
         </div>

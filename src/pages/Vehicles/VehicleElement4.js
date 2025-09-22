@@ -7,39 +7,39 @@ import { Link } from "react-router-dom";
 import Button1 from "../../components/Button1";
 import AddToCart from "../../components/AddToCart";
 import { simplifyId } from "../../helper/simplifyId";
-const VehicleElement4 = ({ models,make,cleaningKit }) => {
+const VehicleElement4 = ({ models, make, cleaningKit }) => {
   return (
     <>
       <VehicleElement4Wrapper>
         <div className="titles-div">
-          <h1 className="main-header">
+          <div className="main-header vh-brand-main-header">
             Popular {make?.title} Models Use Green Filter
-          </h1>
+          </div>
           <p className="large-paragraph gray reviews">
             Below are the {make?.title} models that support the
             application of Green Filter.
           </p>
         </div>
-        {models && models.map((model,key) => ( 
+        {models && models.map((model, key) => (
           <div className="container-6 w-container" key={key} id={simplifyId(model.slug)} >
             <div className="main-vehicle-row w-row">
               <div className="column-4 w-col w-col-6">
                 <img
                   src={model?.images?.[0]?.link}
                   alt="car"
-                  style={{ maxWidth: "100%", verticalAlign: "middle", display: "inline-block"}}
+                  style={{ maxWidth: "100%", verticalAlign: "middle", display: "inline-block" }}
                   width={"384px"}
                 />
               </div>
               <div className="column-6 w-col w-col-6">
                 <div className="column-div left">
-                  <h1 className="product-header">
+                  <div className="product-header">
                     {model.title} High Performance Air Filter
-                  </h1>
-                  <h1 className="product-descr">
+                  </div>
+                  <div className="product-descr">
                     Green Filter - Part{" "}
                     <Link to={`/store/filter/${model?.products?.[0]?.gfu_part_num}`} style={{ color: "green" }}>#{model?.products?.[0]?.gfu_part_num}</Link>
-                  </h1>
+                  </div>
                 </div>
                 <img src={model?.products?.[0]?.images?.[0]?.link} alt="filter" className="product" />
               </div>
@@ -47,31 +47,31 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
             <div className="product-row top w-row">
               <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                 <div className="white-div gray">
-                  <h1 className="table-header">Year</h1>
+                  <div className="table-header">Year</div>
                 </div>
               </div>
               <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                 <div className="white-div gray">
-                  <h1 className="table-header">Disp</h1>
+                  <div className="table-header">Disp</div>
                 </div>
               </div>
               <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                 <div className="white-div gray">
-                  <h1 className="table-header">Engine Size</h1>
+                  <div className="table-header">Engine Size</div>
                 </div>
               </div>
               <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                 <div className="white-div gray">
-                  <h1 className="table-header">Intake</h1>
+                  <div className="table-header">Intake</div>
                 </div>
               </div>
               <div className="w-col w-col-4 w-col-small-4 w-col-tiny-2">
                 <div className="white-div gray">
-                  <h1 className="table-header">Purchase</h1>
+                  <div className="table-header">Purchase</div>
                 </div>
               </div>
             </div>
-            {model?.products?.map((product,id) => (
+            {model?.products?.map((product, id) => (
               <div className="product-row w-row" key={product.id}>
                 <div className="w-col w-col-2 w-col-small-2 w-col-tiny-2">
                   <div className="white-div ctr">
@@ -102,11 +102,11 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
                 <div className="w-col w-col-4 w-col-small-4 w-col-tiny-4">
                   <div className="white-div ctr">
                     <div style={{ float: "left", paddingBottom: "5px" }}>
-                      <div  className="shopify-buy-frame--product-cus"
+                      <div className="shopify-buy-frame--product-cus"
                         style={{ maxWidth: 120 }}>
-                         <AddToCart text="ADD TO CART"  buyButtonId={product?.buy_url}  id={product.id + id.toString() + model.slug.toString()}/>
+                        <AddToCart text="ADD TO CART" buyButtonId={product?.buy_url} id={product.id + id.toString() + model.slug.toString()} />
                       </div>
-                     
+
 
                     </div>
                     <img
@@ -130,12 +130,12 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
               </div>
               <div className="w-col w-col-4 w-col-small-4 w-col-tiny-4">
                 <div className="white-div ctr">
-                <div style={{ float: "left", paddingBottom: "5px" }}>
-                      <div  className="shopify-buy-frame--product-cus"
-                        style={{ maxWidth: 120 }}>
-                  <AddToCart text="ADD TO CART"  buyButtonId={cleaningKit?.buy_url}  id={model.id.toString() + cleaningKit?.id?.toString()}/>
-                </div>
-                </div>
+                  <div style={{ float: "left", paddingBottom: "5px" }}>
+                    <div className="shopify-buy-frame--product-cus"
+                      style={{ maxWidth: 120 }}>
+                      <AddToCart text="ADD TO CART" buyButtonId={cleaningKit?.buy_url} id={model.id.toString() + cleaningKit?.id?.toString()} />
+                    </div>
+                  </div>
                   <img
                     src={cleaner}
                     alt="filter"
@@ -146,14 +146,14 @@ const VehicleElement4 = ({ models,make,cleaningKit }) => {
             </div>
             <div className="white-div ctr">
               <div className="product-table-text">
-                <h1 className="product-header">
+                <div className="product-header">
                   Don't see a compatible filter here? Check "Find a Filter" at
                   the top of the page.
-                </h1>
+                </div>
               </div>
             </div>
           </div>
-         
+
         ))}
       </VehicleElement4Wrapper>
     </>

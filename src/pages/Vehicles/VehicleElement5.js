@@ -178,7 +178,7 @@ const VehicleElement5 = () => {
     <>
       <VehicleElement5Wrapper>
         <div class="titles-div">
-          <h1 class="main-header">Don't Take Our Word For It</h1>
+          <div class="main-header vh-brand-main-header">Don't Take Our Word For It</div>
           <p class="large-paragraph gray reviews">
             There are thousands of 5 star reviews from extremely happy customers
             that have experienced the Green Filter difference.

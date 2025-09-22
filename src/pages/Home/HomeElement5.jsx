@@ -30,7 +30,7 @@ const HomeElement5 = () => {
         <div className="w-container">
           <div class="titles-div flex">
             <div class="titles-div flex w-clearfix">
-              <h1>Watch The World Show Us Off on</h1>
+              <div className="vh-brand-main-header">Watch The World Show Us Off on</div>
               <img src={youtube} alt="youtube" class="image-6" />
             </div>
           </div>

@@ -130,10 +130,8 @@ const ProductInformationTable = ({ tableData }) => {
   const history = useHistory();
   const [sortedColumn, setSortedColumn] = React.useState(-1);
 
-  const handleClick = (row) =>
-  {
-    if(row?.id)
-    {
+  const handleClick = (row) => {
+    if (row?.id) {
 
       history.push(`/store/filter/${row.gfu_part_num}`);
     }
@@ -146,7 +144,7 @@ const ProductInformationTable = ({ tableData }) => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow rowSpan={2}>
-                <TableCell colSpan={2} style={{background:"#000",color:"#fff",textAlign:"center", fontSize:"12pt"}} >
+                <TableCell colSpan={2} style={{ background: "#000", color: "#fff", textAlign: "center", fontSize: "12pt" }} >
                   <div>
                     Product Information
 
@@ -154,7 +152,7 @@ const ProductInformationTable = ({ tableData }) => {
                 </TableCell>
 
               </TableRow>
-             
+
               <TableRow>
                 {tableHeader.map((header, id) => (
                   <TableCell
@@ -163,10 +161,10 @@ const ProductInformationTable = ({ tableData }) => {
                     style={{
                       width: header.maxWidth,
                       background: "no-repeat 5px center",
-                      textAlign:"center",
+                      textAlign: "center",
                       whiteSpace: "normal",
                       backgroundColor:
-                      sortedColumn === id ? "black" : "black",
+                        sortedColumn === id ? "black" : "black",
                       color: sortedColumn === id ? "#fff" : "#ffffff",
                     }}
                   >
@@ -178,18 +176,18 @@ const ProductInformationTable = ({ tableData }) => {
 
             <TableBody>
 
-              
+
               {tableData && tableRows.map((row, id) => (
 
 
                 tableData[row?.name] && (
 
-                // <Link to={`/store/${row?.id}`} class="link-block w-inline-block">
+                  // <Link to={`/store/${row?.id}`} class="link-block w-inline-block">
                   <TableRow
                     key={id}
                     style={{ background: id % 2 === 0 ? "lightgrey" : "#fff" }}
                   >
-                     <TableCell
+                    <TableCell
                       key={0}
                       className="table-row-cell"
                       style={{ color: "#3d3d3d" }}

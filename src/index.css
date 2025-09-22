@@ -1,4 +1,5 @@
 @import "~antd/dist/antd.css";
+
 @font-face {
   font-family: "Lato";
   src: url("./styles/fonts/Lato-Regular.ttf");
@@ -8,17 +9,20 @@
   font-family: "LatoThin";
   src: url("./styles/fonts/Lato-Thin.ttf");
 }
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
+
 body {
   margin: 0;
   min-height: 100%;
@@ -39,18 +43,17 @@ code {
 div {
   display: block;
 }
+
 a {
   background-color: transparent;
   color: #fff;
   text-decoration: none;
 }
 
-#custom-loader-el > span {
-  -webkit-animation: 1s linear 0.4s infinite normal none running
-      react-spinners-CircleLoader-circle,
+#custom-loader-el>span {
+  -webkit-animation: 1s linear 0.4s infinite normal none running react-spinners-CircleLoader-circle,
     custom-el-border-transition 5s linear infinite !important;
-  animation: 1s linear 0.4s infinite normal none running
-      react-spinners-CircleLoader-circle,
+  animation: 1s linear 0.4s infinite normal none running react-spinners-CircleLoader-circle,
     custom-el-border-transition 5s linear infinite !important;
 }
 
@@ -59,14 +62,17 @@ a {
     border-top: 1px solid white;
     border-left: 1px solid white;
   }
+
   33% {
     border-top: 1px solid white;
     border-left: 1px solid white;
   }
+
   67% {
     border-top: 1px solid green;
     border-left: 1px solid green;
   }
+
   100% {
     border-top: 1px solid green;
     border-left: 1px solid green;
@@ -78,14 +84,17 @@ a {
     border-top: 1px solid white;
     border-left: 1px solid white;
   }
+
   33% {
     border-top: 1px solid green;
     border-left: 1px solid green;
   }
+
   67% {
     border-top: 1px solid green;
     border-left: 1px solid green;
   }
+
   100% {
     border-top: 1px solid white;
     border-left: 1px solid white;
@@ -100,17 +109,20 @@ h1 {
   color: #313131;
   font-size: 38px;
 }
+
 h2 {
   font-size: 32px;
   line-height: 36px;
   margin-top: 20px;
 }
+
 img {
   max-width: 100%;
   vertical-align: middle;
   display: inline-block;
   border: 0;
 }
+
 p {
   margin-top: 0;
   margin-bottom: 10px;
@@ -118,6 +130,7 @@ p {
   color: #757575;
   font-weight: 300;
 }
+
 h4 {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -128,6 +141,7 @@ h4 {
   font-weight: 300;
   text-align: center;
 }
+
 center {
   display: block;
   text-align: -webkit-center;
@@ -156,6 +170,7 @@ label {
   margin-right: auto;
   max-width: 940px;
 }
+
 .w-container:before,
 .w-container:after {
   content: " ";
@@ -168,6 +183,7 @@ label {
   display: flex;
   flex-wrap: wrap;
 }
+
 .w-row:before,
 .w-row:after {
   content: " ";
@@ -177,6 +193,7 @@ label {
 .column-4 {
   padding-right: 2% !important;
 }
+
 .column-6 {
   padding-left: 0% !important;
 }
@@ -184,9 +201,11 @@ label {
 .w-col-6 {
   width: 50%;
 }
+
 .w-col-2 {
   width: 16.66666667%;
 }
+
 .w-col {
   position: relative;
   /* float: left; */
@@ -254,11 +273,18 @@ label {
   padding-bottom: 25px;
   background-image: none;
 }
+
 .titles-div.less-padding {
   margin-bottom: 25px;
 }
+
 .main-header {
   font-weight: 400;
+}
+
+.vh-brand-main-header {
+  font-size: 38px;
+  line-height: 48px;
 }
 
 .c1 {
@@ -267,6 +293,20 @@ label {
 
 .c2 {
   padding-left: 25px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.my-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
 }
 
 .white.left {
@@ -339,6 +379,7 @@ label {
 .video {
   height: 250px;
 }
+
 .w-video {
   width: 100%;
   position: relative;
@@ -373,16 +414,12 @@ label {
   right: 0px;
   width: auto;
   height: 135%;
-  background-image: -webkit-linear-gradient(
-    270deg,
-    rgba(0, 0, 0, 0.89) 32%,
-    transparent
-  );
-  background-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.89) 32%,
-    transparent
-  );
+  background-image: -webkit-linear-gradient(270deg,
+      rgba(0, 0, 0, 0.89) 32%,
+      transparent);
+  background-image: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.89) 32%,
+      transparent);
 }
 
 .trusted {
@@ -418,6 +455,7 @@ label {
 .image-3 {
   width: 75px;
 }
+
 .image-5 {
   width: 125px;
 }
@@ -472,6 +510,7 @@ label {
   .header-gap-creator {
     height: 67px;
   }
+
   .search-gap-creator {
     height: 108px;
   }
@@ -482,7 +521,9 @@ label {
     margin-top: 50px;
   }
 }
+
 @media screen and (max-width: 767px) {
+
   .w-row,
   .w-container .w-row {
     margin-left: 0;
@@ -498,20 +539,24 @@ label {
   .titles-div {
     width: 90%;
   }
+
   .container-0 {
     position: relative;
     padding: 0;
   }
 }
+
 @media screen and (max-width: 479px) {
   .main-vehicle-row {
     margin-top: 25px;
     margin-bottom: 0px;
   }
+
   .main-header {
     font-size: 32px;
     line-height: 40px;
   }
+
   .titles-div.top {
     display: none;
   }
@@ -545,6 +590,7 @@ label {
   margin-top: 10px;
   overflow-y: auto;
 }
+
 @media screen and (min-width: 767px) {
   .sticky {
     position: fixed;
@@ -555,7 +601,8 @@ label {
     z-index: 99;
     background-color: rgba(0, 173, 35, 1);
   }
-  .sticky > h3 {
+
+  .sticky>h3 {
     visibility: hidden;
   }
 }
@@ -581,7 +628,7 @@ label {
   flex-direction: row;
 }
 
-.selectController > span {
+.selectController>span {
   color: #fff;
   font-weight: bold;
   font-size: 11px;
@@ -624,14 +671,17 @@ button.ant-btn.ant-btn-link.customBtns {
   .selectController {
     flex-direction: column;
   }
+
   .customFilters .customSelects {
     width: 100%;
     margin: 10px 0px;
     height: 40px;
   }
+
   .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     height: 40px;
   }
+
   .ant-select-single .ant-select-selector .ant-select-selection-item,
   .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
     line-height: 40px;
@@ -658,12 +708,14 @@ button.ant-btn.ant-btn-link.customBtns {
 .searchProductLeftContainer {
   margin-right: 45px;
 }
+
 .searchedProductRight p {
   text-align: left;
   font-size: 16px;
   color: #fff;
   margin: 3px 0px;
 }
+
 .searchedProductRight a:hover {
   color: #fff;
 }

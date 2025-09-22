@@ -19,6 +19,7 @@ import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
 import ContactElement1 from "./ContactElement1";
 import ContactElement2 from "./ContactElement2";
+import { Helmet } from "react-helmet";
 
 const gallery = [
   { id: 0, image: img0 },
@@ -39,6 +40,16 @@ const gallery = [
 const Contact = (props) => {
   return (
     <>
+      <Helmet>
+        <title>Contact Us | Green Filter</title>
+        <meta name="description" content="Learn about Green Filter's mission, vision, and dedication to eco-friendly solutions. See our gallery and team." />
+        <meta property="og:title" content="Contact Us | Green Filter" />
+        <meta property="og:description" content="Discover who we are and how we're revolutionizing filtration with eco-conscious innovation." />
+        <meta property="og:image" content={img0} />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://greenfilter.com/contact-us" />
+      </Helmet>
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}

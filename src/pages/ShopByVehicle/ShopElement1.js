@@ -116,7 +116,66 @@ const ShopElement1 = (props) => {
     <>
       <ShopElement1Wrapper>
         <div className="container-4 w-container">
-          <h1 className="heading-11">{"High Performance Cars"}</h1>
+          {/* <h1 className="heading-11">{"High Performance Cars"}</h1> */}
+          {/* <h1 className="heading-11">{"Engine Air Filters by Brand"}</h1> */}
+
+
+          <div className="static-mfx-div" style={{ marginTop: "0px" }}>
+            <h1 className="heading-11">{"Engine Air Filter Replacement"}</h1>
+
+            <h2>
+              Engine Air Filter Replacement
+            </h2>
+            <div className="static-mfx-text-div">
+              The engine air filter prevents dust, dirt and other small debris from entering and settling in your
+              engine's intake system. Removing contaminants supports efficient fuel combustion and optimal
+              engine performance.
+            </div>
+            <div className="static-mfx-text-div">
+              Green Filter is a leading manufacturer of premium-quality filters for a wide range of car makes
+              and models. Trusted by industry experts, drivers and enthusiasts, our U.S.A.-made filters are
+              reusable and long-lasting.
+            </div>
+
+            <h3>
+              The Green Filter Guarantee
+            </h3>
+            <div className="static-mfx-text-div">
+              Green Filter products stand out from the rest of our competitors through the many benefits they
+              offer, such as:
+            </div>
+
+            <div className="static-mfx-text-div">
+              <div>
+                <b>Efficiency:</b> Our filters effectively trap particles as small as 5 microns, which is the OEM standard
+                for engine filtration.
+              </div>
+              <div>
+                <b>Increased air flow:</b> Our filters promote increased air flow for efficient fuel combustion and
+                lower emissions.
+              </div>
+              <div>
+                <b>Ease of use:</b> Green Filter products are easy to install, clean and maintain, delivering excellent
+                performance even after multiple uses.
+              </div>
+              <div>
+                <b>Increased horsepower and greater torque:</b> Our performance air filter effectively allows more
+                air into the engine for better acceleration without overworking the vehicle.
+              </div>
+              <div>
+                <b>Better fuel mileage:</b> A dirt-free engine from a high-performing air filter achieves better fuel
+                economy, enabling drivers to use less fuel while maintaining vehicle performance.
+              </div>
+              <div>
+                <b>Improved throttle response:</b> Our high-flow air filter helps make your throttle more responsive
+                and acceleration easier.
+              </div>
+            </div>
+
+          </div>
+
+
+
           <div className="shop-vehicle-row w-row">
             {highPerformanceCollectionLoading ? (
               <div className="loader-wrapper">
@@ -128,9 +187,9 @@ const ShopElement1 = (props) => {
                   <Link
                     className="link-block"
                     to={`/brand/${make?.slug}`}
-                    // onClick={() => {
-                    //   props.handleVehicleRoute(make);
-                    // }}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
                   >
                     <div className="column-div custom-button-temp">
                       {/* <div className="make-image">
@@ -164,9 +223,9 @@ const ShopElement1 = (props) => {
                   <Link
                     className="link-block"
                     to={`/brand/${make?.slug}`}
-                    // onClick={() => {
-                    //   props.handleVehicleRoute(make);
-                    // }}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
                   >
                     <div className="column-div custom-button-temp">
                       {/* <div className="make-image">
@@ -200,9 +259,9 @@ const ShopElement1 = (props) => {
                   <Link
                     className="link-block"
                     to={`/brand/${make?.slug}`}
-                    // onClick={() => {
-                    //   props.handleVehicleRoute(make);
-                    // }}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
                   >
                     <div className="column-div custom-button-temp">
                       {/* <div className="make-image">
@@ -237,9 +296,9 @@ const ShopElement1 = (props) => {
                   <Link
                     className="link-block"
                     to={`/brand/${make?.slug}`}
-                    // onClick={() => {
-                    //   props.handleVehicleRoute(make);
-                    // }}
+                  // onClick={() => {
+                  //   props.handleVehicleRoute(make);
+                  // }}
                   >
                     <div className="column-div custom-button-temp">
                       {/* <div className="make-image">
@@ -259,6 +318,46 @@ const ShopElement1 = (props) => {
             )}
           </div>
         </div>
+
+
+        <div className="static-mfx-div" style={{ marginTop: "0px" }}>
+          <h3>
+            The Green Filter Guarantee
+          </h3>
+          <div className="static-mfx-text-div">
+            Green Filter products stand out from the rest of our competitors through the many benefits they
+            offer, such as:
+          </div>
+
+          <div className="static-mfx-text-div">
+            <div>
+              Efficiency: Our filters effectively trap particles as small as 5 microns, which is the OEM standard
+              for engine filtration.
+            </div>
+            <div>
+              Increased air flow: Our filters promote increased air flow for efficient fuel combustion and
+              lower emissions.
+            </div>
+            <div>
+              Ease of use: Green Filter products are easy to install, clean and maintain, delivering excellent
+              performance even after multiple uses.
+            </div>
+            <div>
+              Increased horsepower and greater torque: Our performance air filter effectively allows more
+              air into the engine for better acceleration without overworking the vehicle.
+            </div>
+            <div>
+              Better fuel mileage: A dirt-free engine from a high-performing air filter achieves better fuel
+              economy, enabling drivers to use less fuel while maintaining vehicle performance.
+            </div>
+            <div>
+              Improved throttle response: Our high-flow air filter helps make your throttle more responsive
+              and acceleration easier.
+            </div>
+          </div>
+
+        </div>
+
 
         {/* {categories.map((category) => (
           <div className="container-4 w-container" key={category.id}>
@@ -296,7 +395,65 @@ const ShopElement1 = (props) => {
             </div>
           </div>
         ))} */}
-        <div></div>
+
+
+        <div className="static-mfx-div" style={{ marginTop: "0px" }}>
+
+          <h2>
+            When to Clean or Replace Your Engine Air Filter
+          </h2>
+          <div className="static-mfx-text-div">
+            Cleaning and replacing your air filter helps ensure optimal performance by trapping contaminants
+            and preventing them from entering your intake system. We recommend a visual inspection of your Green High Performance Air Filter every time you get an oil change, which is roughly 5,000
+            to 7,500 miles.
+          </div>
+          <div className="static-mfx-text-div">
+            Every 30,000 miles, your engine air filter must be cleaned to remove all traces of dirt, dust and
+            debris buildup. However, it's important to note that this largely depends on your driving style and
+            road conditions — primarily driving on dirt roads may require more frequent cleaning or
+            replacement.
+          </div>
+          <div className="static-mfx-text-div">
+            The Green High Performance Air Filter is designed to last a lifetime, but these are signs you
+            might be due for a cleaning or engine air filter replacement:
+          </div>
+          <div className="static-mfx-text-div">
+            <div>
+              Excessive dirt or debris
+            </div>
+            <div>
+              Decreased engine power
+            </div>
+            <div>
+              Reduced fuel efficiency
+            </div>
+            <div>
+              Illuminated engine light
+            </div>
+            <div>
+              Black smoke from the exhaust
+            </div>
+            <div>
+              Sluggish acceleration or rough idling
+            </div>
+          </div>
+
+          <h2>
+            Choose Green Filter for Superior Engine Performance
+          </h2>
+          <div className="static-mfx-text-div">
+            Green Filter is your trusted provider of high-quality engine air filters for a wide range of trucks
+            and cars from leading brands. Our Green High Performance Air Filter was designed using our
+            proprietary lubricating technology to trap dirt while allowing for increased air flow. This
+            improves fuel efficiency and engine performance.
+          </div>
+          <div className="static-mfx-text-div">
+            Go further with a reliable engine air filter from Green Filter. Shop engine filter by vehicle or <a className="mfx-static-text-a" href="http://greenfilter.com/contact-us" target="_blank" >contact us today</a> and experience how we outperform the competition.
+          </div>
+
+
+
+        </div>
       </ShopElement1Wrapper>
     </>
   );

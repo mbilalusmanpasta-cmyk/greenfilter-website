@@ -226,6 +226,7 @@ const HomeElement1Wrapper = styled.div`
     margin-bottom: 0px;
     flex-wrap: wrap;
     justify-content: center !important;
+    gap: 10px;
   }
   .w-col {
     position: relative;

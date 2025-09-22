@@ -1,11 +1,40 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import gradient from "../../assets/green-gradient-blue.png";
 import { getForm2 } from "../../data/store";
 import Button1 from "../../components/Button1";
 const ContactElement1 = () => {
   const formData = getForm2();
+
+
+  useEffect(() => {
+    // Step 1: Queue function if not defined
+    if (!window.Nutsheller) {
+      window.Nutsheller = function () {
+        (window.Nutsheller.q = window.Nutsheller.q || []).push(arguments);
+      };
+    }
+
+    // Step 2: Call initForm
+    window.Nutsheller("initForm", {
+      form: "qJ5jY8",
+      instance: "377407",
+      authToken: "",
+      target: "nutshell-form-qJ5jY8",
+    });
+
+    // Step 3: Load the actual Nutsheller script
+    const script = document.createElement("script");
+    script.src = "https://loader.nutshell.com/nutsheller.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <>
       <ContactElement1Wrapper gradient={gradient}>
@@ -17,7 +46,7 @@ const ContactElement1 = () => {
           </p>
         </div>
         <Grid container>
-          {formData.map((field) => (
+          {/* {formData.map((field) => (
             <Grid item xs={12} key={field.id}>
               <div>
                 <div style={{ textAlign: "left" }}>
@@ -32,11 +61,12 @@ const ContactElement1 = () => {
                 </div>
               </div>
             </Grid>
-          ))}
+          ))} */}
+          {/* <div id="nutshell-form-qJ5jY8">Loading contact form...</div> */}
+          <div id="nutshell-form-qJ5jY8" />
+
         </Grid>
-        <div>
-          <Button1 text="Submit" />
-        </div>
+        {/*   */}
       </ContactElement1Wrapper>
     </>
   );

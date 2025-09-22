@@ -18,6 +18,7 @@ import img10 from "../../assets/gallery/img10.jpg";
 import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
+import { Helmet } from "react-helmet";
 
 const gallery = [
   { id: 0, image: img0 },
@@ -38,6 +39,16 @@ const gallery = [
 const AboutUs = (props) => {
   return (
     <>
+      <Helmet>
+        <title>About Us | Green Filter</title>
+        <meta name="description" content="Learn about Green Filter's mission, vision, and dedication to eco-friendly solutions. See our gallery and team." />
+        <meta property="og:title" content="About Us | Green Filter" />
+        <meta property="og:description" content="Discover who we are and how we're revolutionizing filtration with eco-conscious innovation." />
+        <meta property="og:image" content={img0} />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://greenfilter.com/about-us" />
+      </Helmet>
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}

@@ -7,9 +7,9 @@ const AboutElement1 = () => {
     <>
       <AboutElement1Wrapper bgImg={bgImg}>
         <div className="container-4 w-container">
-          <h1 className="heading-11">
+          <div className="heading-11 vh-brand-main-header">
             Industry Leading Performance and Quality
-          </h1>
+          </div>
           <p className="large-paragraph gray left">
             Green Filter has earned a reputation as being a leading manufacturer
             of world-class filters used by many of the world renowned racing

@@ -16,11 +16,11 @@ const Hero = () => {
         <Carousel dots={false}>
           <div className="img-container wrapper0">
             <div className="container-3">
-              <h1 class="hero-heading-1">Green Filter Cleaning Oil</h1>
-              <h1 class="hero-heading-2">
+              <h1 class="hero-heading-1">Air Filter Cleaner and Cleaner Oil</h1>
+              <h2 class="hero-heading-2">
                 Keep your air filter in perfect condition for lifetime usage
-              </h1>
-              <div onClick={()=>window.scrollTo(0, 650)  }>
+              </h2>
+              <div onClick={() => window.scrollTo(0, 650)}>
                 <Button1 text="BUY NOW" />
               </div>
             </div>

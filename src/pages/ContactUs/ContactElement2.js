@@ -3,37 +3,64 @@ import styled from "styled-components";
 import img0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.png";
 import img1 from "../../assets/icons8-gphone-100-3.png";
 const ContactElement2 = () => {
+  // useEffect(() => {
+  //   const script = document.createElement('script');
+  //   script.type = 'text/javascript';
+  //   script.src = 'https://secure.wufoo.com/scripts/embed/form.js';
+  //   script.async = true;
+  //   script.onload = script.onreadystatechange = () => {
+  //     const rs = script.readyState;
+  //     if (rs && rs !== 'complete' && rs !== 'loaded') return;
+  //     try {
+  //       const mlxmwl41vsidqt = new window.WufooForm();
+  //       mlxmwl41vsidqt.initialize({
+  //         userName: 'bbai',
+  //         formHash: 'mlxmwl41vsidqt',
+  //         autoResize: true,
+  //         height: '519',
+  //         async: true,
+  //         host: 'wufoo.com',
+  //         header: 'show',
+  //         ssl: true
+  //       });
+  //       mlxmwl41vsidqt.display();
+  //     } catch (e) {}
+  //   };
+
+  //   document.body.appendChild(script);
+
+  //   return () => {
+  //     // Cleanup code
+  //     document.body.removeChild(script);
+  //   };
+  // }, []);
+
+
+
   useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://secure.wufoo.com/scripts/embed/form.js';
+    const script = document.createElement("script");
+    script.src = "https://loader.nutshell.com/nutsheller.js";
     script.async = true;
-    script.onload = script.onreadystatechange = () => {
-      const rs = script.readyState;
-      if (rs && rs !== 'complete' && rs !== 'loaded') return;
-      try {
-        const mlxmwl41vsidqt = new window.WufooForm();
-        mlxmwl41vsidqt.initialize({
-          userName: 'bbai',
-          formHash: 'mlxmwl41vsidqt',
-          autoResize: true,
-          height: '519',
-          async: true,
-          host: 'wufoo.com',
-          header: 'show',
-          ssl: true
+
+    script.onload = () => {
+      if (window.Nutsheller) {
+        window.Nutsheller("initForm", {
+          form: "qJ5jY8",
+          instance: "377407",
+          authToken: "",
+          target: "nutshell-form-qJ5jY8",
         });
-        mlxmwl41vsidqt.display();
-      } catch (e) {}
+      }
     };
 
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup code
       document.body.removeChild(script);
     };
   }, []);
+
+
 
   return (
     <>
@@ -82,7 +109,10 @@ const ContactElement2 = () => {
             </div>
           </div>
         </div> */}
-        <div id="wufoo-mlxmwl41vsidqt"> Fill out my <a href="https://bbai.wufoo.com/forms/mlxmwl41vsidqt" >online form</a>. </div>
+
+        {/* Nutshell Form Embed */}
+        {/* <div id="nutshell-form-qJ5jY8">Loading contact form...</div> */}
+        {/* <div id="wufoo-mlxmwl41vsidqt"> Fill out my <a href="https://bbai.wufoo.com/forms/mlxmwl41vsidqt" >online form</a>. </div> */}
       </ContactElement2Wrapper>
     </>
   );

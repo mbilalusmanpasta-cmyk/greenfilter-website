@@ -11,6 +11,7 @@ import img5 from "../../assets/gallery/ShopByVehicle/img5.jpeg";
 import img6 from "../../assets/gallery/ShopByVehicle/img6.jpg";
 import img7 from "../../assets/gallery/ShopByVehicle/img7.jpg";
 import Gallery from "../Home/Gallery";
+import { Helmet } from "react-helmet";
 const ShopByVehicle = (props) => {
   const gallery = [
     { id: 0, image: img0 },
@@ -24,6 +25,18 @@ const ShopByVehicle = (props) => {
   ];
   return (
     <>
+      <Helmet>
+        <title>Engine Air Filters - Shop Popular Brands</title>
+        <meta name="description" content="Upgrade your engine's performance with Green Filter! Browse our selection of engine air filters for popular trucks, sports cars, and luxury vehicles." />
+        <meta property="og:title" content="Engine Air Filters - Shop Popular Brands" />
+        <meta property="og:description" content="Upgrade your engine's performance with Green Filter! Browse our selection of engine air filters for popular trucks, sports cars, and luxury vehicles." />
+        <meta property="og:image" content={img0} />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`https://greenfilter.com/shop-by-vehicle`} />
+
+      </Helmet>
+
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}

@@ -164,9 +164,9 @@ const Header = (props) => {
   );
   const menu2 = (
     <Menu style={{ background: "#ddd", position: "static", borderRadius: 5 }}>
-      {props.models?.map((model,key) => (
+      {props.models?.map((model, key) => (
         <Menu.Item className="vehicle-dropdown-menu-item" key={key}>
-          <Link onClick={(e)=>{scroll(e,simplifyId(model.slug))}}>{model?.title}</Link>
+          <Link onClick={(e) => { scroll(e, simplifyId(model.slug)) }}>{model?.title}</Link>
         </Menu.Item>
       ))}
     </Menu>
@@ -185,15 +185,15 @@ const Header = (props) => {
     setToggle(!toggle);
   };
 
-  const scroll = (e,id) => {
+  const scroll = (e, id) => {
 
     e.preventDefault();
     id = simplifyId(id);
 
-    const section = document.querySelector( `#${id}` );
-    section?.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+    const section = document.querySelector(`#${id}`);
+    section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
-  
+
   return (
     <>
       <HeaderWrapper>
@@ -358,9 +358,9 @@ const Header = (props) => {
               </SubMenu>
               <Menu.Item key="sub3">
                 <Link
-                  onClick={() => {
-                    props.handleClickIndex(2);
-                  }}
+                  onClick={() =>
+                    props.handleClickIndex(2)
+                  }
                   to="/cleaner-care"
                 >
                   Cleaner & Care
@@ -398,7 +398,7 @@ const Header = (props) => {
                 overlay={menu0}
                 placement="bottomCenter"
                 overlayStyle={{ zIndex: 100000 }}
-                // trigger={["click"]}
+              // trigger={["click"]}
               >
                 <Button>Shop</Button>
               </Dropdown>
@@ -406,7 +406,7 @@ const Header = (props) => {
                 overlay={menu1}
                 placement="bottomCenter"
                 overlayStyle={{ zIndex: 100000 }}
-                // trigger={["click"]}
+              // trigger={["click"]}
               >
                 <Button>Why Green Filter?</Button>
               </Dropdown>
@@ -465,7 +465,7 @@ const Header = (props) => {
             </div>
           )}
         </div>
-      </HeaderWrapper>
+      </HeaderWrapper >
     </>
   );
 };
