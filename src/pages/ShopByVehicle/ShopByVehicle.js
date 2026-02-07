@@ -12,6 +12,7 @@ import img6 from "../../assets/gallery/ShopByVehicle/img6.jpg";
 import img7 from "../../assets/gallery/ShopByVehicle/img7.jpg";
 import Gallery from "../Home/Gallery";
 import { Helmet } from "react-helmet";
+import GreenSearch from "../../components/GreenSearch";
 const ShopByVehicle = (props) => {
   const gallery = [
     { id: 0, image: img0 },
@@ -37,10 +38,19 @@ const ShopByVehicle = (props) => {
 
       </Helmet>
 
+
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}
       />
+
+      <GreenSearch />
+
+      <div style={{ height: "80px" }}>
+
+      </div>
+
+
       <div className="container-0">
         <ShopElement1 handleVehicleRoute={props.handleVehicleRoute} />
         <Gallery gallery={gallery} width="12.5%" />

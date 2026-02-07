@@ -18,7 +18,9 @@ module.exports = override((config) => {
 
                     "/brand/nissan-trucks", "/brand/ram-trucks", "/brand/toyota-trucks", "/brand/chevrolet-trucks", "/brand/ford-trucks",
 
-                    "/brand/audi", "/brand/cadillac", "/brand/chrysler", "/brand/dodge", "/brand/ford", "/brand/gmc", "/brand/honda", "/brand/humvee", "/brand/infiniti", "/brand/lexus",
+                    "/brand/audi", "/brand/cadillac", "/brand/chrysler", "/brand/dodge",
+                    //"/brand/ford", "/brand/gmc", 
+                    "/brand/honda", "/brand/humvee", "/brand/infiniti", "/brand/lexus",
                     "/brand/lincoln", "/brand/mazda", "/brand/mercedes", "/brand/mini", "/brand/pontiac", "/brand/porsche", "/brand/scion", "/brand/volkswagen",
 
                     "/brand/ferrari", "/brand/gt", "/brand/mclaren", "/brand/lamborghini",
