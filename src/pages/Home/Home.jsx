@@ -100,7 +100,9 @@ const Home = (props) => {
         />
         <Hero sliders={sliders} />
 
-        <GreenSearch />
+        <div className="home-green-search">
+          <GreenSearch />
+        </div>
         
 
         <HomeElement1 handleClickIndex={props.handleClickIndex} />
