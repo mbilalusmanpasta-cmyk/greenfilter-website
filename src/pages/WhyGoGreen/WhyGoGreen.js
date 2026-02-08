@@ -47,7 +47,6 @@ const WhyGoGreen = (props) => {
       />
       <div className="container-0">
         <Hero />
-        <GuaranteeElement3 src="https://www.youtube.com/embed/pg9iV1mwlAI" />
         <HomeElement2 />
         <HomeElement3 />
         <Gallery gallery={gallery} />

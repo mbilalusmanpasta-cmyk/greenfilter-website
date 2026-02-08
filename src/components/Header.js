@@ -154,12 +154,12 @@ const Header = (props) => {
           Private Label
         </Link>
       </Menu.Item>
-      <Menu.Item>
+      {/* <Menu.Item>
         <Link to="/">Become An Affiliate</Link>
       </Menu.Item>
       <Menu.Item>
         <Link to="/">Become A Dealer</Link>
-      </Menu.Item>
+      </Menu.Item> */}
     </Menu>
   );
   const menu2 = (
@@ -349,12 +349,12 @@ const Header = (props) => {
                     Private Label
                   </Link>
                 </Menu.Item>
-                <Menu.Item key="5">
+                {/* <Menu.Item key="5">
                   <Link to="/">Become An Affiliate</Link>
                 </Menu.Item>
                 <Menu.Item key="6">
                   <Link to="/">Become A Dealer</Link>
-                </Menu.Item>
+                </Menu.Item> */}
               </SubMenu>
               <Menu.Item key="sub3">
                 <Link
