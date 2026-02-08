@@ -1,75 +1,54 @@
 import React from "react";
 import "../../styles/Hero.css";
-import { Carousel } from "antd";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import bg0 from "../../assets/cr_img0.jpg";
 import bg1 from "../../assets/cr_img1.jpg";
 import bg2 from "../../assets/cr_img2.jpg";
 import styled from "styled-components";
-import Button1 from "../../components/Button1";
-import { Link } from "react-router-dom";
-import filter0 from "../../assets/filter0.png";
-import filter1 from "../../assets/filter1.png";
-import filter2 from "../../assets/filter2.png";
 
-const Hero = ({sliders}) => {
+const slickSettings = {
+  dots: true,
+  infinite: true,
+  speed: 600,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 6000,
+  fade: true,
+  pauseOnHover: true,
+  arrows: true,
+  adaptiveHeight: false,
+};
+
+const Hero = ({ sliders }) => {
+  const sliderList = sliders || [];
   return (
     <>
       <HeroWrapper bg0={bg0} bg1={bg1} bg2={bg2} sliders={sliders}>
-        <Carousel autoplay dots={false}>
-          {
-            sliders.map((slider,index)=>
-              <HeroSliderWrapper bg={slider.hero?.[0]?.link}>
-                  <div className="img-container wrapper0">
-                    <div className="container-3">
-                      <h1 class="hero-heading-1">
-                        {slider.title}
-                      </h1>
-                      <h1 class="hero-heading-2">
-                      {slider.description}
-                      </h1>
-                      {/* <Link to="/">
-                        <Button1 text="Why Go Green?" />
-                      </Link> */}
+        <HeroSliderStyled>
+          {sliderList.length > 0 && (
+            <Slider {...slickSettings}>
+              {sliderList.map((slider, index) => (
+                <div key={index}>
+                  <HeroSliderWrapper bg={slider.hero?.[0]?.link}>
+                    <div className="img-container wrapper0">
+                      <div className="container-3">
+                        <h1 className="hero-heading-1">
+                          {slider.title}
+                        </h1>
+                        <h1 className="hero-heading-2">
+                          {slider.description}
+                        </h1>
+                      </div>
                     </div>
+                  </HeroSliderWrapper>
                 </div>
-              </HeroSliderWrapper>
-              
-            )
-          }
-          {/* <div className="img-container wrapper0">
-            <div className="container-3">
-              <h1 class="hero-heading-1">
-                Green Filter Wins at the 2018 Rolex
-              </h1>
-              <h1 class="hero-heading-2">
-                "Proud to include Green Filter in our winning Ford GTs" - CHIP
-                GANASSI
-              </h1>
-            </div>
-            <img src={filter0} alt="filter0" className="filter _600" />
-          </div>
-          <div className="img-container wrapper1">
-            <div className="container-3">
-              <h1 class="hero-heading-1">
-                Feel The Immediate Difference In Your Truck
-              </h1>
-              <h1 class="hero-heading-2">
-                Increase your horsepower & fuel efficiency.
-              </h1>
-            </div>
-            <img src={filter1} alt="filter1" className="filter right" />
-          </div>
-          <div className="img-container wrapper2">
-            <div className="container-3">
-              <h1 class="hero-heading-1">Save Money & Protect Your Family</h1>
-              <h1 class="hero-heading-2">
-                From gas mileage to lifetime durability ... Green Filters
-                outperform the competition.
-              </h1>
-            </div>
-            <img src={filter2} alt="filter2" className="filter"  />
-          </div> */}
-        </Carousel>
+              ))}
+            </Slider>
+          )}
+        </HeroSliderStyled>
       </HeroWrapper>
     </>
   );
@@ -77,9 +56,62 @@ const Hero = ({sliders}) => {
 
 export default Hero;
 
-const HeroWrapper = styled.div`
+const HeroSliderStyled = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  .slick-slider {
+    width: 100%;
+    min-height: 500px;
+  }
+  .slick-list {
+    min-height: 500px;
+    height: auto;
+  }
+  .slick-track {
+    min-height: 500px;
+  }
+  .slick-slide > div {
+    min-height: 500px;
+  }
+  .slick-dots {
+    bottom: 24px;
+    z-index: 10;
+  }
+  .slick-dots li button:before {
+    font-size: 10px;
+    opacity: 0.5;
+    color: #fff;
+  }
+  .slick-dots li.slick-active button:before {
+    opacity: 1;
+    color: #fff;
+  }
+  .slick-prev,
+  .slick-next {
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 44px;
+    opacity: 0.75;
+  }
+  .slick-prev:hover:before,
+  .slick-next:hover:before {
+    opacity: 1;
+  }
+  .slick-prev {
+    left: 20px;
+  }
+  .slick-next {
+    right: 20px;
+  }
+`;
 
-max-height:500px;
+const HeroWrapper = styled.div`
+  max-height: 500px;
   .img-container {
     position: relative;
     min-height: 500px;
