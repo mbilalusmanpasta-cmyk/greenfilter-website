@@ -44,9 +44,10 @@ module.exports = override((config) => {
                     // renderAfterDocumentEvent: "render-event",
                     //  OR use this instead to bypass event problems:
                     // renderAfterTime: 15000,
-                    headless: false, // Show the browser for debugging
+                    headless: true, // Run browser in headless mode
                     maxConcurrentRoutes: 1, // To isolate failures
                     renderAfterTime: 5000, // fallback in case render-event fails
+                    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'], // Fix for puppeteer issues
                 }),
             })
         );
