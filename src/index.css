@@ -1,5 +1,9 @@
 @import "~antd/dist/antd.css";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: "Lato";
   src: url("./styles/fonts/Lato-Regular.ttf");
@@ -660,16 +664,21 @@ button.ant-btn.ant-btn-link.customBtns {
 
 @media screen and (max-width: 767px) {
   .home-green-search {
-    margin-top: -80px;
+    margin-top: -56px;
+    padding: 0 12px;
   }
   .customFilters {
     position: relative;
     transform: none;
-    left: 0px;
-    right: 0px;
-    margin-top: 0px;
-    /* margin-bottom: -50px; */
+    left: 0;
+    right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     box-shadow: none;
+    padding: 20px 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .selectController {

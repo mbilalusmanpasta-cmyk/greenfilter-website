@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Gallery from "./Gallery";
 import Hero from "./Hero";
-
-
+import HeroWithFilter from "../../components/HeroWithFilter";
 import HomeElement1 from "./HomeElement1";
 import HomeElement3 from "./HomeElement3";
 import HomeElement4 from "./HomeElement4";
@@ -26,19 +25,29 @@ import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
 import styled from "styled-components";
-
-
-
 import HomeElement2 from "./HomeElement2";
 import GreenSearch from "../../components/GreenSearch";
-import {getPageData} from "../../helper/util/getPageData";
+import { getPageData } from "../../helper/util/getPageData";
 import { Helmet } from "react-helmet";
+
+const MOBILE_BREAKPOINT = 768;
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < MOBILE_BREAKPOINT : false
+  );
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return isMobile;
+}
 
 
 const Home = (props) => {
+  const isMobile = useIsMobile();
+  const [pageData, setPageData] = React.useState({});
 
-  const [pageData,setPageData] = React.useState({});
-  
   const gallery = [
     { id: 0, image: img0 },
     { id: 1, image: img1 },
@@ -98,12 +107,16 @@ const Home = (props) => {
           clickedIndex={props.clickedIndex}
           handleClickIndex={props.handleClickIndex}
         />
-        <Hero sliders={sliders} />
-
-        <div className="home-green-search">
-          <GreenSearch />
-        </div>
-        
+        {isMobile ? (
+          <HeroWithFilter headline="Performance Air Filters" subheadline="Find the right filter for your vehicle. Washable, high-flow, made in the USA." />
+        ) : (
+          <>
+            <Hero sliders={sliders} />
+            <div className="home-green-search">
+              <GreenSearch />
+            </div>
+          </>
+        )}
 
         <HomeElement1 handleClickIndex={props.handleClickIndex} />
         <HomeElement2 />

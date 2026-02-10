@@ -24,12 +24,12 @@ const slickSettings = {
 
 const Hero = ({ sliders }) => {
   const sliderList = sliders || [];
+  if (sliderList.length === 0) return null;
   return (
     <>
       <HeroWrapper bg0={bg0} bg1={bg1} bg2={bg2} sliders={sliders}>
         <HeroSliderStyled>
-          {sliderList.length > 0 && (
-            <Slider {...slickSettings}>
+          <Slider {...slickSettings}>
               {sliderList.map((slider, index) => (
                 <div key={index}>
                   <HeroSliderWrapper bg={slider.hero?.[0]?.link}>
@@ -47,8 +47,7 @@ const Hero = ({ sliders }) => {
                   </HeroSliderWrapper>
                 </div>
               ))}
-            </Slider>
-          )}
+          </Slider>
         </HeroSliderStyled>
       </HeroWrapper>
     </>
@@ -68,7 +67,7 @@ const HeroSliderStyled = styled.div`
     max-width: 100%;
   }
   @media screen and (max-width: 767px) {
-    min-height: 380px;
+    min-height: 180px;
   }
   .slick-slider {
     width: 100%;
@@ -76,7 +75,7 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-slider {
-      min-height: 380px;
+      min-height: 180px;
     }
   }
   .slick-list {
@@ -85,7 +84,7 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-list {
-      min-height: 380px;
+      min-height: 180px;
     }
   }
   .slick-track {
@@ -93,7 +92,7 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-track {
-      min-height: 380px;
+      min-height: 180px;
     }
   }
   .slick-slide > div {
@@ -101,11 +100,12 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-slide > div {
-      min-height: 380px;
-      background-color: #1a1a1a;
+      min-height: 180px;
+      background-color: #0d0d0d;
     }
     .slick-slide {
-      background-color: #1a1a1a;
+      min-height: 180px;
+      background-color: #0d0d0d;
     }
   }
   /* Dots: outline style for inactive, filled accent for active (reference style) */
@@ -158,20 +158,28 @@ const HeroSliderStyled = styled.div`
   @media screen and (max-width: 767px) {
     .slick-prev,
     .slick-next {
-      display: none !important;
+      width: 36px;
+      height: 36px;
+      opacity: 0.6;
     }
     .slick-prev:before,
     .slick-next:before {
-      font-size: 32px;
+      font-size: 28px;
+      color: ${ACCENT_COLOR};
+      opacity: 0.9;
+    }
+    .slick-prev:hover:before,
+    .slick-next:hover:before {
+      opacity: 1;
     }
     .slick-prev {
-      left: 12px;
+      left: 8px;
     }
     .slick-next {
-      right: 12px;
+      right: 8px;
     }
     .slick-dots {
-      bottom: 20px;
+      bottom: 12px;
     }
   }
 `;
@@ -190,7 +198,7 @@ const HeroWrapper = styled.div`
   @media screen and (max-width: 767px) {
     margin-bottom: 0;
     overflow: hidden;
-    background-color: #1a1a1a;
+    background-color: #0d0d0d;
   }
   .img-container {
     position: relative;
@@ -300,23 +308,24 @@ const HeroWrapper = styled.div`
   }
   @media screen and (max-width: 767px) {
     .img-container {
-      min-height: 380px;
+      min-height: 180px;
     }
     .container-3 {
-      padding: 72px 24px 60px;
+      padding: 32px 16px 24px;
       max-width: 100%;
     }
     .hero-heading-1 {
-      font-size: 24px;
+      font-size: 18px;
+      line-height: 1.2;
     }
     .hero-heading-1-accent {
-      width: 48px;
-      height: 3px;
-      margin: 10px auto 16px;
+      width: 36px;
+      height: 2px;
+      margin: 6px auto 8px;
     }
     .hero-heading-2 {
-      font-size: 15px;
-      line-height: 1.5;
+      font-size: 12px;
+      line-height: 1.4;
     }
     .filter {
       display: none !important;
@@ -348,15 +357,16 @@ const HeroSliderWrapper = styled.div`
       linear-gradient(180deg, rgba(0, 0, 0, 0.98), transparent 53%),
       url(${(props) => props.bg});
     background-position: 0px 0px, 0px 0px, center center;
-    /* Show full image in given width (no crop) */
     background-size: auto, auto, contain;
   }
   @media screen and (max-width: 767px) {
     .img-container {
-      min-height: 380px;
+      min-height: 180px;
     }
     .wrapper0 {
-      background-size: auto, auto, contain;
+      /* Fill area on mobile to remove dark gap; image fills, no empty space */
+      background-size: auto, auto, cover;
+      background-position: 0px 0px, 0px 0px, center center;
     }
   }
 `;
