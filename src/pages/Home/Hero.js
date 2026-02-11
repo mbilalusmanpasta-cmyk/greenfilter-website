@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/Hero.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -6,7 +6,9 @@ import "slick-carousel/slick/slick-theme.css";
 import bg0 from "../../assets/cr_img0.jpg";
 import bg1 from "../../assets/cr_img1.jpg";
 import bg2 from "../../assets/cr_img2.jpg";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const MOBILE_BREAKPOINT = 767;
 
 const slickSettings = {
   dots: true,
@@ -22,17 +24,39 @@ const slickSettings = {
   adaptiveHeight: false,
 };
 
+const DEFAULT_BANNER = "/images/banner.svg";
+
 const Hero = ({ sliders }) => {
-  const sliderList = sliders || [];
-  if (sliderList.length === 0) return null;
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" && window.innerWidth <= MOBILE_BREAKPOINT
+  );
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const sliderList = sliders && sliders.length > 0
+    ? sliders
+    : [{ title: "", description: "", hero: [{ link: DEFAULT_BANNER }] }];
+  const firstSlide = sliderList[0];
+  const firstSlideImage = firstSlide?.hero?.[0]?.link || DEFAULT_BANNER;
+
   return (
     <>
       <HeroWrapper bg0={bg0} bg1={bg1} bg2={bg2} sliders={sliders}>
         <HeroSliderStyled>
-          <Slider {...slickSettings}>
+          {isMobile ? (
+            <HeroSliderWrapper bg={firstSlideImage}>
+              <div className="img-container wrapper0 hero-mobile-image-only" />
+            </HeroSliderWrapper>
+          ) : (
+            <Slider {...slickSettings}>
               {sliderList.map((slider, index) => (
                 <div key={index}>
-                  <HeroSliderWrapper bg={slider.hero?.[0]?.link}>
+                  <HeroSliderWrapper bg={slider.hero?.[0]?.link || DEFAULT_BANNER}>
                     <div className="img-container wrapper0">
                       <div className="container-3">
                         <h1 className="hero-heading-1">
@@ -47,7 +71,8 @@ const Hero = ({ sliders }) => {
                   </HeroSliderWrapper>
                 </div>
               ))}
-          </Slider>
+            </Slider>
+          )}
         </HeroSliderStyled>
       </HeroWrapper>
     </>
@@ -216,6 +241,8 @@ const HeroWrapper = styled.div`
       url(${(props) => props.slider});
     background-position: 0px 0px, 0px 0px, center center;
     background-size: auto, auto, contain;
+    margin-top: 50px;
+    margin-bottom: 50px;
   }
   .wrapper1 {
     background-image: linear-gradient(
@@ -308,7 +335,7 @@ const HeroWrapper = styled.div`
   }
   @media screen and (max-width: 767px) {
     .img-container {
-      min-height: 180px;
+      min-height: 150px;
     }
     .container-3 {
       padding: 32px 16px 24px;
@@ -336,10 +363,22 @@ const HeroWrapper = styled.div`
       max-width: 600px;
       padding-left: 32px;
       padding-right: 32px;
+      margin-left: 10%;
+      margin-right: 10%;
     }
   }
 `;
 
+
+/* Slow left-to-right pan on small mobile so full image content is visible without resizing */
+const heroMobilePan = keyframes`
+  0% {
+    background-position: 0px 0px, 0px 0px, 0% center;
+  }
+  100% {
+    background-position: 0px 0px, 0px 0px, 100% center;
+  }
+`;
 
 const HeroSliderWrapper = styled.div`
   .img-container {
@@ -347,6 +386,8 @@ const HeroSliderWrapper = styled.div`
     min-height: 500px;
     background-repeat: no-repeat;
     background-color: #1a1a1a;
+    margin-left: 0;
+    margin-right: 0;
   }
   .wrapper0 {
     background-image: linear-gradient(
@@ -358,15 +399,33 @@ const HeroSliderWrapper = styled.div`
       url(${(props) => props.bg});
     background-position: 0px 0px, 0px 0px, center center;
     background-size: auto, auto, contain;
+      margin-left: 0%;
+      margin-right: 0%;
+   
+  }
+  @media screen and (max-width: 991px) {
+    .wrapper0 {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
   }
   @media screen and (max-width: 767px) {
     .img-container {
-      min-height: 180px;
+      min-height: 150px;
     }
     .wrapper0 {
-      /* Fill area on mobile to remove dark gap; image fills, no empty space */
       background-size: auto, auto, cover;
       background-position: 0px 0px, 0px 0px, center center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  /* Small mobile: show full image via contain + left-to-right pan, no size change */
+  @media screen and (max-width: 420px) {
+    .img-container.wrapper0 {
+      background-size: auto, auto, contain;
+      background-position: 0px 0px, 0px 0px, 0% center;
+      animation: ${heroMobilePan} 18s ease-in-out infinite alternate;
     }
   }
 `;
