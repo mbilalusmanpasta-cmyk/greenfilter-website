@@ -94,11 +94,13 @@ const Home = (props) => {
       </Helmet>
       
       <div className="container-0">
-        <Header
-          clickedIndex={props.clickedIndex}
-          handleClickIndex={props.handleClickIndex}
-        />
-        <Hero sliders={sliders} />
+        <div className="home-edge-to-edge">
+          <Header
+            clickedIndex={props.clickedIndex}
+            handleClickIndex={props.handleClickIndex}
+          />
+          <Hero sliders={sliders} />
+        </div>
 
         <div className="home-green-search">
           <GreenSearch />
