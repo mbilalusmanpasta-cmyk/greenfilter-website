@@ -92,7 +92,7 @@ const HeroSliderStyled = styled.div`
     max-width: 100%;
   }
   @media screen and (max-width: 767px) {
-    min-height: 180px;
+    min-height: 150px;
   }
   .slick-slider {
     width: 100%;
@@ -100,7 +100,7 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-slider {
-      min-height: 180px;
+      min-height: 150px;
     }
   }
   .slick-list {
@@ -109,7 +109,7 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-list {
-      min-height: 180px;
+      min-height: 150px;
     }
   }
   .slick-track {
@@ -117,7 +117,7 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-track {
-      min-height: 180px;
+      min-height: 150px;
     }
   }
   .slick-slide > div {
@@ -125,11 +125,11 @@ const HeroSliderStyled = styled.div`
   }
   @media screen and (max-width: 767px) {
     .slick-slide > div {
-      min-height: 180px;
+      min-height: 150px;
       background-color: #0d0d0d;
     }
     .slick-slide {
-      min-height: 180px;
+      min-height: 150px;
       background-color: #0d0d0d;
     }
   }
@@ -242,7 +242,7 @@ const HeroWrapper = styled.div`
     background-position: 0px 0px, 0px 0px, center center;
     background-size: auto, auto, contain;
     margin-top: 50px;
-    margin-bottom: 50px;
+
   }
   .wrapper1 {
     background-image: linear-gradient(
