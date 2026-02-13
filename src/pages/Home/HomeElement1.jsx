@@ -215,6 +215,13 @@ const HomeElement1Wrapper = styled.div`
     margin-right: auto;
     max-width: 940px;
   }
+
+  @media screen and (max-width: 767px) {
+    .container-4 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+  }
   .heading-11 {
     margin-bottom: 50px;
     font-weight: 400;
@@ -223,13 +230,22 @@ const HomeElement1Wrapper = styled.div`
 
   @media screen and (max-width: 767px) {
     .heading-11 {
-      margin-bottom: 30px;
-      font-size: 24px;
+      margin-bottom: 20px;
+      font-size: 20px;
       line-height: 1.3;
+      padding: 0 15px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .heading-11 {
+      font-size: 18px;
+      margin-bottom: 15px;
     }
   }
 
   .main-vehicle-row {
+    display: flex;
     margin-top: 25px;
     margin-bottom: 0px;
     flex-wrap: wrap;
@@ -272,6 +288,12 @@ const HomeElement1Wrapper = styled.div`
   }
   .div-block-5 button {
     margin-top: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    .div-block-5 button {
+      margin-top: 15px;
+    }
   }
   .div-block-3 {
     position: relative;
@@ -426,16 +448,27 @@ const HomeElement1Wrapper = styled.div`
   }
   @media screen and (max-width: 767px) {
     .w-col-2 {
-      width: 50% !important;
+      width: 33.333% !important;
       left: auto;
       right: auto;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      flex: 0 0 auto;
     }
     .single {
       width: 100% !important;
     }
     .w-col {
       float: none;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .main-vehicle-row {
+      gap: 8px;
+      padding: 0 10px;
+    }
+    .main-vehicle-row .w-col-2 {
+      flex: 0 0 calc(33.333% - 8px);
+      max-width: calc(33.333% - 8px);
     }
     .titles-div {
       width: 90%;
