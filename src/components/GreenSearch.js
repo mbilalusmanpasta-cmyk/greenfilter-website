@@ -530,21 +530,22 @@ const GreenSearch = ({ Sticky }) => {
                       </div>
                       <div className="searchedProductRight">
                         {apiStr?.year && <p>Year: {apiStr?.year} </p>}
-                        {apiStr?.engine && (
-                          <p>Engine: {apiData?.engine?.[0]?.engine}</p>
-                        )}
-                        {apiStr?.engine && (
-                          <p>Disp: {apiData?.engine?.[0]?.displacement}</p>
-                        )}
-                        {apiStr?.engine && (
-                          <p>Intake: {apiData?.engine?.[0]?.intake}</p>
-                        )}
-                        {apiStr?.engine && (
-                          <p>
-                            Fitment Note: - {apiData?.engine?.[0]?.description}{" "}
-                            Models
-                          </p>
-                        )}
+                        {apiStr?.engine && (() => {
+                          const selectedEngine = apiData?.engine?.find(
+                            (eng) => eng.displacement === apiStr.engine
+                          ) || apiData?.engine?.[0];
+                          return (
+                            <>
+                              <p>Engine: {selectedEngine?.engine}</p>
+                              <p>Disp: {selectedEngine?.displacement}</p>
+                              <p>Intake: {selectedEngine?.intake}</p>
+                              <p>
+                                Fitment Note: - {selectedEngine?.description}{" "}
+                                Models
+                              </p>
+                            </>
+                          );
+                        })()}
 
                         {/* <p><Link to={`/store/filter/${product.gfu_part_num}`}>Click here for more product information </Link> </p> */}
                       </div>

@@ -6,7 +6,7 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 module.exports = override((config) => {
     console.log("process.env.NODE_ENV 1 ", process.env.NODE_ENV)
-    if (process.env.NODE_ENV === "production") {
+    if (process.env.NODE_ENV === "production" && process.env.SKIP_PRERENDER !== "true") {
         config.plugins.push(
             new PrerenderSPAPlugin({
                 staticDir: path.join(__dirname, "build"),
@@ -31,7 +31,7 @@ module.exports = override((config) => {
                     "/universal-round",
                     "/air-cleaner",
                     "/about-us",
-                    "/our-guarantee", "/why-go-green", "/contact-us", "/careers", "/private-label", "/harley-filter", "/cross-reference-brand",
+                    "/our-guarantee", "/why-go-green", "/careers", "/private-label", "/harley-filter", "/cross-reference-brand",
                     "/cross-reference-filters", "/faqs", "/privacy-policy", "/terms-of-service", "/universal-panel"
                     //"/store/filter/:id", 
                     // "/brand/:name",  
@@ -44,9 +44,10 @@ module.exports = override((config) => {
                     // renderAfterDocumentEvent: "render-event",
                     //  OR use this instead to bypass event problems:
                     // renderAfterTime: 15000,
-                    headless: false, // Show the browser for debugging
+                    headless: true, // Run browser in headless mode
                     maxConcurrentRoutes: 1, // To isolate failures
                     renderAfterTime: 5000, // fallback in case render-event fails
+                    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'], // Fix for puppeteer issues
                 }),
             })
         );

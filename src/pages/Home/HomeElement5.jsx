@@ -66,12 +66,24 @@ const HomeElement5 = () => {
                 allowfullscreen
               ></iframe>
             </div>
-            <div className="carousel-item">
+            {/* <div className="carousel-item">
               <iframe
                 // width="460"
                 width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/k5NcFQDlZ4g"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div> */}
+            <div className="carousel-item">
+              <iframe
+                // width="460"
+                width="100%"
+                height="250"
+                src="https://www.youtube.com/embed/LOgLMW-Bdh4"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -114,12 +126,24 @@ const HomeElement5 = () => {
                 allowfullscreen
               ></iframe>
             </div>
-            <div className="carousel-item">
+            {/* <div className="carousel-item">
               <iframe
                 // width="460"
                 width="100%"
                 height="250"
                 src="https://www.youtube.com/embed/k5NcFQDlZ4g"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div> */}
+            <div className="carousel-item">
+              <iframe
+                // width="460"
+                width="100%"
+                height="250"
+                src="https://www.youtube.com/embed/LOgLMW-Bdh4"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
