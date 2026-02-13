@@ -87,25 +87,37 @@
 
 @media only screen and (max-width: 760px) {
   .custom-button-temp {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    min-width: 150px !important;
+    padding: 12px 10px !important;
+    min-width: 120px !important;
+    border-radius: 15px;
+  }
+  .custom-button-temp .text-block {
+    font-size: 11px;
+    line-height: 13px;
   }
 }
 
 @media only screen and (max-width: 550px) {
   .custom-button-temp {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    min-width: 120px !important;
+    padding: 10px 8px !important;
+    min-width: 100px !important;
+    border-radius: 12px;
+  }
+  .custom-button-temp .text-block {
+    font-size: 10px;
+    line-height: 12px;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .custom-button-temp {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-    min-width: 150px !important;
+    padding: 10px 8px !important;
+    min-width: 100px !important;
+    border-radius: 12px;
+  }
+  .custom-button-temp .text-block {
+    font-size: 10px;
+    line-height: 12px;
   }
 }
 

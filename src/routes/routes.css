@@ -20,11 +20,16 @@
     font-size: 12px;
 
   }
-  
+
+  .top-banner img {
+    max-width: 100%;
+    height: auto;
+  }
+
   .top-banner-content {
     animation: slide-in 1s ease-out;
   }
-  
+
   @keyframes slide-in {
     0% {
       transform: translateY(-100px);
@@ -39,6 +44,47 @@
   @media screen and (max-width: 767px)
   {
     .top-banner {
-        padding: 0;
+        padding: 5px 0;
+        margin: 57px 0 0;
+    }
+
+    .top-banner .title {
+        font-size: 12px;
+        line-height: 1.3;
+        padding: 0 10px;
+    }
+
+    .top-banner p {
+        font-size: 10px;
+        padding: 0 10px;
+    }
+
+    .top-banner img {
+        max-width: 80%;
+        height: auto;
+    }
+
+    .top-banner-content {
+        padding: 5px;
+    }
+  }
+
+  @media screen and (max-width: 479px)
+  {
+    .top-banner {
+        padding: 3px 0;
+    }
+
+    .top-banner .title {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .top-banner p {
+        font-size: 9px;
+    }
+
+    .top-banner img {
+        max-width: 70%;
     }
   }

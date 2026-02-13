@@ -221,6 +221,14 @@ const HomeElement1Wrapper = styled.div`
     text-align: center;
   }
 
+  @media screen and (max-width: 767px) {
+    .heading-11 {
+      margin-bottom: 30px;
+      font-size: 24px;
+      line-height: 1.3;
+    }
+  }
+
   .main-vehicle-row {
     margin-top: 25px;
     margin-bottom: 0px;
@@ -421,7 +429,7 @@ const HomeElement1Wrapper = styled.div`
       width: 50% !important;
       left: auto;
       right: auto;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .single {
       width: 100% !important;

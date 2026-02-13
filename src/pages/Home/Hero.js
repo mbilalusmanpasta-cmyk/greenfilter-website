@@ -86,7 +86,7 @@ const HeroWrapper = styled.div`
       linear-gradient(180deg, rgba(0, 0, 0, 0.98), transparent 53%),
       url(${(props) => props.slider});
     background-position: 0px 0px, 0px 0px, center center;
-    background-size: auto, auto, contain;
+    background-size: auto, auto, cover;
   }
   .wrapper1 {
     background-image: linear-gradient(
@@ -242,36 +242,35 @@ const HeroSliderWrapper = styled.div`
       linear-gradient(180deg, rgba(0, 0, 0, 0.98), transparent 53%),
       url(${(props) => props.bg});
     background-position: 0px 0px, 0px 0px, center center;
-    background-size: auto, auto, contain;
-      margin-left: 10%;
-      margin-right: 10%;
-   
+    background-size: auto, auto, cover;
+      margin-left: 0;
+      margin-right: 0;
+
   }
   @media screen and (max-width: 991px) {
     .wrapper0 {
-      margin-left: 10%;
-      margin-right: 10%;
+      margin-left: 0;
+      margin-right: 0;
     }
   }
   @media screen and (max-width: 767px) {
     .img-container {
-      min-height: 150px;
+      min-height: 200px;
     }
     .wrapper0 {
-      background-size: auto, auto, cover;
-      /* Anchor image to top so banner isn't cut from top on mobile */
-      background-position: 0px 0px, 0px 0px, center top;
+      background-size: auto, auto, contain;
+      /* Center image on mobile for full visibility */
+      background-position: 0px 0px, 0px 0px, center center;
       margin-left: 0;
       margin-right: 0;
       margin-top: 30px;
     }
   }
-  /* Small mobile: show full image via contain + left-to-right pan, no size change */
+  /* Small mobile: show full image via contain */
   @media screen and (max-width: 420px) {
     .img-container.wrapper0 {
       background-size: auto, auto, contain;
-      background-position: 0px 0px, 0px 0px, 0% center;
-      animation: ${heroMobilePan} 18s ease-in-out infinite alternate;
+      background-position: 0px 0px, 0px 0px, center center;
     }
   }
 `;
