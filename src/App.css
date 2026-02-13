@@ -131,6 +131,12 @@
   margin: 10px !important;
 }
 
+@media screen and (max-width: 767px) {
+  .shop-vehicle-make {
+    margin: 0 !important;
+  }
+}
+
 /*SHOP BY*/
 .shop-vehicle-row {
   display: flex;
