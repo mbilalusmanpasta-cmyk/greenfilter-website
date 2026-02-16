@@ -10,6 +10,9 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
 
   useEffect(() => {
 
+    // Validation: Don't initialize Shopify if no buyButtonId
+    if (!buyButtonId) return;
+
     console.log("prevBuyButtonIdRef", prevBuyButtonIdRef)
     if (buyButtonId && prevBuyButtonIdRef.current?.toString() != buyButtonId?.toString()) {
       let c = document.getElementById(`product-component-${buyButtonId}`)
@@ -37,9 +40,8 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
 
           function ShopifyBuyInit() {
             var client = window.ShopifyBuy.buildClient({
-              // domain: 'green-filter-usa.myshopify.com',
-              domain: 'store.greenfilter.com',
-              apiKey: 'b0f6e285934ab0374588e085bda31072',
+              domain: 'green-filter-usa.myshopify.com',
+              storefrontAccessToken: 'b0f6e285934ab0374588e085bda31072',
               appId: '6',
             });
 
@@ -221,6 +223,9 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
   }, [buyButtonId])
 
   console.log(buyButtonId)
+
+  // Don't render if no buyButtonId
+  if (!buyButtonId) return null;
 
   return (
 

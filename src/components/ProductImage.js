@@ -4,7 +4,10 @@ const ProductShopifyImage = ({buyButtonId,id,isLeft,background,color,}) => {
   const prevBuyButtonIdRef = useRef();
 
     useEffect(()=>{
-      
+
+        // Validation: Don't initialize Shopify if no buyButtonId
+        if (!buyButtonId) return;
+
         let c = document.getElementById(`product-component-${buyButtonId}`)
         if(buyButtonId && prevBuyButtonIdRef.current?.toString()!=buyButtonId?.toString())
         {
@@ -33,7 +36,7 @@ const ProductShopifyImage = ({buyButtonId,id,isLeft,background,color,}) => {
             function ShopifyBuyInit() {
               var client = window.ShopifyBuy.buildClient({
                 domain: 'green-filter-usa.myshopify.com',
-                apiKey: 'b0f6e285934ab0374588e085bda31072',
+                storefrontAccessToken: 'b0f6e285934ab0374588e085bda31072',
                 appId: '6',
               });
           
@@ -215,6 +218,10 @@ const ProductShopifyImage = ({buyButtonId,id,isLeft,background,color,}) => {
 
         
     },[buyButtonId])
+
+    // Don't render if no buyButtonId
+    if (!buyButtonId) return null;
+
     return (<div style={{marginBottom:"100px"}}> <div id={`product-image-component-${id}`} style={{  margin:"auto", }} ></div> </div>);
 }
  
