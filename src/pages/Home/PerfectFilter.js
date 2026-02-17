@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import {
   Select,
@@ -278,6 +278,7 @@ export default function PerfectFilter() {
   const [apiData, setApiData] = useState({});
   const [searchPartNo, setSearchPartNo] = useState("");
   const [productDetails, setProductDetails] = useState(null);
+  const history = useHistory();
 
   const handleChange = (key, value) => {
     const tempArr = ["year", "make_id", "model_name", "engine"];
@@ -532,12 +533,22 @@ export default function PerfectFilter() {
                         )}
                       </SpecList>
                     </div>
-                    <ViewDetailsButton to={`/store/filter/${product.gfu_part_num}`}>
-                      View Product Details
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ marginLeft: 4 }}>
-                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
-                      </svg>
-                    </ViewDetailsButton>
+                    {product.gfu_part_num ? (
+                      <ViewDetailsButton
+                        as="button"
+                        type="button"
+                        onClick={() => history.push(`/store/filter/${product.gfu_part_num}`)}
+                      >
+                        View Product Details
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ marginLeft: 4 }}>
+                          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                        </svg>
+                      </ViewDetailsButton>
+                    ) : (
+                      <ViewDetailsButton as="span" style={{ opacity: 0.7, cursor: "not-allowed" }}>
+                        View Product Details
+                      </ViewDetailsButton>
+                    )}
                   </ProductCardBody>
                 </ProductCard>
               );

@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material";
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import VehicleTable from "../../components/VehicleTable";
 import { statics } from "../../data/store";
 import { GetData } from "../../helper/request";
@@ -14,7 +15,7 @@ import { Helmet } from "react-helmet";
 import img0 from "../../assets/gallery/img0.jpeg";
 
 const SingleProduct = () => {
-
+    const { id: routePartNum } = useParams();
     const [tableData, setTableData] = React.useState([])
     const [productData, setProductData] = React.useState({})
     const [loading, setLoading] = React.useState(false)
@@ -22,17 +23,17 @@ const SingleProduct = () => {
 
     useEffect(() => {
         getProductData();
-    }, [window.location.pathname])
+    }, [routePartNum])
 
     const getProductData = async () => {
         setLoading(true)
         const queryParams = new URLSearchParams(window.location.search)
-        let gfu_part_num = queryParams.get("gfu_part_num")
+        let gfu_part_num = queryParams.get("gfu_part_num") || routePartNum;
         const product_id = queryParams.get("product_id")
 
         if (!gfu_part_num && !product_id) {
             if (window.location.pathname.includes("/store/filter/")) {
-                gfu_part_num = window.location.pathname.split('/')[3];
+                gfu_part_num = window.location.pathname.split('/')[3] || routePartNum;
             }
         }
 
