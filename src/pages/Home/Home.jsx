@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Gallery from "./Gallery";
-import Hero from "./Hero";
-
-
+import HeroWireframe from "./HeroWireframe";
+import PerfectFilter from "./PerfectFilter";
+import ConfidencePanel from "./ConfidencePanel";
 import HomeElement1 from "./HomeElement1";
 import HomeElement3 from "./HomeElement3";
 import HomeElement4 from "./HomeElement4";
@@ -26,12 +26,8 @@ import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
 import styled from "styled-components";
-
-
-
 import HomeElement2 from "./HomeElement2";
-import GreenSearch from "../../components/GreenSearch";
-import {getPageData} from "../../helper/util/getPageData";
+import { getPageData } from "../../helper/util/getPageData";
 import { Helmet } from "react-helmet";
 
 
@@ -77,8 +73,6 @@ const Home = (props) => {
 
   }  
 
-  const sliders = pageData?.fields?.slider || []
-
   return (
     <HomeWrapper>
 
@@ -99,13 +93,14 @@ const Home = (props) => {
             clickedIndex={props.clickedIndex}
             handleClickIndex={props.handleClickIndex}
           />
-          <Hero sliders={sliders} />
+          <HeroWireframe />
         </div>
 
-        <div className="home-green-search">
-          <GreenSearch />
-        </div>
-        
+        <FilterSection>
+          <PerfectFilter />
+        </FilterSection>
+
+        <ConfidencePanel />
 
         <HomeElement1 handleClickIndex={props.handleClickIndex} />
         <HomeElement2 />
@@ -129,5 +124,14 @@ export default Home;
 
 
 const HomeWrapper = styled.div`
+  background-color: #fafafa;
+`;
 
-`
+const FilterSection = styled.section`
+  padding: 32px 24px 0;
+  max-width: 960px;
+  margin: 0 auto;
+  @media (max-width: 767px) {
+    padding: 24px 16px 0;
+  }
+`;
