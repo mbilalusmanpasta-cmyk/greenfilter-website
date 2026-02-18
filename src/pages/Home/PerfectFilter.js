@@ -45,8 +45,11 @@ const Container = styled.div`
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   @media (max-width: 767px) {
-    padding: 16px;
+    padding: 20px 16px;
     margin: 0 16px;
+    border-radius: 12px 12px 0 0;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
   }
 `;
 
@@ -158,6 +161,20 @@ const StyledTabs = styled(Tabs)`
   .MuiTabs-indicator {
     background-color: ${BRAND_GREEN};
   }
+  @media (max-width: 767px) {
+    .MuiTab-root {
+      flex: 1;
+      min-width: 0;
+    }
+    .Mui-selected {
+      background-color: #333;
+      color: #fff !important;
+      border-radius: 6px;
+    }
+    .MuiTabs-indicator {
+      display: none;
+    }
+  }
 `;
 
 const ResultsSection = styled.div`
@@ -208,6 +225,9 @@ const ProductCardBody = styled.div`
   flex-direction: column;
   justify-content: space-between;
   font-family: Lato, sans-serif;
+  @media (max-width: 600px) {
+    padding: 16px;
+  }
 `;
 
 const ProductCardTitle = styled.h3`
@@ -255,6 +275,10 @@ const ButtonGroup = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+  @media (max-width: 600px) {
+    width: 100%;
+    align-items: stretch;
+  }
 `;
 
 const ViewDetailsButton = styled(Link)`
@@ -278,6 +302,10 @@ const ViewDetailsButton = styled(Link)`
     background-color: rgba(0, 173, 35, 0.08);
     color: ${BRAND_GREEN} !important;
   }
+  @media (max-width: 600px) {
+    width: 100%;
+    box-sizing: border-box;
+  }
 `;
 
 const PrimaryButtonWrap = styled.div`
@@ -290,6 +318,13 @@ const PrimaryButtonWrap = styled.div`
     padding: 10px 20px !important;
     border-radius: 4px !important;
     min-height: 42px !important;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    display: block;
+    .shopify-payment-button__button {
+      width: 100% !important;
+    }
   }
 `;
 

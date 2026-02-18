@@ -92,40 +92,18 @@ const HeroImage = styled.div`
   }
 `;
 
-const HeroImageBlur = styled.div`
+const HeroImageInner = styled.div`
   position: absolute;
   inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: blur(20px);
-  transform: scale(1.08);
-  z-index: 0;
-  opacity: 0.95;
-`;
-
-const HeroImageInner = styled.div`
-  position: relative;
   z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 0;
   img {
     display: block;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    max-height: 420px;
-    object-fit: contain;
-    object-position: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
     vertical-align: middle;
-    border-radius: 7px;
-  }
-  @media (max-width: 767px) {
-    img {
-      max-height: 280px;
-      border-radius: 5px;
-    }
+    border-radius: inherit;
   }
 `;
 
@@ -198,10 +176,6 @@ export default function HeroWireframe() {
       <PromoBannerStrip />
       <HeroSection>
         <HeroImage>
-          <HeroImageBlur
-            style={{ backgroundImage: `url(${homePageImage})` }}
-            aria-hidden
-          />
           <HeroImageInner>
             <img
               src={homePageImage}
