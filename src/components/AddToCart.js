@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, buyButtonId, transform, id, background, color, isLeft }) => {
+const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, buyButtonId, transform, id, background, color, isLeft, hidePrice, outline }) => {
 
   const prevBuyButtonIdRef = useRef();
 
@@ -57,7 +57,7 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
                       "imgWithCarousel": false,
                       "title": false,
                       "variantTitle": false,
-                      "price": true,
+                      "price": !hidePrice,
                       "description": false,
                       "buttonWithQuantity": false,
                       "quantity": false
@@ -72,12 +72,33 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
                           "margin-bottom": "0px"
                         }
                       },
-                      "button": {
+                      "button": outline ? {
+                        "font-family": "Lato, sans-serif",
+                        "font-size": "14px",
+                        "font-weight": "600",
+                        "display": "inline-block",
+                        "padding": "10px 20px",
+                        "margin": "0",
+                        "background-color": "transparent",
+                        "color": color || "#00ad23",
+                        "border": "2px solid " + (color || "#00ad23"),
+                        "border-radius": "4px",
+                        ":hover": {
+                          "color": color || "#00ad23",
+                          "background-color": "rgba(0, 173, 35, 0.08)",
+                          "border-color": color || "#00ad23"
+                        },
+                        ":focus": {
+                          "color": color || "#00ad23",
+                          "background-color": "rgba(0, 173, 35, 0.08)",
+                          "border-color": color || "#00ad23"
+                        }
+                      } : {
                         "font-family": "Lato, sans-serif",
                         "font-size": "13px",
                         "padding-top": "5px",
                         "display": "inline-block",
-                        "padding": "7px",
+                        "padding": "10px 20px",
                         "margin": "20px auto 0",
                         "margin-top": "0",
                         "background-color": background ? background : "#00ad23",
@@ -218,7 +239,7 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
     prevBuyButtonIdRef.current = buyButtonId;
 
 
-  }, [buyButtonId])
+  }, [buyButtonId, hidePrice, outline, background, color])
 
   console.log(buyButtonId)
 

@@ -8,10 +8,10 @@ import brand2 from "../../assets/trust/brand2.png";
 import brand3 from "../../assets/trust/brand3.png";
 import brand4 from "../../assets/trust/brand4.png";
 import brand5 from "../../assets/trust/brand5.jpg";
+import homePageImage from "../../assets/home-page.png";
 
 const BRAND_GREEN = "#00ad23";
 const TEXT_DARK = "#333";
-const TEXT_MUTED = "#555";
 
 const HERO_BRANDS = [
   { id: 0, imgSrc: brand0 },
@@ -64,51 +64,68 @@ const PromoBanner = styled.div`
 const HeroSection = styled.section`
   width: 100%;
   background-color: #fafafa;
-  padding: 48px 24px 56px;
+  
   text-align: center;
   @media (max-width: 767px) {
     padding: 32px 16px 40px;
   }
 `;
 
-const HeroHeading = styled.h1`
-  margin: 0 0 12px;
-  font-family: Lato, sans-serif;
-  font-size: 38px;
-  font-weight: 700;
-  color: ${TEXT_DARK};
-  line-height: 1.2;
-  letter-spacing: 0.5px;
+const HeroImage = styled.div`
+  margin: 0 auto 24px;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  background: #f5f5f5;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media (max-width: 767px) {
-    font-size: 24px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    min-height: 240px;
   }
 `;
 
-const HeroSubHeading = styled.h2`
-  margin: 0 0 16px;
-  font-family: Lato, sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: ${TEXT_DARK};
-  line-height: 1.3;
-  letter-spacing: 0.3px;
-  @media (max-width: 767px) {
-    font-size: 18px;
-  }
+const HeroImageBlur = styled.div`
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px);
+  transform: scale(1.08);
+  z-index: 0;
+  opacity: 0.95;
 `;
 
-const HeroBody = styled.p`
-  margin: 0 auto 32px;
-  max-width: 560px;
-  font-family: Lato, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: ${TEXT_MUTED};
-  line-height: 1.6;
-  letter-spacing: 0.3px;
+const HeroImageInner = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+  img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 420px;
+    object-fit: contain;
+    object-position: center;
+    vertical-align: middle;
+    border-radius: 7px;
+  }
   @media (max-width: 767px) {
-    font-size: 14px;
-    margin-bottom: 24px;
+    img {
+      max-height: 280px;
+      border-radius: 5px;
+    }
   }
 `;
 
@@ -180,12 +197,18 @@ export default function HeroWireframe() {
     <TopSection>
       <PromoBannerStrip />
       <HeroSection>
-        <HeroHeading>High Performance Reusable Air Filters</HeroHeading>
-        <HeroSubHeading>Race-Proven. Made In the USA.</HeroSubHeading>
-        <HeroBody>
-          Designed for enthusiasts who demand more airflow, better filtration,
-          and lifetime performance.
-        </HeroBody>
+        <HeroImage>
+          <HeroImageBlur
+            style={{ backgroundImage: `url(${homePageImage})` }}
+            aria-hidden
+          />
+          <HeroImageInner>
+            <img
+              src={homePageImage}
+              alt="High Performance Reusable Air Filters - Race-Proven. Made In the USA."
+            />
+          </HeroImageInner>
+        </HeroImage>
         <BrandsRow>
           {HERO_BRANDS.map((brand) => (
             <div key={brand.id} className="brand-col">
@@ -207,3 +230,6 @@ export default function HeroWireframe() {
     </TopSection>
   );
 }
+
+
+

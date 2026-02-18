@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import AddToCart from "../../components/AddToCart";
 import {
   Select,
   MenuItem,
@@ -15,6 +16,12 @@ import axios from "axios";
 import { statics } from "../../data/store";
 
 const BRAND_GREEN = "#00ad23";
+// Same as AddToCart – used to fetch price from Shopify so card shows same price as buy button
+const SHOPIFY_STOREFRONT = {
+  domain: "store.greenfilter.com",
+  apiKey: "b0f6e285934ab0374588e085bda31072",
+  apiVersion: "2024-01",
+};
 const filterKeys = ["make", "name", "engine"];
 const keys = [
   { name: "year" },
@@ -116,28 +123,9 @@ const FormRow = styled.div`
 const FooterRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-top: 20px;
-  padding-top: 16px;
-  border-top: 1px solid #e8e8e8;
   flex-wrap: wrap;
   gap: 12px;
-`;
-
-const StepIndicator = styled.div`
-  font-family: Lato, sans-serif;
-  font-size: 14px;
-  color: #666;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  .line {
-    flex: 1;
-    max-width: 200px;
-    height: 1px;
-    background: #ddd;
-  }
 `;
 
 const PartNumberRow = styled.div`
@@ -244,26 +232,64 @@ const SpecList = styled.div`
   }
 `;
 
+const PriceBlock = styled.div`
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 4px 0 0;
+  .price-current {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+  }
+  .price-compare {
+    font-size: 14px;
+    font-weight: 400;
+    color: #888;
+    text-decoration: line-through;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+`;
+
 const ViewDetailsButton = styled(Link)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   padding: 10px 20px;
-  background-color: ${BRAND_GREEN};
-  color: #fff !important;
+  background-color: transparent;
+  color: ${BRAND_GREEN} !important;
   font-family: Lato, sans-serif;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   border-radius: 4px;
-  border: none;
+  border: 2px solid ${BRAND_GREEN};
   cursor: pointer;
   width: fit-content;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
   &:hover {
-    background-color: #00901c;
-    color: #fff !important;
+    background-color: rgba(0, 173, 35, 0.08);
+    color: ${BRAND_GREEN} !important;
+  }
+`;
+
+const PrimaryButtonWrap = styled.div`
+  display: inline-block;
+  /* Add to Cart matches View Details outline style when outline prop is used */
+  .shopify-payment-button__button {
+    font-family: Lato, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+    border-radius: 4px !important;
+    min-height: 42px !important;
   }
 `;
 
@@ -278,7 +304,7 @@ export default function PerfectFilter() {
   const [apiData, setApiData] = useState({});
   const [searchPartNo, setSearchPartNo] = useState("");
   const [productDetails, setProductDetails] = useState(null);
-  const history = useHistory();
+  const [shopifyPrices, setShopifyPrices] = useState({}); // { buy_url: { price, compareAtPrice } }
 
   const handleChange = (key, value) => {
     const tempArr = ["year", "make_id", "model_name", "engine"];
@@ -299,9 +325,54 @@ export default function PerfectFilter() {
       }
     });
     setProductDetails(null);
+    setShopifyPrices({});
     setApiData(tempData);
     setApiStr({ ...tempStr, [key]: value });
   };
+
+  // Fetch Shopify price for each product so card shows same price as AddToCart
+  useEffect(() => {
+    if (!productDetails?.length) {
+      setShopifyPrices({});
+      return;
+    }
+    const gid = (id) =>
+      typeof id === "string" && id.startsWith("gid://") ? id : `gid://shopify/Product/${id}`;
+    const url = `https://${SHOPIFY_STOREFRONT.domain}/api/${SHOPIFY_STOREFRONT.apiVersion}/graphql.json`;
+    const token = SHOPIFY_STOREFRONT.apiKey;
+    const fetchPrice = async (buyUrl) => {
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Shopify-Storefront-Access-Token": token,
+          },
+          body: JSON.stringify({
+            query: `query getProductPrice($id: ID!) { product(id: $id) { variants(first: 1) { nodes { price { amount } compareAtPrice { amount } } } } }`,
+            variables: { id: gid(buyUrl) },
+          }),
+        });
+        const json = await res.json();
+        const nodes = json?.data?.product?.variants?.nodes;
+        if (nodes?.length) {
+          const price = nodes[0].price?.amount;
+          const compareAtPrice = nodes[0].compareAtPrice?.amount;
+          if (price != null) {
+            setShopifyPrices((prev) => ({
+              ...prev,
+              [buyUrl]: { price, compareAtPrice: compareAtPrice || null },
+            }));
+          }
+        }
+      } catch (e) {
+        console.warn("Shopify price fetch failed for", buyUrl, e);
+      }
+    };
+    productDetails.forEach((p) => {
+      if (p?.buy_url) fetchPrice(p.buy_url);
+    });
+  }, [productDetails]);
 
   useEffect(() => {
     const runFetch = async () => {
@@ -321,9 +392,7 @@ export default function PerfectFilter() {
             let filteredData = response.data;
             const allSelected =
               apiStr.year && apiStr.make_id && apiStr.model_name && apiStr.engine;
-            if (allSelected) {
-              setProductDetails(filteredData);
-            } else {
+            if (!allSelected && objectKey) {
               if (getKey === "engine") {
                 filteredData.sort((a, b) => compare(a, b, "displacement"));
               } else if (getKey === "make" || getKey === "name") {
@@ -340,6 +409,7 @@ export default function PerfectFilter() {
 
   const handleFindMatching = async () => {
     setProductDetails(null);
+    setShopifyPrices({});
     if (tabValue === 1 && searchPartNo.trim()) {
       await axios
         .get(statics.BaseUrl + "/product-search", {
@@ -477,10 +547,6 @@ export default function PerfectFilter() {
       )}
 
       <FooterRow>
-        <StepIndicator>
-          <span>Step 1 of 4</span>
-          <span className="line" />
-        </StepIndicator>
         <Button
           variant="contained"
           onClick={handleFindMatching}
@@ -502,7 +568,7 @@ export default function PerfectFilter() {
           {productDetails.length === 0 ? (
             <p style={{ color: "#666", margin: 0 }}>No products found. Try different selections.</p>
           ) : (
-            productDetails.map((product) => {
+            productDetails.map((product, key) => {
               const selectedEngine =
                 apiStr?.engine && apiData?.engine
                   ? apiData.engine.find((eng) => eng.displacement === apiStr.engine) || apiData.engine[0]
@@ -531,24 +597,50 @@ export default function PerfectFilter() {
                         {!selectedEngine && (
                           <p><strong>Fitment Note:</strong> All Models</p>
                         )}
+                        {(() => {
+                        const shopify = product?.buy_url ? shopifyPrices[product.buy_url] : null;
+                        const price = shopify?.price ?? (product?.price != null && product?.price !== "" ? String(product.price) : null);
+                        if (price == null) return null;
+                        const main = `$${Number(price).toFixed(2)}`;
+                        const compareAt = shopify?.compareAtPrice ? Number(shopify.compareAtPrice).toFixed(2) : null;
+                        return (
+                          <PriceBlock>
+                            <span className="price-current">{main}</span>
+                            {compareAt != null && <span className="price-compare">${compareAt}</span>}
+                          </PriceBlock>
+                        );
+                      })()}
                       </SpecList>
                     </div>
-                    {product.gfu_part_num ? (
-                      <ViewDetailsButton
-                        as="button"
-                        type="button"
-                        onClick={() => history.push(`/store/filter/${product.gfu_part_num}`)}
-                      >
-                        View Product Details
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ marginLeft: 4 }}>
-                          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
-                        </svg>
-                      </ViewDetailsButton>
-                    ) : (
-                      <ViewDetailsButton as="span" style={{ opacity: 0.7, cursor: "not-allowed" }}>
-                        View Product Details
-                      </ViewDetailsButton>
-                    )}
+                    <ButtonGroup>
+                      {product.gfu_part_num ? (
+                        <ViewDetailsButton
+                          as="button"
+                          type="button"
+                          onClick={() => (window.location.href = `/store/filter/${product.gfu_part_num}`)}
+                        >
+                          View Product Details
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ marginLeft: 4 }}>
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                          </svg>
+                        </ViewDetailsButton>
+                      ) : (
+                        <ViewDetailsButton as="span" style={{ opacity: 0.7, cursor: "not-allowed" }}>
+                          View Product Details
+                        </ViewDetailsButton>
+                      )}
+                      <PrimaryButtonWrap>
+                        <AddToCart
+                          isLeft
+                          text="ADD TO CART"
+                          buyButtonId={product?.buy_url}
+                          id={product?.id?.toString() + key.toString()}
+                          background={BRAND_GREEN}
+                          color="#fff"
+                          hidePrice
+                        />
+                      </PrimaryButtonWrap>
+                    </ButtonGroup>
                   </ProductCardBody>
                 </ProductCard>
               );
