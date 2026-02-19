@@ -26,6 +26,67 @@ import { FaStar } from "react-icons/fa";
 const BRAND_GREEN = "#00ad23";
 const TEXT_DARK = "#333";
 
+const HeadingAccent = styled.div`
+  width: 56px;
+  height: 3px;
+  background: ${BRAND_GREEN};
+  border-radius: 2px;
+  margin: 0 auto 40px;
+  @media (max-width: 767px) {
+    margin-bottom: 28px;
+  }
+`;
+
+const TickerWrapper = styled.div`
+  overflow: hidden;
+  width: 100%;
+  padding: 8px 0;
+`;
+
+const TickerTrack = styled.div`
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marqueeScroll 22s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+`;
+
+const TickerItem = styled.span`
+  font-family: Lato, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  white-space: nowrap;
+  padding: 0 4px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+`;
+
+const TickerLink = styled(Link)`
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  &:hover ${TickerItem} {
+    color: ${BRAND_GREEN};
+  }
+`;
+
+const TickerSep = styled.span`
+  color: ${BRAND_GREEN};
+  font-size: 14px;
+  padding: 0 16px;
+  user-select: none;
+  flex-shrink: 0;
+`;
+
 const BrandsRow = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -173,30 +234,19 @@ const HomeElement1 = (props) => {
           <h1 class="heading-11">
             The Chosen Filter for Top Performing Brands
           </h1>
-          <div className="main-vehicle-row">
-            {topPerformingBrands?.makes?.map((make) => (
-              <div key={make.id} className="w-col w-col-2">
-                <Link
-                  to={`/brand/${make.slug}`}
-                  class="link-block w-inline-block"
-                >
-                  <div className="column-div custom-button-temp">
-                  
-                    <div class="text-block car-carousel">{make.name}</div>
-                  </div>
-                </Link>
-              </div>
-            ))}
-          </div>
-          <div className="div-block-5">
-            <Button1
-              text="See All Brands"
-              handleClick={() => {
-                props.handleClickIndex(0);
-                history.push("/shop-by-vehicle");
-              }}
-            />
-          </div>
+          <HeadingAccent />
+          {topPerformingBrands?.makes?.length > 0 && (
+            <TickerWrapper>
+              <TickerTrack>
+                {[...topPerformingBrands.makes, ...topPerformingBrands.makes].map((make, i) => (
+                  <TickerLink key={i} to={`/brand/${make.slug}`}>
+                    <TickerItem>{make.name}</TickerItem>
+                    <TickerSep>·</TickerSep>
+                  </TickerLink>
+                ))}
+              </TickerTrack>
+            </TickerWrapper>
+          )}
         </div>
         <div className="div-block-3">
           <div
@@ -257,7 +307,7 @@ export default HomeElement1;
 const HomeElement1Wrapper = styled.div`
   position: relative;
   margin-top: 0%;
-  padding: 5% 5% 15%;
+  padding: 0 24px 180px;
   background-color: #fff;
   background-image: url(${(props) => props.gradient});
   background-position: 50% 100%;
@@ -281,14 +331,18 @@ const HomeElement1Wrapper = styled.div`
     }
   }
   .heading-11 {
-    margin-bottom: 50px;
-    font-weight: 400;
+    margin-bottom: 16px;
+    font-family: Lato, sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: #1a1a1a;
     text-align: center;
   }
 
   @media screen and (max-width: 767px) {
     .heading-11 {
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       font-size: 20px;
       line-height: 1.3;
       padding: 0 15px;
@@ -298,61 +352,10 @@ const HomeElement1Wrapper = styled.div`
   @media screen and (max-width: 480px) {
     .heading-11 {
       font-size: 18px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
   }
 
-  .main-vehicle-row {
-    display: flex;
-    margin-top: 25px;
-    margin-bottom: 0px;
-    flex-wrap: wrap;
-    justify-content: center !important;
-    gap: 10px;
-  }
-  .w-col {
-    position: relative;
-    float: left;
-    width: 100%;
-    min-height: 1px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .w-col-2 {
-    width: 16.66666667%;
-  }
-  .link-block {
-    width: auto;
-    margin-bottom: 0px;
-    padding: 0px;
-    text-align: center;
-    text-decoration: none;
-  }
-  .w-inline-block {
-    max-width: 100%;
-    display: inline-block;
-  }
-  .column-div {
-    padding-right: 0px;
-    padding-left: 0px;
-    text-align: center;
-  }
-  .product-image {
-    width: 200px;
-  }
-
-  .div-block-5 {
-    text-align: center;
-  }
-  .div-block-5 button {
-    margin-top: 20px;
-  }
-
-  @media screen and (max-width: 767px) {
-    .div-block-5 button {
-      margin-top: 15px;
-    }
-  }
   .div-block-3 {
     position: relative;
     height: auto;
@@ -505,29 +508,6 @@ const HomeElement1Wrapper = styled.div`
     font-weight: 300;
   }
   @media screen and (max-width: 767px) {
-    .w-col-2 {
-      width: 33.333% !important;
-      left: auto;
-      right: auto;
-      margin-bottom: 12px;
-      flex: 0 0 auto;
-    }
-    .single {
-      width: 100% !important;
-    }
-    .w-col {
-      float: none;
-      padding-left: 5px;
-      padding-right: 5px;
-    }
-    .main-vehicle-row {
-      gap: 8px;
-      padding: 0 10px;
-    }
-    .main-vehicle-row .w-col-2 {
-      flex: 0 0 calc(33.333% - 8px);
-      max-width: calc(33.333% - 8px);
-    }
     .titles-div {
       width: 90%;
     }

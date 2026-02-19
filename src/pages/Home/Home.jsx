@@ -130,11 +130,11 @@ const HomeWrapper = styled.div`
 `;
 
 const FilterSection = styled.section`
-  padding: 32px 24px 0;
+  padding: 32px 24px 48px;
   max-width: 960px;
   margin: 0 auto;
   @media (max-width: 767px) {
-    padding: 0 0 24px;
+    padding: 0 0 32px;
     margin-top: -92px;
     position: relative;
     z-index: 4;

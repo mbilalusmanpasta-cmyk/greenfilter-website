@@ -9,10 +9,10 @@ const Section = styled.section`
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  padding: 48px 24px 56px;
+  padding: 64px 24px;
   text-align: center;
   @media (max-width: 767px) {
-    padding: 32px 16px 40px;
+    padding: 40px 16px;
   }
 `;
 

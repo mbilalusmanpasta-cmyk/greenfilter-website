@@ -23,22 +23,25 @@ const Button1 = ({ text, handleClick, marginTop,isLink,to,target,download }) => 
 
 export default Button1;
 const Button1Wrapper = styled.button`
-  background-color: rgba(0, 173, 35, 0.86);
+  background-color: #00ad23;
   background-image: none;
-  min-width: 90px;
+  min-width: 64px;
   color: #fff;
-  padding: 15px 35px;
-  border-radius: 5px;
-  box-shadow: 0 0 11px 1px rgb(0 0 0 / 11%);
+  padding: 6px 16px;
+  border-radius: 4px;
   font-family: Lato, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.75px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
   border: none;
   cursor: pointer;
   margin-top: ${(props) => (props.marginTop ? props.marginTop : 0)}px;
-
-  a:hover{
-    color:#fff;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: #00901c;
+  }
+  a:hover {
+    color: #fff;
   }
 `;
