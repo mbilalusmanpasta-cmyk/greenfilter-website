@@ -29,18 +29,29 @@ const Heading = styled.h2`
   }
 `;
 
-const TwoColumns = styled.div`
+const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px 48px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 40px;
   text-align: left;
   justify-items: start;
   align-items: start;
-  max-width: 700px;
-  margin: 0 28px;
+  max-width: 900px;
+  margin: 0 auto;
+`;
+
+const DesktopLayout = styled(Grid)`
   @media (max-width: 767px) {
-    grid-template-columns: 1fr;
-    gap: 0;
+    display: none;
+  }
+`;
+
+const MobileLayout = styled(Grid)`
+  display: none;
+  grid-template-columns: 1fr;
+  @media (max-width: 767px) {
+    display: grid;
+    justify-items: left;
   }
 `;
 
@@ -50,20 +61,41 @@ const Column = styled.ul`
   margin: 0;
 `;
 
+const MobileColumn = styled(Column)`
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-left: 40px;
+  }
+`;
+
+const ICON_COLUMN_WIDTH = 28;
+const GAP = 10;
+const TEXT_START = ICON_COLUMN_WIDTH + GAP;
+
+const IconWrap = styled.span`
+  float: left;
+  width: ${ICON_COLUMN_WIDTH}px;
+  margin-right: ${GAP}px;
+  margin-top: 2px;
+  .icon {
+    color: ${BRAND_GREEN};
+    font-size: 20px;
+    display: block;
+  }
+`;
+
 const ListItem = styled.li`
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
   margin-bottom: 12px;
+  overflow: hidden;
   font-family: Lato, sans-serif;
   font-size: 15px;
   color: ${TEXT_DARK};
   line-height: 1.4;
-  .icon {
-    flex-shrink: 0;
-    color: ${BRAND_GREEN};
-    font-size: 20px;
-    margin-top: 2px;
+  .list-item-text {
+    display: block;
+    margin-left: ${TEXT_START}px;
   }
   @media (max-width: 767px) {
     font-size: 14px;
@@ -85,28 +117,48 @@ const defaultRightItems = [
   "Free shipping on orders $200+",
 ];
 
+function chunk(arr, size) {
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+}
+
 export default function ConfidencePanel({ leftItems = defaultLeftItems, rightItems = defaultRightItems }) {
+  const allItems = [...leftItems, ...rightItems];
+  const desktopChunks = chunk(allItems, 2).slice(0, 3);
+  const displayedItems = desktopChunks.flat();
+
   return (
     <Section>
       <Heading>CONFIDENCE PANEL</Heading>
-      <TwoColumns>
-        <Column>
-          {leftItems.map((text, i) => (
+      <DesktopLayout>
+        {desktopChunks.map((items, colIndex) => (
+          <Column key={colIndex}>
+            {items.map((text, i) => (
+              <ListItem key={`${colIndex}-${i}`}>
+                <IconWrap>
+                  <MdCheckCircle className="icon" aria-hidden />
+                </IconWrap>
+                <span className="list-item-text">{text}</span>
+              </ListItem>
+            ))}
+          </Column>
+        ))}
+      </DesktopLayout>
+      <MobileLayout>
+        <MobileColumn>
+          {displayedItems.map((text, i) => (
             <ListItem key={i}>
-              <MdCheckCircle className="icon" aria-hidden />
-              <span>{text}</span>
+              <IconWrap>
+                <MdCheckCircle className="icon" aria-hidden />
+              </IconWrap>
+              <span className="list-item-text">{text}</span>
             </ListItem>
           ))}
-        </Column>
-        <Column>
-          {rightItems.map((text, i) => (
-            <ListItem key={i}>
-              <MdCheckCircle className="icon" aria-hidden />
-              <span>{text}</span>
-            </ListItem>
-          ))}
-        </Column>
-      </TwoColumns>
+        </MobileColumn>
+      </MobileLayout>
     </Section>
   );
 }
