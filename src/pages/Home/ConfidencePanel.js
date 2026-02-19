@@ -34,12 +34,13 @@ const TwoColumns = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 24px 48px;
   text-align: left;
-  justify-items: center;
+  justify-items: start;
+  align-items: start;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 28px;
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 0;
   }
 `;
 
@@ -51,7 +52,7 @@ const Column = styled.ul`
 
 const ListItem = styled.li`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   margin-bottom: 12px;
   font-family: Lato, sans-serif;
@@ -62,6 +63,7 @@ const ListItem = styled.li`
     flex-shrink: 0;
     color: ${BRAND_GREEN};
     font-size: 20px;
+    margin-top: 2px;
   }
   @media (max-width: 767px) {
     font-size: 14px;

@@ -21,6 +21,66 @@ import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 
 import CircleLoader from "react-spinners/CircleLoader";
+import { FaStar } from "react-icons/fa";
+
+const BRAND_GREEN = "#00ad23";
+const TEXT_DARK = "#333";
+
+const BrandsRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 32px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  .brand-col {
+    flex: 0 0 auto;
+    width: calc(16.666% - 20px);
+    min-width: 80px;
+    max-width: 120px;
+  }
+  .brand-col img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  @media (max-width: 767px) {
+    gap: 16px;
+    margin-top: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    .brand-col {
+      width: calc(33.333% - 12px);
+      min-width: 70px;
+    }
+  }
+`;
+
+const ReviewsBadge = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Lato, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: ${TEXT_DARK};
+  flex-shrink: 0;
+  .stars {
+    display: flex;
+    gap: 2px;
+    color: ${BRAND_GREEN};
+    font-size: 16px;
+  }
+  @media (max-width: 767px) {
+    font-size: 13px;
+    margin-top: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+`;
 
 const HomeElement1 = (props) => {
   const history = useHistory();
@@ -174,20 +234,23 @@ const HomeElement1 = (props) => {
               THE CHOSEN AIR FILTER BY THE WORLD'S BEST
             </h1>
           </div>
-          <div className="w-row">
+          <BrandsRow>
             {brands.map((brand) => (
-              <div class="w-col w-col-2 single">
-                <div class="column-div _0">
-                  <img
-                    src={brand.imgSrc}
-                    alt="brand"
-                    sizes="(max-width: 479px) 86vw, (max-width: 767px) 87vw, 13vw"
-                    className={`image-${brands.indexOf(brand)}`}
-                  />
-                </div>
+              <div key={brand.id} className="brand-col">
+                <img
+                  src={brand.imgSrc}
+                  alt="brand"
+                  sizes="(max-width: 479px) 86vw, (max-width: 767px) 87vw, 13vw"
+                />
               </div>
             ))}
-          </div>
+            <ReviewsBadge>
+              <span className="stars" aria-label="5 star reviews">
+                <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+              </span>
+              <span>5-Star Reviews</span>
+            </ReviewsBadge>
+          </BrandsRow>
         </div>
       </HomeElement1Wrapper>
     </>

@@ -132,6 +132,9 @@ const FilterSection = styled.section`
   max-width: 960px;
   margin: 0 auto;
   @media (max-width: 767px) {
-    padding: 24px 16px 0;
+    padding: 0 0 24px;
+    margin-top: -92px;
+    position: relative;
+    z-index: 4;
   }
 `;
