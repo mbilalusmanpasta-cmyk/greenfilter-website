@@ -82,6 +82,7 @@ const selectSx = {
   },
   "& .MuiSelect-select": {
     padding: "10px 14px",
+    textTransform: "capitalize",
   },
 };
 const menuProps = {
@@ -94,6 +95,7 @@ const menuProps = {
       "& .MuiMenuItem-root": {
         fontFamily: "Lato, sans-serif",
         fontSize: "14px",
+        textTransform: "capitalize",
       },
       "& .MuiMenuItem-root.Mui-selected": {
         backgroundColor: "rgba(0, 173, 35, 0.12)",

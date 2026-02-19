@@ -4,6 +4,7 @@ import Gallery from "./Gallery";
 import HeroWireframe from "./HeroWireframe";
 import PerfectFilter from "./PerfectFilter";
 import ConfidencePanel from "./ConfidencePanel";
+import ChosenByBest from "./ChosenByBest";
 import HomeElement1 from "./HomeElement1";
 import HomeElement3 from "./HomeElement3";
 import HomeElement4 from "./HomeElement4";
@@ -100,6 +101,7 @@ const Home = (props) => {
           <PerfectFilter />
         </FilterSection>
 
+        <ChosenByBest />
         <ConfidencePanel />
 
         <HomeElement1 handleClickIndex={props.handleClickIndex} />

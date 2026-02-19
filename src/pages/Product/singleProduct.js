@@ -92,7 +92,7 @@ const SingleProduct = () => {
             {
                 !loading &&
                 <Helmet>
-                    <title>{productData?.title} | {productData?.gfu_part_num} | Green Filter</title>
+                    <title>{`${productData?.title} | ${productData?.gfu_part_num} | Green Filter`}</title>
                     <meta name="description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
                     <meta property="og:title" content={productData?.title + productData?.gfu_part_num + "| Green Filter"} />
                     <meta property="og:description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />

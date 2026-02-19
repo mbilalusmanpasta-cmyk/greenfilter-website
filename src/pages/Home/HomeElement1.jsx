@@ -181,12 +181,7 @@ const HomeElement1 = (props) => {
                   class="link-block w-inline-block"
                 >
                   <div className="column-div custom-button-temp">
-                    {/* <img
-                        src={make?.images?.[0]?.link}
-                      sizes="(max-width: 479px) 82vw, (max-width: 767px) 200px, 13vw"
-                      class="product-image"
-                      alt="car"
-                    /> */}
+                  
                     <div class="text-block car-carousel">{make.name}</div>
                   </div>
                 </Link>
@@ -228,7 +223,7 @@ const HomeElement1 = (props) => {
             <div class="gradient"></div>
           </div>
         </div>
-        <div className="trusted w-container">
+        {/* <div className="trusted w-container">
           <div className="titles-div">
             <h1 class="proud-suppliers-to">
               THE CHOSEN AIR FILTER BY THE WORLD'S BEST
@@ -251,7 +246,7 @@ const HomeElement1 = (props) => {
               <span>5-Star Reviews</span>
             </ReviewsBadge>
           </BrandsRow>
-        </div>
+        </div> */}
       </HomeElement1Wrapper>
     </>
   );

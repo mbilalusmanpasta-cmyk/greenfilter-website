@@ -363,7 +363,7 @@ const GreenSearch = ({ Sticky }) => {
             {apiData.make &&
               apiData.make.length &&
               apiData.make.map((item, index) => {
-                return <Option value={item.id.toString()}>{item.title}</Option>;
+                return <Option value={item.id.toString()} style={{ textTransform: 'capitalize' }}>{item.title}</Option>;
               })}
             {/* {makes && makes.length && makes.map(({name})=>{
                   return <Option value={name}>{name}</Option>
@@ -385,7 +385,7 @@ const GreenSearch = ({ Sticky }) => {
             {apiData.name &&
               apiData.name.length &&
               apiData.name.map(({ name, title }) => {
-                return <Option value={name}>{title}</Option>;
+                return <Option value={name} style={{ textTransform: 'capitalize' }}>{title}</Option>;
               })}
           </Select>
 
@@ -407,7 +407,7 @@ const GreenSearch = ({ Sticky }) => {
               apiData.engine.length &&
               apiData.engine.map((engine) => {
                 return (
-                  <Option value={engine.displacement}>
+                  <Option value={engine.displacement} style={{ textTransform: 'capitalize' }}>
                     {engine.displacement}
                   </Option>
                 );
