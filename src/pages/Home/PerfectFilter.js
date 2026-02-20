@@ -176,7 +176,7 @@ const MobileSelectRow = styled.div`
 const FooterRow = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 11px;
   flex-wrap: wrap;
   gap: 12px;
 `;
@@ -301,26 +301,27 @@ const ProductCardTitle = styled.h3`
 
 const SpecList = styled.div`
   margin: 0 0 16px;
-  font-size: 14px;
+  font-size: 13px;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.45;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px 12px;
+  align-items: start;
   p {
-    margin: 0 0 4px;
+    margin: 0;
+    min-width: 0;
   }
   strong {
     font-weight: 600;
-    margin-right: 6px;
+    margin-right: 4px;
   }
   @media (max-width: 600px) {
     margin-bottom: 10px;
     font-size: 12px;
     line-height: 1.4;
-    p {
-      margin-bottom: 2px;
-    }
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0 12px;
+    gap: 2px 10px;
     &.spec-single-col {
       grid-template-columns: 1fr;
     }
@@ -331,20 +332,19 @@ const PriceBlock = styled.div`
   display: inline-flex;
   align-items: baseline;
   gap: 10px;
-  margin: 4px 0 0;
+  margin: 0;
   .price-current {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #333;
   }
   .price-compare {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     color: #888;
     text-decoration: line-through;
   }
   @media (max-width: 600px) {
-    margin-top: 2px;
     grid-column: 1 / -1;
     .price-current {
       font-size: 16px;
@@ -357,12 +357,21 @@ const PriceBlock = styled.div`
 
 const ButtonGroup = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: stretch;
-  gap: 8px;
+  gap: 12px;
   width: 100%;
-  @media (max-width: 600px) {
-    gap: 6px;
+  & > * {
+    flex: 1;
+    min-width: 0;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 8px;
+    & > * {
+      flex: none;
+      width: 100%;
+    }
   }
 `;
 
@@ -386,8 +395,7 @@ const ViewDetailsButton = styled(Link)`
   border-radius: 4px;
   border: 2px solid ${BRAND_GREEN};
   cursor: pointer;
-  width: fit-content;
-  flex-shrink: 0;
+  width: 100%;
   transition: background-color 0.2s, color 0.2s;
   &:hover {
     background-color: rgba(0, 173, 35, 0.08);
@@ -398,62 +406,74 @@ const ViewDetailsButton = styled(Link)`
     height: 16px;
   }
   @media (max-width: 600px) {
-    width: 100%;
-    min-height: 36px;
-    height: auto;
-    padding: 0 12px;
-    font-size: 12px;
+    height: ${BUTTON_HEIGHT_DESKTOP}px;
+    min-height: ${BUTTON_HEIGHT_DESKTOP}px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 600;
     box-sizing: border-box;
     svg {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
     }
   }
 `;
 
 const PrimaryButtonWrap = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   height: ${BUTTON_HEIGHT_DESKTOP}px;
   min-height: ${BUTTON_HEIGHT_DESKTOP}px;
   margin: 0;
   box-sizing: border-box;
-  flex-shrink: 0;
-  /* Shopify embed container: same row height, no extra margin */
+  width: 100%;
+  /* Shopify embed container: same row height/width as Product Details */
   & > div {
     margin: 0 !important;
     padding: 0 !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: left !important;
+    justify-content: center !important;
+    width: 100% !important;
     height: ${BUTTON_HEIGHT_DESKTOP}px !important;
     min-height: ${BUTTON_HEIGHT_DESKTOP}px !important;
   }
-  .shopify-payment-button__button {
+  .shopify-buy__btn-wrapper,
+  [data-element="product.buttonWrapper"] {
+    margin-top: 11px !important;
+  }
+  .shopify-payment-button__button,
+  .shopify-buy__btn {
     font-family: Lato, sans-serif !important;
     font-size: 13px !important;
     font-weight: 600 !important;
-    padding: 8px 16px !important;
+    padding: 0 16px !important;
     border-radius: 4px !important;
-    min-height: ${BUTTON_HEIGHT_DESKTOP - 4}px !important;
-    margin: 0 !important;
+    height: ${BUTTON_HEIGHT_DESKTOP}px !important;
+    min-height: ${BUTTON_HEIGHT_DESKTOP}px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
   }
   @media (max-width: 600px) {
-    width: 100%;
     display: flex;
-    height: auto;
-    min-height: 36px;
+    height: ${BUTTON_HEIGHT_DESKTOP}px;
+    min-height: ${BUTTON_HEIGHT_DESKTOP}px;
     align-items: center;
     & > div {
-      height: auto !important;
-      min-height: 36px !important;
+      height: ${BUTTON_HEIGHT_DESKTOP}px !important;
+      min-height: ${BUTTON_HEIGHT_DESKTOP}px !important;
     }
-    .shopify-payment-button__button {
+    .shopify-payment-button__button,
+    .shopify-buy__btn {
       width: 100% !important;
-      padding: 8px 12px !important;
-      font-size: 12px !important;
-      min-height: 32px !important;
+      padding: 0 16px !important;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      height: ${BUTTON_HEIGHT_DESKTOP}px !important;
+      min-height: ${BUTTON_HEIGHT_DESKTOP}px !important;
     }
   }
 `;
@@ -912,8 +932,7 @@ export default function PerfectFilter() {
                       )}
                       <PrimaryButtonWrap>
                         <AddToCart
-                          isLeft
-                          text="ADD TO CART"
+                          text="Add to Cart"
                           buyButtonId={product?.buy_url}
                           id={product?.id?.toString() + key.toString()}
                           background={BRAND_GREEN}

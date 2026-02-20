@@ -787,3 +787,9 @@ button.ant-btn.ant-btn-link.customBtns {
 }
 
 /* component.css */
+
+/* Override Shopify Buy Button default margin-top on button wrapper */
+.shopify-buy__btn-wrapper,
+[data-element="product.buttonWrapper"] {
+  margin-top: 11px !important;
+}

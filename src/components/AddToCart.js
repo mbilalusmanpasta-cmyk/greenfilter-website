@@ -74,11 +74,14 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
                       },
                       "button": outline ? {
                         "font-family": "Lato, sans-serif",
-                        "font-size": "14px",
+                        "font-size": "13px",
                         "font-weight": "600",
                         "display": "inline-block",
-                        "padding": "10px 20px",
+                        "padding": "0 16px",
                         "margin": "0",
+                        "min-height": "40px",
+                        "height": "40px",
+                        "box-sizing": "border-box",
                         "background-color": "transparent",
                         "color": color || "#00ad23",
                         "border": "2px solid " + (color || "#00ad23"),
@@ -96,22 +99,28 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
                       } : {
                         "font-family": "Lato, sans-serif",
                         "font-size": "13px",
-                        "padding-top": "5px",
-                        "display": "inline-block",
-                        "padding": "10px 20px",
-                        "margin": "20px auto 0",
-                        "margin-top": "0",
+                        "font-weight": "600",
+                        "display": "block",
+                        "padding": "0 16px",
+                        "margin": "0",
+                        "height": "40px",
+                        "min-height": "40px",
+                        "box-sizing": "border-box",
+                        "width": "100%",
                         "background-color": background ? background : "#00ad23",
                         "color": color ? color : "#fff",
+                        "border-radius": "4px",
                         ":hover": {
                           "color": "#fff",
-                          "background-color": "#003EAD"
+                          "background-color": "#009c1f"
                         },
-                        "font-weight": "bold",
                         ":focus": {
                           "color": "#fff",
-                          "background-color": "#003EAD"
+                          "background-color": "#009c1f"
                         }
+                      },
+                      "buttonWrapper": {
+                        "margin-top": "0"
                       },
                       "title": {
                         "font-size": "26px"
