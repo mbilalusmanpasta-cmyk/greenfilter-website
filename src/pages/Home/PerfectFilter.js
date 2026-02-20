@@ -920,7 +920,7 @@ export default function PerfectFilter() {
                           type="button"
                           onClick={() => (window.location.href = `/store/filter/${product.gfu_part_num}`)}
                         >
-                          View Product Details
+                           View Product Details
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ marginLeft: 4 }}>
                             <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
                           </svg>

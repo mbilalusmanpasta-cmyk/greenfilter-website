@@ -51,7 +51,7 @@ const AddToCart = ({ text, handleClick, marginTop, isLink, to, height, width, bu
                 options: {
                   "product": {
                     "variantId": "all",
-                    "width": "240px",
+                    "width": "100%",
                     "contents": {
                       "img": false,
                       "imgWithCarousel": false,
