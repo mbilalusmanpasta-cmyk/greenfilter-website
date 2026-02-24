@@ -3,6 +3,8 @@ import styled from "styled-components";
 import youtube from "../../assets/yt.png";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
 const HomeElement5 = () => {
   const responsive = {
     superLargeDesktop: {
@@ -42,7 +44,10 @@ const HomeElement5 = () => {
             responsive={responsive}
             swipeable={true}
             draggable={true}
-            showDots={true}
+            showDots={false}
+            arrows={true}
+            customLeftArrow={<CustomLeftArrow />}
+            customRightArrow={<CustomRightArrow />}
           >
             <div className="carousel-item">
               <VideoCard>
@@ -207,26 +212,95 @@ const CarouselWrapper = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 12px;
+  position: relative;
+  overflow: visible;
 
   @media (max-width: 767px) {
     padding: 0 8px;
   }
 `;
 
+const ArrowButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #00ad23;
+    border-color: #00ad23;
+    box-shadow: 0 4px 12px rgba(0, 173, 35, 0.2);
+
+    svg {
+      color: #fff;
+    }
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+
+  svg {
+    font-size: 20px;
+    color: #1a1a1a;
+    transition: color 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      font-size: 16px;
+    }
+  }
+`;
+
+const LeftArrow = styled(ArrowButton)`
+  left: 16px;
+`;
+
+const RightArrow = styled(ArrowButton)`
+  right: 16px;
+`;
+
+const CustomLeftArrow = ({ onClick }) => (
+  <LeftArrow onClick={onClick} aria-label="Previous videos">
+    <FaChevronLeft />
+  </LeftArrow>
+);
+
+const CustomRightArrow = ({ onClick }) => (
+  <RightArrow onClick={onClick} aria-label="Next videos">
+    <FaChevronRight />
+  </RightArrow>
+);
+
 const HomeElement5Wrapper = styled.section`
   background: transparent;
-  padding: 72px 24px 96px;
+  padding: 72px 24px;
 
   @media (max-width: 1024px) {
-    padding: 56px 24px 80px;
+    padding: 56px 24px;
   }
 
   @media (max-width: 767px) {
-    padding: 48px 0 64px;
+    padding: 48px 0;
   }
 
   .carousel-item {
-    padding: 0 16px 24px;
+    padding: 0 16px;
     height: auto;
     width: 100%;
   }
@@ -235,36 +309,5 @@ const HomeElement5Wrapper = styled.section`
     display: flex;
     justify-content: center;
     align-items: stretch;
-  }
-
-  .react-multiple-carousel__arrow {
-    display: none;
-  }
-
-  .react-multi-carousel-dot--active button {
-    background: #00ad23 !important;
-    transform: scale(1.2);
-  }
-
-  .react-multi-carousel-dot button {
-    width: 10px;
-    height: 10px;
-    margin: 0 6px;
-    background: #d0d0d0;
-    border: none;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    cursor: pointer;
-
-    &:hover {
-      background: #00ad23;
-      opacity: 0.7;
-    }
-  }
-
-  .react-multi-carousel-dot-list {
-    margin-top: 48px;
-    padding-bottom: 0;
-    bottom: 0;
   }
 `;
