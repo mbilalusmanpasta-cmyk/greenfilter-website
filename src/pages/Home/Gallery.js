@@ -13,14 +13,7 @@ const Gallery = ({ gallery, width }) => {
     setSIndex(sIndex);
   };
 
-  useEffect(()=>{
-    if(gallery && gallery.length > 0)
-    {
-      gallery.forEach(element => {
-        element.image = element.link;
-      });
-    }
-  },[gallery])
+  // Data already has correct structure with 'image' property
 
   return (
     <>
@@ -34,7 +27,7 @@ const Gallery = ({ gallery, width }) => {
             className="lightbox w-inline-block w-lightbox"
           >
             <img
-              src={image.link || image.image}
+              src={image.image}
               alt="gallery"
               sizes="(max-width: 479px) 50vw, 14vw"
               className="lb-image"

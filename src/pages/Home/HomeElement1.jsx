@@ -248,29 +248,28 @@ const HomeElement1 = (props) => {
             </TickerWrapper>
           )}
         </div>
-        <div className="div-block-3">
-          <div
-            style={{ paddingTop: "56.17021276595745%" }}
-            className="video w-video w-embed"
-          >
-            <iframe
-              width="560"
-              height="315"
-              src="https://www.youtube.com/embed/WRaQW6ytxYw"
-              title="YouTube video player"
-              frameborder="0"
-              allow="autoplay; encrypted-media;"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div className="titles-div top">
-            <h1 class="heading-2">
+        <div className="video-section">
+          <div className="video-heading-block">
+            <h2 className="video-heading">
               Watch Green Filter Outperform the Competition
-            </h1>
-            <p class="large-paragraph w-hidden-main w-hidden-medium w-hidden-small w-hidden-tiny">
-              Watch President
-            </p>
-            <div class="gradient"></div>
+            </h2>
+            <HeadingAccent />
+          </div>
+          <div className="div-block-3">
+            <div
+              style={{ paddingTop: "56.17021276595745%" }}
+              className="video w-video w-embed"
+            >
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/WRaQW6ytxYw"
+                title="YouTube video player"
+                frameborder="0"
+                allow="autoplay; encrypted-media;"
+                allowfullscreen
+              ></iframe>
+            </div>
           </div>
         </div>
         {/* <div className="trusted w-container">
@@ -356,10 +355,40 @@ const HomeElement1Wrapper = styled.div`
     }
   }
 
+  .video-section {
+    max-width: 940px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+
+  .video-heading-block {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .video-heading {
+    font-family: Lato, sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 14px;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 767px) {
+    .video-heading {
+      font-size: 24px;
+      padding: 0 16px;
+    }
+
+    .video-heading-block {
+      margin-bottom: 28px;
+    }
+  }
+
   .div-block-3 {
     position: relative;
     height: auto;
-    margin-top: 50px;
   }
   .video {
     height: 250px;
@@ -380,64 +409,6 @@ const HomeElement1Wrapper = styled.div`
     height: 100%;
   }
 
-  .titles-div.top {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    width: auto;
-    margin-top: 0%;
-    margin-right: 0%;
-    margin-left: 0%;
-    padding-top: 25px;
-    padding-bottom: 25px;
-    background-image: none;
-  }
-  .titles-div {
-    position: relative;
-    left: 0%;
-    display: block;
-    width: 60%;
-    margin-right: auto;
-    margin-bottom: 50px;
-    margin-left: auto;
-    text-align: center;
-    text-transform: none;
-  }
-  .heading-2 {
-    position: relative;
-    z-index: 9;
-    color: #fff;
-    font-weight: 300;
-  }
-  .w-hidden-main {
-    display: none !important;
-  }
-  .large-paragraph {
-    font-family: Lato, sans-serif;
-    color: #fff;
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: 300;
-  }
-  .gradient {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    width: auto;
-    height: 135%;
-    background-image: -webkit-linear-gradient(
-      270deg,
-      rgba(0, 0, 0, 0.89) 32%,
-      transparent
-    );
-    background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.89) 32%,
-      transparent
-    );
-  }
   .trusted {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -513,17 +484,6 @@ const HomeElement1Wrapper = styled.div`
     }
     .column-div._0 {
       height: auto;
-    }
-  }
-  @media (max-width: 1300px) {
-    .titles-div {
-      margin-top: 50px;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .titles-div.top {
-      display: none;
     }
   }
 `;

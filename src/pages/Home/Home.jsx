@@ -101,6 +101,8 @@ const Home = (props) => {
           <PerfectFilter />
         </FilterSection>
 
+        <HomeElement7 />
+
         <ChosenByBest />
         <ConfidencePanel />
 
@@ -110,7 +112,6 @@ const Home = (props) => {
         <HomeElement4 text="It's not just about immediate gains, but the  long term ones as well." />
         <HomeElement5 />
         <HomeElement6 />
-        <HomeElement7 />
         <Gallery gallery={gallery} />
       </div>
       <Footer />
