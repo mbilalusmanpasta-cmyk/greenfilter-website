@@ -178,7 +178,9 @@ export function PromoBannerStrip() {
 export default function HeroWireframe() {
   return (
     <TopSection>
-      <PromoBannerStrip />
+      {/* <PromoBannerStrip />
+      
+      */}
       <HeroSection>
         <HeroImage>
           <HeroImageInner>

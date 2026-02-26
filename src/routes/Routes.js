@@ -28,6 +28,7 @@ import { getGlobalData } from "../helper/util/getGlobalData";
 import './routes.css';
 import NotFound from "../pages/NotFound/index.jsx";
 import Sitemap from "../pages/Sitemap/Sitemap.jsx";
+import ShippingBanner from "../components/ShippingBanner.jsx";
 
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
@@ -72,6 +73,8 @@ const Routes = () => {
           </div>
         </div>
       }
+
+      <ShippingBanner />
 
       <Switch>
         <Route
