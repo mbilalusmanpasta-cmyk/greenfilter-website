@@ -3,7 +3,7 @@
     color: #333;
     padding: 10px 0px;
     text-align: center;
-    margin: 66px 10% 0px;
+    margin: 110px 10% 0px;
     z-index: 99996;
   }
 
@@ -45,7 +45,7 @@
   {
     .top-banner {
         padding: 5px 0;
-        margin: 57px 0 0;
+        margin: 110px 0 0;
     }
 
     .top-banner .title {

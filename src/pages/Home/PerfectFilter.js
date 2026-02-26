@@ -653,7 +653,7 @@ export default function PerfectFilter() {
 
   return (
     <Container>
-      <Title>{isMobile ? "Find Your Filter" : "Find the Perfect Filter for Your Vehicle"}</Title>
+      <Title>Find the Perfect Filter for Your Vehicle</Title>
 
       <StyledTabs
         value={tabValue}

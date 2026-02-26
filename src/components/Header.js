@@ -475,10 +475,14 @@ export default Header;
 const HeaderWrapper = styled.div`
   position: fixed;
   left: 0px;
-  top: 0px;
+  top: 45px;
   right: 0px;
   z-index: 99996;
   padding: 0 10%;
+
+  @media (max-width: 767px) {
+    top: 55px;
+  }
 
   #menu2-dropdown-container .ant-dropdown-placement-topCenter {
     position: fixed;
