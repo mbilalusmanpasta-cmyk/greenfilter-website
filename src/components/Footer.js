@@ -13,20 +13,11 @@ const Footer = () => {
   return (
     <>
       <FooterWrapper>
-        {/* <div className="w-container" style={{ padding: "0 20px" }}>
-          <img
-            alt="logo"
-            src={logo}
-            width="239"
-            sizes="(max-width: 479px) 100vw, 239px"
-            className="image-9"
-          />
-        </div> */}
         <div className="footer-container w-container">
           <div className="w-row">
             <div className="w-col w-col-2">
               <div className="column-div">
-                <h4 class="footer-h1">Navigate</h4>
+                <h4 className="footer-h1">Navigate</h4>
                 <ul className="unordered-list">
                   <li>
                     <Link to="/shop-by-vehicle" className="link">
@@ -53,7 +44,7 @@ const Footer = () => {
             </div>
             <div className="w-col w-col-2">
               <div className="column-div">
-                <h4 class="footer-h1">Guarantee</h4>
+                <h4 className="footer-h1">Guarantee</h4>
                 <ul className="unordered-list">
                   <li>
                     <Link to="/our-guarantee" className="link">
@@ -75,7 +66,7 @@ const Footer = () => {
             </div>
             <div className="w-col w-col-2">
               <div className="column-div">
-                <h4 class="footer-h1">Resources</h4>
+                <h4 className="footer-h1">Resources</h4>
                 <ul className="unordered-list">
                   <li>
                     <Link to="/private-label" className="link">
@@ -97,7 +88,7 @@ const Footer = () => {
             </div>
             <div className="w-col w-col-3">
               <div className="column-div">
-                <h4 class="footer-h1">Contact Us</h4>
+                <h4 className="footer-h1">Contact Us</h4>
                 <ul className="unordered-list">
                   <li>+1 724.430.2050</li>
                   <li>
@@ -119,7 +110,7 @@ const Footer = () => {
             </div>
             <div className="w-col w-col-3">
               <div className="column-div">
-                <h4 class="footer-h1">Join Our Mailing List</h4>
+                <h4 className="footer-h1">Join Our Mailing List</h4>
                 <div className="form-block w-form">
                   <form id="email-form" name="email-form" className="form">
                     <input
@@ -201,19 +192,11 @@ const FooterWrapper = styled.div`
     content: " ";
     display: table;
   }
-  .image-9 {
-    text-align: center;
-  }
-
   .footer-container {
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  // .w-container .w-row {
-  //   margin-left: -10px;
-  //   margin-right: -10px;
-  // }
   .w-row:before,
   .w-row:after {
     content: " ";

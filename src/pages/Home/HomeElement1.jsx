@@ -2,29 +2,12 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import gradient from "../../assets/green-gradient-blue.png";
 import { Link } from "react-router-dom";
-import car0 from "../../assets/cars/car0.png";
-import car1 from "../../assets/cars/car1.png";
-import car2 from "../../assets/cars/car2.png";
-import car3 from "../../assets/cars/car3.png";
-import car4 from "../../assets/cars/car4.png";
-import car5 from "../../assets/cars/car5.png";
-
-import brand0 from "../../assets/trust/brand0.png";
-import brand1 from "../../assets/trust/brand1.png";
-import brand2 from "../../assets/trust/brand2.png";
-import brand3 from "../../assets/trust/brand3.png";
-import brand4 from "../../assets/trust/brand4.png";
-import brand5 from "../../assets/trust/brand5.jpg";
-import Button1 from "../../components/Button1";
-import { useHistory } from "react-router-dom";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 
 import CircleLoader from "react-spinners/CircleLoader";
-import { FaStar } from "react-icons/fa";
 
 const BRAND_GREEN = "#00ad23";
-const TEXT_DARK = "#333";
 
 const HeadingAccent = styled.div`
   width: 56px;
@@ -87,64 +70,7 @@ const TickerSep = styled.span`
   flex-shrink: 0;
 `;
 
-const BrandsRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  margin-top: 32px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  .brand-col {
-    flex: 0 0 auto;
-    width: calc(16.666% - 20px);
-    min-width: 80px;
-    max-width: 120px;
-  }
-  .brand-col img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-  @media (max-width: 767px) {
-    gap: 16px;
-    margin-top: 24px;
-    padding-left: 16px;
-    padding-right: 16px;
-    .brand-col {
-      width: calc(33.333% - 12px);
-      min-width: 70px;
-    }
-  }
-`;
-
-const ReviewsBadge = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: Lato, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  color: ${TEXT_DARK};
-  flex-shrink: 0;
-  .stars {
-    display: flex;
-    gap: 2px;
-    color: ${BRAND_GREEN};
-    font-size: 16px;
-  }
-  @media (max-width: 767px) {
-    font-size: 13px;
-    margin-top: 8px;
-    width: 100%;
-    justify-content: center;
-  }
-`;
-
 const HomeElement1 = (props) => {
-  const history = useHistory();
   const [topPerformingBrands, setTopPerformingBrands] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
@@ -164,32 +90,6 @@ const HomeElement1 = (props) => {
     setLoading(false);
   }, []);
 
-  const brands = [
-    {
-      id: 0,
-      imgSrc: brand0,
-    },
-    {
-      id: 1,
-      imgSrc: brand1,
-    },
-    {
-      id: 2,
-      imgSrc: brand2,
-    },
-    {
-      id: 3,
-      imgSrc: brand3,
-    },
-    {
-      id: 4,
-      imgSrc: brand4,
-    },
-    {
-      id: 5,
-      imgSrc: brand5,
-    },
-  ];
   return (
     <>
       {loading && (
@@ -231,7 +131,7 @@ const HomeElement1 = (props) => {
 
       <HomeElement1Wrapper gradient={gradient}>
         <div className="container-4">
-          <h1 class="heading-11">
+          <h1 className="heading-11">
             The Chosen Filter for Top Performing Brands
           </h1>
           <HeadingAccent />
@@ -265,37 +165,13 @@ const HomeElement1 = (props) => {
                 height="315"
                 src="https://www.youtube.com/embed/WRaQW6ytxYw"
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="autoplay; encrypted-media;"
-                allowfullscreen
+                allowFullScreen
               ></iframe>
             </div>
           </div>
         </div>
-        {/* <div className="trusted w-container">
-          <div className="titles-div">
-            <h1 class="proud-suppliers-to">
-              THE CHOSEN AIR FILTER BY THE WORLD'S BEST
-            </h1>
-          </div>
-          <BrandsRow>
-            {brands.map((brand) => (
-              <div key={brand.id} className="brand-col">
-                <img
-                  src={brand.imgSrc}
-                  alt="brand"
-                  sizes="(max-width: 479px) 86vw, (max-width: 767px) 87vw, 13vw"
-                />
-              </div>
-            ))}
-            <ReviewsBadge>
-              <span className="stars" aria-label="5 star reviews">
-                <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-              </span>
-              <span>5-Star Reviews</span>
-            </ReviewsBadge>
-          </BrandsRow>
-        </div> */}
       </HomeElement1Wrapper>
     </>
   );
@@ -407,83 +283,5 @@ const HomeElement1Wrapper = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-  }
-
-  .trusted {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 940px;
-  }
-  .titles-div {
-    position: relative;
-    left: 0%;
-    display: block;
-    width: 60%;
-    margin-right: auto;
-    margin-bottom: 50px;
-    margin-left: auto;
-    text-align: center;
-    text-transform: none;
-  }
-  .proud-suppliers-to {
-    margin-top: 50px;
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: 700;
-  }
-  .w-container:before,
-  .w-container:after {
-    content: " ";
-    display: table;
-  }
-  // .w-row {
-  //   margin-left: -10px;
-  //   margin-right: -10px;
-  // }
-  .w-row:before,
-  .w-row:after {
-    content: " ";
-    display: table;
-  }
-
-  .column-div._0 {
-    display: flex;
-    height: 100px;
-    padding-right: 0px;
-    padding-left: 0px;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-  }
-  ._0 {
-    margin-top: 0px;
-  }
-  .column-div {
-    padding-right: 0px;
-    padding-left: 0px;
-    text-align: center;
-  }
-  .image-3 {
-    width: 75px;
-  }
-  .image-5 {
-    width: 125px;
-  }
-  .disclaimer {
-    margin-bottom: 10px;
-    font-family: Lato, sans-serif;
-    color: #757575;
-    font-weight: 300;
-  }
-  @media screen and (max-width: 767px) {
-    .titles-div {
-      width: 90%;
-    }
-    .column-div._0 {
-      height: auto;
-    }
   }
 `;

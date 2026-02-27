@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Gallery from "./Gallery";
 import HeroWireframe from "./HeroWireframe";
@@ -28,14 +28,11 @@ import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
 import styled from "styled-components";
 import HomeElement2 from "./HomeElement2";
-import { getPageData } from "../../helper/util/getPageData";
 import { Helmet } from "react-helmet";
 
 
 const Home = (props) => {
 
-  const [pageData,setPageData] = React.useState({});
-  
   const gallery = [
     { id: 0, image: img0 },
     { id: 1, image: img1 },
@@ -59,20 +56,6 @@ const Home = (props) => {
   useEffect(() => {
     props.handleClickIndex(-1);
   }, [props]);
-
-
-  useEffect(()=>{
-    _loadData();
-  },[])
-
-  const _loadData = async() => {
-    let page = await getPageData(window.location.pathname);
-    if(page)
-    {
-      setPageData(page)
-    }
-
-  }  
 
   return (
     <HomeWrapper>
@@ -119,11 +102,7 @@ const Home = (props) => {
   );
 };
 
-
-
-
 export default Home;
-
 
 
 const HomeWrapper = styled.div`

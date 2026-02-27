@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { LightBox } from "react-lightbox-pack";
-import { SRLWrapper } from "simple-react-lightbox";
 import "react-lightbox-pack/dist/index.css";
 
 const Gallery = ({ gallery, width }) => {
@@ -75,10 +74,6 @@ const GalleryWrapper = styled.div`
     width: 100%;
     height: auto;
   }
-
-  // ._3ZUEV {
-  //   display: none;
-  // }
 
   ._3AWTh {
     z-index: 100000;

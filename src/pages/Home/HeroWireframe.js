@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FiTruck } from "react-icons/fi";
 import homePageImage from "../../assets/home-page.jpeg";
-
-const BRAND_GREEN = "#00ad23";
-const TEXT_DARK = "#333";
 
 const TopSection = styled.div`
   padding-top: 46px;
@@ -12,30 +8,6 @@ const TopSection = styled.div`
   box-sizing: border-box;
   @media (max-width: 912px) {
     padding-top: 56px;
-  }
-`;
-
-const PromoBanner = styled.div`
-  width: 100%;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #e8e8e8;
-  padding: 10px 24px;
-  text-align: center;
-  font-family: Lato, sans-serif;
-  font-size: 14px;
-  color: ${TEXT_DARK};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  .promo-icon {
-    font-size: 18px;
-    color: ${BRAND_GREEN};
-  }
-  @media (max-width: 767px) {
-    padding: 8px 16px;
-    font-size: 12px;
   }
 `;
 
@@ -152,21 +124,9 @@ const HeroBody = styled.p`
   }
 `;
 
-export function PromoBannerStrip() {
-  return (
-    <PromoBanner>
-      <FiTruck className="promo-icon" aria-hidden />
-      <span>Free Shipping on Orders $200+ | Use Code FREESHIPPING2025</span>
-    </PromoBanner>
-  );
-}
-
 export default function HeroWireframe() {
   return (
     <TopSection>
-      {/* <PromoBannerStrip />
-      
-      */}
       <HeroSection>
         <HeroImage>
           <HeroImageInner>
@@ -189,6 +149,3 @@ export default function HeroWireframe() {
     </TopSection>
   );
 }
-
-
-
