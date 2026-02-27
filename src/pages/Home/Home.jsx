@@ -97,7 +97,7 @@ const Home = (props) => {
           <HeroWireframe />
         </div>
 
-        <FilterSection>
+        <FilterSection id="filter-results">
           <PerfectFilter />
         </FilterSection>
 
@@ -131,13 +131,13 @@ const HomeWrapper = styled.div`
 `;
 
 const FilterSection = styled.section`
-  padding: 32px 24px 48px;
+  padding: 0 24px 48px;
   max-width: 960px;
-  margin: 0 auto;
+  margin: -120px auto 0;
+  position: relative;
+  z-index: 4;
   @media (max-width: 767px) {
     padding: 0 0 32px;
     margin-top: -92px;
-    position: relative;
-    z-index: 4;
   }
 `;

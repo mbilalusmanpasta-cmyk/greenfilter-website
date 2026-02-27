@@ -7,17 +7,11 @@ const BRAND_GREEN = "#00ad23";
 const TEXT_DARK = "#333";
 
 const TopSection = styled.div`
-  padding-top: 46px; /* clear fixed header */
+  padding-top: 46px;
   width: 100%;
-  padding-left: 10%;
-  padding-right: 10%;
   box-sizing: border-box;
   @media (max-width: 912px) {
     padding-top: 56px;
-  }
-  @media (max-width: 767px) {
-    padding-left: 0;
-    padding-right: 0;
   }
 `;
 
@@ -55,24 +49,18 @@ const HeroSection = styled.section`
 `;
 
 const HeroImage = styled.div`
-  margin: 0 auto 24px;
+  margin: 0;
   width: 100%;
   max-width: 100%;
   position: relative;
   overflow: hidden;
-  min-height: 400px;
+  min-height: 520px;
   background: #f5f5f5;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
   @media (max-width: 767px) {
-    margin: 0;
-    border-radius: 0;
-    min-height: 280px;
-    border: none;
+    min-height: 300px;
   }
 `;
 
@@ -87,7 +75,6 @@ const HeroImageInner = styled.div`
     object-fit: cover;
     object-position: center top;
     vertical-align: middle;
-    border-radius: inherit;
   }
 `;
 
@@ -100,7 +87,6 @@ const HeroImageOverlay = styled.div`
     rgba(0, 0, 0, 0.35) 0%,
     rgba(0, 0, 0, 0.45) 100%
   );
-  border-radius: inherit;
   pointer-events: none;
 `;
 
