@@ -21,14 +21,14 @@ const BRANDS = [
 
 const Section = styled.section`
   background: #111;
-  padding: 72px 24px;
+  padding: 80px 24px;
   @media (max-width: 767px) {
     padding: 48px 16px;
   }
 `;
 
 const Inner = styled.div`
-  max-width: 960px;
+  max-width: 1140px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -65,18 +65,18 @@ const Eyebrow = styled.span`
 
 const Headline = styled.h2`
   font-family: Lato, sans-serif;
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 800;
   color: #fff;
   line-height: 1.2;
   margin: 0;
   @media (max-width: 767px) {
-    font-size: 22px;
+    font-size: 24px;
   }
 `;
 
 const Accent = styled.div`
-  width: 60px;
+  width: 56px;
   height: 3px;
   background: ${BRAND_GREEN};
   border-radius: 2px;

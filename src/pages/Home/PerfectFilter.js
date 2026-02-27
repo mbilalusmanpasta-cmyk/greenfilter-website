@@ -37,7 +37,7 @@ function compare(a, b, key) {
 }
 
 const Container = styled.div`
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
   background: #fff;
   border: 1px solid #e0e0e0;
@@ -288,12 +288,12 @@ const ProductCardBody = styled.div`
 
 const ProductCardTitle = styled.h3`
   margin: 0 0 12px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   color: #333;
   line-height: 1.3;
   @media (max-width: 600px) {
-    font-size: 15px;
+    font-size: 18px;
     margin-bottom: 8px;
     line-height: 1.25;
   }

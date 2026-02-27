@@ -47,7 +47,7 @@ const REVIEWS = [
 
 const Section = styled.section`
   background: #fff;
-  padding: 72px 24px;
+  padding: 80px 24px;
   @media (max-width: 767px) {
     padding: 48px 0;
   }
@@ -58,7 +58,7 @@ const HeadingBlock = styled.div`
   margin: 0 auto 56px;
   text-align: center;
   @media (max-width: 767px) {
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     padding: 0 16px;
   }
 `;
@@ -71,7 +71,7 @@ const Headline = styled.h2`
   margin: 0;
   line-height: 1.2;
   @media (max-width: 767px) {
-    font-size: 22px;
+    font-size: 24px;
   }
 `;
 
@@ -145,11 +145,14 @@ const StarsRow = styled.div`
 
 const ReviewTitle = styled.h3`
   font-family: Lato, sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
   color: #1a1a1a;
   margin: 0 0 10px;
   line-height: 1.3;
+  @media (max-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 const ReviewText = styled.p`

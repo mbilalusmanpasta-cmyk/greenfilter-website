@@ -129,7 +129,7 @@ const HeadingBlock = styled.div`
   text-align: center;
 
   @media (max-width: 767px) {
-    margin-bottom: 36px;
+    margin-bottom: 40px;
     padding: 0 16px;
   }
 `;
@@ -155,7 +155,7 @@ const Headline = styled.h2`
   line-height: 1.2;
 
   @media (max-width: 767px) {
-    font-size: 22px;
+    font-size: 24px;
   }
 `;
 
@@ -289,14 +289,14 @@ const CustomRightArrow = ({ onClick }) => (
 
 const HomeElement5Wrapper = styled.section`
   background: transparent;
-  padding: 72px 24px;
+  padding: 80px 24px;
 
   @media (max-width: 1024px) {
-    padding: 56px 24px;
+    padding: 64px 24px;
   }
 
   @media (max-width: 767px) {
-    padding: 48px 0;
+    padding: 48px 16px;
   }
 
   .carousel-item {

@@ -7,25 +7,25 @@ const TEXT_DARK = "#333";
 
 const Section = styled.section`
   width: 100%;
-  max-width: 900px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 64px 24px;
+  padding: 80px 24px;
   text-align: center;
   @media (max-width: 767px) {
-    padding: 40px 16px;
+    padding: 48px 16px;
   }
 `;
 
 const Heading = styled.h2`
-  margin: 0 0 32px;
+  margin: 0 0 56px;
   font-family: Lato, sans-serif;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   color: ${TEXT_DARK};
   letter-spacing: 0.5px;
   @media (max-width: 767px) {
-    font-size: 18px;
-    margin-bottom: 24px;
+    font-size: 24px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -87,19 +87,19 @@ const IconWrap = styled.span`
 `;
 
 const ListItem = styled.li`
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   overflow: hidden;
   font-family: Lato, sans-serif;
   font-size: 15px;
   color: ${TEXT_DARK};
-  line-height: 1.4;
+  line-height: 1.5;
   .list-item-text {
     display: block;
     margin-left: ${TEXT_START}px;
   }
   @media (max-width: 767px) {
     font-size: 14px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 `;
 

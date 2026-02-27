@@ -74,10 +74,10 @@ export default HomeElement6;
 // Styled Components
 const HomeElement6Wrapper = styled.section`
   background: #fff;
-  padding: 72px 24px;
+  padding: 80px 24px;
 
   @media (max-width: 1024px) {
-    padding: 56px 24px;
+    padding: 64px 24px;
   }
 
   @media (max-width: 767px) {
@@ -109,7 +109,7 @@ const Headline = styled.h2`
   line-height: 1.2;
 
   @media (max-width: 767px) {
-    font-size: 26px;
+    font-size: 24px;
   }
 `;
 
