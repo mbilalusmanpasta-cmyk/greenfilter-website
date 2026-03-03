@@ -116,7 +116,7 @@ const FilterSection = styled.section`
   position: relative;
   z-index: 4;
   @media (max-width: 767px) {
-    padding: 0 0 32px;
+    padding: 0 16px 32px;
     margin-top: -92px;
   }
 `;

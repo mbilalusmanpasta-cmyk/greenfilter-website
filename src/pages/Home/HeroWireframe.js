@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import homePageImage from "../../assets/home-page.jpeg";
+// import homePageImage from "../../assets/home-page.jpeg";
+import homePageImage from "../../assets/banner/two.png";
+
 
 const TopSection = styled.div`
   padding-top: 46px;
@@ -16,7 +18,7 @@ const HeroSection = styled.section`
   background-color: #fafafa;
   text-align: center;
   @media (max-width: 767px) {
-    padding: 0px 0 56px;
+    padding: 0;
   }
 `;
 
@@ -45,7 +47,7 @@ const HeroImageInner = styled.div`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 50%;
     vertical-align: middle;
   }
 `;
