@@ -39,19 +39,19 @@ function compare(a, b, key) {
 const Container = styled.div`
   max-width: 960px;
   margin: 0 auto;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   @media (max-width: 767px) {
-    padding: 20px 16px;
+    padding: 24px 20px;
     margin: 0 5%;
     width: 90%;
     max-width: none;
     box-sizing: border-box;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -60,7 +60,7 @@ const Title = styled.h3`
   font-family: Lato, sans-serif;
   font-size: 20px;
   font-weight: 600;
-  color: #333;
+  color: #fff;
   @media (max-width: 767px) {
     font-size: 18px;
     text-align: center;
@@ -70,19 +70,42 @@ const Title = styled.h3`
 
 const selectSx = {
   fontFamily: "Lato, sans-serif",
+  backgroundColor: "#2a2a2a",
+  borderRadius: "8px",
   "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#d0d0d0",
+    borderColor: "#666",
+    borderWidth: "2px",
   },
   "&:hover .MuiOutlinedInput-notchedOutline": {
-    borderColor: "#999",
+    borderColor: "#888",
   },
   "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
     borderColor: BRAND_GREEN,
     borderWidth: 2,
   },
+  "&.Mui-disabled": {
+    backgroundColor: "#1a1a1a",
+  },
+  "&.Mui-disabled .MuiOutlinedInput-notchedOutline": {
+    borderColor: "#444",
+  },
   "& .MuiSelect-select": {
     padding: "10px 14px",
     textTransform: "capitalize",
+    color: "#fff",
+  },
+  "& .MuiInputLabel-root": {
+    color: "#bbb",
+    fontWeight: 500,
+  },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: BRAND_GREEN,
+  },
+  "& .MuiInputLabel-root.Mui-disabled": {
+    color: "#777",
+  },
+  "& .MuiSvgIcon-root": {
+    color: "#bbb",
   },
 };
 const menuProps = {
@@ -90,18 +113,26 @@ const menuProps = {
     sx: {
       maxHeight: 280,
       mt: 1,
-      boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+      backgroundColor: "#2a2a2a",
+      boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
       borderRadius: 1,
+      border: "2px solid #666",
       "& .MuiMenuItem-root": {
         fontFamily: "Lato, sans-serif",
         fontSize: "14px",
         textTransform: "capitalize",
+        color: "#fff",
+        fontWeight: 500,
+      },
+      "& .MuiMenuItem-root:hover": {
+        backgroundColor: "rgba(255, 255, 255, 0.1)",
       },
       "& .MuiMenuItem-root.Mui-selected": {
-        backgroundColor: "rgba(0, 173, 35, 0.12)",
+        backgroundColor: "rgba(0, 173, 35, 0.25)",
+        color: "#fff",
       },
       "& .MuiMenuItem-root.Mui-selected:hover": {
-        backgroundColor: "rgba(0, 173, 35, 0.2)",
+        backgroundColor: "rgba(0, 173, 35, 0.35)",
       },
     },
   },
@@ -120,9 +151,14 @@ const FormRow = styled.div`
   }
   .MuiInputLabel-root {
     font-family: Lato, sans-serif;
+    color: #bbb;
+    font-weight: 500;
   }
   .MuiInputLabel-root.Mui-focused {
     color: ${BRAND_GREEN};
+  }
+  .MuiInputLabel-root.Mui-disabled {
+    color: #777;
   }
   @media (max-width: 767px) {
     flex-direction: column;
@@ -138,21 +174,26 @@ const MobileSelectRow = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 12px 14px;
-  background: #fff;
-  border: 1px solid #e0e0e0;
+  background: #2a2a2a;
+  border: 2px solid #666;
   border-radius: 8px;
   min-height: 48px;
   position: relative;
+  transition: all 0.2s ease;
+  &:hover {
+    border-color: #888;
+  }
   .mobile-row-label {
     font-family: Lato, sans-serif;
     font-size: 14px;
-    color: #333;
+    font-weight: 500;
+    color: #fff;
     flex: 1;
     pointer-events: none;
   }
   .mobile-row-chevron {
     pointer-events: none;
-    color: #999;
+    color: #bbb;
     font-size: 18px;
     margin-left: 8px;
   }
@@ -176,7 +217,7 @@ const MobileSelectRow = styled.div`
 const FooterRow = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 11px;
+  margin-top: 20px;
   flex-wrap: wrap;
   gap: 12px;
 `;
@@ -189,9 +230,26 @@ const PartNumberRow = styled.div`
   }
   .MuiOutlinedInput-root {
     font-family: Lato, sans-serif;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+  }
+  .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: #666;
+    border-width: 2px;
+  }
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: #888;
   }
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: ${BRAND_GREEN};
+    border-width: 2px;
+  }
+  .MuiOutlinedInput-input {
+    color: #fff;
+  }
+  .MuiInputLabel-root {
+    color: #bbb;
+    font-weight: 500;
   }
   .MuiInputLabel-root.Mui-focused {
     color: ${BRAND_GREEN};
@@ -199,31 +257,40 @@ const PartNumberRow = styled.div`
 `;
 
 const StyledTabs = styled(Tabs)`
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   .MuiTab-root {
     font-family: Lato, sans-serif;
     text-transform: none;
     font-weight: 600;
+    font-size: 15px;
+    color: #999;
+    transition: color 0.3s ease;
+    &:hover {
+      color: #bbb;
+    }
   }
   .Mui-selected {
     color: ${BRAND_GREEN} !important;
   }
   .MuiTabs-indicator {
     background-color: ${BRAND_GREEN};
+    height: 3px;
   }
   @media (max-width: 767px) {
     .MuiTab-root {
       flex: 1;
       min-width: 0;
       color: #888;
+      font-size: 14px;
     }
     .MuiTab-root.Mui-selected {
       background-color: transparent;
-      color: #333 !important;
+      color: ${BRAND_GREEN} !important;
     }
     .MuiTabs-indicator {
       display: block;
       background-color: ${BRAND_GREEN};
+      height: 3px;
     }
   }
 `;
@@ -231,7 +298,7 @@ const StyledTabs = styled(Tabs)`
 const ResultsSection = styled.div`
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #333;
 `;
 
 const ProductCard = styled.div`
@@ -594,13 +661,15 @@ export default function PerfectFilter() {
             let filteredData = response.data;
             const allSelected =
               apiStr.year && apiStr.make_id && apiStr.model_name && apiStr.engine;
-            if (!allSelected && objectKey) {
+            if (objectKey) {
               if (getKey === "engine") {
                 filteredData.sort((a, b) => compare(a, b, "displacement"));
               } else if (getKey === "make" || getKey === "name") {
                 filteredData.sort((a, b) => compare(a, b, "name"));
               }
-              setApiData((prev) => ({ ...prev, [objectKey]: filteredData }));
+              if (!allSelected) {
+                setApiData((prev) => ({ ...prev, [objectKey]: filteredData }));
+              }
             }
           }
         })
@@ -855,9 +924,22 @@ export default function PerfectFilter() {
           sx={{
             backgroundColor: BRAND_GREEN,
             "&:hover": { backgroundColor: "#00901c" },
+            "&:disabled": {
+              backgroundColor: "#2a2a2a",
+              color: "#777",
+              border: "2px solid #444",
+            },
             fontFamily: "Lato, sans-serif",
-            fontWeight: 600,
+            fontWeight: 700,
+            fontSize: "15px",
             textTransform: "none",
+            padding: "12px 32px",
+            borderRadius: "8px",
+            boxShadow: "0 2px 8px rgba(0, 173, 35, 0.3)",
+            "&:hover": {
+              backgroundColor: "#00c728",
+              boxShadow: "0 4px 12px rgba(0, 173, 35, 0.4)",
+            },
           }}
         >
           Find Matching Filters
@@ -867,7 +949,7 @@ export default function PerfectFilter() {
       {productDetails && (
         <ResultsSection>
           {productDetails.length === 0 ? (
-            <p style={{ color: "#666", margin: 0 }}>No products found. Try different selections.</p>
+            <p style={{ color: "#aaa", margin: 0 }}>No products found. Try different selections.</p>
           ) : (
             productDetails.map((product, key) => {
               const selectedEngine =

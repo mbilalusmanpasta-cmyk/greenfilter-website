@@ -4,7 +4,6 @@ import { FaStar } from "react-icons/fa";
 import brand0 from "../../assets/trust/brand0.png";
 import brand1 from "../../assets/trust/brand1.png";
 import brand2 from "../../assets/trust/brand2.png";
-import brand3 from "../../assets/trust/brand3.png";
 import brand4 from "../../assets/trust/brand4.png";
 import brand5 from "../../assets/trust/brand5.jpg";
 
@@ -14,7 +13,6 @@ const BRANDS = [
   { id: 0, src: brand0 },
   { id: 1, src: brand1 },
   { id: 2, src: brand2 },
-  { id: 3, src: brand3 },
   { id: 4, src: brand4 },
   { id: 5, src: brand5 },
 ];

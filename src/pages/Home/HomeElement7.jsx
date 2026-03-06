@@ -3,6 +3,7 @@ import styled from "styled-components";
 import icon0 from "../../assets/products/2007-228x228.png";
 import icon1 from "../../assets/products/2012-228x228.png";
 import icon2 from "../../assets/products/cleaner_box-500x500.jpg";
+import panelIcon from "../../assets/panel.jpg";
 import { Link } from "react-router-dom";
 import Button1 from "../../components/Button1";
 
@@ -16,6 +17,14 @@ const HomeElement7 = () => {
         </HeadingBlock>
 
         <ProductsGrid>
+          <ProductCard to="/universal-panel">
+            <ProductImageContainer>
+              <ProductImage src={panelIcon} alt="Panels" />
+            </ProductImageContainer>
+            <ProductTitle>Panels</ProductTitle>
+            <ProductCTA>Shop Now →</ProductCTA>
+          </ProductCard>
+
           <ProductCard to="/universal-cylinder">
             <ProductImageContainer>
               <ProductImage src={icon0} alt="Cone Filters" />
@@ -107,11 +116,12 @@ const Accent = styled.div`
 
 const ProductsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   margin-bottom: 48px;
 
   @media (max-width: 991px) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
 
