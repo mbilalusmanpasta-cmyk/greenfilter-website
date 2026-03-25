@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { LightBox } from "react-lightbox-pack";
 import "react-lightbox-pack/dist/index.css";
 
-const Gallery = ({ gallery, width }) => {
+const Gallery = ({ gallery }) => {
   const [toggle, setToggle] = React.useState(false);
   const [sIndex, setSIndex] = React.useState(0);
   const lightBoxHandler = (state, sIndex) => {
@@ -16,7 +16,7 @@ const Gallery = ({ gallery, width }) => {
 
   return (
     <>
-      <GalleryWrapper width={width}>
+      <GalleryWrapper>
         {gallery?.map((image,id) => (
 
           (id > 1 && id < 16) && (
