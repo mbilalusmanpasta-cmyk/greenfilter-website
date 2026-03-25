@@ -10,6 +10,7 @@
   font-family: Lato, sans-serif;
   padding: 10px 20px;
   transition-duration: 0.1s;
+  white-space: nowrap;
 }
 .ant-dropdown-menu-item:hover,
 .ant-dropdown-menu-submenu-title:hover {

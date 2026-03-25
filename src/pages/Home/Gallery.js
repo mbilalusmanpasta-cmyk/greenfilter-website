@@ -57,30 +57,29 @@ export default Gallery;
 
 const GalleryWrapper = styled.div`
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
 
   .lightbox {
-    position: static;
-    display: inline-block;
-    overflow: visible;
-    width: ${(props) => (props.width ? props.width : "14.28%")};
-    height: auto;
-    margin-bottom: 0px;
-    float: none;
-    clear: none;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     border: 1px solid #fff;
-    max-width: 100%;
   }
   .lb-image {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
   }
 
   ._3AWTh {
     z-index: 100000;
   }
   @media (max-width: 479px) {
-    .lightbox {
-      width: 50%;
-    }
+    grid-template-columns: repeat(2, 1fr);
   }
 `;

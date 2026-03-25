@@ -12,7 +12,8 @@ import img6 from "../../assets/gallery/ShopByVehicle/img6.jpg";
 import img7 from "../../assets/gallery/ShopByVehicle/img7.jpg";
 import Gallery from "../Home/Gallery";
 import { Helmet } from "react-helmet";
-import GreenSearch from "../../components/GreenSearch";
+import PerfectFilter from "../Home/PerfectFilter";
+import styled from "styled-components";
 const ShopByVehicle = (props) => {
   const gallery = [
     { id: 0, image: img0 },
@@ -44,12 +45,9 @@ const ShopByVehicle = (props) => {
         handleClickIndex={props.handleClickIndex}
       />
 
-      <GreenSearch />
-
-      <div style={{ height: "80px" }}>
-
-      </div>
-
+      <FilterSection>
+        <PerfectFilter />
+      </FilterSection>
 
       <div className="container-0">
         <ShopElement1 handleVehicleRoute={props.handleVehicleRoute} />
@@ -61,3 +59,16 @@ const ShopByVehicle = (props) => {
 };
 
 export default ShopByVehicle;
+
+const FilterSection = styled.section`
+  padding: 24px 24px 0;
+  max-width: 960px;
+  margin: 140px auto -24px;
+  position: relative;
+  z-index: 4;
+  @media (max-width: 767px) {
+    padding: 16px 16px 0;
+    margin-top: 120px;
+    margin-bottom: -16px;
+  }
+`;
