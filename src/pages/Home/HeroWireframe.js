@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 // import homePageImage from "../../assets/home-page.jpeg";
-import homePageImage from "../../assets/banner/two.png";
+import homePageImage from "../../assets/banner/four.png";
 
 
 const TopSection = styled.div`
@@ -34,7 +34,7 @@ const HeroImage = styled.div`
   align-items: center;
   justify-content: center;
   @media (max-width: 767px) {
-    min-height: 300px;
+    min-height: 350px;
   }
 `;
 
@@ -58,8 +58,8 @@ const HeroImageOverlay = styled.div`
   z-index: 2;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.35) 0%,
-    rgba(0, 0, 0, 0.45) 100%
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.25) 100%
   );
   pointer-events: none;
 `;
@@ -122,7 +122,10 @@ const HeroBody = styled.p`
   line-height: 1.5;
   max-width: 420px;
   @media (max-width: 767px) {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.4;
+    max-width: 90%;
+    padding: 0 8px;
   }
 `;
 

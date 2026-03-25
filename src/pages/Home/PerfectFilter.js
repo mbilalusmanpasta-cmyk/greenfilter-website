@@ -39,11 +39,11 @@ function compare(a, b, key) {
 const Container = styled.div`
   max-width: 960px;
   margin: 0 auto;
-  background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
-  border: 2px solid #333;
+  background: linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 2px solid #444;
   border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   @media (max-width: 767px) {
     padding: 24px 20px;
     margin: 0 5%;
@@ -51,7 +51,7 @@ const Container = styled.div`
     max-width: none;
     box-sizing: border-box;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 `;
 

@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import Gallery from "./Gallery";
 import HeroWireframe from "./HeroWireframe";
 import PerfectFilter from "./PerfectFilter";
+import VideoSection from "./VideoSection";
 import ConfidencePanel from "./ConfidencePanel";
 import ChosenByBest from "./ChosenByBest";
 import HomeElement1 from "./HomeElement1";
@@ -16,19 +17,23 @@ import img0 from "../../assets/gallery/img0.jpeg";
 import img1 from "../../assets/gallery/img1.jpeg";
 import img2 from "../../assets/gallery/img2.jpeg";
 import img3 from "../../assets/gallery/img3.jpeg";
-import img4 from "../../assets/gallery/img4.jpg";
+import img4 from "../../assets/gallery/img4.jpeg";
 import img5 from "../../assets/gallery/img5.jpeg";
 import img6 from "../../assets/gallery/img6.jpeg";
 import img7 from "../../assets/gallery/img7.jpeg";
-import img8 from "../../assets/gallery/img8.jpg";
+import img8 from "../../assets/gallery/img8.jpeg";
 import img9 from "../../assets/gallery/img9.jpg";
-import img10 from "../../assets/gallery/img10.jpg";
+import img10 from "../../assets/gallery/img10.jpeg";
 import img11 from "../../assets/gallery/img11.jpeg";
 import img12 from "../../assets/gallery/img12.jpg";
 import img13 from "../../assets/gallery/img13.jpg";
+import img14 from "../../assets/gallery/img14.jpeg";
+import img15 from "../../assets/gallery/img15.jpeg";
+
 import styled from "styled-components";
 import HomeElement2 from "./HomeElement2";
 import { Helmet } from "react-helmet";
+
 
 
 const Home = (props) => {
@@ -48,6 +53,8 @@ const Home = (props) => {
     { id: 11, image: img11 },
     { id: 12, image: img12 },
     { id: 13, image: img13 },
+        { id: 14, image: img14 },
+    { id: 15, image: img15 },
   ];
   
  
@@ -90,6 +97,7 @@ const Home = (props) => {
         <ConfidencePanel />
 
         <HomeElement1 handleClickIndex={props.handleClickIndex} />
+        <VideoSection />
         <HomeElement2 />
         <HomeElement3 />
         <HomeElement4 text="It's not just about immediate gains, but the  long term ones as well." />
