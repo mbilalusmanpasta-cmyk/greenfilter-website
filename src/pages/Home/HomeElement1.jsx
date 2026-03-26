@@ -74,20 +74,34 @@ const HomeElement1 = (props) => {
   const [topPerformingBrands, setTopPerformingBrands] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  useEffect(async () => {
-    setLoading(true);
-    const topPerformingBrandsCollectionId = 6;
-    let topPerformingBrandsT = {};
-    let response = await GetData(
-      statics.BaseUrl + `/collection?id=${topPerformingBrandsCollectionId}`,
-      200,
-      null
-    );
-    if (response.ResponseCode === "Success") {
-      topPerformingBrandsT = response?.data?.rows?.[0];
-    }
-    setTopPerformingBrands(topPerformingBrandsT);
-    setLoading(false);
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchTopPerformingBrands = async () => {
+      if (isMounted) {
+        setLoading(true);
+      }
+      const topPerformingBrandsCollectionId = 6;
+      let topPerformingBrandsT = {};
+      let response = await GetData(
+        statics.BaseUrl + `/collection?id=${topPerformingBrandsCollectionId}`,
+        200,
+        null
+      );
+      if (response.ResponseCode === "Success") {
+        topPerformingBrandsT = response?.data?.rows?.[0];
+      }
+      if (isMounted) {
+        setTopPerformingBrands(topPerformingBrandsT);
+        setLoading(false);
+      }
+    };
+
+    fetchTopPerformingBrands();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

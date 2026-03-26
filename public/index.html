@@ -156,11 +156,12 @@
                 events: {
                   afterInit: (cart) => {
                     cart.onCheckout = () => {
-                      // sample implementation
+                      // Add tracking parameters to checkout URL if available
+                      let checkoutUrl = cart.model.webUrl;
                       if (window.RCFX_SERIALIZED_URL_PARAMS) {
-                        const checkoutUrl = cart.model.webUrl + (cart.model.webUrl.indexOf('?') > -1 ? '&' : '?') + window.RCFX_SERIALIZED_URL_PARAMS;
-                        cart.checkout.open(checkoutUrl)
+                        checkoutUrl = cart.model.webUrl + (cart.model.webUrl.indexOf('?') > -1 ? '&' : '?') + window.RCFX_SERIALIZED_URL_PARAMS;
                       }
+                      window.open(checkoutUrl, '_self');
                     }
                   }
                 }
