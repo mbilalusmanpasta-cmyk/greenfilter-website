@@ -12,14 +12,13 @@ const Gallery = ({ gallery }) => {
     setSIndex(sIndex);
   };
 
-  // Data already has correct structure with 'image' property
+  // Filter gallery to only include images that should be displayed
+  const filteredGallery = gallery?.filter((image, id) => id > 1 && id < 16) || [];
 
   return (
     <>
       <GalleryWrapper>
-        {gallery?.map((image,id) => (
-
-          (id > 1 && id < 16) && (
+        {filteredGallery.map((image, index) => (
           <Link
             key={image.id}
             to="#"
@@ -31,16 +30,16 @@ const Gallery = ({ gallery }) => {
               sizes="(max-width: 479px) 50vw, 14vw"
               className="lb-image"
               onClick={() => {
-                lightBoxHandler(true, gallery.indexOf(image));
+                lightBoxHandler(true, index);
               }}
             />
-          </Link>)
+          </Link>
         ))}
 
         <LightBox
           state={toggle}
           event={lightBoxHandler}
-          data={gallery}
+          data={filteredGallery}
           imageWidth="60vw"
           imageHeight="70vh"
           thumbnailHeight={50}
