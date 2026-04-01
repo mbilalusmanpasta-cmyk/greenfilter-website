@@ -155,7 +155,39 @@
               cart: {
                 events: {
                   afterInit: (cart) => {
+                    // Track add to cart events
+                    cart.model.on('lineItemsAdded', function(lineItems) {
+                      if (window.dataLayer) {
+                        lineItems.forEach(function(lineItem) {
+                          window.dataLayer.push({
+                            event: 'add_to_cart',
+                            currency: 'USD',
+                            value: parseFloat(lineItem.variant.price.amount) * lineItem.quantity || 0,
+                            items: [{
+                              item_id: lineItem.variant.sku || lineItem.variant.id,
+                              item_name: lineItem.title || 'Unknown Product',
+                              item_brand: 'Green Filter',
+                              item_category: 'Air Filters',
+                              price: parseFloat(lineItem.variant.price.amount) || 0,
+                              quantity: lineItem.quantity
+                            }]
+                          });
+                        });
+                      }
+                    });
+
                     cart.onCheckout = () => {
+                      // Track begin checkout event
+                      if (window.dataLayer) {
+                        var cartTotal = parseFloat(cart.model.subtotal) || 0;
+                        window.dataLayer.push({
+                          event: 'begin_checkout',
+                          currency: 'USD',
+                          value: cartTotal,
+                          checkout_url: cart.model.webUrl
+                        });
+                      }
+
                       // Add tracking parameters to checkout URL if available
                       let checkoutUrl = cart.model.webUrl;
                       if (window.RCFX_SERIALIZED_URL_PARAMS) {

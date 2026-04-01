@@ -18,6 +18,8 @@ import HomeElement2 from "./HomeElement2";
 import { Helmet } from "react-helmet";
 import { galleryImages } from "../../data/galleryImages";
 import img0 from "../../assets/gallery/img0.jpeg";
+import StructuredData from "../../components/StructuredData";
+import { homeSEO } from "../../utils/seoData";
 
 const Home = (props) => {
 
@@ -34,15 +36,29 @@ const Home = (props) => {
     <HomeWrapper>
 
       <Helmet>
-        <title>{"Green Filter - High Performance Air Filters"} </title>
-        <meta name="description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
-        <meta property="og:title" content={"Green Filter - High Performance Air Filters"} />
-        <meta property="og:description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
-        <meta property="og:image" content={img0} />
+        <title>{homeSEO.title}</title>
+        <meta name="description" content={homeSEO.description} />
+        <meta name="keywords" content={homeSEO.keywords} />
+
+        {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://greenfilter.com/" />
+        <meta property="og:title" content={homeSEO.title} />
+        <meta property="og:description" content={homeSEO.description} />
+        <meta property="og:image" content={`https://greenfilter.com${img0}`} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://greenfilter.com/" />
+        <meta name="twitter:title" content={homeSEO.title} />
+        <meta name="twitter:description" content={homeSEO.description} />
+        <meta name="twitter:image" content={`https://greenfilter.com${img0}`} />
+
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://greenfilter.com/" />
       </Helmet>
+
+      <StructuredData data={homeSEO.structuredData} />
       
       <div className="container-0">
         <div className="home-edge-to-edge">

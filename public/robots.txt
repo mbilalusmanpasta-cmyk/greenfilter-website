@@ -1,3 +1,13 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://greenfilter.com/sitemap.xml
+
+# Crawl-delay for well-behaved bots
+Crawl-delay: 1

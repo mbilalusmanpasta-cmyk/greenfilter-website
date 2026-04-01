@@ -13,6 +13,9 @@ import ProductShopifyImage from "../../components/ProductImage";
 
 import { Helmet } from "react-helmet";
 import img0 from "../../assets/gallery/img0.jpeg";
+import { trackProductView } from "../../utils/analytics";
+import StructuredData from "../../components/StructuredData";
+import { getProductSEO } from "../../utils/seoData";
 
 const SingleProduct = () => {
     const { id: routePartNum } = useParams();
@@ -49,6 +52,11 @@ const SingleProduct = () => {
         let productDataT = {};
         if (response.ResponseCode === "Success") {
             productDataT = response?.data?.rows?.[0];
+
+            // Track product view for analytics
+            if (productDataT && productDataT.gfu_part_num) {
+                trackProductView(productDataT);
+            }
         }
 
         setProductData(productDataT);
@@ -90,17 +98,36 @@ const SingleProduct = () => {
 
 
             {
-                !loading &&
-                <Helmet>
-                    <title>{`${productData?.title} | ${productData?.gfu_part_num} | Green Filter`}</title>
-                    <meta name="description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
-                    <meta property="og:title" content={productData?.title + productData?.gfu_part_num + "| Green Filter"} />
-                    <meta property="og:description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
-                    <meta property="og:image" content={img0} />
-                    <meta property="og:type" content="website" />
-                    <meta name="robots" content="index, follow" />
-                    <link rel="canonical" href={`https://greenfilter.com/store/filter/${productData.gfu_part_num}`} />
-                </Helmet>
+                !loading && productData?.gfu_part_num && (() => {
+                    const seo = getProductSEO(productData);
+                    return (
+                        <>
+                            <Helmet>
+                                <title>{seo.title}</title>
+                                <meta name="description" content={seo.description} />
+                                <meta name="keywords" content={seo.keywords} />
+
+                                {/* Open Graph / Facebook */}
+                                <meta property="og:type" content="product" />
+                                <meta property="og:url" content={`https://greenfilter.com/store/filter/${productData.gfu_part_num}`} />
+                                <meta property="og:title" content={seo.title} />
+                                <meta property="og:description" content={seo.description} />
+                                <meta property="og:image" content={`https://greenfilter.com${img0}`} />
+
+                                {/* Twitter */}
+                                <meta name="twitter:card" content="summary_large_image" />
+                                <meta name="twitter:url" content={`https://greenfilter.com/store/filter/${productData.gfu_part_num}`} />
+                                <meta name="twitter:title" content={seo.title} />
+                                <meta name="twitter:description" content={seo.description} />
+                                <meta name="twitter:image" content={`https://greenfilter.com${img0}`} />
+
+                                <meta name="robots" content="index, follow" />
+                                <link rel="canonical" href={`https://greenfilter.com/store/filter/${productData.gfu_part_num}`} />
+                            </Helmet>
+                            <StructuredData data={seo.structuredData} />
+                        </>
+                    );
+                })()
             }
             <SingleProductWrapper >
                 <Grid container spacing={4}>

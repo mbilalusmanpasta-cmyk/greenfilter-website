@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import img0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.png";
 import img1 from "../../assets/icons8-gphone-100-3.png";
+import { trackContactFormSubmit } from "../../utils/analytics";
+
 const ContactElement2 = () => {
   // useEffect(() => {
   //   const script = document.createElement('script');
@@ -50,6 +52,17 @@ const ContactElement2 = () => {
           authToken: "",
           target: "nutshell-form-qJ5jY8",
         });
+
+        // Track form submission when Nutshell form is submitted
+        // Listen for Nutshell form success event
+        setTimeout(() => {
+          const formElement = document.querySelector('#nutshell-form-qJ5jY8 form');
+          if (formElement) {
+            formElement.addEventListener('submit', () => {
+              trackContactFormSubmit();
+            });
+          }
+        }, 1000);
       }
     };
 

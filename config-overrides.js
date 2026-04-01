@@ -6,7 +6,7 @@ const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 module.exports = override((config) => {
     console.log("process.env.NODE_ENV 1 ", process.env.NODE_ENV)
-    if (process.env.NODE_ENV === "production" && process.env.SKIP_PRERENDER !== "true") {
+    if (process.env.NODE_ENV === "production" && process.env.I !== "true") {
         config.plugins.push(
             new PrerenderSPAPlugin({
                 staticDir: path.join(__dirname, "build"),
@@ -19,7 +19,7 @@ module.exports = override((config) => {
                     "/brand/nissan-trucks", "/brand/ram-trucks", "/brand/toyota-trucks", "/brand/chevrolet-trucks", "/brand/ford-trucks",
 
                     "/brand/audi", "/brand/cadillac", "/brand/chrysler", "/brand/dodge",
-                    //"/brand/ford", "/brand/gmc", 
+                    //"/brand/ford", "/brand/gmc",
                     "/brand/honda", "/brand/humvee", "/brand/infiniti", "/brand/lexus",
                     "/brand/lincoln", "/brand/mazda", "/brand/mercedes", "/brand/mini", "/brand/pontiac", "/brand/porsche", "/brand/scion", "/brand/volkswagen",
 
@@ -31,10 +31,13 @@ module.exports = override((config) => {
                     "/universal-round",
                     "/air-cleaner",
                     "/about-us",
+                    "/contact-us",
+                    "/vehicles",
+                    "/sitemap",
                     "/our-guarantee", "/why-go-green", "/careers", "/private-label", "/harley-filter", "/cross-reference-brand",
                     "/cross-reference-filters", "/faqs", "/privacy-policy", "/terms-of-service", "/universal-panel"
-                    //"/store/filter/:id", 
-                    // "/brand/:name",  
+                    //"/store/filter/:id",
+                    // "/brand/:name",
                 ],
 
                 // routes: ["/shop-by-vehicle", "/store", "/store/filter/:id", "/brand/:name", "/measure-filter", "/cleaner-care", "/air-cleaner", "/about-us", "/our-guarantee", "/why-go-green", "/contact-us", "/careers", "/private-label", "/harley-filter", "/cross-reference-brand", "/cross-reference-filters", "/faqs", "/privacy-policy", "/terms-of-service", "/universal-panel"],
