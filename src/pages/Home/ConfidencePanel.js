@@ -114,7 +114,7 @@ const defaultRightItems = [
   "Reusable & washable",
   "Trusted by enthusiasts",
   "Easy to find your fit",
-  "Free shipping on orders $200+",
+  "Free shipping on orders $100+",
 ];
 
 function chunk(arr, size) {

@@ -7,7 +7,7 @@ const ShippingBanner = () => {
       <BannerContent>
         <BannerText>
           <MainText>
-            <strong>Free Shipping</strong> on Orders $200+
+            <strong>Free Shipping</strong> on Orders $100+
           </MainText>
           <Separator>|</Separator>
           <CodeText>
