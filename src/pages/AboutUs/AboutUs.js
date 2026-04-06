@@ -4,7 +4,7 @@ import Hero from "../MeasureFilter/Hero";
 import Gallery from "../Home/Gallery";
 import Footer from "../../components/Footer";
 import AboutElement1 from "./AboutElement1";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { galleryImages } from "../../data/galleryImages";
 import img0 from "../../assets/gallery/img0.jpeg";
 

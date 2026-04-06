@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import URElement1 from "./URElement1";
 import Footer from "../../components/Footer";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const UniversalRound = (props) => {
   return (
     <>

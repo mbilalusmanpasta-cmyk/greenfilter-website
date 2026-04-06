@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import CFBElement1 from "./CFBElement1";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import img0 from "../../assets/gallery/img0.jpeg";
 
 

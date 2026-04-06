@@ -4,6 +4,7 @@ import Routes from "./routes/Routes";
 import ScrollToTop from "./ScrollToTop";
 import { useEffect } from "react";
 import { initExitTracking } from "./utils/analytics";
+import { HelmetProvider } from "react-helmet-async";
 
 function App() {
   useEffect(() => {
@@ -12,12 +13,12 @@ function App() {
   }, []);
 
   return (
-    <>
+    <HelmetProvider>
       <Router>
         <ScrollToTop />
         <Routes />
       </Router>
-    </>
+    </HelmetProvider>
   );
 }
 

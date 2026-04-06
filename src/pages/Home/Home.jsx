@@ -15,7 +15,7 @@ import HomeElement7 from "./HomeElement7";
 import Footer from "../../components/Footer";
 import styled from "styled-components";
 import HomeElement2 from "./HomeElement2";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { galleryImages } from "../../data/galleryImages";
 import img0 from "../../assets/gallery/img0.jpeg";
 import StructuredData from "../../components/StructuredData";

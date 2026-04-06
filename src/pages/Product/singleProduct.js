@@ -11,7 +11,7 @@ import CircleLoader from "react-spinners/CircleLoader";
 import ProductShopifyImage from "../../components/ProductImage";
 
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import img0 from "../../assets/gallery/img0.jpeg";
 import { trackProductView } from "../../utils/analytics";
 import StructuredData from "../../components/StructuredData";

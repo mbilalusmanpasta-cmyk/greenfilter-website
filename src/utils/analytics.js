@@ -5,8 +5,10 @@
  * This utility sends events to GTM dataLayer for GA4 tracking
  */
 
-// Initialize dataLayer if it doesn't exist
-window.dataLayer = window.dataLayer || [];
+// Initialize dataLayer if it doesn't exist (only in browser)
+if (typeof window !== 'undefined') {
+  window.dataLayer = window.dataLayer || [];
+}
 
 /**
  * Send a custom event to Google Tag Manager
@@ -14,6 +16,11 @@ window.dataLayer = window.dataLayer || [];
  * @param {object} eventParams - Event parameters
  */
 export const trackEvent = (eventName, eventParams = {}) => {
+  // Only track in browser environment
+  if (typeof window === 'undefined' || !window.dataLayer) {
+    return;
+  }
+
   try {
     window.dataLayer.push({
       event: eventName,
@@ -38,7 +45,7 @@ export const trackPageView = (pagePath, pageTitle) => {
   trackEvent('page_view', {
     page_path: pagePath,
     page_title: pageTitle,
-    page_location: window.location.href,
+    page_location: typeof window !== 'undefined' ? window.location.href : '',
   });
 };
 
@@ -105,7 +112,7 @@ export const trackBeginCheckout = (cartData) => {
 export const trackFormSubmission = (formName, formData = {}) => {
   trackEvent('form_submit', {
     form_name: formName,
-    form_location: window.location.pathname,
+    form_location: typeof window !== 'undefined' ? window.location.pathname : '',
     ...formData,
   });
 };
@@ -116,7 +123,7 @@ export const trackFormSubmission = (formName, formData = {}) => {
 export const trackContactFormSubmit = () => {
   trackEvent('generate_lead', {
     form_type: 'contact',
-    page_location: window.location.pathname,
+    page_location: typeof window !== 'undefined' ? window.location.pathname : '',
   });
 };
 
@@ -137,7 +144,7 @@ export const trackSearch = (searchTerm) => {
 export const trackContactClick = (contactType) => {
   trackEvent('contact_click', {
     contact_type: contactType,
-    page_location: window.location.pathname,
+    page_location: typeof window !== 'undefined' ? window.location.pathname : '',
   });
 };
 
@@ -146,7 +153,7 @@ export const trackContactClick = (contactType) => {
  */
 export const trackMeasureToolUse = () => {
   trackEvent('measure_tool_use', {
-    page_location: window.location.pathname,
+    page_location: typeof window !== 'undefined' ? window.location.pathname : '',
   });
 };
 
@@ -169,7 +176,7 @@ export const trackCartAbandonment = (cartData) => {
     currency: 'USD',
     value: parseFloat(cartData.total) || 0,
     items_count: cartData.itemCount || 0,
-    page_location: window.location.pathname,
+    page_location: typeof window !== 'undefined' ? window.location.pathname : '',
   });
 };
 
@@ -177,6 +184,7 @@ export const trackCartAbandonment = (cartData) => {
  * Track when user is about to exit the site
  */
 export const trackExitIntent = () => {
+  if (typeof window === 'undefined') return;
   trackEvent('exit_intent', {
     page_location: window.location.pathname,
     time_on_page: Math.round((Date.now() - window.pageStartTime) / 1000) || 0,
@@ -190,7 +198,7 @@ export const trackExitIntent = () => {
 export const trackScrollDepth = (percentage) => {
   trackEvent('scroll_depth', {
     percentage: percentage,
-    page_location: window.location.pathname,
+    page_location: typeof window !== 'undefined' ? window.location.pathname : '',
   });
 };
 
@@ -198,6 +206,11 @@ export const trackScrollDepth = (percentage) => {
  * Initialize exit intent tracking (call this on app mount)
  */
 export const initExitTracking = () => {
+  // Only run in browser environment
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+
   // Track page start time for time-on-page calculation
   window.pageStartTime = Date.now();
 

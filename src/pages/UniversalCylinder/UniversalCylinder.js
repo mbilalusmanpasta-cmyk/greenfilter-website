@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import UCElement1 from "./UCElement1";
 import Footer from "../../components/Footer";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const UniversalCylinder = (props) => {
   return (

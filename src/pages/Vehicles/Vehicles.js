@@ -17,7 +17,7 @@ import capitalizeFirstLetter from "../../util/capitalizeFirstLetter";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 import CircleLoader from "react-spinners/CircleLoader";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const Vehicles = (props) => {
 

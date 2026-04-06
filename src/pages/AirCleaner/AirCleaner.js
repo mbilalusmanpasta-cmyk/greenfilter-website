@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import ACElement1 from "./ACElement1";
 import Footer from "../../components/Footer";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import img0 from "../../assets/gallery/img0.jpeg";
 
 const AirCleaner = (props) => {

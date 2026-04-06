@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import ShopElement1 from "./ShopElement1";
 import Footer from "../../components/Footer";
 import Gallery from "../Home/Gallery";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import PerfectFilter from "../Home/PerfectFilter";
 import styled from "styled-components";
 import { galleryImages } from "../../data/galleryImages";

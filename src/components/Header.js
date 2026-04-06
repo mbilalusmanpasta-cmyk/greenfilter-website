@@ -290,6 +290,16 @@ const Header = (props) => {
                 </Button>
               </Dropdown>
 
+              {/* <Button
+                onClick={() => {
+                  props.handleClickIndex(14);
+                  history.push("/clearance");
+                }}
+                style={{ color: "#ff4444" }}
+              >
+                Clearance
+              </Button> */}
+
               <Dropdown
                 overlay={menu1}
                 placement="bottomCenter"

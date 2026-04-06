@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 import GuaranteeElement2 from "./GuaranteeElement2";
 import GuaranteeElement3 from "./GuaranteeElement3";
 import Gallery from "../Home/Gallery";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { galleryImages } from "../../data/galleryImages";
 import img0 from "../../assets/gallery/img0.jpeg";
 

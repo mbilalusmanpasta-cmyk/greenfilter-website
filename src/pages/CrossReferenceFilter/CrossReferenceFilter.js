@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import CRFElement1 from "./CRFElement1";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import img0 from "../../assets/gallery/img0.jpeg";
 
 const CrossReferenceFilter = (props) => {
