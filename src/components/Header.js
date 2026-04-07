@@ -240,6 +240,16 @@ const Header = (props) => {
               )}
             </div>
 
+            {/* CLEARANCE — direct link */}
+            <div className="accordion-row">
+              <button
+                className="accordion-trigger no-icon clearance-link"
+                onClick={() => handleNavLink(14, "/clearance")}
+              >
+                <span>CLEARANCE</span>
+              </button>
+            </div>
+
             {/* CLEANER & CARE — direct link */}
             <div className="accordion-row">
               <button
@@ -290,7 +300,7 @@ const Header = (props) => {
                 </Button>
               </Dropdown>
 
-              {/* <Button
+              <Button
                 onClick={() => {
                   props.handleClickIndex(14);
                   history.push("/clearance");
@@ -298,7 +308,7 @@ const Header = (props) => {
                 style={{ color: "#ff4444" }}
               >
                 Clearance
-              </Button> */}
+              </Button>
 
               <Dropdown
                 overlay={menu1}
@@ -712,6 +722,14 @@ const DrawerContent = styled.div`
 
   .accordion-trigger:hover {
     color: #00ad23;
+  }
+
+  .accordion-trigger.clearance-link {
+    color: #ff4444;
+  }
+
+  .accordion-trigger.clearance-link:hover {
+    color: #dd2222;
   }
 
   .accordion-icon {

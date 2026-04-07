@@ -1,10 +1,23 @@
 const path = require("path");
 const PrerenderSPAPlugin = require("prerender-spa-plugin");
-const { override } = require("customize-cra");
+const { override, addBabelPlugins, getBabelLoader } = require("customize-cra");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
-module.exports = override((config) => {
+module.exports = override(
+    addBabelPlugins(
+        ["@babel/plugin-proposal-class-properties", { "loose": true }],
+        ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
+    ),
+    (config) => {
+        // Fix babel-loader to include react-helmet-async
+        const babelLoader = getBabelLoader(config, false);
+        if (babelLoader) {
+            babelLoader.include = [
+                babelLoader.include,
+                path.resolve(__dirname, 'node_modules/react-helmet-async')
+            ].filter(Boolean);
+        }
     console.log("process.env.NODE_ENV 1 ", process.env.NODE_ENV)
     if (process.env.NODE_ENV === "production" && process.env.SKIP_PRERENDER !== "true") {
         config.plugins.push(
@@ -19,6 +32,7 @@ module.exports = override((config) => {
                     "/contact-us",
                     "/vehicles",
                     "/sitemap",
+                    "/clearance",
 
                     // Product category pages
                     "/measure-filter",
@@ -95,4 +109,5 @@ module.exports = override((config) => {
     }
 
     return config;
-});
+    }
+);

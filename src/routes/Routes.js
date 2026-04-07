@@ -19,6 +19,7 @@ import CrossReferenceFilter from "../pages/CrossReferenceFilter/CrossReferenceFi
 import FAQs from "../pages/FAQs/FAQs";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
+import Clearance from "../pages/Clearance/Clearance.jsx";
 
 import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
 import Product from "../pages/Product";
@@ -338,6 +339,18 @@ const Routes = () => {
           path="/sitemap"
           component={() => (
             <Sitemap
+              clickedIndex={clickedIndex}
+              handleClickIndex={handleClickIndex}
+              handleVehicleRoute={handleVehicleRoute}
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path="/clearance"
+          component={() => (
+            <Clearance
               clickedIndex={clickedIndex}
               handleClickIndex={handleClickIndex}
               handleVehicleRoute={handleVehicleRoute}
