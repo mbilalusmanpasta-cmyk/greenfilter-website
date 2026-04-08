@@ -6,7 +6,7 @@ import Gallery from "../Home/Gallery";
 import Footer from "../../components/Footer";
 import { Helmet } from "react-helmet-async";
 import { galleryImages } from "../../data/galleryImages";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 
 const gallery = galleryImages;
 const Career = (props) => {

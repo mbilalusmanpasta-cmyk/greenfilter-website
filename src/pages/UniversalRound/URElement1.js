@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import img0 from "../../assets/cylinders/round.jpg";
-import img2 from "../../assets/cylinders/round_filter_measurements.jpg";
+import img0 from "../../assets/cylinders/round.webp";
+import img2 from "../../assets/cylinders/round_filter_measurements.webp";
 import FilterTable from "../../components/FilterTable";
 import { collection, query, where, getDocs} from "firebase/firestore"; 
 import  {db} from '../../helper/firebase';
@@ -121,14 +121,14 @@ const URElement1 = () => {
         >
           <center>
             <a
-              href="images/round_filter_measurements.jpg"
+              href="images/round_filter_measurements.webp"
               style={{ color: "green" }}
             >
               <img src={img2} className="resize" alt="" />
             </a>
             <br />
             <a
-              href="images/round_filter_measurements.jpg"
+              href="images/round_filter_measurements.webp"
               style={{ color: "green" }}
               title="Green Filter USA - Cone &amp; Cylinder Filter Dimensions"
             >

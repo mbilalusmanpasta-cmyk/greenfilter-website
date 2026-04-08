@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import bgImg from "../../assets/green-gradient-blue.png";
-import thumbnail from "../../assets/vid_measure_350.jpg";
-import tImg1 from "../../assets/id-right_s.jpg";
-import tImg2 from "../../assets/id-wrong_s.jpg";
-import tImg3 from "../../assets/od-t_s.jpg";
-import tImg4 from "../../assets/od-b-right_s.jpg";
-import tImg5 from "../../assets/od-b-wrong_s.jpg";
-import tImg6 from "../../assets/h-right_s.jpg";
-import tImg7 from "../../assets/h-wrong_s.jpg";
+import bgImg from "../../assets/green-gradient-blue.webp";
+import thumbnail from "../../assets/vid_measure_350.webp";
+import tImg1 from "../../assets/id-right_s.webp";
+import tImg2 from "../../assets/id-wrong_s.webp";
+import tImg3 from "../../assets/od-t_s.webp";
+import tImg4 from "../../assets/od-b-right_s.webp";
+import tImg5 from "../../assets/od-b-wrong_s.webp";
+import tImg6 from "../../assets/h-right_s.webp";
+import tImg7 from "../../assets/h-wrong_s.webp";
 
 import { LightBox } from 'react-lightbox-pack';
 import "react-lightbox-pack/dist/index.css";
@@ -71,7 +71,7 @@ const MeasureFilterElement1 = () => {
                         ZoomBoxHandler(true, 0);
                       }}
                     />
-                  {/* <a href="https://greenfilter.com/images/framework/measure/id-wrong.jpg">
+                  {/* <a href="https://greenfilter.com/images/framework/measure/id-wrong.webp">
                     
                   </a> */}
 
@@ -89,7 +89,7 @@ const MeasureFilterElement1 = () => {
                 edges.
                 <br />
                 <center>
-                  {/* <a href="https://greenfilter.com/images/framework/measure/od-t.jpg"> */}
+                  {/* <a href="https://greenfilter.com/images/framework/measure/od-t.webp"> */}
                     <img src={tImg3} alt="table"
                       onClick={() => {
                         ZoomBoxHandler(true, 2);

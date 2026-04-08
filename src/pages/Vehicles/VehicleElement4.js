@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import tableImg from "../../assets/bmw-m3.jpg";
-import filterImg from "../../assets/7157_v1_500.jpg";
-import cleaner from "../../assets/2000_v1_500.jpg";
+import tableImg from "../../assets/bmw-m3.webp";
+import filterImg from "../../assets/7157_v1_500.webp";
+import cleaner from "../../assets/2000_v1_500.webp";
 import { Link } from "react-router-dom";
 import Button1 from "../../components/Button1";
 import AddToCart from "../../components/AddToCart";

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import logo from "../assets/gflogo.png";
+import logo from "../assets/gflogo.webp";
 import { Link, useHistory } from "react-router-dom";
 import { Menu, Dropdown, Button } from "antd";
 import "../styles/Header.css";
-import flag from "../assets/USA-Flag.jpg";
+import flag from "../assets/USA-Flag.webp";
 import { FaBars } from "react-icons/fa";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Drawer } from "@mui/material";

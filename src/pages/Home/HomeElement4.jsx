@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import img0_0 from "../../assets/gear-wheel-3109067.png";
-import img1_0 from "../../assets/Asset-1goshadowicon.png";
-import img2_0 from "../../assets/usa-1177272.png";
-import img3_0 from "../../assets/green-filter-icon.png";
+import img0_0 from "../../assets/gear-wheel-3109067.webp";
+import img1_0 from "../../assets/Asset-1goshadowicon.webp";
+import img2_0 from "../../assets/usa-1177272.webp";
+import img3_0 from "../../assets/green-filter-icon.webp";
 import Button1 from "../../components/Button1";
 
 const HomeElement4 = ({ text }) => {

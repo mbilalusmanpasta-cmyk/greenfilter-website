@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import img from "../../assets/careers-hero.jpg";
+import img from "../../assets/careers-hero.webp";
 const Hero = () => {
   return (
     <>

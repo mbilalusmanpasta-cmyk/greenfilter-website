@@ -1,8 +1,8 @@
 import React from "react";
 import "../../styles/Hero.css";
-import bg0 from "../../assets/cr_img0.jpg";
-import bg1 from "../../assets/cr_img1.jpg";
-import bg2 from "../../assets/cr_img2.jpg";
+import bg0 from "../../assets/cr_img0.webp";
+import bg1 from "../../assets/cr_img1.webp";
+import bg2 from "../../assets/cr_img2.webp";
 import styled, { keyframes } from "styled-components";
 
 const DEFAULT_BANNER = "/images/banner.svg";

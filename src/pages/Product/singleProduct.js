@@ -12,7 +12,7 @@ import ProductShopifyImage from "../../components/ProductImage";
 
 
 import { Helmet } from "react-helmet-async";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 import { trackProductView } from "../../utils/analytics";
 import StructuredData from "../../components/StructuredData";
 import { getProductSEO } from "../../utils/seoData";
@@ -142,7 +142,7 @@ const SingleProduct = () => {
 
                             <div>
                                 <h3 style={{ marginTop: "-20px" }}>Use cleaner kit <a style={{ color: "green" }} onClick={() => window.location.href = "/store/filter/2000"} >#2000</a></h3>
-                                <a href="https://www.p65warnings.ca.gov/"><img width="300px" src="/images/Prop65.jpg" /></a>
+                                <a href="https://www.p65warnings.ca.gov/"><img width="300px" src="/images/Prop65.webp" /></a>
                             </div>
                         </div>
                     </Grid>

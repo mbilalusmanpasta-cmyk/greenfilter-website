@@ -1,13 +1,13 @@
 import React from "react";
 import "../../styles/Hero.css";
 import { Carousel } from "antd";
-import bg0 from "../../assets/cr_img0.jpg";
-import bg1 from "../../assets/cr_img1.jpg";
-import bg2 from "../../assets/cr_img2.jpg";
+import bg0 from "../../assets/cr_img0.webp";
+import bg1 from "../../assets/cr_img1.webp";
+import bg2 from "../../assets/cr_img2.webp";
 import styled from "styled-components";
 import Button1 from "../../components/Button1";
 import { Link } from "react-router-dom";
-import filter0 from "../../assets/cleaner-p-800.png";
+import filter0 from "../../assets/cleaner-p-800.webp";
 
 const Hero = () => {
   return (

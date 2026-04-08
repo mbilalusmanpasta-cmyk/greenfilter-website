@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 import PerfectFilter from "../Home/PerfectFilter";
 import styled from "styled-components";
 import { galleryImages } from "../../data/galleryImages";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 
 const ShopByVehicle = (props) => {
   const gallery = galleryImages;

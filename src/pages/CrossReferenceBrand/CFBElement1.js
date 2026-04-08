@@ -3,7 +3,7 @@ import React from 'react';
 import styled from "styled-components";
 import { FormControl, InputLabel, Select, MenuItem, CircularProgress } from "@mui/material";
 import { Link } from "react-router-dom";
-import img0 from "../../assets/filters.jpg";
+import img0 from "../../assets/filters.webp";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 import { useHistory } from "react-router-dom";

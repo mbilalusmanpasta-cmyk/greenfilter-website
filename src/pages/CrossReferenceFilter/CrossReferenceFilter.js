@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import CRFElement1 from "./CRFElement1";
 import { Helmet } from "react-helmet-async";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 
 const CrossReferenceFilter = (props) => {
   return (

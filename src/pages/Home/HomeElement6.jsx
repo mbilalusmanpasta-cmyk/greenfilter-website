@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import icon0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.png";
-import icon1 from "../../assets/icons8-free-shipping-100_1icons8-free-shipping-100.png";
-import icon2 from "../../assets/icons8-communication-100_1icons8-communication-100.png";
+import icon0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.webp";
+import icon1 from "../../assets/icons8-free-shipping-100_1icons8-free-shipping-100.webp";
+import icon2 from "../../assets/icons8-communication-100_1icons8-communication-100.webp";
 
 const HomeElement6 = () => {
   return (

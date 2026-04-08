@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import feature0 from "../../assets/features/img0.png";
-import feature1 from "../../assets/features/img1.png";
-import feature2 from "../../assets/features/img2.png";
-import feature3 from "../../assets/features/img3.png";
-import feature4 from "../../assets/features/img4.png";
-import feature5 from "../../assets/features/img5.png";
+import feature0 from "../../assets/features/img0.webp";
+import feature1 from "../../assets/features/img1.webp";
+import feature2 from "../../assets/features/img2.webp";
+import feature3 from "../../assets/features/img3.webp";
+import feature4 from "../../assets/features/img4.webp";
+import feature5 from "../../assets/features/img5.webp";
 
 const HomeElement3 = () => {
   const features = [

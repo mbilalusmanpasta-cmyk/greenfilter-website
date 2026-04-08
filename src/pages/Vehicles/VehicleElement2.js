@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import icon0 from "../../assets/icons8-car-top-view-100_1icons8-car-top-view-100.png";
-import icon1 from "../../assets/icons8-gas-pump-100_1icons8-gas-pump-100.png";
-import icon2 from "../../assets/icons8-receive-cash-100_1icons8-receive-cash-100.png";
+import icon0 from "../../assets/icons8-car-top-view-100_1icons8-car-top-view-100.webp";
+import icon1 from "../../assets/icons8-gas-pump-100_1icons8-gas-pump-100.webp";
+import icon2 from "../../assets/icons8-receive-cash-100_1icons8-receive-cash-100.webp";
 const VehicleElement2 = ({ vehicle }) => {
   const [width, setWidth] = React.useState(window.innerWidth);
 

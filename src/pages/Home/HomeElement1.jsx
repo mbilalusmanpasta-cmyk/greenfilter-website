@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import gradient from "../../assets/green-gradient-blue.png";
+import gradient from "../../assets/green-gradient-blue.webp";
 import { Link } from "react-router-dom";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";

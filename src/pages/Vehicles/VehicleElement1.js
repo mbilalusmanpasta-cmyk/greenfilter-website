@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import greenFilter from "../../assets/green-filter.png";
-import usaFlag from "../../assets/flag-icon.png";
+import greenFilter from "../../assets/green-filter.webp";
+import usaFlag from "../../assets/flag-icon.webp";
 const VehicleElement1 = () => {
   return (
     <>

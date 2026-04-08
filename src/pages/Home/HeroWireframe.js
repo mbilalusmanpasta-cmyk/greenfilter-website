@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-// import homePageImage from "../../assets/home-page.jpeg";
-import homePageImage from "../../assets/banner/four.png";
+// import homePageImage from "../../assets/home-page.webp";
+import homePageImage from "../../assets/banner/four.webp";
 
 
 const TopSection = styled.div`

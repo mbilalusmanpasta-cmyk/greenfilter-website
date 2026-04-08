@@ -17,7 +17,7 @@ import styled from "styled-components";
 import HomeElement2 from "./HomeElement2";
 import { Helmet } from "react-helmet-async";
 import { galleryImages } from "../../data/galleryImages";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 import StructuredData from "../../components/StructuredData";
 import { homeSEO } from "../../utils/seoData";
 

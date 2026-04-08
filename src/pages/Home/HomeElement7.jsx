@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import icon0 from "../../assets/products/2007-228x228.png";
-import icon1 from "../../assets/products/2012-228x228.png";
-import icon2 from "../../assets/products/cleaner_box-500x500.jpg";
-import panelIcon from "../../assets/panel.jpg";
+import icon0 from "../../assets/products/2007-228x228.webp";
+import icon1 from "../../assets/products/2012-228x228.webp";
+import icon2 from "../../assets/products/cleaner_box-500x500.webp";
+import panelIcon from "../../assets/panel.webp";
 import { Link } from "react-router-dom";
 import Button1 from "../../components/Button1";
 

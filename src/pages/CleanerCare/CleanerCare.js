@@ -7,7 +7,7 @@ import CCElement2 from "./CCElement2";
 import Gallery from "../Home/Gallery";
 import { Helmet } from "react-helmet-async";
 import { galleryImages } from "../../data/galleryImages";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 
 const CleanerCare = (props) => {
   const gallery = galleryImages;

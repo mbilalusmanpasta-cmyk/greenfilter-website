@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import img0 from "../../assets/panel.jpg";
-import img2 from "../../assets/panel.jpg";
+import img0 from "../../assets/panel.webp";
+import img2 from "../../assets/panel.webp";
 import FilterTable from "../../components/FilterTable";
 import { collection, query, where, getDocs} from "firebase/firestore"; 
 import  {db} from '../../helper/firebase';
@@ -120,14 +120,14 @@ const UPElement1 = () => {
         >
           <center>
             <a
-              href="https://greenfilter.com/images/cone_filter_measurements.jpg"
+              href="https://greenfilter.com/images/cone_filter_measurements.webp"
               style={{ color: "green" }}
             >
               <img src={img2} className="resize" alt="" />
             </a>
             <br />
             <a
-              href="images/cone_filter_measurements.jpg"
+              href="images/cone_filter_measurements.webp"
               style={{ color: "green" }}
               title="Green Filter USA - Cone &amp; Cylinder Filter Dimensions"
             >

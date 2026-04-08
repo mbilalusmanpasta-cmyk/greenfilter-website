@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import img0 from "../../assets/cylinders/cone-cylinder_chart.jpg";
-import img1 from "../../assets/cylinders/vid_measure_350.jpg";
-import img2 from "../../assets/cylinders/cone_filter_measurements_s.jpg";
+import img0 from "../../assets/cylinders/cone-cylinder_chart.webp";
+import img1 from "../../assets/cylinders/vid_measure_350.webp";
+import img2 from "../../assets/cylinders/cone_filter_measurements_s.webp";
 import FilterTable from "../../components/FilterTable";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from '../../helper/firebase';
@@ -231,14 +231,14 @@ const UCElement1 = () => {
         >
           <center>
             <a
-              href="images/cone_filter_measurements.jpg"
+              href="images/cone_filter_measurements.webp"
               style={{ color: "green" }}
             >
               <img src={img2} className="resize" alt="" />
             </a>
             <br />
             <a
-              href="images/cone_filter_measurements.jpg"
+              href="images/cone_filter_measurements.webp"
               style={{ color: "green" }}
               title="Green Filter USA - Cone &amp; Cylinder Filter Dimensions"
             >

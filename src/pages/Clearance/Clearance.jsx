@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 import CircleLoader from "react-spinners/CircleLoader";
-import fallbackImage from "../../assets/products/2007-228x228.png";
+import fallbackImage from "../../assets/products/2007-228x228.webp";
 import { trackPageView } from "../../utils/analytics";
 
 const Clearance = (props) => {

@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import Button1 from "../../components/Button1";
 import { getForm1 } from "../../data/store";
-import bgImg from "../../assets/green-gradient-blue.png";
+import bgImg from "../../assets/green-gradient-blue.webp";
 
 const GuaranteeElement1 = () => {
   const formData = getForm1();

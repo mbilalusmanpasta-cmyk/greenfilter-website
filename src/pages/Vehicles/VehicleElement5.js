@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Carousel } from "antd";
 import { Link } from "react-router-dom";
-import star from "../../assets/fiveStar.png";
-import profile0 from "../../assets/profiles/man1_2.jpg";
-import profile1 from "../../assets/profiles/man2_2.jpg";
-import profile2 from "../../assets/profiles/man3.jpg";
-import profile3 from "../../assets/profiles/man4.jpg";
+import star from "../../assets/fiveStar.webp";
+import profile0 from "../../assets/profiles/man1_2.webp";
+import profile1 from "../../assets/profiles/man2_2.webp";
+import profile2 from "../../assets/profiles/man3.webp";
+import profile3 from "../../assets/profiles/man4.webp";
 import Button1 from "../../components/Button1";
 const VehicleElement5 = () => {
   const [width, setWidth] = useState(window.innerWidth);

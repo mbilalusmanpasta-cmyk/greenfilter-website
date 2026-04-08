@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import bgImg from "../../assets/green-gradient-blue.png";
-import filter0 from "../../assets/cleaner-p-800.png";
+import bgImg from "../../assets/green-gradient-blue.webp";
+import filter0 from "../../assets/cleaner-p-800.webp";
 import Button1 from "../../components/Button1";
 import FilterTable from "../../components/FilterTable";
 import { GetData } from "../../helper/request";

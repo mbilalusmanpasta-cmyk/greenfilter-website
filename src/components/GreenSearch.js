@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { statics } from "../data/store";
 import AddToCart from "./AddToCart";
 import { Select, Input, Button } from "antd";
-import logo from "../assets/gflogo.png";
+import logo from "../assets/gflogo.webp";
 import { CaretDownOutlined } from "@ant-design/icons";
 import axios from "axios";
 import styled from "styled-components";

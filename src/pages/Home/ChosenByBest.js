@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
-import brand0 from "../../assets/trust/brand0.png";
-import brand1 from "../../assets/trust/brand1.png";
-import brand2 from "../../assets/trust/brand2.png";
-import brand4 from "../../assets/trust/brand4.png";
-import brand5 from "../../assets/trust/brand5.jpg";
+import brand0 from "../../assets/trust/brand0.webp";
+import brand1 from "../../assets/trust/brand1.webp";
+import brand2 from "../../assets/trust/brand2.webp";
+import brand4 from "../../assets/trust/brand4.webp";
+import brand5 from "../../assets/trust/brand5.webp";
 
 const BRAND_GREEN = "#00ad23";
 

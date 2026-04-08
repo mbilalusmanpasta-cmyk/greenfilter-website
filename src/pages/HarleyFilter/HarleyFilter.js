@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import HFElement1 from "./HFElement1";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 import { Helmet } from "react-helmet-async";
 
 const HarleyFilter = (props) => {

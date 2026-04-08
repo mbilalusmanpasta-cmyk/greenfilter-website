@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import youtube from "../../assets/yt.png";
+import youtube from "../../assets/yt.webp";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";

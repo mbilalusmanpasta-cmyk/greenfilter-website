@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import facebook from "../assets/facebook.png";
-import instagram from "../assets/instagram.png";
-import youtube from "../assets/youtube.png";
-import logo from "../assets/gflogo.png";
-import paypal from "../assets/payments/paypal.png";
-import visa from "../assets/payments/visa.png";
-import mastercard from "../assets/payments/master.png";
-import amex from "../assets/payments/express.png";
+import facebook from "../assets/facebook.webp";
+import instagram from "../assets/instagram.webp";
+import youtube from "../assets/youtube.webp";
+import logo from "../assets/gflogo.webp";
+import paypal from "../assets/payments/paypal.webp";
+import visa from "../assets/payments/visa.webp";
+import mastercard from "../assets/payments/master.webp";
+import amex from "../assets/payments/express.webp";
 const Footer = () => {
   return (
     <>

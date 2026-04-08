@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React, { useState } from "react";
 import styled from "styled-components";
-import gradient from "../../assets/green-gradient-blue.png";
+import gradient from "../../assets/green-gradient-blue.webp";
 import { getForm2 } from "../../data/store";
 import Button1 from "../../components/Button1";
 import axios from "axios";

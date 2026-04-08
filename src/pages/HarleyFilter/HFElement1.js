@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import img0 from "../../assets/harley.jpg";
-import part from "../../assets/2464.jpg";
+import img0 from "../../assets/harley.webp";
+import part from "../../assets/2464.webp";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
-import img1 from "../../assets/cylinders/vid_measure_350.jpg";
-import img2 from "../../assets/cylinders/cone_filter_measurements_s.jpg";
+import img1 from "../../assets/cylinders/vid_measure_350.webp";
+import img2 from "../../assets/cylinders/cone_filter_measurements_s.webp";
 import FilterTable from "../../components/FilterTable";
 import CircleLoader from "react-spinners/CircleLoader";
 
@@ -155,14 +155,14 @@ const HFElement1 = () => {
         >
           <center>
             <a
-              href="https://greenfilter.com/images/cone_filter_measurements.jpg"
+              href="https://greenfilter.com/images/cone_filter_measurements.webp"
               style={{ color: "green" }}
             >
               <img src={img2} className="resize" alt="" />
             </a>
             <br />
             <a
-              href="images/cone_filter_measurements.jpg"
+              href="images/cone_filter_measurements.webp"
               style={{ color: "green" }}
               title="Green Filter USA - Cone &amp; Cylinder Filter Dimensions"
             >

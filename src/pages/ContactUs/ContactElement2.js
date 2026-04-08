@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import img0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.png";
-import img1 from "../../assets/icons8-gphone-100-3.png";
+import img0 from "../../assets/icons8-wheel-100_1icons8-wheel-100.webp";
+import img1 from "../../assets/icons8-gphone-100-3.webp";
 import { trackContactFormSubmit } from "../../utils/analytics";
 
 const ContactElement2 = () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import img0 from "../../assets/filters.jpg";
+import img0 from "../../assets/filters.webp";
 import CircleLoader from "react-spinners/CircleLoader";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";

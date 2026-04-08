@@ -1,8 +1,8 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import bgImg from "../../assets/green-gradient-blue.png";
-import link from "../../assets/GREENAPP.jpg";
+import bgImg from "../../assets/green-gradient-blue.webp";
+import link from "../../assets/GREENAPP.webp";
 const CareerElement1 = () => {
   return (
     <>

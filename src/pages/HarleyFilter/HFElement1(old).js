@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import img0 from "../../assets/harley.jpg";
-import part from "../../assets/2464.jpg";
+import img0 from "../../assets/harley.webp";
+import part from "../../assets/2464.webp";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 const HFElement1 = () => {

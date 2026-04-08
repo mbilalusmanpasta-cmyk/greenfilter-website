@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import bgImg from "../../assets/green-gradient-blue.png";
+import bgImg from "../../assets/green-gradient-blue.webp";
 
 const AboutElement1 = () => {
   return (

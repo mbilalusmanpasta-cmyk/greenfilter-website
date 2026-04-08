@@ -54,7 +54,7 @@ export const homeSEO = {
     '@type': 'Organization',
     name: 'Green Filter USA',
     url: 'https://greenfilter.com',
-    logo: 'https://greenfilter.com/images/toplogo_1.png',
+    logo: 'https://greenfilter.com/images/toplogo_1.webp',
     description: 'Manufacturer of high-performance washable and reusable air filters for motorcycles, cars, and trucks',
     address: {
       '@type': 'PostalAddress',

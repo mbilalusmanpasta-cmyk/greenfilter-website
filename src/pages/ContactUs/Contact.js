@@ -7,7 +7,7 @@ import ContactElement1 from "./ContactElement1";
 import ContactElement2 from "./ContactElement2";
 import { Helmet } from "react-helmet-async";
 import { galleryImages } from "../../data/galleryImages";
-import img0 from "../../assets/gallery/img0.jpeg";
+import img0 from "../../assets/gallery/img0.webp";
 
 const gallery = galleryImages;
 const Contact = (props) => {

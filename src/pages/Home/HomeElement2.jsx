@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
-import profile0 from "../../assets/profiles/profile0.jpg";
-import profile1 from "../../assets/profiles/profile1.jpg";
-import profile2 from "../../assets/profiles/profile2.jpg";
-import profile3 from "../../assets/profiles/profile3.jpg";
+import profile0 from "../../assets/profiles/profile0.webp";
+import profile1 from "../../assets/profiles/profile1.webp";
+import profile2 from "../../assets/profiles/profile2.webp";
+import profile3 from "../../assets/profiles/profile3.webp";
 import Button1 from "../../components/Button1";
 import { useHistory } from "react-router-dom";
 
