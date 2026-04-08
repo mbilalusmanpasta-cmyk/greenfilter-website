@@ -962,7 +962,7 @@ export default function PerfectFilter() {
               return (
                 <ProductCard key={product.id || product.gfu_part_num}>
                   <ProductCardImage>
-                    <img src={imageSrc} alt={partTitle} />
+                    <img src={imageSrc} alt={partTitle} loading="lazy" />
                   </ProductCardImage>
                   <ProductCardBody>
                     <div>

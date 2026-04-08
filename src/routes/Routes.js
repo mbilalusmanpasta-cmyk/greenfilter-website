@@ -1,35 +1,52 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
-import ShopByVehicle from "../pages/ShopByVehicle/ShopByVehicle";
-import Vehicles from "../pages/Vehicles/Vehicles";
-import MeasureFilter from "../pages/MeasureFilter/MeasureFilter";
-import CleanerCare from "../pages/CleanerCare/CleanerCare";
-import UniversalCylinder from "../pages/UniversalCylinder/UniversalCylinder";
-import UniversalRound from "../pages/UniversalRound/UniversalRound";
-import AirCleaner from "../pages/AirCleaner/AirCleaner";
-import AboutUs from "../pages/AboutUs/AboutUs";
-import Guarantee from "../pages/Guarantee/Guarantee";
-import WhyGoGreen from "../pages/WhyGoGreen/WhyGoGreen";
-import Contact from "../pages/ContactUs/Contact";
-import Career from "../pages/Careers/Career";
-import PrivateLabel from "../pages/PrivateLabel/PrivateLabel";
-import HarleyFilter from "../pages/HarleyFilter/HarleyFilter";
-import CrossReferenceBrand from "../pages/CrossReferenceBrand/CrossReferenceBrand";
-import CrossReferenceFilter from "../pages/CrossReferenceFilter/CrossReferenceFilter";
-import FAQs from "../pages/FAQs/FAQs";
-import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
-import TermsAndConditions from "../pages/TermsAndConditions/TermsAndConditions";
-import Clearance from "../pages/Clearance/Clearance.jsx";
-
-import UniversalPanel from "../pages/UniversalPanel/UniversalPanel";
-import Product from "../pages/Product";
-import Home from "../pages/Home/Home.jsx";
 import { getGlobalData } from "../helper/util/getGlobalData";
+import CircleLoader from "react-spinners/CircleLoader";
 
 import './routes.css';
-import NotFound from "../pages/NotFound/index.jsx";
-import Sitemap from "../pages/Sitemap/Sitemap.jsx";
+
+// Eager load critical pages (Home, Product)
+import Home from "../pages/Home/Home.jsx";
+import Product from "../pages/Product";
 import ShippingBanner from "../components/ShippingBanner.jsx";
+
+// Lazy load all other pages for code splitting
+const ShopByVehicle = lazy(() => import("../pages/ShopByVehicle/ShopByVehicle"));
+const Vehicles = lazy(() => import("../pages/Vehicles/Vehicles"));
+const MeasureFilter = lazy(() => import("../pages/MeasureFilter/MeasureFilter"));
+const CleanerCare = lazy(() => import("../pages/CleanerCare/CleanerCare"));
+const UniversalCylinder = lazy(() => import("../pages/UniversalCylinder/UniversalCylinder"));
+const UniversalRound = lazy(() => import("../pages/UniversalRound/UniversalRound"));
+const AirCleaner = lazy(() => import("../pages/AirCleaner/AirCleaner"));
+const AboutUs = lazy(() => import("../pages/AboutUs/AboutUs"));
+const Guarantee = lazy(() => import("../pages/Guarantee/Guarantee"));
+const WhyGoGreen = lazy(() => import("../pages/WhyGoGreen/WhyGoGreen"));
+const Contact = lazy(() => import("../pages/ContactUs/Contact"));
+const Career = lazy(() => import("../pages/Careers/Career"));
+const PrivateLabel = lazy(() => import("../pages/PrivateLabel/PrivateLabel"));
+const HarleyFilter = lazy(() => import("../pages/HarleyFilter/HarleyFilter"));
+const CrossReferenceBrand = lazy(() => import("../pages/CrossReferenceBrand/CrossReferenceBrand"));
+const CrossReferenceFilter = lazy(() => import("../pages/CrossReferenceFilter/CrossReferenceFilter"));
+const FAQs = lazy(() => import("../pages/FAQs/FAQs"));
+const PrivacyPolicy = lazy(() => import("../pages/PrivacyPolicy/PrivacyPolicy"));
+const TermsAndConditions = lazy(() => import("../pages/TermsAndConditions/TermsAndConditions"));
+const Clearance = lazy(() => import("../pages/Clearance/Clearance.jsx"));
+const UniversalPanel = lazy(() => import("../pages/UniversalPanel/UniversalPanel"));
+const NotFound = lazy(() => import("../pages/NotFound/index.jsx"));
+const Sitemap = lazy(() => import("../pages/Sitemap/Sitemap.jsx"));
+
+// Loading component
+const PageLoader = () => (
+  <div style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "60vh",
+    width: "100%"
+  }}>
+    <CircleLoader color={"#00ad23"} loading={true} size={60} />
+  </div>
+);
 
 const Routes = () => {
   const [clickedIndex, setClickedIndex] = useState(-1);
@@ -77,7 +94,8 @@ const Routes = () => {
 
       <ShippingBanner />
 
-      <Switch>
+      <Suspense fallback={<PageLoader />}>
+        <Switch>
         <Route
           exact
           path="/"
@@ -361,6 +379,7 @@ const Routes = () => {
         <Route component={NotFound} />
 
       </Switch>
+      </Suspense>
     </>
   );
 };

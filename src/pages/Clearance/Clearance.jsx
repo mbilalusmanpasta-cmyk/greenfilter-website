@@ -3,11 +3,12 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Button1 from "../../components/Button1";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 import CircleLoader from "react-spinners/CircleLoader";
 import fallbackImage from "../../assets/products/2007-228x228.png";
+import { trackPageView } from "../../utils/analytics";
 
 const Clearance = (props) => {
   const [products, setProducts] = useState([]);
@@ -445,7 +446,7 @@ const ProductImageContainer = styled.div`
   }
 `;
 
-const ProductImage = styled.img`
+const ProductImage = styled.img.attrs({ loading: 'lazy' })`
   max-width: 100%;
   max-height: 100%;
   width: auto;
