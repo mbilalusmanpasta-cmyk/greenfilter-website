@@ -1,24 +1,41 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import HFElement1 from "./HFElement1";
-import img0 from "../../assets/gallery/img0.webp";
-import { Helmet } from "react-helmet-async";
+import StructuredData from "../../components/StructuredData";
+import { enhancedHarleyFilterSEO } from "../../utils/seoData";
 
 const HarleyFilter = (props) => {
   return (
     <>
       <Helmet>
-        <title>Harley Filter | Green Filter</title>
-        <meta name="description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
-        <meta property="og:description" content={"Green Filter outperforms the competition, discover why we've secretly been the favorite air filter to some of the world's biggest racing brands and enthusiasts."} />
+        <title>{enhancedHarleyFilterSEO.title}</title>
+        <meta name="description" content={enhancedHarleyFilterSEO.description} />
+        <meta name="keywords" content={enhancedHarleyFilterSEO.keywords} />
 
-        <meta property="og:title" content="Harley Filter | Green Filter" />
-        <meta property="og:image" content={img0} />
+        {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://greenfilter.com/harley-filter" />
+        <meta property="og:title" content={enhancedHarleyFilterSEO.title} />
+        <meta property="og:description" content={enhancedHarleyFilterSEO.description} />
+        <meta property="og:image" content={enhancedHarleyFilterSEO.ogImage} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://greenfilter.com/harley-filter" />
+        <meta name="twitter:title" content={enhancedHarleyFilterSEO.title} />
+        <meta name="twitter:description" content={enhancedHarleyFilterSEO.description} />
+        <meta name="twitter:image" content={enhancedHarleyFilterSEO.ogImage} />
+
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://greenfilter.com/harley-filter" />
       </Helmet>
+
+      {enhancedHarleyFilterSEO.structuredData && (
+        <StructuredData data={enhancedHarleyFilterSEO.structuredData} />
+      )}
+
       <Header
         clickedIndex={props.clickedIndex}
         handleClickIndex={props.handleClickIndex}

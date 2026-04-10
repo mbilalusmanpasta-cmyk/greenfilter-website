@@ -2,60 +2,254 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Home Page -->
+  <!-- ========================================
+       HOME PAGE
+       ======================================== -->
   <url>
     <loc>https://greenfilter.com/</loc>
-    <lastmod>2026-04-01</lastmod>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Shop by Vehicle -->
+  <!-- ========================================
+       UNIVERSAL PRODUCT PAGES (High Sales Impact)
+       Updated: 2026-04-10 with complete SEO
+       ======================================== -->
+
+  <!-- Universal Panel - HIGHEST PRIORITY PRODUCT PAGE -->
   <url>
-    <loc>https://greenfilter.com/shop-by-vehicle</loc>
-    <lastmod>2026-04-01</lastmod>
+    <loc>https://greenfilter.com/universal-panel</loc>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Universal Round Filters -->
+  <url>
+    <loc>https://greenfilter.com/universal-round</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Universal Cylinder Filters -->
+  <url>
+    <loc>https://greenfilter.com/universal-cylinder</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Air Cleaner Assemblies -->
+  <url>
+    <loc>https://greenfilter.com/air-cleaner</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ========================================
+       MAIN CATEGORY PAGES
+       ======================================== -->
+
+  <!-- Shop by Vehicle -->
+  <url>
+    <loc>https://greenfilter.com/shop-by-vehicle</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Harley Davidson Filters -->
+  <url>
+    <loc>https://greenfilter.com/harley-filter</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ========================================
+       VEHICLE BRAND PAGES (Top Priority Brands)
+       Updated: 2026-04-10 with complete SEO
+       ======================================== -->
+
+  <!-- Ford Mustang -->
+  <url>
+    <loc>https://greenfilter.com/brand/mustang</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Chevrolet Corvette -->
+  <url>
+    <loc>https://greenfilter.com/brand/corvette</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Toyota -->
+  <url>
+    <loc>https://greenfilter.com/brand/toyota</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Honda -->
+  <url>
+    <loc>https://greenfilter.com/brand/honda</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- BMW -->
+  <url>
+    <loc>https://greenfilter.com/brand/bmw</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ========================================
+       VEHICLE BRAND PAGES (Other Brands)
+       Updated: 2026-04-10 with complete SEO
+       ======================================== -->
+
+  <!-- Subaru -->
+  <url>
+    <loc>https://greenfilter.com/brand/subaru</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Jeep -->
+  <url>
+    <loc>https://greenfilter.com/brand/jeep</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Chevrolet -->
+  <url>
+    <loc>https://greenfilter.com/brand/chevrolet</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Dodge -->
+  <url>
+    <loc>https://greenfilter.com/brand/dodge</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Ford -->
+  <url>
+    <loc>https://greenfilter.com/brand/ford</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Nissan -->
+  <url>
+    <loc>https://greenfilter.com/brand/nissan</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Mazda -->
+  <url>
+    <loc>https://greenfilter.com/brand/mazda</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Volkswagen -->
+  <url>
+    <loc>https://greenfilter.com/brand/volkswagen</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Audi -->
+  <url>
+    <loc>https://greenfilter.com/brand/audi</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Mercedes-Benz -->
+  <url>
+    <loc>https://greenfilter.com/brand/mercedes</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Ram Trucks -->
+  <url>
+    <loc>https://greenfilter.com/brand/ram</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- GMC -->
+  <url>
+    <loc>https://greenfilter.com/brand/gmc</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Cadillac -->
+  <url>
+    <loc>https://greenfilter.com/brand/cadillac</loc>
+    <lastmod>2026-04-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- ========================================
+       UTILITY & REFERENCE PAGES
+       Updated: 2026-04-10 with complete SEO
+       ======================================== -->
 
   <!-- Measure Filter Guide -->
   <url>
     <loc>https://greenfilter.com/measure-filter</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
-  <!-- Harley Filters -->
+  <!-- Cross Reference - Brand to Green Filter -->
   <url>
-    <loc>https://greenfilter.com/harley-filter</loc>
-    <lastmod>2026-04-01</lastmod>
+    <loc>https://greenfilter.com/cross-reference-brand</loc>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
-  <!-- Air Cleaner -->
+  <!-- Cross Reference - Green Filter to Brand -->
   <url>
-    <loc>https://greenfilter.com/air-cleaner</loc>
-    <lastmod>2026-04-01</lastmod>
+    <loc>https://greenfilter.com/cross-reference-filters</loc>
+    <lastmod>2026-04-10</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Universal Round Filters -->
-  <url>
-    <loc>https://greenfilter.com/universal-round</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Universal Cylinder Filters -->
-  <url>
-    <loc>https://greenfilter.com/universal-cylinder</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
   <!-- Cleaner & Care Products -->
@@ -66,13 +260,17 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Cross Reference -->
+  <!-- FAQs -->
   <url>
-    <loc>https://greenfilter.com/cross-reference-brand</loc>
+    <loc>https://greenfilter.com/faqs</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- ========================================
+       INFORMATIONAL PAGES
+       ======================================== -->
 
   <!-- About Us -->
   <url>
@@ -90,14 +288,6 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- FAQs -->
-  <url>
-    <loc>https://greenfilter.com/faqs</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Our Guarantee -->
   <url>
     <loc>https://greenfilter.com/our-guarantee</loc>
@@ -106,20 +296,20 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- Careers -->
-  <url>
-    <loc>https://greenfilter.com/careers</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
   <!-- Vehicles Landing -->
   <url>
     <loc>https://greenfilter.com/vehicles</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <!-- Careers -->
+  <url>
+    <loc>https://greenfilter.com/careers</loc>
+    <lastmod>2026-04-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <!-- Sitemap Page (HTML) -->

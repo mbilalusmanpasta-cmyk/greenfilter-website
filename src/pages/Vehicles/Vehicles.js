@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Hero from "./Hero";
@@ -17,7 +18,27 @@ import capitalizeFirstLetter from "../../util/capitalizeFirstLetter";
 import { GetData } from "../../helper/request";
 import { statics } from "../../data/store";
 import CircleLoader from "react-spinners/CircleLoader";
-import { Helmet } from "react-helmet-async";
+import StructuredData from "../../components/StructuredData";
+import {
+  mustangSEO,
+  corvetteSEO,
+  toyotaSEO,
+  hondaSEO,
+  bmwSEO,
+  subaruSEO,
+  jeepSEO,
+  chevroletSEO,
+  dodgeSEO,
+  fordSEO,
+  nissanSEO,
+  mazdaSEO,
+  volkswagenSEO,
+  audiSEO,
+  mercedesSEO,
+  ramSEO,
+  gmcSEO,
+  cadillacSEO
+} from "../../utils/seoData";
 
 const Vehicles = (props) => {
 
@@ -58,60 +79,69 @@ const Vehicles = (props) => {
   }
 
 
-  function getSeo() {
-    const url = window.location.pathname;
-    const brand = url.split('/')[2];
-    if (brand === "mustang") {
-      return {
-        title: "Mustang Engine Air Filters - Green Filter USA",
-        description: "Green Filter USA: Precisely engineered air filters for Mustang performance. Experience better MPG, more power, and a lifetime of savings. Shop now!",
-        h1: "Mustang Engine Air Filters"
-      }
+  // Map brand slugs to SEO data from centralized seoData.js
+  const getBrandSEO = (brandSlug) => {
+    const seoMap = {
+      'mustang': mustangSEO,
+      'corvette': corvetteSEO,
+      'toyota': toyotaSEO,
+      'honda': hondaSEO,
+      'bmw': bmwSEO,
+      'subaru': subaruSEO,
+      'jeep': jeepSEO,
+      'chevrolet': chevroletSEO,
+      'chevy': chevroletSEO,
+      'dodge': dodgeSEO,
+      'ford': fordSEO,
+      'nissan': nissanSEO,
+      'mazda': mazdaSEO,
+      'volkswagen': volkswagenSEO,
+      'vw': volkswagenSEO,
+      'audi': audiSEO,
+      'mercedes': mercedesSEO,
+      'mercedes-benz': mercedesSEO,
+      'ram': ramSEO,
+      'gmc': gmcSEO,
+      'cadillac': cadillacSEO,
+    };
+
+    // Return mapped SEO or fallback
+    if (seoMap[brandSlug?.toLowerCase()]) {
+      return seoMap[brandSlug.toLowerCase()];
     }
 
-    else if (brand === "toyota") {
-      return {
-        title: "Toyota Engine Air Filters",
-        description: "Upgrade your Toyota's performance with Green Filter USA! Find air filters for Camry, Tundra, Corolla & more. Increase horsepower & fuel economy",
-        h1: "Toyota Engine Air Filters - Green Filter USA"
-      }
-    }
+    // Fallback for brands not in seoData.js
+    return {
+      title: `${make?.title || capitalizeFirstLetter(brandSlug) || ""} Air Filters | High Performance Engine Filters | Green Filter`,
+      description: make?.hero_text || `Premium washable air filters for ${capitalizeFirstLetter(brandSlug) || "your vehicle"}. Increase horsepower and improve performance. Reusable, lifetime warranty. Made in USA.`,
+      keywords: `${brandSlug} air filter, ${brandSlug} performance filter, ${brandSlug} engine filter, washable air filter, reusable filter`,
+      ogImage: null,
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: `${capitalizeFirstLetter(brandSlug)} Performance Air Filter`,
+        brand: {
+          '@type': 'Brand',
+          name: 'Green Filter',
+        },
+        description: `High-performance washable air filters for ${capitalizeFirstLetter(brandSlug)} vehicles`,
+        offers: {
+          '@type': 'AggregateOffer',
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          reviewCount: '850',
+        },
+      },
+    };
+  };
 
-    else if (brand === "subaru") {
-      return {
-        title: "Subaru Engine Air Filters - Green Filter USA",
-        description: "Green Filter USA: Explore our reusable Engine filters for Subaru. Find filters for Forester, Outback, Impreza & more. Shop our Subaru air filters today!",
-        h1: "Subaru Engine Air Filters"
-      }
-    }
-
-    else if (brand === "jeep") {
-      return {
-        title: "Jeep Engine Air Filters - Green Filter USA",
-        description: "Unleash your Jeep's potential with Green Filter USA! Discover air filters for Cherokee, Wrangler, Grand Cherokee & more. Maximize horsepower & MPG",
-        h1: "Jeep Engine Air Filters"
-      }
-    }
-
-    else if (brand === "bmw") {
-      return {
-        title: "BMW Engine Air Filters - Green Filter USA",
-        description: "Upgrade your BMW M-Series with a Green Filter! Our reusable engine air filters are designed for maximum power and efficiency. Shop BMW Engine FIlters!",
-        h1: "BMW ENgine AIr Filters"
-      }
-    }
-
-    else {
-      return {
-        title: `${make?.title || brand?.toUpperCase() || ""} Engine Air Filters - Green Filter USA`,
-        description: make?.hero_text || `Upgrade your ${brand?.toUpperCase() || ""} with a Green Filter! Our reusable engine air filters are designed for maximum power and efficiency. Shop ${brand?.toUpperCase() || ""} Engine FIlters!`,
-        h1: `${make?.title || brand?.toUpperCase() || ""} Engine Air Filters`
-      }
-    }
-  }
-
-
-  const { title, h1, description } = getSeo()
+  const url = window.location.pathname;
+  const brandSlug = url.split('/')[2];
+  const seo = getBrandSEO(brandSlug)
   const canonicalUrlClean = window.location.href.split(/[/]]/)[0]; // removes ?utm= or #hash
   const canonicalUrlArr = canonicalUrlClean.split("/"); // removes ?utm= or #hash
 
@@ -142,16 +172,29 @@ const Vehicles = (props) => {
 
 
       <Helmet>
-        <title>{title || "Green Filter - High Performance Air Filters"} </title>
-        <meta name="description" content={description || "Upgrade your ride with Green Filter! Explore our range of high-performance cone & cylinder air filters. Click to watch our measuring guide video and Shop Now!"} />
-        <meta property="og:title" content={title || "Universal Cylinder Air Filters - Green Filter USA"} />
-        <meta property="og:description" content={description || "Upgrade your ride with Green Filter! Explore our range of high-performance cone & cylinder air filters. Click to watch our measuring guide video and Shop Now!"} />
-        {/* <meta property="og:image" content={img0} /> */}
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        <meta name="keywords" content={seo.keywords} />
+
+        {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://greenfilter.com/brand/${canonicalUrlLastObj}`} />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        {seo.ogImage && <meta property="og:image" content={seo.ogImage} />}
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={`https://greenfilter.com/brand/${canonicalUrlLastObj}`} />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+        {seo.ogImage && <meta name="twitter:image" content={seo.ogImage} />}
+
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://greenfilter.com/brand/${canonicalUrlLastObj}`} />
-
       </Helmet>
+
+      {seo.structuredData && <StructuredData data={seo.structuredData} />}
 
       <Header
         isVehicle={true}
